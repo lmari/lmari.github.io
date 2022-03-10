@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-family: "Lato", sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
   
 .sidebar {
@@ -35,7 +35,11 @@ div.content {
     padding: 1px 16px;
     height: 1000px;
 }
-  
+
+p {
+    font-size: 11pt;
+}
+
 h2 {
       color: darkcyan;
 }
@@ -43,6 +47,18 @@ h2 {
 h3 {
     background-color: antiquewhite;
     color: #555;
+}
+
+a:link {
+    color: blue;
+}
+
+a:visited {
+    color: blue;
+}
+
+a:hover {
+    background-color: antiquewhite;
 }
   
 @media screen and (max-width: 700px) {
