@@ -49,6 +49,10 @@ h3 {
     color: #555;
 }
 
+li {
+    margin-bottom: 4pt;
+}
+
 a:link {
     color: blue;
 }
