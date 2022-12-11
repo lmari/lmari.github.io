@@ -64,6 +64,16 @@ a:visited {
 a:hover {
     background-color: antiquewhite;
 }
+
+.io {
+    color: blue;
+    font-weight: bold;
+}
+
+.tu {
+    color: green;
+    font-weight: bold;
+}
   
 @media screen and (max-width: 700px) {
     .sidebar {
