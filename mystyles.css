@@ -60,6 +60,11 @@ li {
     margin-bottom: 4pt;
 }
 
+td {
+    font-size: 10pt;
+    color: darkblue;
+}
+
 a:link {
     color: blue;
 }
