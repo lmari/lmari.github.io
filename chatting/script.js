@@ -1,5 +1,5 @@
 function mode() {
-    const paragraphs = document.querySelectorAll("p");
+    const paragraphs = document.querySelectorAll("p, pre");
     x = document.getElementById("mode")
     x1 = "passa alla lettura interattiva"
     x2 = "(spazio o click per avanzare) passa alla pagina completa"

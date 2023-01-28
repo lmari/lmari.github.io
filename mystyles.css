@@ -86,6 +86,12 @@ a:hover {
     color: green;
     font-weight: bold;
 }
+
+.codice {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: small;
+    white-space: pre-wrap;
+}
   
 @media screen and (max-width: 700px) {
     .sidebar {
