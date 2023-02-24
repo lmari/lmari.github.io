@@ -1,6 +1,8 @@
 body {
     margin: 0;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13pt;
+    color: #333;
 }
 
 body.chatting {
@@ -43,18 +45,10 @@ div.content {
     height: 1000px;
 }
 
-p {
-    font-size: 11pt;
-}
-
-h2 {
+h1, h2, h3 {
       color: darkcyan;
-}
-
-h3 {
-    background-color: antiquewhite;
-    color: #555;
-}
+      font-weight: 800;
+    }
 
 li {
     margin-bottom: 4pt;
@@ -65,16 +59,22 @@ td {
     color: darkblue;
 }
 
+a {
+
+    border: 2px solid white;
+}
+
 a:link {
-    color: blue;
+    color: #555;
 }
 
 a:visited {
-    color: blue;
+    color: #555;
 }
 
 a:hover {
     background-color: antiquewhite;
+    border: 2px solid green;
 }
 
 .io {
