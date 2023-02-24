@@ -55,12 +55,10 @@ li {
 }
 
 td {
-    font-size: 10pt;
-    color: darkblue;
+    font-size: 11pt;
 }
 
 a {
-
     border: 2px solid white;
 }
 
@@ -73,8 +71,9 @@ a:visited {
 }
 
 a:hover {
-    background-color: antiquewhite;
     border: 2px solid green;
+    border-radius: 5%;
+    border-style: groove;
 }
 
 .io {
