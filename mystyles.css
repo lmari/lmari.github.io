@@ -88,7 +88,8 @@ a:hover {
 
 .codice {
     font-family: 'Courier New', Courier, monospace;
-    font-size: small;
+    font-size: medium;
+    font-weight: bold;
     white-space: pre-wrap;
 }
   
