@@ -3,630 +3,735 @@
 <head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1" name="viewport">
-<title>libro-game</title>
+<title>Estranei in terra straniera</title>
 <style title="Twine CSS">@keyframes appear{0%{opacity:0}to{opacity:1}}@keyframes fade-in-out{0%,to{opacity:0}50%{opacity:1}}@keyframes rumble{25%{top:-0.1em}75%{top:.1em}0%,to{top:0px}}@keyframes shudder{25%{left:.1em}75%{left:-0.1em}0%,to{left:0px}}@keyframes buoy{25%{top:.25em}75%{top:-0.25em}0%,to{top:0px}}@keyframes sway{25%{left:.25em}75%{left:-0.25em}0%,to{left:0px}}@keyframes pulse{0%{transform:scale(0, 0)}20%{transform:scale(1.2, 1.2)}40%{transform:scale(0.9, 0.9)}60%{transform:scale(1.05, 1.05)}80%{transform:scale(0.925, 0.925)}to{transform:scale(1, 1)}}@keyframes zoom-in{0%{transform:scale(0, 0)}to{transform:scale(1, 1)}}@keyframes shudder-in{0%,to{transform:translateX(0em)}5%,25%,45%{transform:translateX(-1em)}15%,35%,55%{transform:translateX(1em)}65%{transform:translateX(-0.6em)}75%{transform:translateX(0.6em)}85%{transform:translateX(-0.2em)}95%{transform:translateX(0.2em)}}@keyframes rumble-in{0%,to{transform:translateY(0em)}5%,25%,45%{transform:translateY(-1em)}15%,35%,55%{transform:translateY(1em)}65%{transform:translateY(-0.6em)}75%{transform:translateY(0.6em)}85%{transform:translateY(-0.2em)}95%{transform:translateY(0.2em)}}@keyframes fidget{0%,8.1%,82.1%,31.1%,38.1%,44.1%,40.1%,47.1%,74.1%,16.1%,27.1%,72.1%,24.1%,95.1%,6.1%,36.1%,20.1%,4.1%,91.1%,14.1%,87.1%,to{left:0px;top:0px}8%,82%,31%,38%,44%{left:-1px}40%,47%,74%,16%,27%{left:1px}72%,24%,95%,6%,36%{top:-1px}20%,4%,91%,14%,87%{top:1px}}@keyframes slide-right{0%{transform:translateX(-100vw)}}@keyframes slide-left{0%{transform:translateX(100vw)}}@keyframes slide-up{0%{transform:translateY(100vh)}}@keyframes slide-down{0%{transform:translateY(-100vh)}}@keyframes fade-right{0%{opacity:0;transform:translateX(-1em)}to{opacity:1}}@keyframes fade-left{0%{opacity:0;transform:translateX(1em)}to{opacity:1}}@keyframes fade-up{0%{opacity:0;transform:translateY(1em)}to{opacity:1}}@keyframes fade-down{0%{opacity:0;transform:translateY(-1em)}to{opacity:1}}@keyframes flicker{0%,29%,31%,63%,65%,77%,79%,86%,88%,91%,93%{opacity:0}30%{opacity:.2}64%{opacity:.4}78%{opacity:.6}87%{opacity:.8}92%,to{opacity:1}}@keyframes blur{0%{filter:blur(2rem);opacity:0}25%{opacity:1}to{filter:blur(0rem);opacity:1}}.dom-debug-mode tw-story,.dom-debug-mode tw-passage,.dom-debug-mode tw-sidebar,.dom-debug-mode tw-include,.dom-debug-mode tw-hook,.dom-debug-mode tw-expression,.dom-debug-mode tw-link,.dom-debug-mode tw-dialog,.dom-debug-mode tw-columns,.dom-debug-mode tw-column,.dom-debug-mode tw-align{outline:1px solid #f5a3da;min-height:32px;display:block !important}.dom-debug-mode tw-story::before,.dom-debug-mode tw-passage::before,.dom-debug-mode tw-sidebar::before,.dom-debug-mode tw-include::before,.dom-debug-mode tw-hook::before,.dom-debug-mode tw-expression::before,.dom-debug-mode tw-link::before,.dom-debug-mode tw-dialog::before,.dom-debug-mode tw-columns::before,.dom-debug-mode tw-column::before,.dom-debug-mode tw-align::before{position:absolute;top:0;left:0;height:16px;background-color:#f5a3da;color:#000;font-size:16px;font-weight:normal;font-style:normal;font-family:monospace;display:inline-block;line-height:100%;white-space:pre;z-index:999997}.dom-debug-mode tw-story:hover,.dom-debug-mode tw-passage:hover,.dom-debug-mode tw-sidebar:hover,.dom-debug-mode tw-include:hover,.dom-debug-mode tw-hook:hover,.dom-debug-mode tw-expression:hover,.dom-debug-mode tw-link:hover,.dom-debug-mode tw-dialog:hover,.dom-debug-mode tw-columns:hover,.dom-debug-mode tw-column:hover,.dom-debug-mode tw-align:hover{outline:1px solid #fc9}.dom-debug-mode tw-story:hover::before,.dom-debug-mode tw-passage:hover::before,.dom-debug-mode tw-sidebar:hover::before,.dom-debug-mode tw-include:hover::before,.dom-debug-mode tw-hook:hover::before,.dom-debug-mode tw-expression:hover::before,.dom-debug-mode tw-link:hover::before,.dom-debug-mode tw-dialog:hover::before,.dom-debug-mode tw-columns:hover::before,.dom-debug-mode tw-column:hover::before,.dom-debug-mode tw-align:hover::before{background-color:#fc9;transition:background-color 1s}.dom-debug-mode tw-passage,.dom-debug-mode tw-include,.dom-debug-mode tw-hook,.dom-debug-mode tw-expression,.dom-debug-mode tw-link,.dom-debug-mode tw-dialog,.dom-debug-mode tw-columns,.dom-debug-mode tw-column,.dom-debug-mode tw-align{padding:1em;margin:0}.dom-debug-mode tw-story::before{content:'<tw-story tags="' attr(tags) '">'}.dom-debug-mode tw-passage::before{top:-16px;content:'<tw-passage tags="' attr(tags) '">'}.dom-debug-mode tw-sidebar::before{top:-16px;content:"<tw-sidebar>"}.dom-debug-mode tw-hook::before{content:'<tw-hook name="' attr(name) '">'}.dom-debug-mode tw-expression::before{content:'<tw-expression name="' attr(name) '">'}.dom-debug-mode tw-link::before{content:'<tw-link name="' attr(name) '">'}.dom-debug-mode tw-dialog::before{content:"<tw-dialog>"}.dom-debug-mode tw-columns::before{content:"<tw-columns>"}.dom-debug-mode tw-column::before{content:"<tw-column>"}.dom-debug-mode tw-align::before{content:"<tw-align>"}.dom-debug-mode tw-include::before{content:'<tw-include type="' attr(type) '" name="' attr(name) '">'}tw-open-button[goto]{display:none}.debug-mode tw-open-button[replay],.debug-mode tw-open-button[goto]{display:inline}.debug-mode tw-expression{display:inline-block !important}.debug-mode tw-expression[type=variable]::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"$" attr(name)}.debug-mode tw-expression[type=tempVariable]::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"_" attr(name)}.debug-mode tw-expression[return=boolean]{background-color:rgba(179,179,179,.2)}.debug-mode tw-expression[return=array]{background-color:rgba(255,102,102,.2)}.debug-mode tw-expression[return=dataset]{background-color:rgba(255,128,0,.2)}.debug-mode tw-expression[return=number]{background-color:rgba(255,179,102,.2)}.debug-mode tw-expression[return=datamap]{background-color:rgba(255,255,102,.2)}.debug-mode tw-expression[return=changer]{background-color:rgba(179,255,102,.2)}.debug-mode tw-expression[return=lambda]{background-color:rgba(102,255,102,.2)}.debug-mode tw-expression[return=hookname]{background-color:rgba(102,255,204,.2)}.debug-mode tw-expression[return=string]{background-color:rgba(102,255,255,.2)}.debug-mode tw-expression[return=datatype]{background-color:rgba(102,153,255,.2)}.debug-mode tw-expression[return=gradient],.debug-mode tw-expression[return=colour]{background-color:rgba(204,102,255,.2)}.debug-mode tw-expression[return=instant],.debug-mode tw-expression[return=macro]{background-color:rgba(240,117,199,.2)}.debug-mode tw-expression[return=command]{background-color:rgba(153,153,255,.2)}.debug-mode tw-expression.false{background-color:rgba(255,0,0,.2) !important}.debug-mode tw-expression[type=macro]::before{content:"(" attr(name) ":)";padding:0 .5rem;font-size:1rem;vertical-align:middle;line-height:normal;background-color:inherit;border:1px solid rgba(255,255,255,.5)}.debug-mode tw-expression[title]:not([title=""]){cursor:help}.debug-mode tw-hook{background-color:rgba(0,85,255,.1) !important}.debug-mode tw-hook::before{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"["}.debug-mode tw-hook::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"]"}.debug-mode tw-hook[name]::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"]<" attr(name) "|"}.debug-mode tw-pseudo-hook{background-color:rgba(255,170,0,.1) !important}.debug-mode tw-collapsed::before{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"{"}.debug-mode tw-collapsed::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"}"}.debug-mode tw-verbatim::before,.debug-mode tw-verbatim::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"`"}.debug-mode tw-align[style*="text-align: center"]{background:linear-gradient(to right, hsla(14deg, 100%, 87%, 0) 0%, hsla(14deg, 100%, 87%, 0.25) 50%, hsla(14deg, 100%, 87%, 0) 100%)}.debug-mode tw-align[style*="text-align: left"]{background:linear-gradient(to right, hsla(14deg, 100%, 87%, 0.25) 0%, hsla(14deg, 100%, 87%, 0) 100%)}.debug-mode tw-align[style*="text-align: right"]{background:linear-gradient(to right, hsla(14deg, 100%, 87%, 0) 0%, hsla(14deg, 100%, 87%, 0.25) 100%)}.debug-mode tw-column{background-color:rgba(189,228,255,.2)}.debug-mode tw-enchantment{animation:enchantment .5s infinite;border:1px solid}.debug-mode tw-link::after,.debug-mode tw-broken-link::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:attr(passage-name)}.debug-mode tw-include{background-color:rgba(204,128,51,.1)}.debug-mode tw-include::before{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:attr(type) ' "' attr(name) '"'}.debug-dialogs tw-backdrop:not(.eval-replay):not(.harlowe-crash){pointer-events:none;opacity:.1}tw-eval-replay tw-eval-code,tw-eval-replay tw-eval-explanation{max-height:20vh;overflow:auto;margin:10px auto}tw-eval-replay tw-eval-code{display:block;font-family:monospace;padding-bottom:1ex;border-bottom:2px solid gray}tw-eval-replay tw-eval-explanation{display:block;text-align:center}tw-eval-replay tw-eval-explanation>code{white-space:pre-wrap}tw-eval-replay tw-eval-explanation>code.from-block{width:40%;display:inline-block;text-align:left;max-height:4em;overflow-wrap:anywhere;overflow-y:scroll}tw-eval-replay tw-eval-explanation>code.from-block~.to-desc{width:calc(40% - 2em);margin-left:2em;display:inline-block}tw-eval-replay tw-eval-explanation>code.from-block+span::after{content:"..."}tw-eval-replay tw-eval-explanation>code.from-inline{text-align:right}tw-eval-replay tw-eval-explanation>:nth-child(2){white-space:pre}tw-eval-replay tw-eval-explanation>.to-desc{text-align:left}tw-eval-replay tw-eval-explanation>table{width:100%;margin-top:1em}tw-eval-replay tw-eval-explanation>table td{white-space:pre-wrap !important;word-wrap:anywhere}tw-eval-replay tw-eval-reason{text-align:center;font-size:80%;font-style:italic;display:block}tw-eval-replay tw-eval-it{text-align:center;font-size:80%;display:block}tw-eval-replay tw-dialog-links{display:-ms-flexbox;display:flex;-ms-flex-pack:distribute;justify-content:space-around}@keyframes enchantment{0%,to{border-color:#ffb366}50%{border-color:#6fc}}tw-debugger{position:fixed;box-sizing:border-box;bottom:0;right:0;z-index:999999;min-width:14em;min-height:1em;padding:0em .5em .5em 1em;font-size:1.25em;font-family:sans-serif;color:#262626;background-color:#fff;border-left:solid #262626 2px;border-top:solid #262626 2px;border-top-left-radius:.5em;opacity:1}tw-debugger.fade-panel:not(:hover){opacity:.33}tw-debugger.theme-dark{color:#d9d9d9;background-color:#000}tw-debugger.theme-dark{border-color:#d9d9d9 rgba(0,0,0,0) rgba(0,0,0,0) #d9d9d9}tw-debugger select{margin-right:1em;width:12em}tw-debugger button,tw-debugger tw-link{border-radius:3px;border:solid #999 1px;margin:auto 4px;color:#262626;background-color:#fff;cursor:pointer}tw-debugger button.enabled,tw-debugger tw-link.enabled{color:#000;background-color:#d9d9d9;box-shadow:inset #999 3px 5px .5em}tw-debugger.theme-dark button,tw-debugger.theme-dark tw-link{color:#d9d9d9;background-color:#000;border-color:#666}tw-debugger.theme-dark button.enabled,tw-debugger.theme-dark tw-link.enabled{color:#e6e6e6;background-color:#424242;box-shadow:inset #666 3px 5px .5em}tw-debugger button{font-size:1em;overflow-x:hidden;text-overflow:ellipsis;white-space:pre}tw-debugger tw-link{font-size:1.25em;border-radius:16px;border-style:solid;border-width:2px;text-align:center;padding:0px 8px;display:block}tw-debugger tw-link:hover{border-color:#262626;color:#262626}tw-debugger.theme-dark tw-link:hover{border-color:#d9d9d9;color:#d9d9d9}tw-debugger tw-dialog{background-color:#fff;color:#000;font-size:1.25em}tw-debugger.theme-dark tw-dialog{background-color:#000;color:#e6e6e6}tw-debugger .panel{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;position:absolute;bottom:100%;left:-2px;right:0;padding:1em;overflow-y:scroll;overflow-x:hidden;border:inherit;box-sizing:content-box;background-color:#fff;border-bottom:solid #999 2px;border-top-left-radius:.5em;border-bottom-left-radius:.5em;font-size:.8em}tw-debugger .panel:empty,tw-debugger .panel[hidden]{display:none}tw-debugger.theme-dark .panel{background-color:#000;border-bottom-color:#666}tw-debugger .panel-source .panel-row-buttons{width:2rem}tw-debugger .panel-source .source-tags{width:20%;font-style:italic}tw-debugger .panel-row-source td{font-family:monospace;font-size:1rem;white-space:pre-wrap;overflow-wrap:anywhere;max-height:8rem;padding:1rem}tw-debugger .panel-rows{width:100%;overflow-x:scroll}tw-debugger .panel-rows>*{display:table-row}tw-debugger .panel-rows>div:nth-of-type(2n){background-color:#e6e6e6}tw-debugger .panel-tools .panel-rows>*,tw-debugger .panel-options .panel-rows>*{margin-top:.4rem;display:block}tw-debugger.theme-dark .panel-rows>div:nth-of-type(2n){background-color:#212121}tw-debugger .panel-row-buttons{text-align:right}tw-debugger .panel-variables .panel-rows:empty::before{content:"~ No variables ~";font-style:italic;color:#575757;text-align:center}tw-debugger .panel-enchantments .panel-rows:empty::before{content:"~ No enchantments ~";font-style:italic;color:#575757;text-align:center}tw-debugger .panel-errors .panel-rows:empty::before{content:"~ No errors... for now. ~";font-style:italic;color:#575757;text-align:center}tw-debugger .panel-errors .panel-rows:empty+.panel-errors-bottom{display:none}tw-debugger.theme-dark .panel-variables .panel-rows:empty::before,tw-debugger.theme-dark .panel-enchantments .panel-rows:empty::before,tw-debugger.theme-dark .panel-errors .panel-rows:empty::before{color:#a8a8a8}tw-debugger .panel-rows:empty+.panel-variables-bottom{display:none}tw-debugger th[data-col]{text-decoration:underline;cursor:pointer}tw-debugger th[data-col][data-order=asc]::after{content:"↓"}tw-debugger th[data-col][data-order=desc]::after{content:"↑"}tw-debugger .panel-storylets:not(.panel-exclusive) .storylet-exclusive,tw-debugger .panel-storylets:not(.panel-urgent) .storylet-urgent{display:none}tw-debugger .storylet-exclusive,tw-debugger .storylet-urgent,tw-debugger .storylet-open{text-align:center}tw-debugger .panel-variables-bottom{padding-top:5px}tw-debugger .enchantment-row{min-height:1.5em}tw-debugger .variable-path{opacity:.4}tw-debugger .temporary-variable-scope,tw-debugger .enchantment-local{font-family:sans-serif;font-weight:normal;opacity:.8;font-size:.75em}tw-debugger .temporary-variable-scope:not(:empty)::before,tw-debugger .enchantment-local:not(:empty)::before{content:" in "}tw-debugger .variable-name,tw-debugger .enchantment-name{font-family:monospace;font-weight:bold}tw-debugger .variable-type{color:#575757;font-weight:normal;text-overflow:ellipsis;overflow:hidden;max-width:10em}tw-debugger.theme-dark .variable-type{color:#a8a8a8}tw-debugger .error-row{display:table-row;background-color:rgba(230,101,204,.3)}tw-debugger .error-row:nth-of-type(2n){background-color:rgba(237,145,219,.3)}tw-debugger .error-row>*{display:table-cell;padding:.25em .5em}tw-debugger .error-row .error-message[title]:not([title=""]){cursor:help}tw-debugger .error-row .error-passage{color:#575757}tw-debugger.theme-dark .error-row .error-passage{color:#a8a8a8}tw-debugger .storylet-row{background-color:rgba(193,240,225,.3)}tw-debugger .storylet-row:nth-child(2n){background-color:rgba(152,231,204,.3)}tw-debugger .storylet-row.storylet-closed{font-style:italic;background-color:#fff}tw-debugger .storylet-row.storylet-closed:nth-child(2n){background-color:#e6e6e6}tw-debugger .storylet-row.storylet-closed>:not(.storylet-lambda){opacity:.6}.storylet-error tw-debugger .storylet-row{background-color:rgba(230,101,204,.3)}.storylet-error tw-debugger .storylet-row:nth-child(2n){background-color:rgba(237,145,219,.3)}tw-debugger .storylet-row .storylet-name,tw-debugger .storylet-row .storylet-value{display:inline-block;width:50%}tw-debugger .storylet-row .storylet-lambda{font-family:monospace;font-size:1rem;white-space:pre-wrap;overflow-wrap:anywhere}tw-debugger.theme-dark .storylet-row.storylet-closed{background-color:#000}tw-debugger.theme-dark .storylet-row.storylet-closed:nth-child(2n){background-color:#212121}tw-debugger .tabs{padding-bottom:.5em}tw-debugger .tab{border-radius:0px 0px .5em .5em;border-top:none;top:-2px}tw-debugger .resizer-h{position:absolute;height:14em;border-left:2px solid #999;border-right:2px solid #999;top:10px;left:4px;width:8px;cursor:ew-resize}tw-debugger.theme-dark .resizer-h{border-color:rgba(0,0,0,0) #666}tw-debugger .resizer-v{position:absolute;height:8px;border-top:2px solid #999;border-bottom:2px solid #999;margin-bottom:4px;top:4px;left:10px;width:95%;cursor:ns-resize;box-sizing:border-box}tw-debugger.theme-dark .resizer-v{border-color:#666 rgba(0,0,0,0)}tw-debugger mark{color:inherit;background-color:rgba(101,230,230,.3) !important}tw-dialog{z-index:999997;border:#fff solid 2px;padding:2em;color:#fff;background-color:#000;display:block}@media(min-width: 576px){tw-dialog{max-width:50vw}}tw-dialog input[type=text]{font-size:inherit;width:100%;border:solid #fff !important}tw-dialog-links{text-align:right;display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end}tw-backdrop{z-index:999996;position:fixed;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,.8);display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center}tw-backdrop~tw-backdrop{display:none}tw-link,.enchantment-link{cursor:pointer;color:#4169e1;font-weight:bold;text-decoration:none;transition:color .2s ease-in-out}tw-passage [style^=color] tw-link:not(:hover),tw-passage [style*=" color"] tw-link:not(:hover),tw-passage [style^=color][hover=true] tw-link:hover,tw-passage [style*=" color"][hover=true] tw-link:hover,tw-passage [style^=color] .enchantment-link:not(:hover),tw-passage [style*=" color"] .enchantment-link:not(:hover),tw-passage [style^=color][hover=true] .enchantment-link:hover,tw-passage [style*=" color"][hover=true] .enchantment-link:hover{color:inherit}tw-link:hover,.enchantment-link:hover{color:#00bfff}tw-link:active,.enchantment-link:active{color:#dd4b39}.visited{color:#6941e1}tw-passage [style^=color] .visited:not(:hover),tw-passage [style*=" color"] .visited:not(:hover),tw-passage [style^=color][hover=true] .visited:hover,tw-passage [style*=" color"][hover=true] .visited:hover{color:inherit}.visited:hover{color:#e3e}tw-broken-link{color:#933;border-bottom:2px solid #933;cursor:not-allowed}tw-passage [style^=color] tw-broken-link:not(:hover),tw-passage [style*=" color"] tw-broken-link:not(:hover),tw-passage [style^=color][hover=true] tw-broken-link:hover,tw-passage [style*=" color"][hover=true] tw-broken-link:hover{color:inherit}tw-link.enchantment-mouseover,.link.enchantment-mouseover,tw-expression.enchantment-mouseover>tw-link{color:inherit;font-weight:inherit;transition:none;cursor:inherit;border-bottom:2px dashed #999}tw-link.enchantment-mouseover:hover,tw-link.enchantment-mouseover:active,.link.enchantment-mouseover:hover,.link.enchantment-mouseover:active,tw-expression.enchantment-mouseover>tw-link:hover,tw-expression.enchantment-mouseover>tw-link:active{color:inherit}tw-link.enchantment-mouseover.enchantment-button,.link.enchantment-mouseover.enchantment-button,tw-expression.enchantment-mouseover>tw-link.enchantment-button{border-style:dashed}tw-link.enchantment-mouseout,.link.enchantment-mouseout,tw-expression.enchantment-mouseout>tw-link{color:inherit;font-weight:inherit;transition:none;cursor:inherit;border:rgba(64,149,191,.6) 1px solid;border-radius:.2em}tw-link.enchantment-mouseout:hover,tw-link.enchantment-mouseout:active,.link.enchantment-mouseout:hover,.link.enchantment-mouseout:active,tw-expression.enchantment-mouseout>tw-link:hover,tw-expression.enchantment-mouseout>tw-link:active{color:inherit}tw-link.enchantment-mouseout:hover,.link.enchantment-mouseout:hover,tw-expression.enchantment-mouseout>tw-link:hover{background-color:rgba(175,197,207,.75);border:rgba(0,0,0,0) 1px solid}tw-link.enchantment-dblclick,.link.enchantment-dblclick,tw-expression.enchantment-dblclick>tw-link{color:inherit;font-weight:inherit;transition:none;cursor:inherit;cursor:pointer;border:2px solid #999;border-radius:0}tw-link.enchantment-dblclick:hover,tw-link.enchantment-dblclick:active,.link.enchantment-dblclick:hover,.link.enchantment-dblclick:active,tw-expression.enchantment-dblclick>tw-link:hover,tw-expression.enchantment-dblclick>tw-link:active{color:inherit}tw-link.enchantment-dblclick:active,.link.enchantment-dblclick:active,tw-expression.enchantment-dblclick>tw-link:active{background-color:#999}tw-link.enchantment-button,.link.enchantment-button,.enchantment-button:not(.link) tw-link,.enchantment-button:not(.link) .link{border-radius:16px;border-style:solid;border-width:2px;text-align:center;padding:0px 8px;display:block}.enchantment-button{display:block}.enchantment-clickblock{cursor:pointer;width:100%;height:100%;display:block}.enchantment-clickblock>:not(tw-enchantment)::after{content:"";width:100%;height:100%;top:0;left:0;display:block;box-sizing:border-box;position:absolute;pointer-events:none;color:rgba(65,105,225,.5);transition:color .2s ease-in-out}.enchantment-clickblock>:not(tw-enchantment):hover::after{color:rgba(0,191,255,.5)}.enchantment-clickblock>:not(tw-enchantment):active::after{color:rgba(222,78,59,.5)}.enchantment-clickblock>:not(tw-enchantment)::after{box-shadow:inset 0 0 0 .5vmax}.enchantment-clickblock>tw-passage::after,.enchantment-clickblock>tw-sidebar::after{box-shadow:0 0 0 .5vmax}.enchantment-mouseoverblock>:not(tw-enchantment)::after{content:"";width:100%;height:100%;top:0;left:0;display:block;box-sizing:border-box;position:absolute;pointer-events:none;border:2px dashed #999}.enchantment-mouseoutblock>:not(tw-enchantment)::after{content:"";width:100%;height:100%;top:0;left:0;display:block;box-sizing:border-box;position:absolute;pointer-events:none;border:rgba(64,149,191,.6) 2px solid}.enchantment-mouseoutblock:hover>:not(tw-enchantment)::after{content:"";width:100%;height:100%;top:0;left:0;display:block;box-sizing:border-box;position:absolute;pointer-events:none;background-color:rgba(175,197,207,.75);border:rgba(0,0,0,0) 2px solid;border-radius:.2em}.enchantment-dblclickblock>:not(tw-enchantment)::after{content:"";width:100%;height:100%;top:0;left:0;display:block;box-sizing:border-box;position:absolute;pointer-events:none;cursor:pointer;border:2px solid #999}tw-dialog-links{padding-top:1.5em}tw-dialog-links tw-link{border-radius:16px;border-style:solid;border-width:2px;text-align:center;padding:0px 8px;display:block;display:inline-block}html{margin:0;height:100%;overflow-x:hidden}*,:before,:after{position:relative;box-sizing:inherit}body{margin:0;height:100%}tw-storydata{display:none}tw-story{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;font:100% Georgia,serif;box-sizing:border-box;width:100%;min-height:100%;font-size:1.5em;line-height:1.5em;padding:5% 5%;overflow:hidden;background-color:#000;color:#fff}tw-story [style*=content-box] *{box-sizing:border-box}@media(min-width: 576px){tw-story{padding:5% 20%}}tw-story tw-consecutive-br{display:block;height:1.6ex;visibility:hidden}tw-story select{background-color:rgba(0,0,0,0);font:inherit;border-style:solid;padding:2px}tw-story select:not([disabled]){color:inherit}tw-story textarea{resize:none;background-color:rgba(0,0,0,0);font:inherit;color:inherit;border-style:none;padding:2px}tw-story input[type=text]{background-color:rgba(0,0,0,0);font:inherit;color:inherit;border-style:none}tw-story input[type=checkbox]{transform:scale(1.5);margin:0 .5em .5em .5em;vertical-align:middle}tw-story tw-noscript{animation:appear .8s}tw-passage{display:block}tw-sidebar{text-align:center;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}@media(min-width: 576px){tw-sidebar{left:-5em;width:3em;position:absolute;-ms-flex-direction:column;flex-direction:column}tw-enchantment[style*=width]>tw-sidebar{width:inherit}}tw-icon{display:inline-block;margin:.5em 0;font-size:66px;font-family:"Verdana",sans-serif}tw-icon[alt]{opacity:.2;cursor:pointer}tw-icon[alt]:hover{opacity:.4}tw-icon[data-label]::after{font-weight:bold;content:attr(data-label);font-size:20px;bottom:-20px;left:-50%;white-space:nowrap}tw-meter{display:block}tw-hook:empty,tw-expression:empty{display:none}tw-error{display:inline-block;border-radius:.2em;padding:.2em;font-size:1rem;cursor:help;white-space:pre-wrap}tw-error.error{background-color:rgba(223,58,190,.6);color:#fff}tw-error.warning{background-color:rgba(223,140,58,.6);color:#fff;display:none}.debug-mode tw-error.warning{display:inline}tw-error-explanation{display:block;font-size:.8rem;line-height:1rem}tw-open-button,tw-folddown{cursor:pointer;line-height:0em;border-radius:4px;border:1px solid rgba(255,255,255,.5);font-size:.8rem;margin:0 .2rem;padding:3px;white-space:pre}tw-folddown::after{content:"▶"}tw-folddown.open::after{content:"▼"}tw-open-button[replay]{display:none}tw-error tw-open-button,tw-eval-replay tw-open-button{display:inline !important}tw-open-button::after{content:attr(label)}tw-notifier{border-radius:.2em;padding:.2em;font-size:1rem;background-color:rgba(223,182,58,.4);display:none}.debug-mode tw-notifier{display:inline}tw-notifier::before{content:attr(message)}tw-colour{border:1px solid #000;display:inline-block;width:1em;height:1em}tw-enchantment:empty{display:none}h1{font-size:3em}h2{font-size:2.25em}h3{font-size:1.75em}h1,h2,h3,h4,h5,h6{line-height:1em;margin:.3em 0 .6em 0}pre{font-size:1rem;line-height:initial}small{font-size:70%}big{font-size:120%}mark{color:rgba(0,0,0,.6);background-color:#ff9}ins{color:rgba(0,0,0,.6);background-color:rgba(255,242,204,.5);border-radius:.5em;box-shadow:0em 0em .2em #ffe699;text-decoration:none}center{text-align:center;margin:0 auto;width:60%}blink{text-decoration:none;animation:fade-in-out 1s steps(1, end) infinite alternate}tw-align{display:block}tw-columns{display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-pack:justify;justify-content:space-between}.transition-in{animation:appear 0ms step-start}.transition-out{animation:appear 0ms step-end}[data-t8n^=dissolve].transition-in,[data-t8n=fade].transition-in{animation:appear .8s}[data-t8n^=dissolve].transition-out,[data-t8n=fade].transition-out{animation:appear .8s reverse}[data-t8n^=shudder].transition-in{display:inline-block !important;animation:shudder-in .8s}[data-t8n^=shudder].transition-out{display:inline-block !important;animation:shudder-in .8s reverse}[data-t8n^=rumble].transition-in{display:inline-block !important;animation:rumble-in .8s}[data-t8n^=rumble].transition-out{display:inline-block !important;animation:rumble-in .8s reverse}[data-t8n^=pulse].transition-in{animation:pulse .8s;display:inline-block !important}[data-t8n^=pulse].transition-out{animation:pulse .8s reverse;display:inline-block !important}[data-t8n^=zoom].transition-in{animation:zoom-in .8s;display:inline-block !important}[data-t8n^=zoom].transition-out{animation:zoom-in .8s reverse;display:inline-block !important}[data-t8n^=blur].transition-in{animation:blur .8s;display:inline-block !important}[data-t8n^=blur].transition-out{animation:blur .8s reverse;display:inline-block !important}[data-t8n^=slideleft].transition-in{animation:slide-left .8s;display:inline-block !important}[data-t8n^=slideleft].transition-out{animation:slide-right .8s reverse;display:inline-block !important}[data-t8n^=slideright].transition-in{animation:slide-right .8s;display:inline-block !important}[data-t8n^=slideright].transition-out{animation:slide-left .8s reverse;display:inline-block !important}[data-t8n^=slideup].transition-in{animation:slide-up .8s;display:inline-block !important}[data-t8n^=slideup].transition-out{animation:slide-down .8s reverse;display:inline-block !important}[data-t8n^=slidedown].transition-in{animation:slide-down .8s;display:inline-block !important}[data-t8n^=slidedown].transition-out{animation:slide-up .8s reverse;display:inline-block !important}[data-t8n^=fadeleft].transition-in{animation:fade-left .8s;display:inline-block !important}[data-t8n^=fadeleft].transition-out{animation:fade-right .8s reverse;display:inline-block !important}[data-t8n^=faderight].transition-in{animation:fade-right .8s;display:inline-block !important}[data-t8n^=faderight].transition-out{animation:fade-left .8s reverse;display:inline-block !important}[data-t8n^=fadeup].transition-in{animation:fade-up .8s;display:inline-block !important}[data-t8n^=fadeup].transition-out{animation:fade-down .8s reverse;display:inline-block !important}[data-t8n^=fadedown].transition-in{animation:fade-down .8s;display:inline-block !important}[data-t8n^=fadedown].transition-out{animation:fade-up .8s reverse;display:inline-block !important}[data-t8n^=flicker].transition-in{animation:flicker .8s}[data-t8n^=flicker].transition-out{animation:flicker .8s reverse}
 </style>
 </head>
 <body>
-<tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play libro-game.</tw-noscript></noscript></tw-story>
-<tw-storydata name="libro-game" startnode="1" creator="Twine" creator-version="2.6.1" format="Harlowe" format-version="3.3.4" ifid="B253A02C-4378-4058-B811-3CCA1316F189" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* *** combinazione di tags: sfondo_sfumato0/1 + testo_bianco *** */
-tw-story[tags~="sfondo_sfumato0"] {
-  background-image: linear-gradient(135deg, #000000, #1d2f42);
+<tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Estranei in terra straniera.</tw-noscript></noscript></tw-story>
+<tw-storydata name="Estranei in terra straniera" startnode="2" creator="Twine" creator-version="2.6.1" format="Harlowe" format-version="3.3.4" ifid="FD290E0F-E2DA-46A7-B8F7-B0791CF9BD57" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">tw-story[tags~="sfondo_bianco"] {
+  background-color: #b0c4de;
 }
-
-tw-story[tags~="sfondo_sfumato1"] {
-  background-image: linear-gradient(135deg, #000000, #3d5fa2);
-}
-
-tw-passage[tags~="testo_bianco"] {
-  font-family: Didot;
-  font-size: 20px;
-  color: white;
-}
-
-tw-passage[tags~="testo_bianco"] tw-link {
-  color: yellow;
-}
-
-tw-passage[tags~="testo_bianco"] tw-link:hover {
-  color: red;
-}
-
-tw-story[tags~="sfondo_sfumato1"] select {
-  color: yellow;
-  background-color: #3d5fa2;
-}
-
-tw-story[tags~="sfondo_sfumato1"] textarea {
-  color: yellow;
-  background-color: #3d5fa2;
-  border: 2px dashed white;
-}
-
-
-/* *** combinazione di tags: sfondo_bianco/sfumato2/3/4 + testo_nero *** */
-
-
-tw-story[tags~="sfondo_sfumato3"] {
-  background-image: linear-gradient(135deg, #888888, #ffffff);
-}
-
-
 
 tw-passage[tags~="testo_nero"] {
   font-family: Didot;
-  font-size: 20px;
+  font-size: 20px; 
   color: black;
 }
 
-tw-passage[tags~="testo_nero"] tw-link {
-  color: green;
+tw-sidebar {
+  display: none;
 }
-
-tw-passage[tags~="testo_nero"] tw-link:hover {
-  color: red;
-}
-
-tw-story[tags~="sfondo_sfumato3"] select {
-  color: yellow;
-  background-color: #3d5fa2;
-}
-
-</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="w" color="red"></tw-tag><tw-tag name="s" color="red"></tw-tag><tw-tag name="immagine" color="green"></tw-tag><tw-tag name="immagine-camera-da-letto" color="green"></tw-tag><tw-tag name="foto-lucchetto" color="green"></tw-tag><tw-tag name="camera-da-letto" color="green"></tw-tag><tw-tag name="luchetto" color="none"></tw-tag><tw-tag name="suono-lucchetto" color="yellow"></tw-tag><tw-tag name="foto-biblioteca" color="none"></tw-tag><tw-tag name="foto-libro-antico" color="green"></tw-tag><tw-tag name="suono-chiamata" color="none"></tw-tag><tw-tag name="alba-attraverso-la-finestra" color="green"></tw-tag><tw-tag name="uccellone" color="yellow"></tw-tag><tw-tag name="foto-casa-abbandonata" color="green"></tw-tag><tw-tag name="suono-suspense" color="yellow"></tw-tag><tw-tag name="C" color="green"></tw-tag><tw-tag name="foto-porte" color="green"></tw-tag><tw-tag name="suono-porte" color="yellow"></tw-tag><tw-tag name="suono-porta" color="none"></tw-tag><tw-tag name="scale-scendono" color="green"></tw-tag><tw-tag name="scale-che-cigolano" color="yellow"></tw-tag><tw-tag name="foto-statua" color="green"></tw-tag><tw-tag name="foto-funzione" color="green"></tw-tag><tw-tag name="suono-casa-che-trema" color="none"></tw-tag><tw-tag name="chaive-che-gira" color="none"></tw-tag><tw-tag name="suono-chiamatas" color="none"></tw-tag><tw-tag name="corridioio-con-infondo-una-luce" color="green"></tw-tag><tw-tag name="immagine-scrigno-chiusa" color="green"></tw-tag><tw-tag name="foto-scrigno-aperto" color="green"></tw-tag><tw-tag name="suono-scrigno" color="yellow"></tw-tag><tw-tag name="sfondo_sfumato3" color="blue"></tw-tag><tw-tag name="testo_nero" color="orange"></tw-tag><tw-passagedata pid="1" name="start" tags="sfondo_sfumato3" position="625,250" size="100,100">(if: &quot;auto&quot; is in (saved-games:)) [(load-game: &quot;auto&quot;)]
-(else:) [(go-to: &quot;frontespizio&quot;)]</tw-passagedata><tw-passagedata pid="2" name="frontespizio" tags="testo_nero sfondo_sfumato3" position="600,625" size="100,100">#IL TESORO DI  SILVERWOOD
-###Forse non semplicemente una leggenda...
-
-Questo che hai appena aperto è un //&#39;&#39;libro-game digitale&#39;&#39;//, il cui racconto è sviluppato secondo i canoni classici del genere “escape room”. In questo gioco il protagonista sei tu: un ragazzo/ragazza in preda alla curiosità che decide di imbattersi in una avventura all’interno di una villa abbandonata e per riuscire nell’impresa dovrai trovare la soluzione dei problemi che nel corso della tua esplorazione ti si presenteranno.
-(set: $protagonista to &quot;&quot;) \
-(set: $amico to &quot;&quot;) \
-Prima di cominciare con il racconto, rispondi per favore a qualche domanda per personalizzare la tua esperienza di gioco.
-
-* Qual è il tuo nome? (input-box: 2bind $protagonista, &quot;XXX==&quot;, 1)
-(live: 0.1s)[(set: $y1 to (split: newline, $protagonista)) (set: $protagonista to $y1&#39;s 1st)] \
-* Qual è il nome del/della tuo/a amico/a? (input-box: 2bind $amico, &quot;XXX==&quot;, 1)
-(live: 0.1s)[(set: $y2 to (split: newline, $amico)) (set: $amico to $y2&#39;s 1st)] \
-* Specifica il tuo sesso?(dropdown: 2bind $genereprotagonista,&quot;maschile&quot;,&quot;femminile&quot;)
-* Specifica il sesso del tuo amico/a&quot;? (dropdown: 2bind $genereamico,&quot;maschile&quot;,&quot;femminile&quot;)
+</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="sfondo_bianco" color="red"></tw-tag><tw-tag name="testo_nero" color="orange"></tw-tag><tw-tag name="sfondo_azzurro" color="red"></tw-tag><tw-passagedata pid="1" name="include" tags="" position="475,50" size="100,100">(set:$tentativi to 3)
+(set:$file to False)
+(set:$aiuto to False)
+(set:$punti_esp to 5)
 
 
-// [[continua...|intro]]//
-{(display: &quot;autori&quot;) }
-(live: 0.2s)[(if: $genereprotagonista is &quot;maschile&quot;) [(set: $fprotagonista to &quot;o&quot;)]
-(else:) [(set: $fprotagonista to &quot;a&quot;)]
-(live:0.2s)[(if: $genereprotagonista is &quot;maschile&quot;) [(set: $aprotagonista to &quot;il&quot;)]
-(else:) [(set: $aprotagonista to &quot;la&quot;)]]]
-(live: 0.2s)[(if: $genereamico is &quot;maschile&quot;) [(set: $am to &quot;il&quot;)]
-(else:) [(set: $am to &quot;la&quot;)]]
-(live: 0.2s)[(if: $generemio is &quot;maschile&quot;) [(set: $ami to &quot;lo&quot;)]
-(else:) [(set: $ami to &quot;la&quot;)]]
-(live: 0.2s)[(if: $genereamico is &quot;maschile&quot;) [(set: $amic to &quot;lo&quot;)]
-(else:) [(set: $amic to &quot;la&quot;)]]
-(live: 0.2s)[(if: $genereamico is &quot;maschile&quot;) [(set: $famico to &quot;o&quot;)]
-(else:) [(set: $famico to &quot;a&quot;)]]
-(live: 0.2s)[(if: $genereamico is &quot;maschile&quot;) [(set: $art to &quot;lui&quot;)]
-(else:) [(set: $art to &quot;lei&quot;)]]
-(live: 0.2s)[(if: $genereamico is &quot;maschile&quot;) [(set: $ar to &quot;del&quot;)]
-(else:) [(set: $ar to &quot;della&quot;)]]
-(live: 0.2s)[(if: $genereamico is &quot;maschile&quot;) [(set: $a to &quot;il&quot;)]
-(else:) [(set: $a to &quot;la&quot;)]]</tw-passagedata><tw-passagedata pid="3" name="a casa" tags="sfondo_sfumato3 testo_nero" position="900,200" size="100,100">###A CASA
-&lt;img src=&quot;https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh95DMlAHxTb8JmDIDOVDO-yX_8yIVOCoxz41a9hD82yq3_sVTpbt1i48sPjcsmohaEpHUEX2_3zmrZnsP3QttDiF0SuEQXCUdHxC6TucbKqnzbp7Epyr7US0CAHhHWxVvr4B6g0mvBeWY33g9uuvDsiY_YZfInArs5vj-QhtFguFET9zMmvf3aYR2uNg/s1600/modificata.jpg&quot; style=&quot;width: 800px; height: 550px;&quot;class=&#39;full&#39; alt=&#39;immagine&#39;&gt;
-Ti svegli con i primi raggi di sole che filtrano attraverso le tende della tua camera. La giornata è appena iniziata. Oggi è il giorno in cui devi prepararti per andare a studiare con $amico.
-Salti fuori dal letto e allunghi le braccia, cercando di scacciare la stanchezza accumulata durante la notte. Guardi l&#39;orologio sul comodino e ti rendi conto che hai bisogno di muoverti rapidamente per non fare tardi. 
-Ti dirigi verso il bagno e ti concedi una doccia rinfrescante. Dopo esserti asciugat$fprotagonista, ti guardi allo specchio e sorridi, pront$fprotagonista per affrontare la giornata.
-Raggiungi l&#39;armadio e scegli attentamente il tuo abbigliamento. Infili i piedi nelle tue scarpe preferite, pronte ad accompagnarti durante le avventure di oggi.
-Mentre gusti la colazione, prendi il tuo zaino e inizi a preparare tutto il materiale di studio necessario per la giornata. Raccogli i libri, le penne e gli appunti, mettendoli con cura all&#39;interno dell&#39;ampio scomparto dello zaino. Controlli che tutto sia al suo posto, perché non vuoi dimenticare nulla.
-Ora sei pront$fprotagonista per uscire di casa. Afferrando le chiavi, ti dirigi verso l&#39;uscita, puoi scegliere se andare //[[a piedi]]// o prendere// [[la bici]]//...
-{(display: &quot;piepagina&quot;) }
-&lt;audio 
-src=&quot;https://github.com/steve2555555/libro/raw/main/suono-uccelli.mp3&quot; autoplay&gt;</tw-passagedata><tw-passagedata pid="4" name="biblioteca" tags="sfondo_sfumato3 testo_nero" position="1125,400" size="100,100">###IN BIBLIOTECA
-&lt;img src=&quot;https://p4.wallpaperbetter.com/wallpaper/285/640/905/library-books-interior-monastery-wallpaper-preview.jpg&quot; style=&quot;width: 850px; height: 450px;&quot;class=&#39;full&#39; alt=&#39;immagine&#39;&gt;
+&lt;img src=&quot;https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCyxImGHlUNTay_fVMQs4IFqyiVJualei_8VIt6Ncf_A&amp;s&quot; alt=&quot;Descrizione dell&#39;immagine&quot; width = 600&gt;</tw-passagedata><tw-passagedata pid="2" name="Intro" tags="sfondo_bianco testo_nero" position="475,200" size="100,100">##Intro
 
-La biblioteca si ergeva imponente, un santuario di conoscenza immerso in un&#39;atmosfera di calma e rispetto. Al varcare la soglia, vieni accolt$fprotagonista da una piacevole sensazione di serenità. L&#39;ambiente è pervaso da un delicato silenzio, interrotto solo dal leggero sussurro delle pagine e dai sottili passi dei visitatori che sfogliano libri o consultano le risorse a loro disposizione.
-Lo sguardo si posa sulle fila ordinate di scaffali, che si estendono verso l&#39;infinito, carichi di tesori letterari pronti ad essere scoperti. I libri, orgogliosamente allineati sulle loro mensole, invitano ad avventurarsi nelle loro pagine e a immergersi in mondi immaginari, in saggezza millenaria e in prospettive infinite.
-La luce soffusa penetra attraverso le finestre alte, creando una delicata danza di ombre e riflessi sulla polvere dei volumi. Le scrivanie di legno massiccio e le sedie confortevoli invitano i lettori a prendersi il loro tempo, a immergersi in una lettura appassionante o dedicarsi allo studio approfondito.
-L&#39;atmosfera è pervasa da un profumo distintivo, una mescolanza di pagine antiche, legno e caffè fresco proveniente dalla piccola caffetteria che si trova all&#39;interno della biblioteca. Le pareti sono adornate da quadri che rappresentano scrittori celebri e scene letterarie, che aggiungono un tocco di ispirazione e bellezza all&#39;ambiente.
-Al centro della biblioteca, un&#39;ampia area è riservata alle sale di lettura, luoghi di ritrovo per coloro che desiderano immergersi in un&#39;oasi di concentrazione e silenzio. Qui, scrivanie ben illuminate e confortevoli poltrone invitano a dedicarsi a studio, scrittura o semplicemente a godersi un momento di pace.
-Ad un certo punto noti $amico già sedut$famico a un tavolo che ti fa segno di raggiunger$amic.
-Ti siedi vicino a $art e osservi che tra la pila di libri che ha davanti  ce n’è uno un po&#39; più rovinato, che sembra più antico degli altri e che attira subito la tua attenzione.
-“Di cosa parla questo libro?” chiedi
-“Oh, nulla.. era già sul tavolo qualcuno deve averlo dimenticato” risponde $amico
- Decidi dunque di// [[prendere il libro...|prendi libro]]//
- {(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="5" name="torna a casa" tags="sfondo_sfumato3 testo_nero" position="1300,150" size="100,100">###A CASA
-Dopo esserti chius$fprotagonista nella tua camera, inizi a leggere il libro che hai appena trovato. Le pagine rivelano una leggenda riguardante una famiglia che ha nascosto un tesoro all&#39;interno della casa prima di scomparire nel nulla. La tua mente inizia a correre con le possibilità di ciò che potrebbe essere il tesoro: oro, gioielli, antichi manufatti? L&#39;incertezza ti avvolge, ma la curiosità cresce sempre di più.
-Continui a leggere avidamente e scopri che il libro presenta anche una serie di enigmi da risolvere per raggiungere il misterioso tesoro. Questa vicenda affascinante ti cattura completamente. Passi l&#39;intera giornata immers$fprotagonista nella lettura. La tua mente è piena di immagini di stanze segrete, passaggi nascosti e indizi enigmatici.
-La tua curiosità diventa incontenibile e, alla fine della giornata, prendi la decisione audace di voler esplorare la casa e scoprire se i segreti descritti nel libro corrispondono alla realtà. Ti senti sicur$fprotagonista di te stess$fprotagonista, pront$fprotagonista ad affrontare qualsiasi sfida che il percorso potrebbe riservarti.
-Tuttavia, prima di intraprendere questa avventura solitaria, pensi che sarebbe meglio condividere i tuoi piani con $amico. Prendi il telefono e  //[[chiama$amic|chiama]]//.
-{(display: &quot;piepagina&quot;) }
-
-
-
-
-
-</tw-passagedata><tw-passagedata pid="6" name="chiama" tags="sfondo_sfumato3 testo_nero" position="1275,400" size="100,100">
-Chiami $amico per condividere la tua decisione di esplorare la casa abbandonata. Tuttavia, $amico è preoccupat$famico e ti avverte della reputazione inquietante che circonda quel luogo. Racconta di come nessuno sia mai entrato e di tutti gli avvertimenti a starne alla larga. Nonostante ciò, fortunatamente, $amico è un$famico appassionat$famico di leggende e sa che molti degli enigmi che potresti trovare all&#39;interno della casa riguardano la scienza dei dati.
-Poco dopo aver riattaccato, ricevi un messaggio sul tuo telefono. È un//[[ foglio digitale|formulario]]//, pieno di nozioni e informazioni che potrebbero tornarti utili durante l&#39;esplorazione. Il documento contiene spiegazioni relative alla scienza dei dati.
-Ti senti grat$fprotagonista per l&#39;aiuto di $amico e per la sua passione per le leggende e le conoscenze poco comuni. 
-Sia l&#39;eccitazione che la cautela si mescolano dentro di te, ma sei determinat$fprotagonista a scoprire cosa si nasconde dietro quelle mura. Domani sarà il giorno in cui inizierà il tuo viaggio verso l&#39;ignoto.
-//
-
-[[vai a dormire]]//
-{(display: &quot;piepagina&quot;) }
-&lt;audio 
-src=&quot;https://github.com/steve2555555/libro/raw/main/mobile-phone-ringing-out-85495.mp3&quot; autoplay&gt;</tw-passagedata><tw-passagedata pid="7" name="vai a dormire" tags="sfondo_sfumato3 testo_nero" position="1400,250" size="100,100">###IL GIORNO DOPO
-&lt;img src=&quot;https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1N1qRP24vHt3PHQsLEim9VZ_ODNCfc_2gDAHOPlxs0IMldh7JE1j_C9TmzndaOTssBMfSh9xtd5PxyZQIgc7uRQBnsCDu2UGzH_xrL1vHFbhy4-VF0vFOvbngWc6sSPUW6E88sUcv5UsdKi3ccKNcHNnAc_fwW1Pm9RPz59Fwij9-61e8KSKHw_aJ3Q/s1600/mopde.jpg&quot; style=&quot;width: 850px; height: 450px;&quot;class=&#39;full&#39; alt=&#39;immagine&#39;&gt;
-La luce del sole filtra attraverso le persiane della tua finestra mentre ti svegli, con l&#39;emozione palpabile nell&#39;aria. Hai puntato la sveglia alle 8 e sai che è finalmente arrivato il momento di andare ad esplorare la casa. Ti alzi dal letto, sentendo l&#39;adrenalina pulsare nelle tue vene.
-Decidi di portare con te solo uno zainetto leggero, con dell&#39;acqua per idratarti lungo il percorso e il tuo cellulare nel caso avessi bisogno di aiuto. Per la maggior parte, lo zaino è vuoto, in modo da avere spazio sufficiente per il bottino che speranzosamente troverai. 
-Le lancette dell&#39;orologio segnano le 10 e senti che è finalmente giunto il momento di iniziare questa avventura. 
-
-
-
-//[[ti incammini verso la casa...|esci di casa]]//
-
-{(display: &quot;piepagina&quot;) }
-&lt;audio 
-src=&quot;https://github.com/steve2555555/libro/raw/main/suono-uccelli.mp3&quot; autoplay&gt;</tw-passagedata><tw-passagedata pid="8" name="esci di casa" tags="sfondo_sfumato3 testo_nero" position="1525,300" size="100,100">
-Ti incammini e dopo poco arrivi al cancello, era ricoperto di vegetazione, si vedeva che la casa era rimasta abbandonata per molti anni, l’erba era altissima e tutte le piante erano morte. 
-Con fatica scavalchi il cancello e ti dirigi verso la porta d’ingresso. 
-&lt;img src=&quot;https://live.staticflickr.com/3787/13184811855_8370aae294_b.jpg
-&quot; style=&quot;width: 850px; height: 450px;&quot;class=&#39;full&#39; alt=&#39;immagine&#39;&gt;
-Decidi di entrare. La porta cigola leggermente quando la spingi, aprendosi con riluttanza per rivelare l&#39;interno della casa. Il tuo sguardo si posa immediatamente sulla scena davanti a te, e un senso di meraviglia misto a un brivido ti attraversa.
-Non c&#39;è un tradizionale corridoio che ti si presenta, ma una serie di porte disposte lungo un&#39;ampia sala. È come se le stanze si nascondessero dietro ogni angolo, creando un&#39;atmosfera misteriosa e affascinante. Le porte sembrano sussurrare promesse di avventure e segreti che aspettano di essere scoperti.
-Il pavimento scricchiola sotto i tuoi passi mentre inizi a esplorare. Ogni passo che fai risuona nell&#39;aria silenziosa, dando vita a un&#39;atmosfera che sembra quasi palpabile. Il tuo sguardo si posa su ogni dettaglio: le pareti sbiadite, i mobili cadenti, gli oggetti dimenticati. La casa è un museo di ricordi passati, una finestra sulle vite che una volta animavano queste stanze.
-Ma è il quadro appeso alla parete che cattura immediatamente la tua attenzione. Si tratta di un ritratto della famiglia che abitava la casa, eppure sembra quasi troppo reale. Gli sguardi penetranti dei personaggi sembrano fissarti, come se volessero comunicarti qualcosa.
-Decidi di avvicinarti al quadro, attratt$fprotagonista da quel senso di mistero che lo circonda. Le dita si posano delicatamente sulla cornice polverosa, e con un soffio leggero, rimuovi la patina di tempo che si è accumulata sulla superficie.
-E poi la vedi, quasi nascosto in basso a destra, una scritta leggermente sbiadita ma ancora leggibile. La frase &quot; //Guarda sotto lo zerbino//&quot;, senti un brivido lungo e decidi di //[[sollevare quello zerbino…| guarda sotto lo zerbino]]//
-{(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="9" name=" guarda sotto lo zerbino" tags="sfondo_sfumato3 testo_nero" position="1650,300" size="100,100">I tuoi occhi scrutano il foglio accartocciato che hai appena scoperto sotto lo zerbino. È sbiadito dal tempo e ricoperto da segni di umidità, ma le parole che vi sono scritte sono ancora leggibili. Il tuo cuore inizia a battere più velocemente mentre lo apri con cautela, desideros$fprotagonista di conoscere la sfida che ti aspetta.
-Le parole scritte sul foglio catturano la tua attenzione. &quot;//Per arrivare al tesoro dovrai superare delle sfide...//&quot; La frase sembra confermare le tue supposizioni, ma è la seconda parte del messaggio che ti fa rabbrividire leggermente. &quot;//Fai attenzione a non perderti...//&quot;
-Una sensazione di incertezza ti avvolge. Cosa potrebbe significare? La casa abbandonata potrebbe essere un labirinto di stanze e corridoi intricati, in cui è facile smarrirsi. Tuttavia, sei determinat$fprotagonista a non lasciare che la paura ti impedisca di raggiungere il tuo obiettivo.
-
-
-//[[Continua a leggere...|prima sfida]]//
-{(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="10" name="quarta" tags="sfondo_sfumato3 testo_nero" position="1975,300" size="100,100">La tua decisione è presa. La tua scelta ricade sulla porta contrassegnata con il numero 4. Ti avvicini con cautela, la tua mano trema mentre affronti l&#39;incertezza del tuo ragionamento.
-Con un respiro profondo, giri la maniglia della porta e la spingi leggermente, rivelando ciò che si nasconde dietro di essa. L&#39;emozione e l&#39;adrenalina affollano il tuo petto, mentre attendi con trepidazione di scoprire se hai fatto la scelta giusta.
-Il momento della verità è arrivato. 
-La porta si apre lentamente, svelando ciò che si cela dall&#39;altra parte, entri e quello che vedi ti fa rimanere incredul$fprotagonista… La casa sembrava un labirinto, non sai dove andare e come muoverti. 
-Ti concedi un breve momento di pausa per raccogliere le tue energie. Tiri fuori dallo zaino la bottiglia d&#39;acqua e ne bevi un sorso.
-Con la bottiglia d&#39;acqua ancora in mano, lasci che i tuoi occhi vaghino oltre la porta, scoprendo due rampe di scale che si estendono verso l&#39;alto e verso il basso. La prospettiva di esplorare sia il piano superiore che quello inferiore ti attira, poiché sospetti che il tesoro potrebbe essere nascosto altrove rispetto alle porte del piano iniziale.
-Avvicinandoti alle scale, ti accorgi di tre cartelli posti in modo visibile. Ogni cartello è decorato in modo distintivo e ciascuno porta una scritta che attira la tua attenzione.
-
-
-//[[leggi i cartelli…|Vai alla seconda sfida]] //
-{(display: &quot;piepagina&quot;) }
-&lt;audio 
-src=&quot;https://github.com/steve2555555/libro/raw/main/squeaky-door-open-113212.mp3&quot; autoplay&gt;
-</tw-passagedata><tw-passagedata pid="11" name="Vai alla seconda sfida" tags="sfondo_sfumato3 testo_nero" position="2150,400" size="100,100">Parti dal cartello più grande, dove c’è scritto il secondo enigma da risolvere, inizi a leggere..
-“//In una distribuzione normale, si può utilizzare la regola empirica (o regola dei tre sigma) per determinare la percentuale approssimativa di dati che si trovano entro un certo numero di deviazioni standard dalla media. Quale tra queste opzioni indica la percentuale dei dati che si trovano entro 3 deviazioni standard dalla media del campione?//”   
-
-Negli altri due cartelli, rispettivamente posti uno davanti alla rampa di scale che sale e uno davanti a quella che scende, sono scritte le due soluzioni, puoi scegliere di rispondere subito oppure [[consultare il foglio digitale|formularioo]] che ti aveva mandato $amico :  
+Anno intergalattico 4522584.
+La tua navicella, l’Apollo 2023, dopo un lungo viaggio è finalmente sulla via di ritorno. 
+Un salto veloce alla centrale per inviare il rapporto dell’ultima missione e poi dritti fino a casa per delle meritate ferie. Dall’ultima volta che sei tornato a casa sono passati quasi sei mesi ma, per fortuna, i capi sono generosi e avrai sei mesi interi di ferie come ricompensa!
+Insieme a te ci sono Luca, proveniente dal pianeta 456 e Silvia dal pianeta Zeta.
+Immagini già le gite in montagna, i bagni al mare che farete: in fondo, gli avevi promesso che gli avresti fatto vedere il tuo pianeta. Il pianeta Terra, ma soprattutto il posto dove sei cresciuto. Il posto di cui gli parli sempre, pieno di… 
  
-Quale cartello scegli? 
-
-
-//[[Rampa di scale che SALE:  95%|sali]]//
-
-//[[Rampa di scale che SCENDE: 99.7%|scendi]]//
-
-{(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="12" name="sali" tags="testo_nero sfondo_sfumato3" position="1750,775" size="100,100">&lt;img src=&quot;https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEikCOAXp_nUimBRxLFS0pL7plww07685tZE1O6WYEIvD6-2ZCvYCdgjwlSVpdruKvmMLJQGEjKpmWzsoto3zGMM3WPeSepiARAlvCFA78UOdPS8C2CJsFNdheA19zooAsQZtNY6IL0k0jYW3Y3z8bFxVFopXSwh-sGFoe0l--zQcwdYRxRHu_rL_USFWQ/s1600/jj.jpg
-&quot; style=&quot;width: 850px; height: 450px;&quot;class=&#39;full&#39; alt=&#39;immagine&#39;&gt;
-
-Decidi di salire le scale con determinazione. Arrivi fino in cima e, con un senso di sospetto, decidi di proseguire lungo il corridoio che si estende davanti a te. Ma improvvisamente, il silenzio viene spezzato da un rumore assordante che riecheggia nelle pareti circostanti.
-Istintivamente ti giri di scatto, solo per vedere con orrore che dietro di te si sono chiuse pesanti sbarre di ferro, bloccandoti all&#39;interno del corridoio. 
-Il tuo cuore batte furiosamente mentre provi a cercare una soluzione. Ti giri di nuovo, sperando di trovare un&#39;altra via di fuga, ma i tuoi occhi si posano su una triste realtà: il corridoio che hai percorso si rivela un crudele vicolo cieco. Ogni speranza svanisce, lasciandoti intrappolat$fprotagonista in una situazione senza vie d&#39;uscita.
-
-###(text-colour:red)[[[GAME OVER|intro]]]
-&lt;audio 
-src=&quot;https://github.com/steve2555555/libro/raw/main/pavimento-che-scricchiola.mp3&quot; autoplay&gt;
-&lt;audio 
-src=&quot;https://github.com/steve2555555/libro/raw/main/suspense_strings_001wav-14805.mp3&quot; autoplay&gt;</tw-passagedata><tw-passagedata pid="13" name="scendi" tags="sfondo_sfumato3 testo_nero" position="2300,300" size="100,100">&lt;img src=&quot;https://images.pexels.com/photos/1411400/pexels-photo-1411400.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1260&amp;h=750&amp;dpr=1&quot; style=&quot;width: 850px; height: 450px;&quot;class=&#39;full&#39; alt=&#39;immagine&#39;&gt;
-
-Decidi di scendere...
-Arrivi al fondo delle scale, dove la penombra del buio corridoio ti accoglie. Con cautela, metti un piede di fronte all&#39;altro, avvertendo la leggera umidità dell&#39;aria e l&#39;odore di muffa che aleggia nell&#39;ambiente. La luce è scarsa, e la tua unica guida sono delle lanterne distribuite qua e la lungo le pareti, che emanano un bagliore fioco e tremolante.
-Il buio avvolge il corridoio come un velo di segreti, alimentando un senso di suspense e mistero che ti fa accelerare lievemente il ritmo del tuo respiro. L&#39;eco dei tuoi passi si mescola con il silenzio circostante, creando una sinfonia di suoni che sembra sussurrare antiche storie e enigmi da risolvere. Mentre ti avvicini alla fine del corridoio, intravedi una porta grigia che si erge solitaria di fronte a te. Curios$fprotagonista e pien$fprotagonista di speranza, ti avvicini e lentamente// [[apri la porta...|descrizione stanza]]//
-{(display: &quot;piepagina&quot;)}
-&lt;audio 
-src=&quot;https://github.com/steve2555555/libro/raw/main/pavimento-che-scricchiola.mp3&quot; autoplay&gt;</tw-passagedata><tw-passagedata pid="14" name="terza sfida" tags="sfondo_sfumato3 testo_nero" position="2650,225" size="100,100">//&quot;Questo angelo ti aiuterà a proseguire con la sua freccia, davanti a te noterai una chiave, e sotto questa scritta due serrature, se inserirai la chiave nella serratura corretta l’angelo ruoterà e indicherà la strada, se sbagli serratura la statua si romperà creando un muro che ti renderà impossibile proseguire…Per questa sfida dovrai calcolare le derivate parziali di questa funzione:&quot;//
-
-f(x,y) = 3x^2y + 2xy^2 + 7y^3
-
-Sai che la scelta corretta potrebbe aprirti la strada verso l&#39;avanzamento, mentre un errore potrebbe significare la fine del tuo percorso. Con coraggio prendi la chiave posta accanto alla statua e affronti questa nuova sfida, decis$fprotagonista a dimostrare la tua competenza matematica e a ottenere la giusta risposta per superare l&#39;incantesimo che si cela dietro questa misteriosa prova.
-
-
-//[[SERRATURA 1: |uno]]// fx(x,y) = 6xy + 2y^2 // fy(x,y) = 3x^2 + 4xy + 21y^2
-
-
-[[SERRATURA 2: |due]] fx(x,y) = 3xy + 4y^2 // fy(x,y) = 3x^2 + 2xy + 14y^2
-
-{(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="15" name="uno" tags="sfondo_sfumato3 testo_nero" position="2650,375" size="100,100">Inserisci la chiave con speranza, ma delus$fprotagonista ti accorgi che non accade nulla. Tuttavia, il pavimento inizia a tremare leggermente, e i tuoi occhi si fissano sulla statua che, lentamente, comincia a ruotare verso di te. Il braccio destro dell&#39;angelo, quello che impugna la freccia, sembra puntare verso un corridoio adiacente. Senza esitazione, decidi di seguire l&#39;indicazione della statua e ti avvii lungo il percorso tracciato.
-Avanzi per qualche tempo lungo il corridoio con la luce fioca delle lanterne che illuminano il tuo cammino. L&#39;atmosfera è carica di tensione mentre avanzi attraverso le mura che custodiscono antichi segreti. Improvvisamente, giungi di fronte a un bivio. Lo sguardo si perde lungo le due strade che si estendono davanti a te, e ti rendi conto di non avere nessun indizio che possa aiutarti a prendere la decisione giusta.
-Rifletti un attimo, cercando di richiamare alla mente ogni minimo dettaglio che potrebbe esserti sfuggito. Poi, realizzi che hai il tuo cellulare con te, e anche se hai credito solo per una chiamata, potrebbe essere la chiave per ottenere un prezioso consiglio. Raggiungi velocemente il telefono nello zainetto e prendi una decisione cruciale: chiamare ora $a tu$famico amic$famico per farti dare un consiglio, oppure tenerti la chiamata nel caso potesse servirti più avanti.
-Sai che il tempo scorre inesorabilmente, e che ogni scelta che fai potrebbe portarti più vicino o allontanarti dal tesoro che desideri raggiungere.
-La decisione è tua, e solo tu puoi valutare se affidarti al tuo intuito, quindi scegliere se andare// [[a destra|vai a destra]]// , //[[a sinistra|vai a sinistra]]// oppure //[[cercare l&#39;aiuto $ar tu$famico amic$famico|chiama il tuo amico]]//.
-{(display: &quot;piepagina&quot;) }
-&lt;audio 
-src=&quot;https://github.com/steve2555555/libro/raw/main/Door%20Lock%20Sound%20Effect.mp3&quot; autoplay&gt;
-&lt;audio 
-src=&quot;https://github.com/steve2555555/libro/raw/main/statua-che-ruota.mp3&quot; autoplay&gt;</tw-passagedata><tw-passagedata pid="16" name="due" tags="testo_nero sfondo_sfumato3" position="2000,725" size="100,100">Con trepidazione e speranza, afferri la chiave e la inserisci con cautela nella serratura. Tuttavia, non accade nulla. Il silenzio opprimente continua a regnare nella stanza, e l&#39;angelo rimane immobile, senza alcun segno di reazione.
-Prima che tu possa elaborare appieno la tua delusione, un terremoto improvviso scuote il pavimento sotto i tuoi piedi. La stanza inizia a tremare violentemente, facendo traballare le pareti e spargendo una polvere di pietra nell&#39;aria. Senza pensarci due volte, istintivamente corri verso un angolo delimitato, cercando riparo dai detriti che minacciano di crollare.
-In un istante, un fragoroso rombo riempie l&#39;aria. Giri lo sguardo e vedi con orrore la statua dell&#39;angelo collassare in un&#39;ondata di rovina. Pezzi di pietra si frantumano e si disperdono ovunque, creando un muro imponente che ostruisce completamente la via davanti a te.
-La tua speranza svanisce in un attimo, lasciandoti con un senso di disperazione e smarrimento. 
-Il tuo respiro affannoso riempie l&#39;aria, mentre ti rendi conto di essere intrappolat$fprotagonista, senza possibilità di avanzare. Non c&#39;è via di fuga visibile o speranza di proseguire oltre quella barriera invalicabile.
-
-###(text-colour:red)[[[GAME OVER|intro]]]
-&lt;audio 
-src=&quot;https://github.com/steve2555555/libro/raw/main/suspense_strings_001wav-14805.mp3&quot; autoplay&gt;</tw-passagedata><tw-passagedata pid="17" name="chiama il tuo amico" tags="sfondo_sfumato3 testo_nero" position="2750,600" size="100,100">
-Prendi il telefono e componi il numero $ar tu$famico amic$famico. Il suono dello squillo riecheggia nell&#39;aria mentre aspetti con ansia che qualcuno risponda. Dopo qualche istante, finalmente senti la voce familiare di $amico dall&#39;altro capo della linea.
-&quot;Pronto?&quot; dice $amico, con una leggera nota di curiosità nella voce.
-&quot;Ciao, sono $protagonista. Mi trovo davanti a un bivio e sono quasi cert$fprotagonista che alla fine di uno di questi corridoi si trovi la stanza che custodisce il tesoro. Non so quale direzione prendere. Sopra i corridoi ci sono solo due simboli: nel corridoio a destra c&#39;è il simbolo del maggiore (&gt;) e nel corridoio a sinistra c&#39;è il simbolo del minore (&lt;).&quot;
-$amico fa una breve pausa, prendendo tempo per elaborare le informazioni che hai condiviso. 
-Poi chiede: &quot;Ti trovi per caso nel corridoio che ti ha indicato la statua dell&#39;angelo?&quot;
-&quot;Sì, esatto, proprio quello!&quot; rispondi con entusiasmo, sperando che $a tu$famico amic$famico abbia una risposta definitiva da darti.
-&quot;Bene,&quot; risponde $amico con voce misteriosa. &quot;Posso darti un indizio, ma non posso darti la risposta. La serie armonica generalizzata converge per alfa maggiore o minore di uno.&quot;
-La tua mente inizia a lavorare freneticamente, cercando di decifrare il significato dell&#39;indizio che ti è stato dato. Sai che hai a che fare con una serie matematica, ma ora devi richiamare alla memoria tutte le tue conoscenze per capire se la convergenza è associata ad alfa maggiore o minore di uno.
-Prima che tu possa chiedere ulteriori dettagli, $a tu$famico amic$famico interrompe la chiamata in modo repentino. Ti ritrovi con il cellulare in mano, affrontando una decisione cruciale. Devi fare affidamento sulla tua conoscenza matematica per interpretare l&#39;indizio e decidere quale direzione prendere.
-Il cuore accelera mentre ponderi attentamente le tue opzioni. Il tesoro è a portata di mano, ma la scelta che farai determinerà se sarai in grado di raggiungerlo o se rimarrai intrappolat$fprotagonista in questo enigma senza fine. Con coraggio e determinazione, sei pront$fprotagonista a fare la tua scelta, consapevole che la tua intuizione e il tuo bagaglio di conoscenze saranno i tuoi unici alleati in questa sfida.
-
-
-Quindi //[[vai a destra]]// o //[[vai a sinistra]]//?
-
-{(display: &quot;piepagina&quot;) }
-&lt;audio 
-src=&quot;https://github.com/steve2555555/libro/raw/main/mobile-phone-ringing-out-85495.mp3&quot; autoplay&gt;</tw-passagedata><tw-passagedata pid="18" name="vai a destra" tags="sfondo_sfumato3 testo_nero" position="2950,350" size="100,100">&lt;img src=&quot;https://cdn.pixabay.com/photo/2019/03/15/21/30/gang-4058036_960_720.jpg&quot; style=&quot;width: 850px; height: 450px;&quot;class=&#39;full&#39; alt=&#39;immagine&#39;&gt;
-
-Prendi la decisione di proseguire lungo il corridoio a destra. Le tue gambe si muovono con determinazione mentre avanzi, guidat$fprotagonista dalla speranza di avvicinarti sempre di più al tuo obiettivo. Man mano che procedi, uno spiraglio di luce si fa strada davanti a te, illuminando il buio del corridoio. La luce diventa sempre più intensa, quasi accecante, e sai che ti stai avvcinando alla meta tanto desiderata.
-Raggiungi la fine del corridoio e la vista che si svela davanti ai tuoi occhi è stupefacente. La stanza del tesoro si apre davanti a te, rivelando una visione mozzafiato. Le pareti scintillano di un oro radioso, riflettendo i raggi di luce che filtrano da qualche fonte sconosciuta. A terra, ciottoli e pietre sembrano scintillare come gemme preziose, creando un tappeto scintillante sotto i tuoi piedi.
-Ma il vero fulcro della stanza è una maestosa roccia posizionata al centro. La sua presenza imponente e misteriosa cattura la tua attenzione. Accanto alla roccia, noti una leva, solida e intrigante. Il cuore batte velocemente mentre ti avvicini, lasciandoti trasportare dalla curiosità e dalla promessa del tesoro che potrebbe essere rivelato.
-La tua avventura ha raggiunto un punto culminante, e ora, devi raccogliere tutto il coraggio e la saggezza per fare la prossima mossa. Prima di eseguire qualsiasi azione sulla leva, noti una scritta incisa nella pietra che recita il// [[seguente enigma|quinta sfida]]://
-{(display: &quot;piepagina&quot;) }
-&lt;audio 
-src=&quot;https://github.com/steve2555555/libro/raw/main/pavimento-che-scricchiola.mp3&quot; autoplay&gt;
-</tw-passagedata><tw-passagedata pid="19" name="vai a sinistra" tags="testo_nero sfondo_sfumato3" position="2150,750" size="100,100">Seguendo il tuo istinto, decidi di imboccare la strada di sinistra. Mentre ti avventuri lungo il corridoio, percepisci un sottile senso di disagio che si insinua dentro di te. Il tuo intuito inizia a farti sospettare che qualcosa non vada.
-I passi diventano sempre più incerti quando, all&#39;improvviso, il pavimento sotto di te inizia a scricchiolare. I tuoi occhi si abbassano, e con un misto di terrore e rabbia, scopri che il pavimento si sta aprendo a una velocità spaventosa. Senza esitazione, provi a tornare indietro, ma il tuo tentativo è vano. Il buco si allarga inesorabilmente, e non hai abbastanza tempo per sfuggire alla trappola che si sta aprendo sotto di te.
-In un attimo, precipiti nel vuoto. L&#39;aria fischia alle tue orecchie mentre cadi nel buio. I tuoi pensieri si affollano, e un senso di impotenza ti pervade mentre capisci di essere cadut$fprotagonista in una trappola ben studiata.
-La caduta sembra durare una vita, ma alla fine atterri in un sotterraneo buio e umido. Il tuo corpo è stanco e dolorante, ma la consapevolezza di essere intrappolat$fprotagonista si fa ancora più opprimente. Non c&#39;è via di fuga, né speranza di liberarti da questo luogo oscuro e inospitale.
-La frustrazione e il rimorso ti avvolgono mentre lotti con la consapevolezza di essere intrappolat$fprotagonista in questo angolo oscuro dell&#39;avventura.
-
-###(text-colour:red)[[[GAME OVER|intro]]]
-&lt;audio 
-src=&quot;https://github.com/steve2555555/libro/raw/main/suspense_strings_001wav-14805.mp3&quot; autoplay&gt;</tw-passagedata><tw-passagedata pid="20" name="quinta sfida" tags="sfondo_sfumato3 testo_nero" position="3175,275" size="100,100">(set: $probabilita to &quot;&quot;)
-“//Per arrivare al tesoro dovrai risolvere questo problema di statistica. Supponiamo di lanciare due dadi equi a sei facce. Qual è la probabilità che la somma dei numeri ottenuti sia uguale a 7? Dovrai incidere la tua risposta nella pietra e se sarà quella corretta la leva si sposterà e apparirà il tesoro.//”
-Le parole scolpite nella pietra richiedono le tue abilità statistiche per rivelare il cammino verso il tesoro tanto ambito.
-La tua mente si concentra sul problema. Immagini mentalmente i due dadi, il loro movimento nell&#39;aria e il rullo sul pavimento. Inizi a ragionare sulle possibili combinazioni dei numeri che potrebbero risultare dalla somma dei lanci.
-Ricordi che i dadi equi a sei facce hanno una distribuzione uniforme, con sei possibili risultati per ogni dado. Ora devi calcolare quanti modi diversi ci sono per ottenere una somma di sette, considerando tutte le combinazioni dei due dadi.
-La tua mente si sforza, ma infine la risposta si fa strada nella tua mente. Hai un&#39;idea chiara di quale sia la probabilità richiesta. 
-Con fiducia e determinazione, afferri un ciottolo trovato a terra e incidi la tua risposta sulla superficie dura della roccia.
-
-Qual è la probabilità? 
-(input-box: 2bind $probabilita, &quot;X==&quot;, 1)\
-(live: 0.1s) [(set: $y to (split: newline, $probabilita)) (set: $probabilita to (trimmed: $y&#39;s 1st))]
-
-(live: 1s)[(if: $probabilita is &quot;1/6&quot;) [Il cuore batte veloce nel petto mentre osservi la leva muoversi con un impeto sempre più deciso. Con un suono meccanico, la leva inizia a fare forza verso il basso, come se un meccanismo nascosto fosse stato innescato. La polvere che ricopre la leva si solleva nell&#39;aria, disperdendosi e rivelando il suo splendore originale.
-I tuoi occhi si illuminano di eccitazione mentre assisti allo spettacolo. Un senso di trionfo e soddisfazione si diffonde dentro di te, poiché la tua intuizione e le tue conoscenze hanno portato al risultato desiderato.
-La roccia comincia a ruotare di 180 gradi, come un enorme tassello di un enigma che si incastra nel suo posto finale. Ogni movimento della roccia risuona nell&#39;aria, creando un&#39;atmosfera di attesa carica di mistero. E improvvisamente, la roccia si ferma, svelando uno scrigno.
-
-Lo scrigno che si rivela davanti ai tuoi occhi è un&#39;opera d&#39;arte in sé. La sua superficie è lavorata con maestria, riflettendo la luce in modo magico. È fatto di legno scuro intarsiato con dettagli intricati, che sembrano raccontare una storia antica e misteriosa.
-Le sue dimensioni sono imponenti, abbastanza grandi da contenere una varietà di tesori e segreti. Lungo i bordi dell&#39;apertura, puoi notare sottili intagli che raffigurano simboli enigmatici e figure mistiche. Decidi dunque di// [[aprire lo scrigno…|apri lo scrigno]]//]]\
-(live: 0.3s)[(if: $probabilita is not &quot;1/6&quot;)[Il risultato sembra sbagliato, assicurati di averlo inserito come frazione ( es: 1/3)]]
-{(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="21" name="apri lo scrigno" tags="testo_nero sfondo_sfumato3" position="3375,550" size="100,100">&lt;img src=&quot;https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjMnsjA9lAWkdtzybEPeBooaPin4OtiQgjYi8GLATevVIuh1nZfMJaVh77Qd-NlnKiWmc0trHAz7O_mwBhYBxeL5Mti4t1vm1aikJJxUuAnNSYLG4pCSVpkH8gZOWIJPkrikl45l-UawUhNGyU9qCOgrwRW09ui_muZ5Gjs4Pq2kDUDYCfroaI8HvQhIw/s1600/Immagine%20WhatsApp%202023-05-18%20ore%2011.57.36.jpg&quot; style=&quot;width: 850px; height: 450px;&quot;class=&#39;full&#39; alt=&#39;immagine&#39;&gt;
-
-Mentre alzi il coperchio, un leggero odore di antichità e storia si diffonde nell&#39;aria. 
-Con una combinazione di stupore e delusione, fissi la lettera che hai appena estratto dallo scrigno. Le tue aspettative di gioielli scintillanti e oro si sono dissolte all&#39;istante, sostituite da un messaggio inaspettato e profondo.
-“//Se stai leggendo questa lettera, sei la persona prescelta, colei che è riuscita a passare tutte queste sfide, dotata quindi di grande sapienza, conoscenza e forte intuito. Molte persone nel corso dei decenni hanno provato a trovare il famoso tesoro, ma nessuno è mai riuscito. Ciò che ti ha portato fino a qua è il vero tesoro: la curiosità e la conoscenza, che va sfruttata per il bene proprio e della società, non per ricchezza e fama, ricorda quindi che il tesoro più grande lo possiedi tu!//” 
-Le parole sulla carta sembrano risuonare nella tua mente, facendo eco alla tua lunga e avventurosa ricerca. Capisci che il vero tesoro non era mai stato materia tangibile, ma piuttosto qualcosa di molto più prezioso: la conoscenza e la saggezza che hai acquisito lungo il cammino.
-La lettera è una rivelazione, un richiamo a usare la tua saggezza e il tuo intuito non per ricchezza e fama o solo per un beneficio personale, ma per creare un impatto positivo nel mondo che ti circonda.
-Mentre ripieghi la lettera con cura, senti un senso di responsabilità e gratitudine che ti avvolge. Ora comprendi che il vero tesoro non risiede nelle cose materiali, ma nelle tue abilità, nella tua mente e nel tuo cuore.
-Con questa nuova prospettiva, sai che il viaggio non è ancora finito. Sebbene l&#39;avventura possa sembrare conclusa, la strada per la conoscenza e la saggezza è infinita. Con l&#39;eredità di ciò che hai appreso, sei pront$fprotagonista a condividere la tua sapienza, a continuare a crescere e a ispirare gli altri lungo il tuo cammino.
-La lettera diventa il tuo tesoro più prezioso, un promemoria costante del potenziale che risiede in te. Con il cuore colmo di gratitudine e il desiderio di condividere il tuo dono con gli altri, chiudi lo scrigno e ti incammini verso un nuovo capitolo della tua vita…
-
-//[[crediti]]//
-{(display: &quot;piepagina&quot;) }
-&lt;audio 
-src=&quot;https://github.com/steve2555555/libro/raw/main/magic-3glitterarrival-45359.mp3&quot; autoplay&gt;
-</tw-passagedata><tw-passagedata pid="22" name="formulario" tags="testo_nero sfondo_sfumato3" position="1275,550" size="100,100">#FORMULARIO
-####LA MEDIA
-In statistica, la media è una misura di tendenza centrale che rappresenta il valore tipico di un insieme di dati. È comunemente conosciuta come &quot;media aritmetica&quot; o semplicemente &quot;media&quot;. Per calcolare la media, si sommano tutti i valori del dataset e si dividono per il numero totale di elementi presenti.
-Supponiamo di avere un insieme di dati rappresentati da x₁, x₂, x₃, ..., xₙ. La media aritmetica viene calcolata come:
-Media = (x₁ + x₂ + x₃ + ... + xₙ) / n
-Dove n rappresenta il numero totale di elementi nel dataset.
-Ad esempio, supponiamo di avere i seguenti dati: 5, 8, 2, 10, 6. Per calcolare la media, sommiamo tutti i valori e dividiamo per il numero totale di elementi:
-Media = (5 + 8 + 2 + 10 + 6) / 5 = 31 / 5 = 6.2
-Quindi, la media di questi dati è 6.2.
-La media è una misura utile perché fornisce un&#39;indicazione del valore centrale del dataset. Tuttavia, è importante notare che la media può essere influenzata da valori anomali o estremi nel dataset. Pertanto, in alcuni casi, potrebbe essere necessario considerare altre misure di tendenza centrale, come la mediana o la moda, per ottenere una visione più completa della distribuzione dei dati.
-
-
-####DISTRIBUZIONE GAUSSIANA
-In statistica, la distribuzione gaussiana, anche conosciuta come distribuzione normale o distribuzione a campana, è una delle distribuzioni di probabilità più comuni e importanti. È ampiamente utilizzata in diversi ambiti della statistica e delle scienze naturali, poiché molte variabili nel mondo reale tendono a distribuirsi approssimativamente secondo questo modello.
-
-La distribuzione gaussiana è completamente descritta da due parametri: la media (μ) e la deviazione standard (σ). La sua forma a campana simmetrica è caratterizzata da una media al centro della distribuzione e la deviazione standard determina la dispersione dei dati attorno alla media.
-La funzione di densità di probabilità (PDF) della distribuzione gaussiana è definita come:
-f(x) = (1 / (σ * sqrt(2π))) * exp(-(x-μ)² / (2σ²))
-dove x rappresenta il valore della variabile casuale, μ è la media e σ è la deviazione standard.
-Le principali proprietà della distribuzione gaussiana sono:
-1.	Simmetria: La distribuzione gaussiana è simmetrica rispetto alla media, il che significa che la metà dei dati si trova a sinistra della media e l&#39;altra metà a destra.
-2.	Media, mediana e moda coincidono: La media, la mediana e la moda di una distribuzione gaussiana sono tutte uguali e corrispondono al valore della media (μ).
-3.	Curve a campana: La distribuzione gaussiana forma una curva a campana simmetrica intorno alla media. La forma della curva dipende dalla deviazione standard. Una deviazione standard più piccola crea una curva più alta e stretta, mentre una deviazione standard più grande crea una curva più bassa e ampia.
-4.	Regola empirica: La maggior parte dei dati (circa il 68%) si trova entro una deviazione standard dalla media, circa il 95% si trova entro due deviazioni standard e circa il 99.7% si trova entro tre deviazioni standard.
-La distribuzione gaussiana è fondamentale in molti metodi statistici, come l&#39;inferenza statistica, l&#39;analisi dei test ipotesi e la regressione lineare. La sua importanza deriva in parte dal teorema del limite centrale, che stabilisce che la somma o la media di un gran numero di variabili casuali indipendenti segue approssimativamente una distribuzione gaussiana, indipendentemente dalla loro distribuzione originale.
-
-####LA PROBABILITA&#39;
-In statistica, la probabilità è una misura quantitativa che esprime la possibilità che un certo evento si verifichi. È un concetto fondamentale per l&#39;analisi statistica, in quanto consente di valutare la variabilità e l&#39;incertezza dei risultati.
-La probabilità viene espressa come un numero compreso tra 0 e 1, dove 0 rappresenta un evento impossibile e 1 rappresenta un evento certo. Un valore di probabilità compreso tra 0 e 1 indica la possibilità di verificarsi dell&#39;evento, in cui un valore più vicino a 1 indica una maggiore probabilità di occorrenza.
-Esistono due tipi principali di probabilità:
-1.	Probabilità classica: Si basa su un approccio teorico-matematico e si applica a situazioni in cui gli eventi sono considerati equiprobabili. Ad esempio, il lancio di una moneta equilibrata ha una probabilità di testa del 50% (0,5) e una probabilità di croce del 50% (0,5).
-2.	Probabilità empirica: Si basa sull&#39;osservazione di dati sperimentali o su una serie di eventi passati. Si calcola dividendo il numero di volte in cui l&#39;evento si è verificato per il numero totale di osservazioni. Ad esempio, se abbiamo registrato 30 lanci di moneta e 20 volte è uscita testa, allora la probabilità empirica di ottenere testa sarà 20/30 = 0,67.
-Le probabilità possono essere combinate attraverso diverse operazioni:
-1.	Somma di probabilità: La probabilità che si verifichi l&#39;evento A o l&#39;evento B (A ∪ B) è data dalla somma delle probabilità di A e B, a condizione che gli eventi siano mutualmente esclusivi.
-2.	Prodotto di probabilità: La probabilità che si verifichino simultaneamente l&#39;evento A e l&#39;evento B (A ∩ B) è data dal prodotto delle probabilità di A e B, a condizione che gli eventi siano indipendenti.
-3.	Probabilità condizionata: La probabilità che si verifichi l&#39;evento A dato che si è verificato l&#39;evento B (A|B) è calcolata come il rapporto tra la probabilità dell&#39;evento A ∩ B e la probabilità dell&#39;evento B.
-La teoria delle probabilità fornisce i fondamenti matematici per l&#39;analisi statistica, consentendo di calcolare le probabilità di eventi, di stimare parametri e di prendere decisioni statistiche basate sui dati osservati. La probabilità viene utilizzata in molti contesti, come l&#39;inferenza statistica, la modellazione dei fenomeni casuali e l&#39;elaborazione dei dati.
-//[[Indietro|chiama]]//
-{(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="23" name="intro" tags="sfondo_sfumato3 testo_nero" position="825,600" size="100,100">
-##	TRAMA DELLA STORIA
-Questa storia è ambientata nella cittadina di Silverwood, dove girano voci di una casa abbandonata, nella quale, anni prima abitava una famiglia molto ricca che un giorno sparì dalla città senza lasciare alcuna traccia. Si dice che la famiglia abbia lasciato una parte dei loro beni nascosti nella villa. In tutti quegli anni però nessuno ha avuto il coraggio di addentrarsi nella ormai diroccata dimora. 
+BOOM!
 
-Passavi ogni giorno davanti a quella casa e la tua curiosità cresceva sempre di più.
-Tutti i tuoi amici ti hanno sempre detto di starci alla larga ma tu hai bisogno di sapere se tutte quelle leggende fossero vere… in fondo era solo una casa abbandonata vero?
+[[Continua|ch2]]
 
-//[[Pefetto $protagonista!! Scopri la città...|descrizione citta]]//
-{(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="24" name="a piedi" tags="sfondo_sfumato3 testo_nero" position="1000,375" size="100,100">
-Metti piede fuori casa e inizi la tua camminata verso la biblioteca, attraversando le tranquille strade del tuo quartiere.
-Il sole splende alto nel cielo, filtrando attraverso le fronde degli alberi che fiancheggiano il percorso. Lungo la strada, passi davanti alla villa abbandonata, l’atmosfera si fa sempre più cupa. Non puoi far a meno di ignorare la tua curiosità, non riesci a staccare il tuo sguardo dalla casa ma improvvisamente ti ricordi di essere in ritardo, forse avresti fatto meglio a prendere la bici… Ma comunque riesci a raggiungere la meta.
+Autori: Silvestro Contrafatto, Alessandro Segura e Sabrina Fincato</tw-passagedata><tw-passagedata pid="3" name="ch2" tags="sfondo_bianco testo_nero" position="650,200" size="100,100">##Caduta
 
-//[[vai alla biblioteca|biblioteca]]//
-{(display: &quot;piepagina&quot;) }
-</tw-passagedata><tw-passagedata pid="25" name="prendi libro" tags="sfondo_sfumato3 testo_nero" position="1175,100" size="100,100">&lt;img src=&quot;
-https://cdn.pixabay.com/photo/2017/02/16/23/46/book-2073023_960_720.jpg&quot; style=&quot;width: 850px; height: 450px;&quot;class=&#39;full&#39; alt=&#39;immagine&#39;&gt;
+Il botto ti riporta alla realtà: 
+Ti guardi intorno. 
+Il computer dà errore.
+La navicella è rotta.
+L’unica cosa che si può fare ora è trovare al più presto un posto dove atterrare.
+Luca: “Il pianeta più vicino a noi è il pianeta 123”
+Silvia: “Ho sentito che su quel pianeta ultimamente ci sono state diversi problemi di ordine pubblico, dice di atterrare lo stesso Capitano?”
+Tu: “Si, beh... Non abbiamo comunque molta scelta, e da quel che so, fino ad un paio di anni fa il pianeta era famoso per essere il pianeta più felice e pacifico dell’intera galassia… 
+Comunque, l&#39;atterraggio di emergenza va fatto lo stesso!”
+Luca e Silvia: “Si, capitano!”
+ 
+[[Atterri il prima possibile|ch3]] oppure ne [[chiami le autorità per sbarcare|ch3a]]
+{
 
-Il libro antico si presenta come un prezioso tesoro. La sua copertina in pelle, segnata dal trascorrere dei secoli, rivela i segni del tempo e della storia. Le sue pagine ingiallite e sottili, orlate da bordi consumati, emanano un profumo caratteristico, una fragranza di polvere e inchiostro che evoca la nostalgia del passato.
-La calligrafia curata e meticolosa dei caratteri incisi a mano rivela l&#39;attenzione e la dedizione con cui il testo è stato scritto. 
-La rilegatura, ornata da motivi intagliati e dorature, conferisce al libro un aspetto quasi maestoso. 
-Il titolo era “Il tesoro di Silverwood”, pres$fprotagonista dalla curiosità inizi a leggerlo e noti che il libro parlava della leggenda della casa abbandonata che incrociavi ogni mattina. Quella casa era circondata da un&#39;aura di mistero e fascino oscuro. Da anni, le voci si erano diffuse tra i residenti della città, tramandando la storia di una famiglia benestante che un tempo abitava quella dimora ma che improvvisamente scomparve senza lasciare traccia.
-La casa, un tempo sontuosa e imponente, si ergeva solitaria sulla collina, con le finestre sbarrate e le persiane chiuse a difesa dei suoi segreti. Il suo tetto spiovente, ormai in rovina, conferiva un&#39;atmosfera cupa e inquietante. Le pareti scolorite e le persiane scrostate narravano di una decadenza che aveva avvolto la dimora dopo la partenza della famiglia misteriosamente scomparsa.
-Le storie che circolavano si facevano sempre più sinistre, la casa era un enigma, un labirinto di segreti custoditi gelosamente dalle sue mura.
-Così, nel corso degli anni, la casa abbandonata divenne un luogo che tutti evitavano, avvolta da un&#39;aura di pericolo e mistero. La gente preferiva tenersi alla larga, evitando di incrociare lo sguardo della dimora che celava le sue oscure verità. Tu non credi molto nelle leggende ma quella casa ti ha sempre incuriosito così decidi di portare questo libro a casa per guardarlo meglio.
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="4" name="ch3" tags="sfondo_bianco testo_nero" position="825,200" size="100,100">##Atterrati
 
-//[[torna a casa]]//
-{(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="26" name="crediti" tags="sfondo_sfumato3 testo_nero" position="3475,125" size="100,100">CREDITI
+Fortunatamente la navicella è atterrata senza troppe complicazioni. 
+Tu e Silvia siete rimasti a controllare lo stato della navicella mentre Luca è andato a comprare il motore XKb125 , che è stato danneggiato durante l’atterraggio.
 
-&quot;Grazie per aver giocato! Speriamo che tu abbia apprezzato questa avventura interattiva e che ti sia divertit$fprotagonista a prendere decisioni cruciali lungo il percorso. Nel corso del libro game, hai dimostrato coraggio e intelligenza. 
-Ricorda che ogni scelta che hai fatto ha portato a un risultato diverso, rendendo unica la tua esperienza di gioco. Hai superato sfide, risolto enigmi e scoperto segreti nascosti. Speriamo che quest&#39;avventura abbia alimentato la tua voglia di conoscere e ti abbia fatto sentire coinvolt$fprotagonista nel mondo che hai esplorato!”
+ &lt;img src=&#39;grafico1.jpeg&#39; class=&#39;full&#39; alt=&#39;immagine&#39;&gt;
+ 
+Il grafico rappresenta i valori rilevati della navicella. 
+I valori devono rispettare una certa tolleranza.
+Guardando il grafico e i valori dei processi della navicella, la navicella può continuare ad essere utilizzata o va aggiustata?
+
+La navicella (dropdown: 2bind $risp, &quot;--&quot; ,&quot;va aggiustata&quot;, &quot;può ripartire&quot;)
 
-Per sapere di più sullo svolgimento delle sfide nel corso del gioco:
+NOTA BENE:
+* CL -&gt; Central Line
+* UWL -&gt; Upper Warning Line
+* LWL -&gt; Lower Warning Line
+* UCL -&gt; Upper Control Line
+* LCL -&gt; Lower Control Line
+
+(live: 0.5s)[
+(if:$risp is &quot;va aggiustata&quot;)[[continua|ch4]]]
+
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="5" name="ch4" tags="sfondo_bianco testo_nero" position="975,200" size="100,100">##Un nuovo incontro
+
+Tu: “Giusto in tempo Luca, abbiamo i risultati del check up dell’Apollo. Fortunatamente per aggiustare l’Apollo l’unica cosa che ci manca è il motore. 
+Per il resto, abbiamo tutto ciò che ci serve per aggiustarlo”
+Luca: “Capitano, il negoziante ha detto che per stampare il pezzo ci vogliono 3 giorni, ci basteranno le provviste?”
+Tu: “Mi aspettavo che i tempi sarebbero stati questi. In fondo la tecnologia su questo pianeta è ancora abbastanza arretrata rispetto a quella del campo base… 
+Comunque si, se nel frattempo aggiustiamo il resto senza problemi ce la faremo giusti giusti. Ma non possiamo avere altri problemi.&quot;
+Luca: “Capitano, in realtà al negozio ho incontrato qualcuno che voleva parlarle.”
+Tu: “Con me? Chi?”
+
+
+[[continua|ch5]]
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="6" name="ch5" tags="sfondo_bianco testo_nero" position="1125,200" size="100,100">##Una storia
+
+Da dietro Luca apparì improvvisamente una piccola figura, quella di un Numeriano, quella del Principe Carlo del Pianeta 123. 
+Il Principe si presenta e ti racconta una storia.
+La storia di come suo padre Sua Altezza il Re sia impazzito, per cause ancora sconosciute. 
+Impazzito, è dir poco, in realtà: 
+Il Principe ti racconta infatti di come il Re sia diventato cattivo, imponendo tasse assurde, impedendo la libertà degli abitanti e imprigionando tutti coloro che cercano di opporsi a lui. 
+Il Principe racconta inoltre che, anche lui, sta cercando di opporsi al padre ma con pochi risultati. 
+Il Re ha infatti cacciato il Principe dalla corte quando non era ancora impazzito completamente, ma ora le condizioni del padre sono peggiorate. 
+E bisogna trovare il modo per far tornare il pianeta un posto pacifico. 
+Il Principe si sta nascondendo dal padre mentre cerca un modo per tonare alla corte e prendere l’Iliade”,ovvero la collana d’oro che dà al proprio possessore l’autorità più alta del pianeta e il titolo di Sua Altezza.
+
+[[Continua|ch6]]
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="7" name="ch6" tags="sfondo_bianco testo_nero" position="1300,300" size="100,100">##Una scelta
+
+Il Principe ti chiede di aiutarlo. 
+“Ovviamente non gratis – dice - ma in cambio avrete provviste e aiuti nella ricostruzione della navicella. Altrimenti dovrete andarvene subito appena arriva il pezzo tra tre giorni o verrete attaccati dal Re che, ovviamente, sa della vostra presenza. E in fondo, non è forse stato il destino a farci incontrare qui proprio quando ne avevamo più bisogno?”
+Il Principe si allontana velocemente mentre tu torni ad aggiustare l’astronave insieme al tuo equipaggio fino all’imbrunire per poi mangiare ed andare a riposare.
+Ti rimangono le provviste per due giorni.
+
+Toc Toc
+
+Nel sonno senti qualcuno bussare sulla porta dell’abitacolo. 
+Ti alzi dal letto e, con gli occhi ancora socchiusi, vai ad aprire la porta.
+Un Numeriano, armato dalla testa ai piedi, si presenta a te come Luois capo delle Guardie Reali-
+Ti invita a lasciare il pianeta il giorno stesso in cui sarà disponibile il nuovo motore altrimenti tu e l’equipaggio verrete accusati di ANC (Atterraggio Non Consentito), mancanza di collaborazione con le autorità locali: la cui pena è l’imprigionamento per 2 anni, e la revoca della licenza di ricercatore inter-spaziale da parte della Società di Ricerca Intergalattica, la SdRI, divisione di ricerca del Consiglio di Sicurezza Alfa 06, l’equivalente della Polizia terrestre per la Galassia Alfa 06.
+
+Hai ora due scelte [[aiutare il Principe|ch7a]] a liberare il pianeta dall’ oppressione del Re o [[andare via|ch7]] entro i dieci giorni che hai di provviste e che ti servono per far arrivare il pezzo.
+
+
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="8" name="ch7" tags="sfondo_bianco testo_nero" position="1475,250" size="100,100">##Tuttofare
+Devi aggiustare la navicella. 
+Per farlo devi risolvere i seguenti problemi:
+ATTENZIONE: 
+Aggiustare la navicella è un processo lungo e faticoso, per cui ogni volta che confermerai la tua risposta (che sia corretta o sbagliata) consumerai le provviste per un giorno.
+In totale hai provviste per 2 giorni.
+
+[[Aggiustare la navicella|ches1]] oppure [[cambia idea|ch8]]
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="9" name="ch7a" tags="sfondo_bianco testo_nero" position="1475,475" size="100,100">##Decisione presa
+
+Hai deciso di aiutare il Principe, meglio non avere tempi troppo ristretti e, in fondo, non puoi lasciare un pianeta allo sbaraglio.
+Chiami a rapporto Silvia e Luca e gli comunichi la tua decisione.
+Fortunatamente la tua ciurma ti sostiene nelle tue decisioni. 
+Riconoscono il tuo istinto: quando si parla di situazioni pericolose, non sbaglia quasi mai.
+Mandi Luca e Silvia a contattare il Principe.
+Nel frattempo comunichi con i piani alti e gli spieghi della tua situazione.
+Capiscono la tua situazione e ti comunicano che cercheranno di aiutarti il più possibile anche cercando contattando anche la sicurezza.
+Luca torna con un messaggio: il Principe chiede di incontrarsi al RistoRisto.
+
+
+[[continua|ch8]]
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="10" name="ch8" tags="sfondo_bianco testo_nero" position="1725,450" size="100,100">##Riunione strategica
+ 
+RistoRisto è una catena di ristoranti intergalattici con cibo liofilizzato proveniente da vari pianeti dove sono presenti varie stanzette private per mangiare infatti, non tutti si sfamano in modo per così dire “elegante”.
+Tu e la ciurma entrate ordinate da mangiare e chiedete un posto dove mangiare tranquilli.
+La commessa vi indica una stanza per poi allontanarsi velocemente. 
+Ti volti, guardi Luca e Silvia, fai un bel respiro e apri la porta.
+Il Principe si alza lentamente e ti saluta.
+È arrivato il momento per trovare un modo di fermare il Re.
+Dopo molte discussioni decidete il piano: infiltrarsi nel castello, trovare la password della Sala del Consiglio e catturare il Re. Prendere l’Iliade e consegnarla al reparto ufficiali del Consiglio di Sicurezza Alfa 06.
+
+[[continua|ch9]]
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="11" name="ch9" tags="sfondo_bianco testo_nero" position="1925,375" size="100,100">##Inizio operazione
+
+Per prima cosa ti avvii verso la corte.
+Aspetti l&#39;imbrunire.
+E&#39; ora di dare inizio al piano.
+Tra le ombre delle guardie che passano a fare ricognizione, tu e la tua squadra cercate di infiltrarvi nel castello seguendo le indicazioni del Principe:
+Aspetti che la prima guardia passi, conti fino a dieci, attraversi il portone che conduce al giardino. Senti un botto provenire dalla città. 
+Ti nascondi velocemente dietro un muro.
+Ti giri, cerchi Luca e Silvia. Li trovi poco distanti da te.
+Per fortuna non siete stati visti.
+Vi  riunite e vi nascondete tutti dietro sotto una rientranza poco più avanti a te.
+Aspettate o ancora 5 minuti.
+Il piano ideale dal Principe ha funzionato!
+
+[[continua|ch10]]
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="12" name="ch11" tags="sfondo_bianco testo_nero" position="2125,250" size="100,100">##Entrata
+
+Ti guardi intorno. Vi trovate ora in una stanza piena di scatole impilate una sopra l’altra, senza un ordine preciso. 
+Un magazzino, così dice la tua mappa. Vedi una porta dietro una pila di scatole.
+Piano piano, in silenzio, incominciate ad avvicinarvi all’uscita. 
+Siete uno dietro all’altro e camminate lentamente verso la vostra meta.
+Arrivate alla porta e provi ad aprirla. 
+È chiusa a chiave. 
+Silvia e Luca si avvicinano. 
+Come previsto, vedete un lucchetto elettronico. 
+
+
+[[Continua con il piano A|ch12]] oppure [[passo al piano B|ch12a]]
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="13" name="ch12" tags="sfondo_bianco testo_nero" position="2350,75" size="100,100">##“Saresti perfetta come scassinatrice”
+
+Silvia ha aperto il lucchetto con facilità, ma si trova di fronte a un corridoio pieno di allarmi che non possono essere disattivati. 
+Tuttavia, Silvia ha notato che gli allarmi emettono suoni a intervalli regolari. Silvia sta cercando di trovare un metodo per passare attraverso il corridoio riducendo al minimo il tempo medio trascorso nel raggio di rilevamento degli allarmi. 
+I risultati sono i seguenti:
+&lt;img src=&#39;Dati.png&#39; class=&#39;full&#39; alt=&#39;immagine&#39;&gt;
+Risposta A:
+* 16
+Risposta B:
+* 17
+Risposta C:
+* 18
+Risposta D:
+* 19
+Risposta E:
+* 20
+Hai solo un tentativo
+Qual è il risultato?
+(dropdown: 2bind $risposta2, &quot;--&quot; , &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;)
+
+NOTA BENE:
+Il risultato è arrotondato per difetto
+{
+(live: 0.5s)[(if: $risposta2 is &quot;B&quot;)[[[continua|ch13]]] 
+(else:)[[[continua|ch12b]]]
+]
+}
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="14" name="ch10" tags="sfondo_bianco testo_nero" position="1950,200" size="100,100">##Prima parte del piano
+
+L’idea del Principe è quella di farci infiltrare nel palazzo. Mentre lui avrebbe distratto le guardie con dei fuochi d’artificio per poi scappare e nascondersi. 
+Nel frattempo noi saremmo andati recuperare l’ Iliade.
+Fortunatamente il Principe ti ha consegnato una mappa dettagliata del castello e la tabella di quelli che erano i turni delle guardie e della servitù, per non essere scoperti.
+Dobbiamo sbrigarci. 
+Ma bisogna comunque fare attenzione: le informazioni a noi arrivate sono di quando il Principe non era ancora stato cacciato, ovvero di quasi due mesi fa, ed è probabile che le cose siano cambiate.
+Ti guardi in giro e fai un segno a Luca e Silvia. 
+Vi affrettate al portone di ingresso e lo passate velocemente, noti una bocca di lupo poco più avanti, vicino al canale del castello. 
+È la vostra entrata.
+Vi accertate velocemente che non vi abbia visto nessuno ed entrare.
+
+[[continua|ch11]]
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="15" name="ch13" tags="sfondo_bianco testo_nero" position="2500,200" size="100,100">##Verso la meta
+
+Grazie ai vostri calcoli siete riusciti ad attraversare i corridoi illesi.
+Arrivati alla fine del corridoio “Urrah!” – urla Luca mentre tu e Silvia cercate di chiudergli la bocca appena lo sentite. 
+“Scusate” sussurra poi.
+Sembra che nessuno vi abbia sentito, ma decidi che bisogna andare il più in fretta possibile.
+La prossima meta è la stanza della sicurezza. 
+Controlli la mappa velocemente. 
+Andate nel corridoio appena a destra ed entrate nella seconda porta. 
+Vi fermate qualche secondo perché vedete una sentinella in lontananza. Vi nascondete e la lasciate passare.
+Entrate nella prima porta a sinistra.
+Ma è chiusa ci vuole un codice, [[provi ad aprirla|ch13a]]
+
+{
+(set:$tentativi to 0)
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="16" name="ch14" tags="sfondo_bianco testo_nero" position="2725,200" size="100,100">##La stanza della sicurezza
+
+Entrate. 
+Non c’è nessuno. 
+Sapevi che la stanza della sicurezza era automatizzata ma ti sembra strano. 
+Pensavi che comunque ci sarebbe stata almeno una persona.
+Ma non è questo ciò a cui pensare. 
+Prendete ognuno il proprio computer e li collegate.
+Silvia si occupa di infiltrarsi nel sistema, Luca di schermare il suo accesso mentre te devi trovare delle Prove per poter incriminare il Re.
+All’improvviso entra qualcuno. 
+Vi guarda e dice: 
+“Non spaventatevi, non chiamerò la sicurezza. 
+So che siete qui perché il Principe vi ha chiesto di trovare suo padre. 
+La scelta è vostra, non posso convincervi a non farlo. 
+Ho le prove per incriminare il Re. Ma prima vorrei che guardaste qualcos’altro.”
+
+[[continua|ch15]]
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="17" name="ch15" tags="sfondo_bianco testo_nero" position="2900,200" size="100,100">##Prove
+
+Prendi la chiavetta e la guardi ci sono quattro file:
+-prove contro il Re
+-litigi
+-TOP SECRET
+Apri la prima cartelle con le prove.
+Sono complete e tutte incriminanti.
+
+Devi decidere cosa fare:
+* [[guardi il file sulle prove contro il Re|ch15a]]
+* [[guardi il file sui litigi |ch15b]]
+* [[guardi il file &quot;TOP SECRET&quot; |ch15c]]
+* [[decidi che hai guardato abbastanza|ch16]]
 
-//[[sfida del lucchetto]]
-[[sfida del limite]]
-[[sfida della gaussiana]]
-[[sfida della derivata parziale]]
-[[sfida serie armonica]]
-[[sfida dei dadi]]//
 
-Per aprire il tuo formulario:
-//[[formulario|formulario1]] //
+{
 
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="18" name="ch16" tags="sfondo_bianco testo_nero" position="3050,200" size="100,100">##Un aiuto inaspettato o una trappola in agguato?
 
+“Sei una spia del Principe?” chiedi.
+“No - risponde - sono Butler, il capo delle guardie di Sua maestà il Re e un suo fedele servitore. Io vi ho dato tutte le informazioni a mia disposizione. Ora la scelta è vostra. Dovrete scegliere bene di chi fidarvi.”
+“Tra 10 minuti il consiglio si fermerà per fare una pausa e il Re lascerà l’Iliade,che si trova nella stanza proprio qui a fianco, come sicuramente saprete. 
+Come tradizione allora potrete prenderlo. Io non vi fermerò. 
+Per allora però dovrete aver deciso da che parte stare.”
+“Il mio istinto dice che questa scelta cambierà la vostra vita per sempre”
+“Volete che vi accompagni per caso?”
 
+	[[Si|ch17si]]	/	[[No|ch17no]]
 
-{(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="27" name="sfida del lucchetto" tags="sfondo_sfumato3 testo_nero" position="3725,650" size="100,100">Le date di nasicta dei tuoi genitori  sono 1968 e 1962.
-La media tra i due numeri è:
-(1968+1962)/2=3930/2=1965
-A 1965 va sommata pero il tuo anno di nascita.Sapendo che sei nat$g nel 2003:
-1965+2003=3968
-La soluzione alla domanda è 3968
 
-//[[indietro..|crediti]]//
-{(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="28" name="sfida del limite" tags="sfondo_sfumato3 testo_nero" position="3875,650" size="100,100">Per calcolare il limite della funzione f(x) = (x^2 - 4)/(x - 2) quando x tende a 2, possiamo semplificare l&#39;espressione utilizzando la fattorizzazione della differenza dei quadrati:
+{
 
-x^2 - 4 = (x + 2)(x - 2)
-
-Quindi, l&#39;espressione originale può essere riscritta come:
-
-f(x) = [(x + 2)(x - 2)] / (x - 2)
-
-Ora possiamo semplificare la funzione eliminando il termine comune (x - 2) sia nel numeratore che nel denominatore:
-
-f(x) = x + 2
-
-Ora, possiamo calcolare il limite quando x tende a 2 semplicemente sostituendo 2 nell&#39;espressione semplificata:
-
-lim x-&gt;2 (x + 2) = 2 + 2 = 4
-
-Quindi, il limite della funzione f(x) = (x^2 - 4)/(x - 2) quando x tende a 2 è 4.
-
-//[[indietro..|crediti]]//
-{(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="29" name="sfida della gaussiana" tags="sfondo_sfumato3 testo_nero" position="4025,625" size="100,100">In statistica, la regola empirica, nota anche come regola dei tre sigma, stabilisce che, in una distribuzione di dati approssimativamente normale:
-
-Circa il 68% dei dati si trova entro una deviazione standard dalla media.
-Circa il 95% dei dati si trova entro due deviazioni standard dalla media.
-Circa il 99.7% dei dati si trova entro tre deviazioni standard dalla media.
-Quindi, applicando la regola empirica, possiamo dire che circa il 99.7% dei dati si troveranno entro tre deviazioni standard dalla media del campione.
-
-
-
-
-
-//[[indietro..|crediti]]//
-{(display: &quot;piepagina&quot;) }
-</tw-passagedata><tw-passagedata pid="30" name="sfida della derivata parziale" tags="sfondo_sfumato3 testo_nero" position="4200,650" size="100,100">Per calcolare le derivate parziali della funzione f(x, y) = 3x^2y + 2xy^2 + 7y^3 rispetto a x e y, dobbiamo calcolare le derivate parziali rispetto a ciascuna variabile tenendo l&#39;altra costante.
-
-Derivata parziale rispetto a x (tenendo y costante):
-∂f/∂x = ∂/∂x (3x^2y + 2xy^2 + 7y^3)
-= 6xy + 2y^2
-
-Derivata parziale rispetto a y (tenendo x costante):
-∂f/∂y = ∂/∂y (3x^2y + 2xy^2 + 7y^3)
-= 3x^2 + 4xy + 21y^2
-
-Quindi, le derivate parziali della funzione f(x, y) = 3x^2y + 2xy^2 + 7y^3 sono:
-∂f/∂x = 6xy + 2y^2
-∂f/∂y = 3x^2 + 4xy + 21y^2
-
-//[[indietro..|crediti]]//
-{(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="31" name="sfida serie armonica" tags="sfondo_sfumato3 testo_nero" position="4325,650" size="100,100">Il criterio di convergenza integrale afferma che se una funzione f(x) è continua, positiva e decrescente su un intervallo [a, +∞) e l&#39;integrale definito ∫[a,+∞) f(x) dx converge, allora anche la serie Σ f(n) converge.
-
-Nel caso della serie armonica generalizzata con α maggiore di 1, la funzione f(x) = 1/x^α soddisfa le condizioni richieste dal criterio di convergenza integrale. Infatti, la funzione è continua, positiva e decrescente su [1, +∞).
-
-Applichiamo quindi il criterio di convergenza integrale alla funzione f(x):
-
-∫[1,+∞) 1/x^α dx
-
-Per α &gt; 1, l&#39;integrale definito converge. Questo implica che la serie Σ 1/n^α converge.
-
-In altre parole, quando α è maggiore di 1, la serie armonica generalizzata converge perché l&#39;integrale definito associato alla funzione convergente.
-
-//[[indietro..|crediti]]//
-{(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="32" name="sfida dei dadi" tags="sfondo_sfumato3 testo_nero" position="4450,650" size="100,100">Per determinare la probabilità, dobbiamo considerare tutti i possibili risultati dei lanci dei due dadi e determinare quanti di questi risultati hanno una somma di 7.
-Ci sono 36 possibili risultati, poiché ciascun dado ha 6 facce e ci sono 6 × 6 = 36 combinazioni possibili.
-Ora, cerchiamo quanti di questi risultati hanno una somma di 7. Ci sono esattamente 6 combinazioni possibili:
-(1, 6), (2, 5), (3, 4), (4, 3), (5, 2), (6, 1).
-Quindi, la probabilità che la somma dei numeri ottenuti sia uguale a 7 è di 6/36, che può essere semplificato a 1/6,
-
-
-//[[indietro..|crediti]]//
-{(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="33" name="la bici" tags="sfondo_sfumato3 testo_nero" position="1025,25" size="100,100">&lt;img src=&quot;https://antifurtomigliore.it/wp-content/uploads/2019/12/Lucchetto-bici.jpg&quot; style=&quot;width: 850px; height: 450px;&quot;class=&#39;full&#39; alt=&#39;immagine&#39;&gt;
-Ti dirigi in garage per prendere la bici e noti che è attaccata ad un lucchetto, è da tanto che non la usi perciò hai un vago ricordo della combinazione, ma pochi istanti dopo ti viene in mente che era la media dell’anno di nascita dei tuoi genitori, nati rispettivamente nel 1968 e nel 1962, sommata all’anno di nascita di tuo fratello, nato nel 2003.
-(set: $pswd_lucchetto to &quot;&quot;)
-(align:&quot;&lt;==&quot;)+(box:&quot;=XX=&quot;)[
-Qual è la combinazione del lucchetto? ]
-(input-box: 2bind $pswd_lucchetto, &quot;==X==&quot;, 1)\
-(live: 0.1s) [(set: $y to (split: newline, $pswd_lucchetto)) (set: $pswd_lucchetto to (trimmed: $y&#39;s 1st))]
-
-(live: 2s)[(if: $pswd_lucchetto is &quot;3968&quot;) [Perfetto... La combinazione è esatta, ora vai in //[[biblioteca]]//]]\
-(live: 1s)[(if: $pswd_lucchetto is not &quot;3968&quot;)[Se non ti ricordi la combinazione puoi sempre andare// [[a piedi]]//]]
-
-
-{(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="34" name="formularioo" tags="sfondo_sfumato3 testo_nero" position="1875,475" size="100,100">#FORMULARIO
-####LA MEDIA
-In statistica, la media è una misura di tendenza centrale che rappresenta il valore tipico di un insieme di dati. È comunemente conosciuta come &quot;media aritmetica&quot; o semplicemente &quot;media&quot;. Per calcolare la media, si sommano tutti i valori del dataset e si dividono per il numero totale di elementi presenti.
-Supponiamo di avere un insieme di dati rappresentati da x₁, x₂, x₃, ..., xₙ. La media aritmetica viene calcolata come:
-Media = (x₁ + x₂ + x₃ + ... + xₙ) / n
-Dove n rappresenta il numero totale di elementi nel dataset.
-Ad esempio, supponiamo di avere i seguenti dati: 5, 8, 2, 10, 6. Per calcolare la media, sommiamo tutti i valori e dividiamo per il numero totale di elementi:
-Media = (5 + 8 + 2 + 10 + 6) / 5 = 31 / 5 = 6.2
-Quindi, la media di questi dati è 6.2.
-La media è una misura utile perché fornisce un&#39;indicazione del valore centrale del dataset. Tuttavia, è importante notare che la media può essere influenzata da valori anomali o estremi nel dataset. Pertanto, in alcuni casi, potrebbe essere necessario considerare altre misure di tendenza centrale, come la mediana o la moda, per ottenere una visione più completa della distribuzione dei dati.
-
-
-####DISTRIBUZIONE GAUSSIANA
-In statistica, la distribuzione gaussiana, anche conosciuta come distribuzione normale o distribuzione a campana, è una delle distribuzioni di probabilità più comuni e importanti. È ampiamente utilizzata in diversi ambiti della statistica e delle scienze naturali, poiché molte variabili nel mondo reale tendono a distribuirsi approssimativamente secondo questo modello.
-
-La distribuzione gaussiana è completamente descritta da due parametri: la media (μ) e la deviazione standard (σ). La sua forma a campana simmetrica è caratterizzata da una media al centro della distribuzione e la deviazione standard determina la dispersione dei dati attorno alla media.
-La funzione di densità di probabilità (PDF) della distribuzione gaussiana è definita come:
-f(x) = (1 / (σ * sqrt(2π))) * exp(-(x-μ)² / (2σ²))
-dove x rappresenta il valore della variabile casuale, μ è la media e σ è la deviazione standard.
-Le principali proprietà della distribuzione gaussiana sono:
-1.	Simmetria: La distribuzione gaussiana è simmetrica rispetto alla media, il che significa che la metà dei dati si trova a sinistra della media e l&#39;altra metà a destra.
-2.	Media, mediana e moda coincidono: La media, la mediana e la moda di una distribuzione gaussiana sono tutte uguali e corrispondono al valore della media (μ).
-3.	Curve a campana: La distribuzione gaussiana forma una curva a campana simmetrica intorno alla media. La forma della curva dipende dalla deviazione standard. Una deviazione standard più piccola crea una curva più alta e stretta, mentre una deviazione standard più grande crea una curva più bassa e ampia.
-4.	Regola empirica: La maggior parte dei dati (circa il 68%) si trova entro una deviazione standard dalla media, circa il 95% si trova entro due deviazioni standard e circa il 99.7% si trova entro tre deviazioni standard.
-La distribuzione gaussiana è fondamentale in molti metodi statistici, come l&#39;inferenza statistica, l&#39;analisi dei test ipotesi e la regressione lineare. La sua importanza deriva in parte dal teorema del limite centrale, che stabilisce che la somma o la media di un gran numero di variabili casuali indipendenti segue approssimativamente una distribuzione gaussiana, indipendentemente dalla loro distribuzione originale.
-
-####LA PROBABILITA&#39;
-In statistica, la probabilità è una misura quantitativa che esprime la possibilità che un certo evento si verifichi. È un concetto fondamentale per l&#39;analisi statistica, in quanto consente di valutare la variabilità e l&#39;incertezza dei risultati.
-La probabilità viene espressa come un numero compreso tra 0 e 1, dove 0 rappresenta un evento impossibile e 1 rappresenta un evento certo. Un valore di probabilità compreso tra 0 e 1 indica la possibilità di verificarsi dell&#39;evento, in cui un valore più vicino a 1 indica una maggiore probabilità di occorrenza.
-Esistono due tipi principali di probabilità:
-1.	Probabilità classica: Si basa su un approccio teorico-matematico e si applica a situazioni in cui gli eventi sono considerati equiprobabili. Ad esempio, il lancio di una moneta equilibrata ha una probabilità di testa del 50% (0,5) e una probabilità di croce del 50% (0,5).
-2.	Probabilità empirica: Si basa sull&#39;osservazione di dati sperimentali o su una serie di eventi passati. Si calcola dividendo il numero di volte in cui l&#39;evento si è verificato per il numero totale di osservazioni. Ad esempio, se abbiamo registrato 30 lanci di moneta e 20 volte è uscita testa, allora la probabilità empirica di ottenere testa sarà 20/30 = 0,67.
-Le probabilità possono essere combinate attraverso diverse operazioni:
-1.	Somma di probabilità: La probabilità che si verifichi l&#39;evento A o l&#39;evento B (A ∪ B) è data dalla somma delle probabilità di A e B, a condizione che gli eventi siano mutualmente esclusivi.
-2.	Prodotto di probabilità: La probabilità che si verifichino simultaneamente l&#39;evento A e l&#39;evento B (A ∩ B) è data dal prodotto delle probabilità di A e B, a condizione che gli eventi siano indipendenti.
-3.	Probabilità condizionata: La probabilità che si verifichi l&#39;evento A dato che si è verificato l&#39;evento B (A|B) è calcolata come il rapporto tra la probabilità dell&#39;evento A ∩ B e la probabilità dell&#39;evento B.
-La teoria delle probabilità fornisce i fondamenti matematici per l&#39;analisi statistica, consentendo di calcolare le probabilità di eventi, di stimare parametri e di prendere decisioni statistiche basate sui dati osservati. La probabilità viene utilizzata in molti contesti, come l&#39;inferenza statistica, la modellazione dei fenomeni casuali e l&#39;elaborazione dei dati.
-//[[indietro|Vai alla seconda sfida]]//
-{(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="35" name="prima sfida" tags="sfondo_sfumato3 testo_nero" position="1825,300" size="100,100">//&quot;Come vedi, davanti a te ci sono quattro porte ma solo una di queste è quella che ti permetterà di proseguire. Per capirlo dovrai risolvere un enigma, in particolare dovrai risolvere questo limite:&quot;//
-
-lim x-&gt;2 [(x^2)-4] / (x-2)
-
-Guardi attentamente le quattro porte che si stagliano davanti a te. Ogni porta è contrassegnata da un numero, e comprendi che devi risolvere l&#39;enigma del limite per individuare la porta corretta.
-Ti soffermi a leggere l&#39;enigma una seconda volta, lasciando che la formula matematica si insinui nella tua mente. Il limite x che tende a 2 di [(x^2)-4] diviso per (x-2) richiede la tua attenzione. 
-
-Quale porta scegli?
-
-//[[porta uno|prima]]
-[[porta due|seconda]]
-[[porta tre|terza]]
-[[porta quattro|quarta]]//
-{(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="36" name="descrizione stanza" tags="sfondo_sfumato3 testo_nero" position="2450,250" size="100,100">&lt;img src=&quot;https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjA3C3PU3MqdwTrm2HI5d523dCdJZkT1JQbOUGMnbdmQl2klDLD928Bqm7NgaIrTR7FzsP63_NOlyzvItmVRZTci40DLXXo6amRBICFxqNBO48d2NTphXeohKAkiK2HtBYUzwRw776UHINrIo098P6P9j00oz7LjI3SeFVEYi70MyKQQHQMEVfmAgaV2A/s1600/Immagine%20WhatsApp%202023-05-18%20ore%2011.39.53.jpg&quot; style=&quot;width: 850px; height: 450px;&quot;class=&#39;full&#39; alt=&#39;immagine&#39;&gt;
-
-Di fronte a te si apre una stanza immensa, le cui dimensioni ti lasciano senza parole. La tua attenzione viene immediatamente catturata dalla maestosa statua di un angelo, posizionata al centro della stanza, con una freccia nella mano destra puntata verso di te.
-La statua sembra emanare una sensazione di mistero e potenza. Decidi di avvicinarti, sentendo la tua curiosità crescere. Osservi i dettagli impeccabili dell&#39;angelo, la sua espressione serena e le ali aperte che sembrano pronte a librarsi nell&#39;aria.
-La grandezza della stanza ti lascia perpless$fprotagonista, poiché non hai idea di come proseguire il tuo cammino. Il tuo sguardo torna sulla statua, cercando qualche indizio o segno che possa indicarti la via. Sul piedistallo noti una scritta incisa, togli con una mano la polvere sopra e //[[leggi...|terza sfida]] //
-
-{(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="37" name="piepagina" tags="sfondo_sfumato3 testo_nero" position="625,450" size="100,100">&lt;!-- deve essere incluso esplicitamente, con: (display: &quot;piepagina&quot;) --&gt;
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="19" name="ch17si" tags="sfondo_bianco testo_nero" position="3200,100" size="100,100">##Uscita d’emergenza
+
+Aspettate.
+Appena usciti incomincia a suonare l’allarme.
+“Non vi preoccupate li fermerò io” afferma Butler.
+Vi affrettate verso la Sala del Consiglio.
+Entrate e prendete l’Iliade.
+Non c’è più bisogno di fare attenzione a non essere scoperti quindi, bomba fumogena, e via più veloci della luce.
+
+(set:$aiuto to True)
+[[continua|chx]]
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="20" name="ch17no" tags="sfondo_bianco testo_nero" position="3200,300" size="100,100">##Uscita d’emergenza
+
+Aspettate.
+Appena usciti incomincia a suonare l’allarme. 
+Vi affrettate verso la Sala del Consiglio.
+Entrate e prendete l’Iliade.
+Non c’è più bisogno di fare attenzione a non essere scoperti quindi, bomba fumogena, e via più veloci della luce.
+
+[[continua|chx]]
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="21" name="chx" tags="sfondo_bianco testo_nero" position="3400,200" size="100,100">##Comunicazione
+
+Finalmente arrivate alla navicella. 
+Ora che hai visto le prove le invii ai tuoi superiori con una nota. 
+Nella nota devi scrivere di colui di cui ti vuoi fidare, colui che secondo te sarebbe il sovrano migliore per questo pianeta.
+
+
+Per fare ciò devi inviare un messaggio che sia un punto stazionario della funzione di seguito, e conoscere la sua natura:
+
+&lt;img src=&#39;Funzione.jpeg&#39; class=&#39;full&#39; alt=&#39;immagine&#39;&gt;
+
+N.d.A. :  La funzione ha un solo punto stazionario
+
+Il punto stazionario della funzione è A :  (dropdown: 2bind $risp1, &quot;--&quot; ,&quot;(1,0)&quot;, &quot;(0,0)&quot;, &quot;(0,2)&quot;, &quot;(4,2)&quot; )
+
+[[chiedi l&#39;aiuto da casa|cha11]]
+
+Il punto è di:  (dropdown: 2bind $risp2, &quot;--&quot; ,&quot;massimo&quot;, &quot;minimo&quot;)
+
+[[chiedi l&#39;aiuto del pubblico per trovare la natura del punto|cha12]]
+
+(live: 0.5s)
+[(if: $risp1 is &quot;(1,0)&quot; and $risp2 is &quot;minimo&quot;) [[continua|Ch18]] ]
+
+
+
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="22" name="ch19re" tags="sfondo_bianco testo_nero" position="3750,100" size="100,100">##Sei inseguito dalle Guardie Reali. 
+
+Cosa fare ora? 
+
+Partire il più presto possibile.
+
+Fai salire prima i tuoi compagni. 
+Velocemente li raggiungi.
+Cerchi di far partire la navicella, ma le Guardie l&#39;hanno già circondata. 
+Oramai hai deciso da che parte stare.  
+E non cambierai idea. 
+Ma come fare a partire?
+
+[[continua|ch20]]
+
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="23" name="ch19principeFINE1" tags="sfondo_bianco testo_nero" position="3750,300" size="100,100">##Fine di un&#39;avventura
+
+Dopo tutta questa avventura sei più sicuro che mai nel fidarti del Principe. 
+Sali sulla navicella e controlli se tutto è pronto per partire.
+È tutto nella norma. 
+Decollate. 
+
+Mentre ti allontani vedi la silhouette del Principe fare un segno di ringraziamento. 
+
+Ripensi a ciò che è successo negli ultimi giorni. 
+
+Ricevi una chiamata dal quartier generale: visto l’operazione improvvisa che avete dovuto fare, tu e la tua ciurma, potrete andare direttamente a casa. 
+Le questioni ufficiali verranno gestite durate il viaggio di ritorno.
+
+Ti volti, la strada verso casa è ancora lunga. Ma senti uno strano calore nel petto.
+
+Sai che il pianeta123 è ora in buone mani. 
+Non hai rimorsi. 
+E sogni della tua casa che ti aspetta a termine del viaggio.
+
+-FINE-
+
+
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="24" name="ch20" tags="sfondo_bianco testo_nero" position="3900,200" size="100,100">##Tradimento
+
+All’improvviso senti un botto dietro di te.
+Ti giri. 
+Vedi Silvia e Luca litigare. 
+Tra le grida dei due capisci che Luca ha tolto la corrente della navicella.
+Ti metti in mezzo a loro due e chiedi spiegazioni a Luca.
+Lui si rifiuta di parlare. 
+Cerchi un modo per farlo parlare ma oramai è troppo tardi. 
+Le Guardie Reali irrompono nella tua navicella e vi catturano tutti.
+
+(if:$aiuto is True and $file is True)[[[continua|ch21aFINE2]]]
+(else-if:$aiuto is True and $file is False)[[[continua|ch21bFINE3]]]
+(else:)[[[continua|ch21cFINE4]]]
+{
+
+(display: &quot;piepagina&quot;)}</tw-passagedata><tw-passagedata pid="25" name="ch21aFINE2" tags="sfondo_bianco testo_nero" position="4100,75" size="100,100">##Un aiuto inaspettato
+
+Vedi farsi strada tra le Guardie Reali, Butler. 
+“Hai preso un’ottima decisione Capitano” dice.
+Butler con un gesto fa portare via Luca.
+Si siede e incomincia a parlare: 
+“Sono impressionato di come tu sia riuscito a capire chi sia il vero cattivo in questa storia. Beh, credo che le mie informazioni siano state utili alla fine.”
+Butler ti spiega  di come il Principe sia riuscito ad ipnotizzare suo padre il Re e di come sia, allo stesso tempo, riuscito a minacciare Luca di ferire la sua famiglia, attirata qui con un finto buono vacanza.
+Butler si alza, ti ringrazia e ti riaccompagna alla navicella. 
+Ti fa sapere che Luca verrà trattenuto dai suoi uomini fino all’arrivo dei tuoi superiori ai quali verrà consegnato.
+Fa un cenno di saluto e si allontana mentre tu e Silvia pensate a un modo per spiegare tutto ciò che è successo negli ultimi giorni ai vostri superiori.
+
+-FINE-
+
+
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="26" name="ch21bFINE3" tags="sfondo_bianco testo_nero" position="4100,200" size="100,100">##Un risvolto inaspettato
+
+Vedi farsi strada tra le Guardie Reali Butler.
+Fa un cenno. 
+Le guardie si fermano, Luca si avvicina a lui.
+Butler ti chiede di sederti. 
+Ti chiede scusa e incomincia a spiegarti di come abbia contattato i tuoi superiori e di come insieme abbiano deciso di trovare un modo per proteggere il Re: il Principe infatti lo ha ipnotizzato e, quando Butler lo ha scoperto, ha subito contattato le autorità. 
+Le quali hanno contattato Luca e gli hanno chiesto di fare segretamente il doppiogiochista per recuperare tutte le prove possibili. 
+Luca con voce fioca si scusa.
+Ti guardi attorno.
+Decidi di andare a bere una birra con Silvia a RistoRistò dove hanno appena arrestato il Principe.
+Bevi la tua birra e decidi che domani tu e Silvia avrete molte domante di cui dovrete trovare una risposta. Ma nel frattempo l’unica cosa che vuoi è un letto morbido dove poter riposare.
+
+-FINE-
+
+
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="27" name="ch21cFINE4" tags="sfondo_bianco testo_nero" position="4100,325" size="100,100">##Le vere spoglie del Principe
+
+Il Principe si fa strada attraverso le Guardie Reali. 
+Ti si avvicina. 
+Ringrazia Luca dei suoi servigi e gli dà l’oro promesso in cambio del suo tradimento. Luca si allontana in fretta e parte su una navicella. 
+Il Principe ti porta nel suo palazzo dove, ti rinchiude in una cella insieme a Silvia e colui che ti si è presentato come Butler. Ormai in fin di vita.
+Sentite un’esplosione in lontananza.
+Tu e Silvia decidete di provare ad inviare un messaggio al Consiglio di Sicurezza: prendete il cip di emergenza nascosto nella vostra tuta e lo accendete.
+Il tempo passa e voi vi addormentate nella tiepida notte del Pianeta123 guardando attraverso una piccola finestra sbarrata da barre metalliche le stelle tra cui eravate soliti viaggiare spensierati.
+
+ -FINE-
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="28" name="piepagina" tags="" position="475,350" size="100,100">&lt;!-- deve essere incluso esplicitamente, con: (display: &quot;piepagina&quot;) --&gt;
 ---
-######|piccolo&gt;[(se preferisci, [[puoi sempre ricominciare il gioco dall’inizio-&gt;frontespizio]])] \
-</tw-passagedata><tw-passagedata pid="38" name="formulario1" tags="sfondo_sfumato3 testo_nero" position="3525,850" size="100,100">#FORMULARIO
-####LA MEDIA
-In statistica, la media è una misura di tendenza centrale che rappresenta il valore tipico di un insieme di dati. È comunemente conosciuta come &quot;media aritmetica&quot; o semplicemente &quot;media&quot;. Per calcolare la media, si sommano tutti i valori del dataset e si dividono per il numero totale di elementi presenti.
-Supponiamo di avere un insieme di dati rappresentati da x₁, x₂, x₃, ..., xₙ. La media aritmetica viene calcolata come:
-Media = (x₁ + x₂ + x₃ + ... + xₙ) / n
-Dove n rappresenta il numero totale di elementi nel dataset.
-Ad esempio, supponiamo di avere i seguenti dati: 5, 8, 2, 10, 6. Per calcolare la media, sommiamo tutti i valori e dividiamo per il numero totale di elementi:
-Media = (5 + 8 + 2 + 10 + 6) / 5 = 31 / 5 = 6.2
-Quindi, la media di questi dati è 6.2.
-La media è una misura utile perché fornisce un&#39;indicazione del valore centrale del dataset. Tuttavia, è importante notare che la media può essere influenzata da valori anomali o estremi nel dataset. Pertanto, in alcuni casi, potrebbe essere necessario considerare altre misure di tendenza centrale, come la mediana o la moda, per ottenere una visione più completa della distribuzione dei dati.
+se preferisci, [[puoi sempre ricominciare il gioco dall’inizio-&gt;Intro]]</tw-passagedata><tw-passagedata pid="29" name="ch13a" tags="sfondo_bianco testo_nero" position="2600,50" size="100,100">Per trovare il codice bisogna usare una matrice 3x3: il cui determinante è il codice da inserire.
+ La matrice è la seguente:
+ &lt;img src=&#39;matrici.jpeg&#39; class=&#39;full&#39; alt=&#39;immagine&#39;&gt;
+ Inserisci il codice:
+(input-box: 2bind $rispostaGiocatore,  &quot;==X==&quot;, 1)
+[Hai usato $tentativi su 3]
+{
+(if: $tentativi is 3 and $rispostaGiocatore is not &quot;27&quot;)[[[continua|chperso]]]
+(else:)[
+(if: ($rispostaGiocatore is &quot;27&quot;) ) [[[continua|ch14]]]
+(else-if:visits is 1)[
+[[continua|ch13a]](set:$tentativi to $tentativi +1)(set: $rispostaGiocatore to &quot;&quot;)]
+(else:)[ [[continua|ch13a]](set:$tentativi to $tentativi +1)(set: $rispostaGiocatore to &quot;&quot;)]
+]
+}
+
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="30" name="chperso" tags="sfondo_bianco testo_nero" position="2100,50" size="100,100">## HAI PERSO
+
+Hai finito i tentativi a tua disposizione:
+Ora puoi solo ricominciare da capo.
 
 
-####DISTRIBUZIONE GAUSSIANA
-In statistica, la distribuzione gaussiana, anche conosciuta come distribuzione normale o distribuzione a campana, è una delle distribuzioni di probabilità più comuni e importanti. È ampiamente utilizzata in diversi ambiti della statistica e delle scienze naturali, poiché molte variabili nel mondo reale tendono a distribuirsi approssimativamente secondo questo modello.
+[[Ricomincia da capo|Intro]]
 
-La distribuzione gaussiana è completamente descritta da due parametri: la media (μ) e la deviazione standard (σ). La sua forma a campana simmetrica è caratterizzata da una media al centro della distribuzione e la deviazione standard determina la dispersione dei dati attorno alla media.
-La funzione di densità di probabilità (PDF) della distribuzione gaussiana è definita come:
-f(x) = (1 / (σ * sqrt(2π))) * exp(-(x-μ)² / (2σ²))
-dove x rappresenta il valore della variabile casuale, μ è la media e σ è la deviazione standard.
-Le principali proprietà della distribuzione gaussiana sono:
-1.	Simmetria: La distribuzione gaussiana è simmetrica rispetto alla media, il che significa che la metà dei dati si trova a sinistra della media e l&#39;altra metà a destra.
-2.	Media, mediana e moda coincidono: La media, la mediana e la moda di una distribuzione gaussiana sono tutte uguali e corrispondono al valore della media (μ).
-3.	Curve a campana: La distribuzione gaussiana forma una curva a campana simmetrica intorno alla media. La forma della curva dipende dalla deviazione standard. Una deviazione standard più piccola crea una curva più alta e stretta, mentre una deviazione standard più grande crea una curva più bassa e ampia.
-4.	Regola empirica: La maggior parte dei dati (circa il 68%) si trova entro una deviazione standard dalla media, circa il 95% si trova entro due deviazioni standard e circa il 99.7% si trova entro tre deviazioni standard.
-La distribuzione gaussiana è fondamentale in molti metodi statistici, come l&#39;inferenza statistica, l&#39;analisi dei test ipotesi e la regressione lineare. La sua importanza deriva in parte dal teorema del limite centrale, che stabilisce che la somma o la media di un gran numero di variabili casuali indipendenti segue approssimativamente una distribuzione gaussiana, indipendentemente dalla loro distribuzione originale.
+{
 
-####LA PROBABILITA&#39;
-In statistica, la probabilità è una misura quantitativa che esprime la possibilità che un certo evento si verifichi. È un concetto fondamentale per l&#39;analisi statistica, in quanto consente di valutare la variabilità e l&#39;incertezza dei risultati.
-La probabilità viene espressa come un numero compreso tra 0 e 1, dove 0 rappresenta un evento impossibile e 1 rappresenta un evento certo. Un valore di probabilità compreso tra 0 e 1 indica la possibilità di verificarsi dell&#39;evento, in cui un valore più vicino a 1 indica una maggiore probabilità di occorrenza.
-Esistono due tipi principali di probabilità:
-1.	Probabilità classica: Si basa su un approccio teorico-matematico e si applica a situazioni in cui gli eventi sono considerati equiprobabili. Ad esempio, il lancio di una moneta equilibrata ha una probabilità di testa del 50% (0,5) e una probabilità di croce del 50% (0,5).
-2.	Probabilità empirica: Si basa sull&#39;osservazione di dati sperimentali o su una serie di eventi passati. Si calcola dividendo il numero di volte in cui l&#39;evento si è verificato per il numero totale di osservazioni. Ad esempio, se abbiamo registrato 30 lanci di moneta e 20 volte è uscita testa, allora la probabilità empirica di ottenere testa sarà 20/30 = 0,67.
-Le probabilità possono essere combinate attraverso diverse operazioni:
-1.	Somma di probabilità: La probabilità che si verifichi l&#39;evento A o l&#39;evento B (A ∪ B) è data dalla somma delle probabilità di A e B, a condizione che gli eventi siano mutualmente esclusivi.
-2.	Prodotto di probabilità: La probabilità che si verifichino simultaneamente l&#39;evento A e l&#39;evento B (A ∩ B) è data dal prodotto delle probabilità di A e B, a condizione che gli eventi siano indipendenti.
-3.	Probabilità condizionata: La probabilità che si verifichi l&#39;evento A dato che si è verificato l&#39;evento B (A|B) è calcolata come il rapporto tra la probabilità dell&#39;evento A ∩ B e la probabilità dell&#39;evento B.
-La teoria delle probabilità fornisce i fondamenti matematici per l&#39;analisi statistica, consentendo di calcolare le probabilità di eventi, di stimare parametri e di prendere decisioni statistiche basate sui dati osservati. La probabilità viene utilizzata in molti contesti, come l&#39;inferenza statistica, la modellazione dei fenomeni casuali e l&#39;elaborazione dei dati.
-//[[indietro|crediti]//]</tw-passagedata><tw-passagedata pid="39" name="descrizione citta" tags="testo_nero sfondo_sfumato3" position="775,300" size="100,100">&lt;img src=&quot;https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjgckoizP5NYHHIIzAIakZ8MuI84BtEcjB-Vje1iw3xUQgewa6eVAOzPhBR2Mvu2ag7uwt9hf5pG3Ejw0DAgw9CrpmZeCY7dhb0AS917bOzx-h8e_m3RSsBSysxRHDpWRHK-J-_YXDw8thz4ONPZWNt91VFKPwDR0GsPwxjP1CUhQWR4uWO-TLgRL3Lcw/s1600/Immagine%20WhatsApp%202023-05-18%20ore%2011.31.46.jpg&quot; style=&quot;width: 850px; height: 450px;&quot;class=&#39;full&#39; alt=&#39;immagine&#39;&gt;
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="31" name="ch15a" tags="sfondo_bianco testo_nero" position="2875,400" size="100,100">Nel file sono presenti documenti, registrazioni e video in cui il Re infrange leggi sia del Pianeta sia intergalattiche. Sia in modo diretto che indiretto. 
+Il Re con queste prove verrà sicuramente condannato. 
+E quindi deposto secondo la legge del Pianeta123 creata da lui stesso lo scorso anno?
+Che ci fa un articolo della Costituzione del Pianeta insieme alle prove contro il Re?
+Alzi lo sguardo e chiedi, indicando il documento: “Secondo lei questo deve essere qui?”
+Come risposta ricevi solo un’alzata di spalle disinteressata.
 
-Ti trovi a Silverwood, una graziosa cittadina avvolta nella tranquillità, sorgeva ai piedi di una collina verdeggiante. Circondata da boschi lussureggianti e laghi sereni, Silverwood emanava un&#39;atmosfera fiabesca che incantava chiunque vi si addentrasse.
-Le strade di Silverwood erano un dedalo di viuzze acciottolate e pittoresche, fiancheggiate da casette dai tetti spioventi e dai colori caldi. Le facciate delle case erano adornate da ghirlande di fiori, che diffondevano un profumo delicato nell&#39;aria. Ogni angolo della cittadina raccontava una storia, specialmente quella villa abbandonata a cui passavi davanti tutte le mattine.
-La piazza centrale di Silverwood era il cuore pulsante della comunità. Qui, una maestosa fontana circondata da panchine invitava i residenti e i visitatori a rilassarsi e a godere della tranquillità circostante. Al centro della piazza sorgeva un antico albero secolare, la cui imponente chioma offriva un rifugio ombroso nelle calde giornate estive.
-I negozi lungo le strade principali erano un tripudio di originalità e creatività. Botteghe d&#39;arte esponevano quadri vibranti e sculture affascinanti, la biblioteca dove tutti i ragazzi di Silverwood si ritrovavano per studiare o per leggere i loro libri preferiti. 
-La natura era parte integrante della vita a Silverwood. Sentieri nascosti si snodavano tra gli alberi secolari, invitando gli abitanti a passeggiare e a immergersi nella bellezza naturale che li circondava. 
-La comunità di Silverwood era calorosa e accogliente, con i suoi abitanti che si conoscevano tutti per nome.
-In sintesi, Silverwood era una cittadina da cartolina, dove la natura e l&#39;umanità si intrecciavano armoniosamente, ma con un segreto che nessuno aveva osato scoprire…
-[[Perfetto... Ora sei pront$fprotagonista per iniziare la tua avventura|a casa]]
-{(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="40" name="prima" tags="sfondo_sfumato3 testo_nero" position="1475,625" size="100,100">Apri la porta, ma la tua gioia si trasforma immediatamente in delusione. Di fronte a te c&#39;è una stanza claustrofobica e senza vie d&#39;uscita. Non c&#39;è alcun segno di vita né indizi su come poter proseguire. Realizzi di essere cadut$protagonista in una trappola insidiosa, e un senso di frustrazione e paura inizia ad avvolgerti.
-Ti affretti a cercare una via di fuga, esplorando ogni angolo della stanza, ma tutto sembra privo di speranza. Il tempo passa lentamente e la tua ansia cresce. La consapevolezza di aver fatto una scelta errata e di essere rimast$fprotagonista intrappolat$protagonista si fa sempre più intensa.
-Le ore trascorrono, ma rimani imprigionat$fprotagonista, con un senso di impotenza che ti opprime. 
-Senza una via di fuga e con la consapevolezza di aver commesso un errore fatale, ti trovi a confrontarti con la dura realtà di essere intrappolat$fprotagonista in una stanza senza apparente soluzione.
+Devi decidere cosa fare:
+* [[guardi il file sui litigi|ch15b]]
+* [[guardi il file &quot;TOP SECRET&quot; |ch15c]]
+* [[decidi che hai guardato abbastanza|ch16]]
 
-###(text-colour:red)[[[GAME OVER|intro]]]
 
- &lt;audio 
-src=&quot;https://github.com/steve2555555/libro/raw/main/suspense_strings_001wav-14805.mp3&quot; autoplay&gt;</tw-passagedata><tw-passagedata pid="41" name="seconda" tags="sfondo_sfumato3 testo_nero" position="1475,725" size="100,100">Apri la porta, ma la tua gioia si trasforma immediatamente in delusione. Di fronte a te c&#39;è una stanza claustrofobica e senza vie d&#39;uscita. Non c&#39;è alcun segno di vita né indizi su come poter proseguire. Realizzi di essere cadut$fprotagonista in una trappola insidiosa, e un senso di frustrazione e paura inizia ad avvolgerti.
-Ti affretti a cercare una via di fuga, esplorando ogni angolo della stanza, ma tutto sembra privo di speranza. Il tempo passa lentamente e la tua ansia cresce. La consapevolezza di aver fatto una scelta errata e di essere rimast$fprotagonista intrappolat$fprotagonista si fa sempre più intensa.
-Le ore trascorrono, ma rimani imprigionat$fprotagonista, con un senso di impotenza che ti opprime. 
-Senza una via di fuga e con la consapevolezza di aver commesso un errore fatale, ti trovi a confrontarti con la dura realtà di essere intrappolat$fprotagonista in una stanza senza apparente soluzione.
+{
 
-###(text-colour:red)[[[GAME OVER|intro]]]
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="32" name="ch15b" tags="sfondo_bianco testo_nero" position="2950,525" size="100,100">Il file contiene le registrazioni risalenti fino a circa due anni fa del Consiglio del Pianeta in cui il Principe lotta strenuamente contro il Re per proteggere i diritti della propria gente.
+Il Principe usa tutti i mezzi a sua disposizione: leggi, sindacati e, a volte, persino minacce per proteggere la propria terra e la propria gente. 
+Proprio come farebbe un vero Re.
+“Esattamente come farebbe un vero Re” senti mormorare alle tue spalle, seguita da una breve risata mal trattenuta.
 
- &lt;audio 
-src=&quot;https://github.com/steve2555555/libro/raw/main/suspense_strings_001wav-14805.mp3&quot; autoplay&gt;</tw-passagedata><tw-passagedata pid="42" name="terza" tags="sfondo_sfumato3 testo_nero" position="1475,825" size="100,100">Apri la porta, ma la tua gioia si trasforma immediatamente in delusione. Di fronte a te c&#39;è una stanza claustrofobica e senza vie d&#39;uscita. Non c&#39;è alcun segno di vita né indizi su come poter proseguire. Realizzi di essere caduto in una trappola insidiosa, e un senso di frustrazione e paura inizia ad avvolgerti.
-Ti affretti a cercare una via di fuga, esplorando ogni angolo della stanza, ma tutto sembra privo di speranza. Il tempo passa lentamente e la tua ansia cresce. La consapevolezza di aver fatto una scelta errata e di essere rimast$fprotagonista intrappolat$fprotagonista si fa sempre più intensa.
-Le ore trascorrono, ma rimani imprigionat$fprotagonista, con un senso di impotenza che ti opprime. 
-Senza una via di fuga e con la consapevolezza di aver commesso un errore fatale, ti trovi a confrontarti con la dura realtà di essere intrappolat$fprotagonista in una stanza senza apparente soluzione.
+Devi decidere cosa fare:
+* [[guardi il file sulle prove contro il Re|ch15a]]
+* [[guardi il file &quot;TOP SECRET&quot; |ch15c]]
+* [[decidi che hai guardato abbastanza|ch16]]
 
-###(text-colour:red)[[[GAME OVER|intro]]]
 
- &lt;audio 
-src=&quot;https://github.com/steve2555555/libro/raw/main/suspense_strings_001wav-14805.mp3&quot; autoplay&gt;</tw-passagedata><tw-passagedata pid="43" name="autori" tags="" position="675,825" size="100,100">&lt;!-- deve essere incluso esplicitamente, con: (display: &quot;autori&quot;) --&gt;
----
-####|piccolo&gt;[Questo gioco è stato ideato da Tarello Stefano , Trezzi Chiara e Tonassi Jacopo] </tw-passagedata></tw-storydata>
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="33" name="ch15c" tags="sfondo_bianco testo_nero" position="3100,400" size="100,100">##File &quot;TOP SECRET&quot;
+Scoiattoli. Una cartella piena di scoiattoli: foto, video, clip di documentari ma anche clip di serie TV dove si vedono solo scoiattoli e foto di peluche di scoiattoli. Anche un modellino olografico e un modellino olografico che si muove.
+Sei sconcertato. Per non sai quale ragione ti fai una fragorosa risata.
+&quot;Scoiattoli, tanti scoiattoli&quot; dici tra le risate
+L’uomo dietro di te lo noto e mezzo imbarazzato dice: “Che problema è se sono un fan degli scoiattoli?”
+
+Devi decidere cosa fare:
+* [[guardi il file sulle prove contro il Re|ch15a]]
+* [[guardi il file sui litigi |ch15b]]
+* [[decidi che hai guardato abbastanza|ch16]]
+* [[continua a guardare il file &quot;TOP SECRET&quot; |ch15d]]
+
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="34" name="ch15d" tags="sfondo_bianco testo_nero" position="3125,525" size="100,100">Navighi ancora un po’ tra tutti quegli scoiattoli e noti una piccola cartella il cui chiamata CENSORED. Sei un po’ preoccupato di cosa ci sia dentro ma comunque provi ad aprirla.
+Al suo interno trovi documenti ancora scioccanti dei precedenti.
+Li leggi con velocità e molta attenzione. Non prestavi così attenzione a dei documenti dall’ultimo esame dato all’Università.
+Ti giri. 
+“Tutto questo è vero, chiedi?”
+“Lo sa anche lei, Capitano, che sono veri questi documenti”
+“Dobbiamo andarcene da qui al più presto, questo posto non è sicuro: il Principe ci ha ingannati. Ha drogato Sua Altezza il Re per poterlo spodestare e mostrarsi come salvatore di un mondo in rovina. Non possiamo aiutarlo per nessun motivo. Il Re è ora solo un burattino comandato.”
+
+Devi decidere cosa fare:
+* [[guardi il file sulle prove contro il Re|ch15a]]
+* [[guardi il file sui litigi |ch15b]]
+* [[decidi che hai guardato abbastanza|ch16]]
+(set:$file to True)
+
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="35" name="ch3a" tags="sfondo_bianco testo_nero" position="750,25" size="100,100">##Contatto
+
+Provi a mandare un messaggio di MAYDAY verso il Pianeta123, ma non ricevi nessuna risposta.
+Riprovi ancora una volta. 
+Ancora nessuna risposta.
+Luca, dall’altra parte della navicella incomincia a smanettare sul computer di bordo.
+Lo vedi, e ti avvicini a lui.
+La ricetrasmittente manda messaggi, ma non c&#39;è alcuna risposta.
+Non potete restare in orbita ancora per molto.
+Decidi quindi di atterrare.
+
+[[Continua|ch3]]
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="36" name="ch12a" tags="sfondo_bianco testo_nero" position="2350,400" size="100,100">##Plan B
+
+Decidi quindi di passare a piano B per evitare il lucchetto che potrebbe attivare un allarme.
+Tu, Luca e Silvia prenderete quindi la strada più sicura ma lunga.
+Fate qualche passo indietro ed entrate in un ripostiglio, lì trovate dei vestiti inutilizzati e decide di travestirvi da addetti della pulizia.
+Uscite, passa una guardia correndo di fianco a voi mentre grida “attenzione! Intrusi nel palazzo attivazione delle misure di sicurezza”
+Aumenti il passo.
+La guardia smette di gridare e si gira verso di voi all’improvviso.
+“Chi siete?” chiede.
+“Torniamo al piano A” dici a Luca e Silvia.
+Rientrate nella stanza di prima velocemente, per fortuna non vi eravate allontananti troppo.
+
+
+Per trovare il codice bisogna usare una matrice 3x3: il cui determinante è il codice da inserire.
+ La matrice è la seguente:
+ &lt;img src=&#39;matrici.jpeg&#39; class=&#39;full&#39; alt=&#39;immagine&#39;&gt;
+ Inserisci il codice:
+(input-box: 2bind $rispostaGiocatore,  &quot;==X==&quot;, 1)
+
+{
+
+(live:0.5s)[
+
+(if: $rispostaGiocatore is not &quot;27&quot;)[[[continua|ch13extra]]]
+(else:)[
+(if: ($rispostaGiocatore is &quot;27&quot;) ) [[[continua|chperso2]]]
+]
+]
+
+}</tw-passagedata><tw-passagedata pid="37" name="ch13extra" tags="sfondo_bianco testo_nero" position="2525,550" size="100,100">##Catturati
+
+Siete riusciti ad aprire la porta ma la guardia è riuscita a raggiungervi e non è più da sola: le guardie sono almeno una decina.
+Non riuscirete mai a vincere conto di tutti loro. 
+Vi arrendete. 
+Venite portati nella stanza della sicurezza.
+Quello che trovate di fronte a voi è un essere che ti ricorda tanto un eroe dei film western: una persona seduta per terra , la schiena fiera e gli occhi di ghiaccio attenti ad ogni movimento, anche al più piccolo.
+Vi guarda per un paio di secondi. 
+Poi si rivolge al capo della squadra che vi ha portato lì.
+“E questi chi sarebbero Cap. Hook?”
+“Intrusi. Credo che siano gli esseri atterrati qui pochi giorni fa. E che siano alleati del Principe visto come si sono mossi e di come oggi ci sono stati dei Fuochi d’artificio non programmati”
+Lo sconosciuto vi guarda per ancora un paio di secondi. Manda via le guardie e, appena escono dalla stanza, scoppia in una fragorosa risata che non c’entra nulla con l’aura gelida che aveva avuto fino a poco prima.
+
+[[continua|ch15]]
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="38" name="cha11" tags="sfondo_bianco testo_nero" position="3400,450" size="100,100">Devi calcolare la matrice Hessiana nel punto A.
+Il determinante della matrice, per essere un punto stazionario, deve essere negativo (e quindi il punto è di sella) o positivo (e quindi il punto può essere sia di massimo che di minimo).
+
+[[torna indietro|chx]] oppure [[usa un aiuto aggiuntivo|cha22]]
+
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="39" name="cha12" tags="sfondo_bianco testo_nero" position="3525,450" size="100,100">Devi calcolare il differenziale della funzione, che va poi posto a zero.
+
+[[torna indietro|chx]] oppure [[usa un aiuto aggiuntivo|cha21]]
+
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="40" name="Ch18" tags="sfondo_bianco testo_nero" position="3550,200" size="100,100">##Un’ultima scelta
+
+Devi ora fare la tua scelta:
+Di chi vuoi fidarti?
+
+Del [[Re|ch19re]] o del [[Principe|ch19principeFINE1]]
+
+
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="41" name="cha22" tags="testo_nero sfondo_bianco" position="3400,575" size="100,100">Il punto è di minimo l&#39;elemento 1-1 della matrice Hessiana è positivo.
+Il punto è di massimo l&#39;elemento 1-1 della matrice Hessiana è negativo.
+
+&lt;img src=&#39;hessiana.jpeg&#39; class=&#39;full&#39; alt=&#39;immagine&#39;&gt;
+
+[[torna indietro|cha11]]
+
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="42" name="cha21" tags="sfondo_bianco testo_nero" position="3525,575" size="100,100">&lt;img src=&#39;discriminante.jpeg&#39; class=&#39;full&#39; alt=&#39;immagine&#39;&gt;
+
+[[torna indietro|cha12]]
+
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="43" name="ch7bis" tags="sfondo_bianco testo_nero" position="1700,275" size="100,100">##Cambio di opinione
+
+Non sei riuscito ad aggiustare il pezzo.
+Cosa fare ora?
+Timidamente, Luca si avvicina a te. Ti chiede di poter restare ad aiutare questo pianeta.
+&quot;Noi siamo parte del Consiglio di Sicurezza Alfa 06, anche se facciamo parte della squadra di ricerca. Mi ricordo cosa è success durate il periodo di rivoluzione nel mio pianeta. Non posso andarmene senza aiutare gli abitanti di questo pianeta&quot;
+&quot;Non posso lasciarti qui da solo - rispondi - verremo con te. La navicella è distrutta più del previsto: non faremo mai in tempo ad aggiustarla. Mi hai convinto. Restiamo qui.&quot;
+&quot;Fissa un incontro per domani&quot; dici mentre invii Luca a chiamare il Principe.
+Subito dopo chiami i tuoi superiori per chiedergli supporto e aiuti. Li avrai.
+
+[[continua|ch7a]]
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="44" name="ches1" tags="sfondo_bianco testo_nero" position="1275,100" size="100,100">Silvia ha con sé i suoi strumenti da fabbro per riparare la navicella.
+Silvia ha 5 strumenti diversi con i quali è solita fare delle prove per imparare ad aggiustare il pezzo su cui sta lavorando attulmente.
+I risultati sono i seguenti.
+
+Strumento A: 
+* numero di tentativi di successo: 10
+* numero di tentativi falliti: 5
+Strumento B: 
+* numero di tentativi di successo: 15
+* numero di tentativi falliti: 10
+Strumento C: 
+* numero di tentativi di successo: 3
+* numero di tentativi falliti: 8
+Strumento D: 
+* numero di tentativi di successo: 6
+* numero di tentativi falliti: 12
+Strumento E:
+* numero di tentativi riusciti per il superamento: 10
+* numero di tentativi falliti: 3
+Qual è lo strumento che ha la maggior probabilità di riuscita?
+(dropdown: 2bind $risposta1, &quot;--&quot; , &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;)
+Hai solo un tentativo
+{
+(live: 0.5s)[(if: $risposta1 is &quot;E&quot;)[[[continua|ches2]]] 
+(else:)[[[continua|ch7bis]]]
+]
+}
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="45" name="ch12b" tags="sfondo_bianco testo_nero" position="2325,225" size="100,100">Il risultato è sbagliato.
+Avete paura che stando qui verrete scoperti. 
+Decidete quindi di[[passate al piano B|ch12a]]
+
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata><tw-passagedata pid="46" name="ches2" tags="sfondo_bianco testo_nero" position="1525,50" size="100,100">Per poter finire di aggiustare la navicella devi conoscere il punto stazionario della funzione di seguito, e conoscere la sua natura:
+
+&lt;img src=&#39;Funzione.jpeg&#39; class=&#39;full&#39; alt=&#39;immagine&#39;&gt;
+
+N.d.A. :  La funzione ha un solo punto stazionario
+
+Il punto stazionario della funzione è A :  (dropdown: 2bind $risposta4, &quot;--&quot; ,&quot;(1,0)&quot;, &quot;(0,0)&quot;, &quot;(0,2)&quot;, &quot;(4,2)&quot; )
+
+Il punto è di:  (dropdown: 2bind $risposta5, &quot;--&quot; ,&quot;massimo&quot;, &quot;minimo&quot;)
+
+(live: 0.5s)
+[(if: $risposta4 is &quot;(1,0)&quot; and $risposta5 is &quot;minimo&quot;) [[continua|chFINE5]] ]
+(else:) [[continua|ch7bis]]</tw-passagedata><tw-passagedata pid="47" name="chFINE5" tags="sfondo_bianco testo_nero" position="1725,50" size="100,100">##Fine
+
+Finalmente siete riusciti ad aggiustare l’Apollo.
+Accendete i motori e ripartite per il quartier generale a massima velocità per recuperare il tempo perduto.
+Avrete da comunicare qualcosa in più del previsto ai vostri superiori ma sarete liberi di andare a casa subito dopo.
+Nel viaggio ti addormenti sognando le meritate ferie che avrete a breve.
+
+-FINE-</tw-passagedata><tw-passagedata pid="48" name="chperso2" tags="sfondo_bianco testo_nero" position="2150,500" size="100,100">## HAI PERSO
+
+Hai sbagliato risposta:
+Sei stato catturato dalle guardie.
+La missione è fallita.
+Ora puoi solo ricominciare da capo.
+
+[[Ricomincia da capo|Intro]]
+
+{
+
+(display: &quot;piepagina&quot;) }</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
 var require,define;!function(){var e={},r={};require=function(i){var n=e[i];return n&&(r[i]=n[1].apply(void 0,n[0].map(require)),e[i]=void 0),r[i]},(define=function(r,i,n){if("function"==typeof r)return r();e[r]=[i,n]}).amd=!0}();/*!
  * https://github.com/paulmillr/es6-shim

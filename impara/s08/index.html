@@ -66,7 +66,6 @@ tw-sidebar
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="start" tags="" position="600,250" size="100,100">(if: &quot;auto&quot; is in (saved-games:)) [(load-game: &quot;auto&quot;)]
 (else:) [(go-to: &quot;frontespizio&quot;)]</tw-passagedata><tw-passagedata pid="2" name="frontespizio" tags="Beige T_Nero" position="750,250" size="100,100">#$tit[Il tempo scorre!]
 
-
 (set: $nome to &quot;&quot;) \
 (set: $cognome to &quot;&quot;) \
 (set: $soprannome to &quot;&quot;) \
@@ -82,7 +81,32 @@ Prima di cominciare con il racconto, rispondi per favore a qualche domanda per p
 
 (live: 0.2s)[(if: $genere is &quot;maschile&quot;) [(set: $g to &quot;o&quot;)]
 (else:) [(set: $g to &quot;a&quot;)]]
-
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;}
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;}
+    p {
+      font-size: 18px;
+      text-align: center;
+      color: #555;
+      margin-top: 10px;}
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;p&gt;Benvenuti nella storia del libro-game digitale creato da Gianluca Gargiulo, Mario Gentile e Filippo Ballarati. Siete pronti ad avventurarvi in una storia epica piena di avventure, emozioni e colpi di scena? Preparatevi ad immergervi in un viaggio indimenticabile che vi lascerà senza fiato.&lt;/p&gt;
+    &lt;p&gt;Che l&#39;avventura abbia inizio!&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 |enfat&gt;[Bene, per iniziare questa fantastica avventura [[premi qui.|inizio]]]</tw-passagedata><tw-passagedata pid="3" name="include" tags="header" position="600,100" size="100,100">&lt;!-- dei default, anche per rendere più semplice il testing in fase di sviluppo --&gt; {
 (if: $nome is 0) [(set: $nome to &quot;Alex&quot;)]
 (if: $cognome is 0) [(set: $cognome to &quot;Bianchi&quot;)]
@@ -119,7 +143,7 @@ Prima di cominciare con il racconto, rispondi per favore a qualche domanda per p
         font-size: 20px;
     }
 &lt;/style&gt;
-(set: $h to 11)
+(set: $h to 7)
 (set: $m to 59)
 (set: $s to 59)
 
@@ -135,7 +159,7 @@ Prima di cominciare con il racconto, rispondi per favore a qualche domanda per p
         (set: $m to 59)
         (set: $s to 59)
     ]
-    (if: $s is 0 and $m is 0 and $h is 0)[
+    (if: $s &lt;= 0 and $m &lt;= 0 and $h &lt;= 0)[
         (stop:)
         (go-to: &quot;Tempo Scaduto&quot;)
     ]
@@ -196,7 +220,7 @@ Sono le parole che ti stai dicendo in questo momento nella tua testa perchè sai
 
 ##$tit[TI SONO ALLE CALCAGNA!!]
 
-Hai 12 ore per riuscire a fuggire dall&#39;Italia e non farti prendere con le mani nel sacco, per fortuna però ti ricordi che hai un caro amico che può darti una mano offrendoti un nascondoglio per riorganizzarti le idee e guadagnare del tempo.
+Hai $er[8 ore] per riuscire a fuggire dall&#39;Italia e non farti prendere con le mani nel sacco, per fortuna però ti ricordi che hai un caro amico che può darti una mano offrendoti un nascondoglio per riorganizzarti le idee e guadagnare del tempo.
 
 Per contattarlo però ti serve raggiungere un internt point, apri la mappa per trovare quello più vicino a te.
 
@@ -226,7 +250,7 @@ A quale preferisci andare?:
         font-size: 20px;
     }
 &lt;/style&gt;
-(set: $h to it -1)
+(set: $h to it -3)
 (set: $m to it -0)
 (set: $s to it -0)
 
@@ -242,7 +266,7 @@ A quale preferisci andare?:
         (set: $m to 59)
         (set: $s to 59)
     ]
-    (if: $s is 0 and $m is 0 and $h is 0)[
+    (if: $s &lt;= 0 and $m &lt;= 0 and $h &lt;= 0)[
         (stop:)
         (go-to: &quot;Tempo Scaduto&quot;)
     ]
@@ -297,7 +321,7 @@ A quale preferisci andare?:
 ]
 ##$tit[Internet point 1]
 
-Hai scelto l&#39;internet point più lontano dalla tua posizione originale, purtroppo hai perso un&#39; ora per raggiungerlo e ti sei quasi fatt$g prendere.
+Hai scelto l&#39;internet point più lontano dalla tua posizione originale, purtroppo hai perso $er[3 ore]per raggiungerlo e ti sei quasi fatt$g prendere.
 
 Ora devi contattare il tuo amico attraverso un indirizzo IP criptato per non farti rintracciare da chi ti sta cercando. 
 
@@ -333,8 +357,8 @@ Ora [[chiama Micheal]].]
         font-size: 20px;
     }
 &lt;/style&gt;
-(set: $h to it -0)
-(set: $m to it -5)
+(set: $h to it -1)
+(set: $m to it -0)
 (set: $s to it -0)
 
 (live: 1s)[
@@ -349,11 +373,10 @@ Ora [[chiama Micheal]].]
         (set: $m to 59)
         (set: $s to 59)
     ]
-    (if: $s is 0 and $m is 0 and $h is 0)[
+    (if: $s &lt;= 0 and $m &lt;= 0 and $h &lt;= 0)[
         (stop:)
         (go-to: &quot;Tempo Scaduto&quot;)
     ]
-
     (css: &quot;color: black; font-size: 250%; text-align: center;&quot;)[
         &lt;div style=&quot;padding: 20px;
             border-radius: 7px;
@@ -404,7 +427,7 @@ Ora [[chiama Micheal]].]
 ]
 ##$tit[Internet point 2]
 
-Brav$g, hai scelto l&#39;internet point più vicino a te, scegliendo questo hai perso solo 5 minuti per raggiungerlo.
+Brav$g, hai scelto l&#39;internet point più vicino a te, scegliendo questo hai perso solo $er[un&#39;ora] per raggiungerlo.
 
 Ora devi contattare il tuo amico attraverso un indirizzo IP criptato per non farti rintracciare da chi ti sta cercando. 
 
@@ -440,8 +463,8 @@ Ora [[chiama Micheal]].]
         font-size: 20px;
     }
 &lt;/style&gt;
-(set: $h to it -0)
-(set: $m to it -20)
+(set: $h to it -2)
+(set: $m to it -0)
 (set: $s to it -0)
 
 (live: 1s)[
@@ -456,7 +479,7 @@ Ora [[chiama Micheal]].]
         (set: $m to 59)
         (set: $s to 59)
     ]
-    (if: $s is 0 and $m is 0 and $h is 0)[
+    (if: $s &lt;= 0 and $m &lt;= 0 and $h &lt;= 0)[
         (stop:)
         (go-to: &quot;Tempo Scaduto&quot;)
     ]
@@ -511,7 +534,7 @@ Ora [[chiama Micheal]].]
 ]
 ##$tit[Internet point 3]
 
-Non hai scelto l&#39;internet point più vicino a te e hai perso 20 minuti per raggiungerlo.
+Non hai scelto l&#39;internet point più vicino a te e hai perso $er[2 ore] per raggiungerlo.
 
 Ora devi contattare il tuo amico attraverso un indirizzo IP criptato per non farti rintracciare da chi ti sta cercando. 
 
@@ -576,11 +599,10 @@ Ora che magari hai capito meglio che cosa dovrai cercare puoi tornare all&#39;[[
         (set: $m to 59)
         (set: $s to 59)
     ]
-    (if: $s is 0 and $m is 0 and $h is 0)[
+    (if: $s &lt;= 0 and $m &lt;= 0 and $h &lt;= 0)[
         (stop:)
         (go-to: &quot;Tempo Scaduto&quot;)
     ]
-
     (css: &quot;color: black; font-size: 250%; text-align: center;&quot;)[
         &lt;div style=&quot;padding: 20px;
             border-radius: 7px;
@@ -691,7 +713,7 @@ Cosa vuoi fare [[scappare]] o [[restare]], sperando di non essere scoperto.
         (set: $m to 59)
         (set: $s to 59)
     ]
-    (if: $s is 0 and $m is 0 and $h is 0)[
+    (if: $s &lt;= 0 and $m &lt;= 0 and $h &lt;= 0)[
         (stop:)
         (go-to: &quot;Tempo Scaduto&quot;)
     ]
@@ -752,7 +774,7 @@ Cosa vuoi fare [[scappare]] o [[restare]], sperando di non essere scoperto.
 
 
 Ottima scelta $nome, correre lontano dai guai è sempre una buona idea soprattutto se si è ricercati in tutta Italia.
-Prima di scappare Micheal ti ha lasciato un figlio con l&#39;indirizzo di casa sua, Via Centenario 12, chiedendo qualche informazione a dei vecchietti del posto tra parole incomprensibili in barese stretto e turisti che ti rispondono che non sono del posto arrivi finalmente nella via corretta e vedendo la macchina incidentata di Micheal capisci di essere salv$g.
+Prima di scappare Micheal ti ha lasciato un figlio con l&#39;indirizzo di casa sua, Via Centenario 12, chiedendo qualche informazione a dei vecchietti del posto tra parole incomprensibili in barese stretto e turisti che ti rispondono che non sono del posto arrivi finalmente nella via corretta e vedendo la macchina incidentata di Micheal capisci di essere salv$g, ma tra indicazioni sbagliate o poco chiare hai perso $er[20 miniti.]
 
 Suoni al campanello e il cancelletto si apre.
 
@@ -1495,11 +1517,10 @@ Una possibile motivazione finanziaria per gonfiare le entrate del trimestre 2 e 
         (set: $m to 59)
         (set: $s to 59)
     ]
-    (if: $s is 0 and $m is 0 and $h is 0)[
+    (if: $s &lt;= 0 and $m &lt;= 0 and $h &lt;= 0)[
         (stop:)
         (go-to: &quot;Tempo Scaduto&quot;)
     ]
-
     (css: &quot;color: black; font-size: 250%; text-align: center;&quot;)[
         &lt;div style=&quot;padding: 20px;
             border-radius: 7px;
@@ -1581,8 +1602,8 @@ Tiri le consclusioni facendo anche un brain strorming sui modi più sicuri e vel
         font-size: 20px;
     }
 &lt;/style&gt;
-(set: $h to it -0)
-(set: $m to it -45)
+(set: $h to it -2)
+(set: $m to it -0)
 (set: $s to it -0)
 
 (live: 1s)[
@@ -1597,7 +1618,7 @@ Tiri le consclusioni facendo anche un brain strorming sui modi più sicuri e vel
         (set: $m to 59)
         (set: $s to 59)
     ]
-    (if: $s is 0 and $m is 0 and $h is 0)[
+    (if: $s &lt;= 0 and $m &lt;= 0 and $h &lt;= 0)[
         (stop:)
         (go-to: &quot;Tempo Scaduto&quot;)
     ]
@@ -1652,7 +1673,7 @@ Tiri le consclusioni facendo anche un brain strorming sui modi più sicuri e vel
 ]
 #$tit[Via mare...]
 
-Hai deciso di lasciare l&#39;Italia abbandonando la terraferma e l&#39;unico modo è raggiungere il porto di Bari che si trova a circa 45 minuti da casa di Micheal.
+Hai deciso di lasciare l&#39;Italia abbandonando la terraferma e l&#39;unico modo è raggiungere il porto di Bari che si trova a circa $er[2 ore] da casa di Micheal.
 
 &lt;img src=&#39;res/matrici1JPG.jpg&#39; alt=&#39;immagine&#39; class=&#39;center&#39; width=&#39;400&#39; style&gt;
 Prima però devi trovare le coordinate geografiche di Porto Re che si trova in Croazia.
@@ -1694,7 +1715,7 @@ Il metodo per trovare la longitudie è uguale a quella della latitudine, trovi q
     }
 &lt;/style&gt;
 (set: $h to it -3)
-(set: $m to it -10)
+(set: $m to it -0)
 (set: $s to it -0)
 
 (live: 1s)[
@@ -1709,7 +1730,7 @@ Il metodo per trovare la longitudie è uguale a quella della latitudine, trovi q
         (set: $m to 59)
         (set: $s to 59)
     ]
-    (if: $s is 0 and $m is 0 and $h is 0)[
+    (if: $s &lt;= 0 and $m &lt;= 0 and $h &lt;= 0)[
         (stop:)
         (go-to: &quot;Tempo Scaduto&quot;)
     ]
@@ -1764,7 +1785,7 @@ Il metodo per trovare la longitudie è uguale a quella della latitudine, trovi q
 ]
 #$tit[Via terra...]
 
-Hai deciso di lasciare l&#39;Italia senza abbandonare la terraferma e l&#39;unica soluzione è attraverso l&#39;utilizzo di un treno merci che parte tra qualche ora dalla stazione centrale di Bari che si trova a un&#39;ora di macchina da casa di Micheal a causa dell&#39;intenso traffico del capoluogo.
+Hai deciso di lasciare l&#39;Italia senza abbandonare la terraferma e l&#39;unica soluzione è attraverso l&#39;utilizzo di un treno merci che parte tra $er[2 ore] dalla stazione centrale di Bari che si trova a $er[un&#39;ora] di macchina da casa di Micheal a causa dell&#39;intenso traffico del capoluogo.
 
 Riorganizzi il tuo inventario alla svelta prepari uno zaino con un sacco a pelo e alcuni vestiti sapendo che i primi giorni saranno difficili da affronatre lontano da tutto e tutti.
 Prima di partire però ti manca un piccolo passaggio: trovare il modo di entrare nella stazione e salire sul treno senza essere riconosciuto e catturato dalla polizia.
@@ -1829,7 +1850,7 @@ Hai poco tempo e devi scegliere in fretta, quindi ti nascondi [[nella carrozza d
         (set: $m to 59)
         (set: $s to 59)
     ]
-    (if: $s is 0 and $m is 0 and $h is 0)[
+    (if: $s &lt;= 0 and $m &lt;= 0 and $h &lt;= 0)[
         (stop:)
         (go-to: &quot;Tempo Scaduto&quot;)
     ]
@@ -1911,7 +1932,7 @@ Dopo questa osservazione ti dirigi verso la prima porta che trovi all’interno 
     }
 &lt;/style&gt;
 (set: $h to it -0)
-(set: $m to it -15)
+(set: $m to it -0)
 (set: $s to it -0)
 
 (live: 1s)[
@@ -1926,7 +1947,7 @@ Dopo questa osservazione ti dirigi verso la prima porta che trovi all’interno 
         (set: $m to 59)
         (set: $s to 59)
     ]
-    (if: $s is 0 and $m is 0 and $h is 0)[
+    (if: $s &lt;= 0 and $m &lt;= 0 and $h &lt;= 0)[
         (stop:)
         (go-to: &quot;Tempo Scaduto&quot;)
     ]
@@ -2104,9 +2125,46 @@ Ma qui la vita giorno dopo giorno riesce ad essere un nuovo inizio, il tuo lavor
 Sì, hai fatto la scelta giusta a rimenere qui e tante cose ancora possono succedere......
 
 
-#$tit[[FINE.]]</tw-passagedata><tw-passagedata pid="39" name="FINE." tags="Beige T_Nero" position="775,700" size="100,100">#$tit[Riconoscimenti e ringraziamenti]
-
-Grazie per aver giocato questo libro game, spero che ti sia divertit$g e che tu abbia trovaro interessanti le sfide e la storia.</tw-passagedata><tw-passagedata pid="40" name="al tribunale." tags="Beige T_Nero" position="600,1150" size="100,100">#$tit[In tribunale...]
+#$tit[[FINE.]]</tw-passagedata><tw-passagedata pid="39" name="FINE." tags="Beige T_Nero" position="775,700" size="100,100">&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;}
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;}
+    h1 {
+      font-size: 36px;
+      text-align: center;
+      color: #333;
+      padding: 20px;
+      background-color: #f5f5f5;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);}
+    p {
+      font-size: 18px;
+      text-align: center;
+      color: #555;
+      margin-top: 10px;}
+    a {
+      text-decoration: none;
+      color: #007bff;}
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;h1&gt;Grazie per aver giocato!&lt;/h1&gt;
+    &lt;p&gt;Speriamo che ti sia divertit$g a esplorare la storia interattiva del nostro libro game digitale. Grazie per aver partecipato e per averci accompagnato in questa avventura. Se desideri giocare nuovamente, non esitare a farlo!&lt;/p&gt;
+    &lt;p&gt;Ti aspettiamo per nuove emozionanti avventure.&lt;/p&gt;
+    &lt;p&gt;[[Torna alla pagina iniziale|inizio]]&lt;/a&gt;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</tw-passagedata><tw-passagedata pid="40" name="al tribunale." tags="Beige T_Nero" position="600,1150" size="100,100">#$tit[In tribunale...]
 
 Arrivat$g in tribunale, ti accorgi subito dell’importanza mediatica del processo, dovuta alla presenza di numerose telecamere e giornalisti pronti a captare qualsiasi informazione.
 
@@ -2134,7 +2192,7 @@ Dopo un dibattito tra gli avvocati, il giudice decide che la chiavetta USB, nono
     }
 &lt;/style&gt;
 (set: $h to it -0)
-(set: $m to it -15)
+(set: $m to it -0)
 (set: $s to it -0)
 
 (live: 1s)[
@@ -2149,7 +2207,7 @@ Dopo un dibattito tra gli avvocati, il giudice decide che la chiavetta USB, nono
         (set: $m to 59)
         (set: $s to 59)
     ]
-    (if: $s is 0 and $m is 0 and $h is 0)[
+    (if: $s &lt;= 0 and $m &lt;= 0 and $h &lt;= 0)[
         (stop:)
         (go-to: &quot;Tempo Scaduto&quot;)
     ]

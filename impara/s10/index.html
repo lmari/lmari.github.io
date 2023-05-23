@@ -23,7 +23,8 @@ img.small {
 .align-right {
   float: right;
   margin-left: 50px; /* Puoi regolare il valore in base alle tue esigenze */
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="Inizio" tags="" position="100,200" size="100,100"></tw-passagedata><tw-passagedata pid="2" name="la sveglia" tags="" position="300,200" size="100,100"># Mistero Mascherato
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="Inizio" tags="" position="100,200" size="100,100">(if: &quot;auto&quot; is in (saved-games:)) [(load-game: &quot;auto&quot;)]
+(else:) [(go-to: &quot;frontespizio&quot;)]</tw-passagedata><tw-passagedata pid="2" name="frontespizio" tags="" position="300,200" size="100,100"># Mistero Mascherato
 &lt;img src=&#39;https://cdn.pixabay.com/photo/2015/11/09/18/52/gondola-1035684_1280.jpg&#39; class=&#39;full&#39;&gt;
 Questo gioco è un libro-game digitale realizzato per il progetto ImPara e la storia è di genere giallo investigativo.
 Tu sei il protagonista e il tuo obbiettivo sarà di risolvere il mistero per salvare il tuo amico.
