@@ -1135,7 +1135,7 @@ Visionando i dati puoi ora trovare la deviazione standard, e inserirla nel riqua
 (input-box: 2bind $dev_std, &quot;=X=&quot;,1)\
 (live: 0.1s) [(set: $y to (split: newline, $dev_std)) (set: $dev_std to (trimmed: $y&#39;s 1st))]
 \
-(live: 0.5s)[(if: $dev_std is &quot;2595,90&quot;)[Brav$g, hai calcolato la dev.st delle entrate mesili correttamente!! 
+(live: 0.5s)[(if: $dev_std is &quot;2124,89&quot;)[Brav$g, hai calcolato la dev.st delle entrate mesili correttamente!! 
 
 Adesso procedi ad analizzare il dato; che noti alto in percentuale rispetto alla media (11083,33) e ciò potrebbe indicare una variabilità eccessiva dei dati, che potrebbe essere causata da una frode. [[Per trovare da quale ramo aziendale (business unit) proviene l’errore dei dati vai ad analizzare i dati trimestrali delle singole.|var]]]
 (else-if: $dev_std is &quot;&quot;)[]
@@ -1261,13 +1261,13 @@ tr:nth-child(even) {
   &lt;/tbody&gt; 
 
 &lt;/table&gt; 
-Ora che hai i dati calcoli la varianza, ma prima, devi calcolare la media e la varianza delle entrate per ogni unità. 
+Ora che hai i dati calcoli la varianza, ma prima, devi calcolare la media e la varianza delle entrate per ogni unità. (I risultai vanno arrtotondati a numeri interi)
 
 -Media della prima unità: (set: $media to &quot;&quot;)
 (input-box: 2bind $media, &quot;=X=&quot;,1)\
 (live: 0.1s) [(set: $y to (split: newline, $media)) (set: $media to (trimmed: $y&#39;s 1st))]
 \
-(live: 0.5s)[(if: $media is &quot;12750&quot;)[$cor[La media è corretta]]
+(live: 0.5s)[(if: $media is &quot;10250&quot;)[$cor[La media è corretta]]
 (else-if: $media is &quot;&quot;)[]
 (else:)[$er[La media è errata, riprova.]]]
 
@@ -1283,7 +1283,7 @@ Ora che hai i dati calcoli la varianza, ma prima, devi calcolare la media e la v
 (input-box: 2bind $media3, &quot;=X=&quot;,1)\
 (live: 0.1s) [(set: $y to (split: newline, $media3)) (set: $media3 to (trimmed: $y&#39;s 1st))]
 \
-(live: 0.5s)[(if: $media3 is &quot;12500&quot;)[$cor[La media è corretta]]
+(live: 0.5s)[(if: $media3 is &quot;11250&quot;)[$cor[La media è corretta]]
 (else-if: $media3 is &quot;&quot;)[]
 (else:)[$er[La media è errata, riprova.]]]
 
@@ -1291,7 +1291,7 @@ Ora che hai i dati calcoli la varianza, ma prima, devi calcolare la media e la v
 (input-box: 2bind $var1, &quot;=X=&quot;,1)\
 (live: 0.1s) [(set: $y to (split: newline, $var1)) (set: $var1 to (trimmed: $y&#39;s 1st))]
 \
-(live: 0.5s)[(if: $var1 is &quot;2625000000&quot;)[$cor[La varianza è corretta]]
+(live: 0.5s)[(if: $var1 is &quot;24916667&quot;)[$cor[La varianza è corretta]]
 (else-if: $var1 is &quot;&quot;)[]
 (else:)[$er[La variazione è errata, riprova.]]]
 
@@ -1299,7 +1299,7 @@ Ora che hai i dati calcoli la varianza, ma prima, devi calcolare la media e la v
 (input-box: 2bind $var2, &quot;=X=&quot;,1)\
 (live: 0.1s) [(set: $y to (split: newline, $var2)) (set: $var2 to (trimmed: $y&#39;s 1st))]
 \
-(live: 0.5s)[(if: $var2 is &quot;3300000000&quot;)[$cor[La varianza è corretta]]
+(live: 0.5s)[(if: $var2 is &quot;4916667&quot;)[$cor[La varianza è corretta]]
 (else-if: $var2 is &quot;&quot;)[]
 (else:)[$er[La variazione è errata, riprova.]]]
 
@@ -1307,11 +1307,11 @@ Ora che hai i dati calcoli la varianza, ma prima, devi calcolare la media e la v
 (input-box: 2bind $var3, &quot;=X=&quot;,1)\
 (live: 0.1s) [(set: $y to (split: newline, $var3)) (set: $var3 to (trimmed: $y&#39;s 1st))]
 \
-(live: 0.5s)[(if: $var3 is &quot;4225000000&quot;)[$cor[La varianza è corretta]]
+(live: 0.5s)[(if: $var3 is &quot;18250000&quot;)[$cor[La varianza è corretta]]
 (else-if: $var3 is &quot;&quot;)[]
 (else:)[$er[La variazione è errata, riprova.]]]
 
-(live: 0.5s)[(if:$media is &quot;12750&quot; and $media2 is &quot;11750&quot; and $media3 is &quot;12500&quot; and $var1 is &quot;2625000000&quot; and $var2 is &quot;3300000000&quot; and $var3 is &quot;4225000000&quot;)[Hai scritto correttamente tutte le soluzioni ora puoi [[trarre le conclusioni.]]]]
+(live: 0.5s)[(if:$media is &quot;10250&quot; and $media2 is &quot;11750&quot; and $media3 is &quot;11250&quot; and $var1 is &quot;24916667&quot; and $var2 is &quot;4916667&quot; and $var3 is &quot;18250000&quot;)[Hai scritto correttamente tutte le soluzioni ora puoi [[trarre le conclusioni.]]]]
 
 </tw-passagedata><tw-passagedata pid="21" name="premere qui2" tags="Grigio_c T_Nero" position="1750,75" size="100,100">#La varianza
 
@@ -1468,19 +1468,19 @@ Altrimenti, puoi sempre  continare [[il gioco per finire la storia|incastati]].<
 
 Media: 
 
--Unità A: (7000 + 11000 + 17000 + 6000) / 4 = &#39;&#39;12750&#39;&#39; 
+-Unità A: (7000 + 11000 + 17000 + 6000) / 4 = &#39;&#39;10250&#39;&#39; 
 
 -Unità B: (11000 + 13000 + 14000 + 9000) / 4 =&#39;&#39; 11750 &#39;&#39;
 
--Unità C: (13000 + 10000 + 16000 + 6000) / 4 =&#39;&#39; 12500&#39;&#39; 
+-Unità C: (13000 + 10000 + 16000 + 6000) / 4 =&#39;&#39; 11250&#39;&#39; 
 
 Varianza: 
 
--Unità A: [(7000-12750)^2 + (11000-12750)^2 + (17000-12750)^2 + (6000-12750)^2] / 3 = &#39;&#39;2625000000&#39;&#39; 
+-Unità A: [(7000-10250)^2 + (11000-10250)^2 + (17000-10250)^2 + (6000-10250)^2] / 3 = &#39;&#39;24916667&#39;&#39; 
 
--Unità B: [(11000-11750)^2 + (13000-11750)^2 + (14000-11750)^2 + (9000-11750)^2] / 3 = &#39;&#39;3300000000&#39;&#39; 
+-Unità B: [(11000-11750)^2 + (13000-11750)^2 + (14000-11750)^2 + (9000-11750)^2] / 3 = &#39;&#39;4916667&#39;&#39; 
 
--Unità C: [(13000-12500)^2 + (10000-12500)^2 + (16000-12500)^2 + (6000-12500)^2] / 3 = &#39;&#39;4225000000&#39;&#39; 
+-Unità C: [(13000-11250)^2 + (10000-11250)^2 + (16000-11250)^2 + (6000-11250)^2] / 3 = &#39;&#39;18250000&#39;&#39; 
 
  Se ti sono state d&#39;aiuto ora puoi tornare [[alla teoria|premere qui2]] o [[al quiz|var]].</tw-passagedata><tw-passagedata pid="24" name="frode" tags="T_Nero Grigio_c" position="1875,400" size="100,100">#$tit[Curiosità...]
 
