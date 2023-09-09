@@ -28,7 +28,7 @@ body.chatting {
     padding: 16px;
     text-decoration: none;
 }
-   
+
 .sidebar a.active {
     background-color: #04AA6D;
     color: white;
@@ -48,7 +48,16 @@ div.content {
 h1, h2, h3 {
       color: darkcyan;
       font-weight: 800;
-    }
+}
+
+h4 {
+    background-color: #04AA6D;
+    color: white;
+    font-weight: 800;
+    font-size: 14pt;
+    margin-bottom: 4pt;
+    margin-top: 40pt;
+}
 
 li {
     margin-bottom: 4pt;
