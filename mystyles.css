@@ -95,6 +95,14 @@ a:hover {
     font-weight: bold;
 }
 
+.io2 {
+    background-color: beige;
+}
+
+.tu2 {
+    background-color: honeydew;
+}
+
 .codice {
     font-family: 'Courier New', Courier, monospace;
     font-size: medium;
