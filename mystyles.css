@@ -45,11 +45,14 @@ div.content {
     height: 1000px;
 }
 
-h1, h2, h3 {
+h1, h2 {
       color: darkcyan;
       font-weight: 800;
 }
-
+h3 {
+    color: darkcyan;
+    font-weight: 600;
+}
 h4 {
     background-color: #04AA6D;
     color: white;
@@ -125,4 +128,29 @@ a:hover {
       text-align: center;
       float: none;
     }
+}
+
+.nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: #04AA6D;
+    color: white;
+    padding: 5px;
+}
+.nav a:link {
+    color: white;
+    text-decoration: none;
+    border: 0px;
+}
+.nav a:hover {
+    text-decoration: underline;
+}
+.nav a:visited {
+    color: white;
+}
+.content0 {
+    display: none;
+}
+.content0.active {
+    display: block;
 }
