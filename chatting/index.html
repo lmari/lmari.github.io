@@ -9,6 +9,15 @@
   gtag('js', new Date());
   gtag('config', 'G-Z5WCDQJ535');
 </script>
+<script>
+  window.onload = () => {
+    const target = document.location.hash;
+    if(target) {
+      document.querySelector('#intro').classList.remove('active');
+      document.querySelector(target).classList.add('active');
+    }
+  }
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Luca Mari - Chatting with an AI..." />
 <meta name="keywords" content="Luca Mari, chatting with an AI..., personal web site">
@@ -36,24 +45,24 @@
 <div class="content">
 
   <div class="nav">
-    <a href="#content1">Intro</a>&nbsp;
-    <a href="#content2">Dialoghi</a>&nbsp;
-    <a href="#content3">Articoli</a>&nbsp;
-    <a href="#content4">Video</a>&nbsp;
-    <a href="#content5">Slide</a>&nbsp;
-    <a href="#content6">Letture</a>
+    <a href="#intro">Intro</a>&nbsp;
+    <a href="#dialoghi">Dialoghi</a>&nbsp;
+    <a href="#articoli">Articoli</a>&nbsp;
+    <a href="#video">Video</a>&nbsp;
+    <a href="#slide">Slide</a>&nbsp;
+    <a href="#letture">Letture</a>
   </div>
 
   <h2>Luca Mari - Chatting with an AI...</h2>
 
-  <div id="content1" class="content0 active">
+  <div id="intro" class="content0 active">
     <p>Raccolgo e metto a disposizione qui un po' di materiali a proposito di quello che sta succedendo intorno a ChatGPT e i suoi fratelli, dunque ai cosiddetti sistemi di <i>intelligenza artificiale generativa</i> ("GenAI") e in particolare ai chatbot, con i quali possiamo interagire atraverso conversazioni nelle nostre lingue storico-naturali, come l'italiano e l'inglese.</p>
     <p>A partire dalle conoscenze ed esperienze che già avevo a proposito di intelligenza artificiale, questi materiali sono stati prodotti dalla fine del 2022, grazie all'opportunità di lavorare con sistemi di GenAI, di riflettere su quello che sta succedendo con l'ampia diffusione questi sistemi, e di condividere pubblicamente queste riflessioni in <a href="https://docs.google.com/document/d/1ZvHLn_ZkyU0EW_9dnI458KRj6gUVxMyCRXIhfN391Yg" target="_blank"><b>eventi pubblici a cui ho partecipato come relatore</b></a>.</p>
     <p>In termini generali, il mio parere attuale è che i sistemi di GenAI, e i chatbot in particolare, abbiano caratteristiche, attuali e potenziali, rivoluzionarie, e questo non perché siano in grado di presentare informazione enciclopedica (cosa a cui grazie a Google, Wikipedia, ecc. siamo ormai abituati), ma perché mostrano di poter argomentare in modo molto più sofisticato (di molti esseri umani e) di quanto finora siamo stati abituati nella nostra interazione con sistemi tecnologici. E argomentare in modo efficace e contestuale è una capacità intellettuale che non siamo abituati a vedere in entità che non siano esseri umani.</p>
   </div>
 
 
-  <div id="content2" class="content0">
+  <div id="dialoghi" class="content0">
     <h3>Dialoghi</h3>
     <p><b>Questi sono dialoghi, <i>non editati</i>, con ChatGPT, realizzati nel 2023.</b></p>
     <p>A proposito di...</p>
@@ -107,7 +116,7 @@
   </div>
 
 
-  <div id="content3" class="content0">
+  <div id="articoli" class="content0">
     <h3>Articoli</h3>
     <p>Nella prospettiva della <i>disseminazione culturale</i>, prima ancora che tecnologica, insieme con vari colleghi in questi mesi abbiamo scritto vari articoli di introduzione sulla GenAI, pubblicati in contesti diversi.</p>
     <p><b>Sole 24 Ore</b> (anche in una <a href="https://www.liuc.it/universita/chatgpt-con-il-professor-luca-mari-su-il-sole-24ore" target="_blank">pagina del sito dell'Università Cattaneo</a>):
@@ -152,7 +161,7 @@
   </div>
 
 
-  <div id="content4" class="content0">
+  <div id="video" class="content0">
     <h3>Video</h3>
     <p>Il video, in inglese, del webinar <a href="https://files.bearcenter.org/video/LMari_Chatbots_20230912.mp4" target="_blank">Chatbots: facing a cultural revolution and trying to understand it</a>, tenuto il 12 settembre 2023 all'Università della California, Berkeley</p>
     <p>La registrazione della puntata del 12 maggio 2023 di Macro, del Sole 24 Ore, dedicata a <a href="https://stream24.ilsole24ore.com/video/tecnologia/il-lavoro-intelligenza-artificiale/AEybUkSD" target="_blank">Il lavoro dell'intelligenza artificiale</a>, a cui ho partecipato (il mio intervento comincia al minuto 25:30).</p>
@@ -160,7 +169,7 @@
   </div>
 
 
-  <div id="content5" class="content0">
+  <div id="slide" class="content0">
     <h3>Slide</h3>
     <p>In questi mesi ho ricevuto numerosi inviti a parlare di quello che sta succedendo con ChatGPT e i suoi fratelli, che ho generalmente accettato con piacere, riconoscendo l'importanza, in questo momento storico, di fornire informazione e proporre interpretazioni su quello che sta succedendo. Forse con un po' di retorica, ho considerato accettare questi inviti come un mio dovere civico. Ho così tenuto seminari, webinar, e corsi per aziende, scuole, associazioni culturali e professionali, ...</p>
     <p>Qualche esempio di <b>slide</b> di presentazioni tenute in questi mesi:
@@ -181,7 +190,7 @@
   </div>
 
 
-  <div id="content6" class="content0">
+  <div id="letture" class="content0">
     <h3>Letture suggerite</h3>
     <p>In questi mesi la quantità di articoli e testi vari pubblicati a proposito di GenAI è cresciuta enormemente.
       <br><a href="https://docs.google.com/document/d/1ylAs-_db4hpb7s3qdBp0EefKHrJvHxcVN2UShl_KkeY" target="_blank"><b>Questa pagina</b></a>, aggiornata il 26 novembre 2023, contiene qualche lettura che mi sembra di particolare interesse.</p>
@@ -192,18 +201,14 @@
 <script>
   const navLinks = document.querySelectorAll('.nav a');
   const contents = document.querySelectorAll('.content0');
-
   navLinks.forEach(link => {
     link.addEventListener('click', function(e) {
       e.preventDefault();
-
       const target = this.getAttribute('href');
       const targetContent = document.querySelector(target);
-
       contents.forEach(content => {
         content.classList.remove('active');
       });
-
       targetContent.classList.add('active');
     });
   });
