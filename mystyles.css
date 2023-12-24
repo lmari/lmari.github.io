@@ -35,7 +35,7 @@ body.chatting {
 }
 
 .sidebar a.active {
-    background-color: #04AA6D;
+    background-color:rgb(10, 10, 97);
     color: white;
 }
   
@@ -51,17 +51,17 @@ div.content {
 }
 
 h1, h2 {
-      color: darkcyan;
+      color: rgb(10, 10, 97);
       font-weight: 800;
 }
 h3 {
-    color: darkcyan;
+    color: rgb(10, 10, 97);
     font-weight: 600;
 }
 h4 {
-    background-color: #04AA6D;
+    background-color: rgb(10, 10, 97);
     color: white;
-    font-weight: 800;
+    font-weight: 400;
     font-size: 14pt;
     margin-bottom: 4pt;
     margin-top: 40pt;
@@ -138,7 +138,7 @@ a:hover {
 .nav {
     display: flex;
     justify-content: space-around;
-    background-color: #04AA6D;
+    background-color: rgb(10, 10, 97);
     color: white;
     padding: 5px;
 }
