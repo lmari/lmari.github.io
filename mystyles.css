@@ -117,7 +117,18 @@ a:hover {
     font-weight: bold;
     white-space: pre-wrap;
 }
-  
+
+.codice2 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: medium;
+    font-weight: bold;
+    white-space: pre-wrap;
+    background-color: lightgray;
+    border: 1px solid black;
+    padding: 20px;
+    margin-left: 50px;
+}
+
 @media screen and (max-width: 700px) {
     .sidebar {
       width: 100%;
@@ -158,4 +169,34 @@ a:hover {
 }
 .content0.active {
     display: block;
+}
+
+.x1 {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+.x1 .x2 {
+    visibility: hidden;
+    z-index: 1;
+    position: fixed;
+    top: 5%;
+    left: 5%;
+    right: 5%;
+    opacity: 0;
+    transition: opacity 1s;
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+    font-size: 16pt;
+    text-align: left;
+    background-color: darkslategrey;
+    border: 1px solid blue;
+    border-radius: 6px;
+    padding: 10px;
+    min-width: 50vw;
+    max-width: 100vw;
+}
+.x1:hover .x2 {
+    visibility: visible;
+    opacity: 1;
 }
