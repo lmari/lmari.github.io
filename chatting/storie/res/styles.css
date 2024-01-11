@@ -35,6 +35,12 @@ img {
     float: right;
     padding-left: 20px;
 }
+a:link {
+    color: #555;
+}
+a:visited {
+    color: #555;
+}
 .x1 {
     position: relative;
     display: inline-block;
