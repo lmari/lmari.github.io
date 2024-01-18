@@ -20,10 +20,16 @@ body {
     opacity: 1;
 }
 h1 {
-    padding-top: 100pt;
+    padding-top: 10pt;
+    text-align: center;
 }
 h2 {
     padding-top: 10pt;
+}
+.author {
+    font-style: italic;
+    color: darkslategrey;
+    text-align: center;
 }
 i {
     font-style: italic;
@@ -31,6 +37,12 @@ i {
 }
 img {
     max-width: 100%;
+    height: auto;
+    float: right;
+    padding-left: 20px;
+}
+img.cover {
+    width: 25%;
     height: auto;
     float: right;
     padding-left: 20px;
@@ -69,4 +81,18 @@ a:visited {
 .x1:hover .x2 {
     visibility: visible;
     opacity: 1;
+}
+.fixed {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding-left: 10pt;
+    padding-right: 10pt;
+    font-size: 14pt;
+    color: white;
+    background-color: darkslategrey
+}
+.end {
+    text-align: center;
+    font-size: 20pt;
 }
