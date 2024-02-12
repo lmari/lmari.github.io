@@ -7516,9 +7516,11 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Un'introduzione-operativa-agli-LLM">Un'introduzione operativa agli LLM<a class="anchor-link" href="#Un'introduzione-operativa-agli-LLM">¶</a></h2><h3 id="Con-accesso-a-un-LLM-locale-attraverso-un-server-di-API">Con accesso a un LLM locale attraverso un server di API<a class="anchor-link" href="#Con-accesso-a-un-LLM-locale-attraverso-un-server-di-API">¶</a></h3><p>(Luca Mari, febbraio 2024)</p>
+<h2 id="Un'introduzione-operativa-agli-LLM">Un'introduzione operativa agli LLM<a class="anchor-link" href="#Un'introduzione-operativa-agli-LLM">¶</a></h2><h3 id="Con-accesso-a-un-LLM-locale-attraverso-un-server-di-API">Con accesso a un LLM locale attraverso un server di API<a class="anchor-link" href="#Con-accesso-a-un-LLM-locale-attraverso-un-server-di-API">¶</a></h3><p>Luca Mari, febbraio 2024</p>
 <p>[i file di questa attività: <a href="base.ipynb">base.ipynb</a>, <a href="utils.py">utils.py</a>]</p>
-<p>Al momento il sistema più semplice per eseguire sul proprio computer un LLM e accedere a esso attraverso una API è <strong>LM Studio</strong>:</p>
+<p><strong>Obiettivi</strong>: comprendere la logica dell'accesso a un LLM attraverso una API.<br/>
+<strong>Precompetenze</strong>: basi di Python.</p>
+<p>Al momento un sistema semplice per eseguire sul proprio computer un LLM e accedere a esso attraverso una API è LM Studio:</p>
 <ul>
 <li>scaricare da <a href="https://lmstudio.ai">https://lmstudio.ai</a> e installare LM Studio</li>
 <li>eseguire LM Studio e seguendo le indicazioni nel programma:<ul>
@@ -7528,17 +7530,17 @@ a.anchor-link {
 </ul>
 </li>
 </ul>
-<p>Occorre ora creare un ambiente di lavoro Python, supponiamo con <strong>VSCode</strong>:</p>
+<p>Occorre ora creare un ambiente di lavoro Python, supponiamo con VSCode:</p>
 <ul>
 <li>installare un interprete Python</li>
 <li>scaricare da <a href="https://code.visualstudio.com/download">https://code.visualstudio.com/download</a> e installare VSCode</li>
 <li>eseguire VSCode e attivare le estensioni per Python e Jupyter</li>
 <li>ancora in VSCode:<ul>
-<li>creare una cartella di lavoro (per esempio chiamandola <code>intro</code>) e renderla la cartella corrente:</li>
-<li>creare un ambiente virtuale locale Python (Select Kernel | Python Environments | Create Python Environment):</li>
+<li>creare una cartella di lavoro e renderla la cartella corrente:</li>
+<li>copiare nella cartella questo notebook e il file <code>utils.py</code> e aprire il notebook</li>
+<li>creare un ambiente virtuale locale Python (Select Kernel | Python Environments | Create Python Environment | Venv, e scegliere un interprete Python):</li>
 <li>installare il modulo Python richiesto, eseguendo dal terminale:<br/>
 <code>pip install openai</code></li>
-<li>copiare nella cartella questo notebook e il file <code>utils.py</code> e aprire il notebook</li>
 </ul>
 </li>
 </ul>
@@ -7605,7 +7607,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>ChatCompletion(id='chatcmpl-xqyiemyz84k9ira6zjp2su', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content="The main features of the Bayesian interpretation of probability include updating beliefs based on new evidence using Bayes' theorem, considering personal subjective probabilities, and representing uncertainty through the use of probability distributions for uncertain variables.", role='assistant', function_call=None, tool_calls=None))], created=1707581132, model='/home/lucamari/.local/share/nomic.ai/GPT4All/TheBloke/mistral-7b-openorca.Q4_0/mistral-7b-openorca.Q4_0.gguf', object='chat.completion', system_fingerprint=None, usage=CompletionUsage(completion_tokens=43, prompt_tokens=412, total_tokens=455))
+<pre>ChatCompletion(id='chatcmpl-xebugmlb63jbvn6udr8emc', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content="The main features of the Bayesian interpretation of probability include its subjective nature, where personal beliefs and experiences affect judgments; it updates probabilities based on new information through Bayes' theorem; and it focuses on personal degrees of belief rather than frequentist occurrences in an infinite population or sample space.", role='assistant', function_call=None, tool_calls=None))], created=1707748761, model='/home/lucamari/.local/share/nomic.ai/GPT4All/TheBloke/mistral-7b-openorca.Q4_0/mistral-7b-openorca.Q4_0.gguf', object='chat.completion', system_fingerprint=None, usage=CompletionUsage(completion_tokens=62, prompt_tokens=62, total_tokens=124))
 </pre>
 </div>
 </div>
@@ -7645,28 +7647,28 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>{
-  "id": "chatcmpl-xqyiemyz84k9ira6zjp2su",
+  "id": "chatcmpl-xebugmlb63jbvn6udr8emc",
   "choices": [
     {
       "finish_reason": "stop",
       "index": 0,
       "logprobs": null,
       "message": {
-        "content": "The main features of the Bayesian interpretation of probability include updating beliefs based on new evidence using Bayes' theorem, considering personal subjective probabilities, and representing uncertainty through the use of probability distributions for uncertain variables.",
+        "content": "The main features of the Bayesian interpretation of probability include its subjective nature, where personal beliefs and experiences affect judgments; it updates probabilities based on new information through Bayes' theorem; and it focuses on personal degrees of belief rather than frequentist occurrences in an infinite population or sample space.",
         "role": "assistant",
         "function_call": null,
         "tool_calls": null
       }
     }
   ],
-  "created": 1707581132,
+  "created": 1707748761,
   "model": "/home/lucamari/.local/share/nomic.ai/GPT4All/TheBloke/mistral-7b-openorca.Q4_0/mistral-7b-openorca.Q4_0.gguf",
   "object": "chat.completion",
   "system_fingerprint": null,
   "usage": {
-    "completion_tokens": 43,
-    "prompt_tokens": 412,
-    "total_tokens": 455
+    "completion_tokens": 62,
+    "prompt_tokens": 62,
+    "total_tokens": 124
   }
 }
 </pre>
@@ -7707,9 +7709,10 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>The main features of the Bayesian interpretation of probability include updating beliefs based on
-new evidence using Bayes' theorem, considering personal subjective probabilities, and representing
-uncertainty through the use of probability distributions for uncertain variables.
+<pre>The main features of the Bayesian interpretation of probability include its subjective nature, where
+personal beliefs and experiences affect judgments; it updates probabilities based on new information
+through Bayes' theorem; and it focuses on personal degrees of belief rather than frequentist
+occurrences in an infinite population or sample space.
 </pre>
 </div>
 </div>
@@ -7748,10 +7751,9 @@ uncertainty through the use of probability distributions for uncertain variables
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>The main features of the Bayesian interpretation of probability involve updating beliefs about unknown
- quantities based on new evidence, representing subjective knowledge using a prior distribution, and incorpor
-ating any information available to revise these beliefs through Bayes' theorem, leading to a posterior
- distribution that reflects updated knowledge.</pre>
+<pre>The Bayesian interpretation of probability is a framework for updating beliefs about uncertain events
+ using Bayes' theorem, allowing individuals to incorporate new information and evidence into their existing
+ beliefs while accounting for the degree of confidence in those beliefs.</pre>
 </div>
 </div>
 </div>
