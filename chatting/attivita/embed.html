@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>base</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>embed</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7516,22 +7516,11 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Un'introduzione-operativa-agli-LLM">Un'introduzione operativa agli LLM<a class="anchor-link" href="#Un'introduzione-operativa-agli-LLM">¶</a></h2><h3 id="Con-accesso-a-un-LLM-locale-attraverso-un-server-di-API">Con accesso a un LLM locale attraverso un server di API<a class="anchor-link" href="#Con-accesso-a-un-LLM-locale-attraverso-un-server-di-API">¶</a></h3><p>Luca Mari, febbraio 2024</p>
-<p>[i file di questa attività: <a href="base.ipynb">base.ipynb</a>, <a href="baseutils.py">baseutils.py</a>]</p>
-<p><strong>Obiettivi</strong>: comprendere la logica dell'accesso a un LLM attraverso una API.<br/>
-<strong>Precompetenze</strong>: basi di Python.
-embedding_layer.embedding_dim
-Al momento un sistema semplice per eseguire sul proprio computer un LLM e accedere a esso attraverso una API è LM Studio:</p>
-<ul>
-<li>scaricare da <a href="https://lmstudio.ai">https://lmstudio.ai</a> e installare LM Studio</li>
-<li>eseguire LM Studio e seguendo le indicazioni nel programma:<ul>
-<li>scaricare dalla rete un LLM (per esempio <strong>TheBloke mistral openorca 7B Q4_0 gguf</strong>)</li>
-<li>caricare il LLM</li>
-<li>mettere in esecuzione il server</li>
-</ul>
-</li>
-</ul>
-<p>Occorre ora creare un ambiente di lavoro Python, supponiamo con VSCode:</p>
+<h2 id="Un'esplorazione-dell'embedding">Un'esplorazione dell'embedding<a class="anchor-link" href="#Un'esplorazione-dell'embedding">¶</a></h2><p>Luca Mari, febbraio 2024</p>
+<p>[i file di questa attività: <a href="embed.ipynb">embed.ipynb</a>, <a href="embedutils.py">embedutils.py</a>]</p>
+<p><strong>Obiettivi</strong>: comprendere la logica del "token embedding", il processo con cui una rete neurale artificiale converte espressioni linguistiche nei vettori numerici su cui i transformer poi operano.<br/>
+<strong>Precompetenze</strong>: basi di Python.</p>
+<p>Occorre creare un ambiente di lavoro Python, supponiamo con VSCode:</p>
 <ul>
 <li>installare un interprete Python</li>
 <li>scaricare da <a href="https://code.visualstudio.com/download">https://code.visualstudio.com/download</a> e installare VSCode</li>
@@ -7540,8 +7529,8 @@ Al momento un sistema semplice per eseguire sul proprio computer un LLM e accede
 <li>creare una cartella di lavoro e renderla la cartella corrente:</li>
 <li>copiare nella cartella questo notebook e il file <code>utils.py</code> e aprire il notebook</li>
 <li>creare un ambiente virtuale locale Python (Select Kernel | Python Environments | Create Python Environment | Venv, e scegliere un interprete Python):</li>
-<li>installare il modulo Python richiesto, eseguendo dal terminale:<br/>
-<code>pip install openai</code></li>
+<li>installare i moduli Python richiesti, eseguendo dal terminale:<br/>
+<code>pip install transformers multimethod</code></li>
 </ul>
 </li>
 </ul>
@@ -7555,33 +7544,12 @@ Al momento un sistema semplice per eseguire sul proprio computer un LLM e accede
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Per prima cosa, importiamo il modulo Python che contiene le funzioni per consentire un accesso "di alto livello" al LLM in esecuzione in LM Studio e quindi attiviamo la connessione al LLM.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">baseutils</span> <span class="kn">import</span> <span class="n">llm</span>
-<span class="n">llm</span> <span class="o">=</span> <span class="n">llm</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>A questo punto siamo già pronti per fare una domanda al LLM, ricevere e visualizzare la risposta.</p>
+<p>Per prima cosa, importiamo il modulo che contiene le funzioni per consentire un accesso "di alto livello" al modello pre-addestrato che opererà sia come tokenizzatore sia come sistema di embedding, usando in questo caso <code>BERT</code>, che è un transformer "open" (<a href="https://it.wikipedia.org/wiki/BERT">https://it.wikipedia.org/wiki/BERT</a>) ed eseguibile anche localmente (alla prima esecuzione sarà dunque necessario attendere che il modello sia scaricato dal sito di Hugging Face: è un file di circa 400 MB che viene copiato nella cartella HFdata della propria cartella personale).</p>
+<p>Dopo aver caricato il modello, verifichiamo che il processo sia andato a buon fine visualizzando le due informazioni principali:</p>
+<ul>
+<li>il numero di token riconosciuti nel vocabolario del modello (<code>model.vocab_size</code>);</li>
+<li>la dimensione del vettore in cui ogni token viene embedded (<code>model.embedding_dim</code>).</li>
+</ul>
 </div>
 </div>
 </div>
@@ -7593,9 +7561,14 @@ Al momento un sistema semplice per eseguire sul proprio computer un LLM e accede
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">"What are the main features of the Bayesian interpretation of probability? Please answer in one or two sentences."</span>
-<span class="n">answer</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">embedutils</span> <span class="kn">import</span> <span class="n">Model</span>
+<span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="s1">'dbmdz/bert-base-italian-xxl-cased'</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Il tokenizzatore ha un vocabolario di </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">vocab_size</span><span class="si">}</span><span class="s2"> token che riconosce."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Ogni token viene mappato ('embedded') in un vettore di </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">embedding_dim</span><span class="si">}</span><span class="s2"> numeri."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"La matrice degli embeddings ha perciò dimensione </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">vocab_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7608,7 +7581,9 @@ Al momento un sistema semplice per eseguire sul proprio computer un LLM e accede
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>ChatCompletion(id='chatcmpl-xebugmlb63jbvn6udr8emc', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content="The main features of the Bayesian interpretation of probability include its subjective nature, where personal beliefs and experiences affect judgments; it updates probabilities based on new information through Bayes' theorem; and it focuses on personal degrees of belief rather than frequentist occurrences in an infinite population or sample space.", role='assistant', function_call=None, tool_calls=None))], created=1707748761, model='/home/lucamari/.local/share/nomic.ai/GPT4All/TheBloke/mistral-7b-openorca.Q4_0/mistral-7b-openorca.Q4_0.gguf', object='chat.completion', system_fingerprint=None, usage=CompletionUsage(completion_tokens=62, prompt_tokens=62, total_tokens=124))
+<pre>Il tokenizzatore ha un vocabolario di 31102 token che riconosce.
+Ogni token viene mappato ('embedded') in un vettore di 768 numeri.
+La matrice degli embeddings ha perciò dimensione (32102, 768)
 </pre>
 </div>
 </div>
@@ -7621,7 +7596,7 @@ Al momento un sistema semplice per eseguire sul proprio computer un LLM e accede
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>La risposta non è molto leggibile, perché è un oggetto Python. Per curiosità, ne possiamo visualizzare il contenuto come un oggetto JSON.</p>
+<p>Il tokenizzatore mantiene un vocabolario dei token che riconosce, in una tabella in cui a ogni token è associato un identificatore univoco (<code>id</code>).</p>
 </div>
 </div>
 </div>
@@ -7633,8 +7608,10 @@ Al momento un sistema semplice per eseguire sul proprio computer un LLM e accede
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">baseutils</span> <span class="kn">import</span> <span class="n">jprint</span>
-<span class="n">jprint</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">token</span> <span class="o">=</span> <span class="s2">"bellezza"</span>
+<span class="n">token_id</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">token_to_id</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Dato un token, come '</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">', il tokenizzatore è in grado di trovarne l'identificatore: </span><span class="si">{</span><span class="n">token_id</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"(ai token non presenti nel vocabolario è associato l'identificatore </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">convert_tokens_to_ids</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">unk_token</span><span class="p">)</span><span class="si">}</span><span class="s2">)."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7647,31 +7624,8 @@ Al momento un sistema semplice per eseguire sul proprio computer un LLM e accede
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>{
-  "id": "chatcmpl-xebugmlb63jbvn6udr8emc",
-  "choices": [
-    {
-      "finish_reason": "stop",
-      "index": 0,
-      "logprobs": null,
-      "message": {
-        "content": "The main features of the Bayesian interpretation of probability include its subjective nature, where personal beliefs and experiences affect judgments; it updates probabilities based on new information through Bayes' theorem; and it focuses on personal degrees of belief rather than frequentist occurrences in an infinite population or sample space.",
-        "role": "assistant",
-        "function_call": null,
-        "tool_calls": null
-      }
-    }
-  ],
-  "created": 1707748761,
-  "model": "/home/lucamari/.local/share/nomic.ai/GPT4All/TheBloke/mistral-7b-openorca.Q4_0/mistral-7b-openorca.Q4_0.gguf",
-  "object": "chat.completion",
-  "system_fingerprint": null,
-  "usage": {
-    "completion_tokens": 62,
-    "prompt_tokens": 62,
-    "total_tokens": 124
-  }
-}
+<pre>Dato un token, come 'bellezza', il tokenizzatore è in grado di trovarne l'identificatore: 6108
+(ai token non presenti nel vocabolario è associato l'identificatore 101).
 </pre>
 </div>
 </div>
@@ -7684,7 +7638,7 @@ Al momento un sistema semplice per eseguire sul proprio computer un LLM e accede
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Per visualizzare solo il testo della risposta, usiamo la funzione <code>bprint</code> dal modulo <code>utils</code>.</p>
+<p>Il modello è stato addestrato a mappare ('embed') ogni token, con il suo identificatore, in un vettore di numeri (c'è da considerare che i transformer, come <code>BERT</code>, operano sulla base di un embedding dinamico, in cui il vettore di numeri associato a ogni token dipende anche dal contesto ('embedding posizionale'): qui noi lavoriamo solo con la componente statica del vettore).</p>
 </div>
 </div>
 </div>
@@ -7696,8 +7650,8 @@ Al momento un sistema semplice per eseguire sul proprio computer un LLM e accede
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">baseutils</span> <span class="kn">import</span> <span class="n">bprint</span>
-<span class="n">bprint</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">embedding</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">token_to_embedding</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Il token '</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">' è mappato in un vettore i cui primi 10 elementi sono </span><span class="si">{</span><span class="n">embedding</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7710,10 +7664,8 @@ Al momento un sistema semplice per eseguire sul proprio computer un LLM e accede
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>The main features of the Bayesian interpretation of probability include its subjective nature, where
-personal beliefs and experiences affect judgments; it updates probabilities based on new information
-through Bayes' theorem; and it focuses on personal degrees of belief rather than frequentist
-occurrences in an infinite population or sample space.
+<pre>Il token 'bellezza' è mappato in un vettore i cui primi 10 elementi sono [ 0.03051873  0.01173639 -0.04997671  0.0277972   0.02349026  0.00617846
+ -0.04041     0.06573588 -0.02823343  0.02561735]
 </pre>
 </div>
 </div>
@@ -7726,7 +7678,7 @@ occurrences in an infinite population or sample space.
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Ancora meglio, possiamo attivare la funzione per visualizzare i token progressivamente, mano a mano che vengono generati.</p>
+<p>L'embedding è dunque una funzione dall'insieme dei token riconosciuti, cioè il vocabolario, allo spazio metrico dei vettori a <em>n</em> dimensioni. Il modello che realizza tale funzione è addestrato in modo tale da cercare di indurre una struttura metrica sul vocabolario, sulla base del principio che token di significato simile dovrebbero essere associati a vettori vicini. Dato un token, è così possibile elencare i token che gli sono più simili nel vocabolario, cioè quelli che associati a vettori più vicini al vettore del token dato.</p>
 </div>
 </div>
 </div>
@@ -7738,8 +7690,7 @@ occurrences in an infinite population or sample space.
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">baseutils</span> <span class="kn">import</span> <span class="n">aprint</span>
-<span class="n">aprint</span><span class="p">(</span><span class="n">llm</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">pprint</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -7752,9 +7703,151 @@ occurrences in an infinite population or sample space.
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>The Bayesian interpretation of probability is a framework for updating beliefs about uncertain events
- using Bayes' theorem, allowing individuals to incorporate new information and evidence into their existing
- beliefs while accounting for the degree of confidence in those beliefs.</pre>
+<pre>[('bellezze', 0.45),
+ ('dolcezza', 0.38),
+ ('splendore', 0.38),
+ ('estetica', 0.35),
+ ('fascino', 0.34)]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>L'embedding consente di operare in modo piuttosto sofisticato sul vocabolario.<br/>
+Per esempio, dati due termini A e B a ognuno dei quali è stato associato un vettore, v(A) e v(B), se la regola di associazione v(.) è sufficientemente ricca da un punto di vista semantico allora il vettore differenza v(A)-v(B) è associato alla relazione tra A e B. In questo modo diventa possibile operare con relazioni di "proporzionalità semantica", del tipo: data la relazione tra "re" e "uomo", qual è il termine X che è nella stessa relazione con "donna"? Questa domanda è dunque codificata come v("re")-v("uomo)=v(X)-v("donna"), e perciò v(X)=v("re")+v("donna")-v("uomo), in cui "re" e "donna" sono gli "esempi positivi" e "uomo" è l'"esempio negativo".</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"re"</span><span class="p">,</span> <span class="s2">"donna"</span><span class="p">]</span>
+<span class="n">negative_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"uomo"</span><span class="p">]</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>[('regina', 0.31)]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Alcuni altri esempi analoghi.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Italia"</span><span class="p">,</span> <span class="s2">"Parigi"</span><span class="p">]</span>
+<span class="n">negative_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Roma"</span><span class="p">]</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>[('Francia', 0.45)]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"padre"</span><span class="p">,</span> <span class="s2">"figlia"</span><span class="p">]</span>
+<span class="n">negative_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"figlio"</span><span class="p">]</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>[('madre', 0.56)]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"estate"</span><span class="p">,</span> <span class="s2">"freddo"</span><span class="p">]</span>
+<span class="n">negative_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"caldo"</span><span class="p">]</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>[('inverno', 0.5)]
+</pre>
 </div>
 </div>
 </div>
