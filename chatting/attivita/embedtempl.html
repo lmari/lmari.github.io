@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Per esplorare l'embedding</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <style>
+        .link {
+            fill: none;
+            stroke: #cc3333;
+            stroke-width: 1.5px;
+        }
+        circle {
+            fill: #91f16a;
+            stroke: #2a7fff;
+            stroke-width: 2px;
+            }
+        text {
+            font: 12px sans-serif;
+            color: #1b1483;
+            pointer-events: none;       
+        } 
+    </style>
+</head>
+<body>
+    <h1>Per esplorare l'embedding</h1>
+
+    {% if code == -1: %}
+        <script>alert("Non è parte del vocabolario")</script>
+    {% endif %}
+
+    <form method="get" action="/">
+        Token: <input type="text" name="token" value="{{token}}">
+        Numero: <input type="text" name="number" id="number" value={{number}} size="5">
+        <input type="submit" value="Ok">
+    </form>
+    <script>
+    d3.json('/data').then(function(graph) {
+        var width = 1200, height = 600;
+
+        var svg = d3.select("body").append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        var force = d3.forceSimulation()
+            .force("link", d3.forceLink().id(d => d.id))
+            .force("charge", d3.forceManyBody().strength(function (d, i) {
+                var a = i == 0 ? -6000 : -3000;
+                return a;
+            }).distanceMin(500).distanceMax(500))
+            .force("center", d3.forceCenter(width / 2, height / 2));
+
+        var link = svg.append("g")
+            .attr("class", "link")
+            .selectAll("line")
+            .data(graph.links)
+            .enter().append("line");
+ 
+        var node = svg.append("g")
+            .attr("class", "circle")
+            .selectAll("circle")
+            .data(graph.nodes)
+            .enter().append("circle")
+            .attr("r", 5)
+            .call(d3.drag()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended));
+        
+        var label = svg.append("g")
+            .selectAll("text")
+            .data(graph.nodes)
+            .enter().append("text")
+            .text(d => d.id);
+
+        node.append("title")
+            .text(function(d) { return parseFloat(d.sim).toFixed(3); });
+
+        node.on("click", function(d) {
+            window.open("/?token=" + d.id + "&number=" + document.getElementById("number").value, "_self");
+        });
+
+        force.nodes(graph.nodes)
+            .on("tick", ticked);
+
+        force.force("link")
+            .links(graph.links);
+
+        function ticked() {
+            link
+                .attr("x1", function(d) { return d.source.x; })
+                .attr("y1", function(d) { return d.source.y; })
+                .attr("x2", function(d) { return d.target.x; })
+                .attr("y2", function(d) { return d.target.y; });
+
+            node
+                .attr("cx", function(d) { return d.x; })
+                .attr("cy", function(d) { return d.y; });
+
+            label
+                .attr("x", function(d) { return d.x + 15; })
+                .attr("y", function(d) { return d.y + 4; });
+        }
+
+        function dragstarted(d) {
+            if (!d3.event.active) force.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+        }
+
+        function dragged(d) {
+            d.fx = d3.event.x;
+            d.fy = d3.event.y;
+        }
+
+        function dragended(d) {
+            if (!d3.event.active) force.alphaTarget(0);
+            d.fx = null;
+            d.fy = null;
+        }
+    });
+    </script>
+</body>
+</html>

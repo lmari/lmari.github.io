@@ -7516,9 +7516,9 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Un'esplorazione-dell'embedding">Un'esplorazione dell'embedding<a class="anchor-link" href="#Un'esplorazione-dell'embedding">¶</a></h2><p>Luca Mari, febbraio 2024</p>
-<p>[i file di questa attività: <a href="embed.ipynb">embed.ipynb</a>, <a href="embedutils.py">embedutils.py</a>]</p>
-<p><strong>Obiettivi</strong>: comprendere la logica del "token embedding", il processo con cui una rete neurale artificiale converte espressioni linguistiche nei vettori numerici su cui i transformer poi operano.<br/>
+<h2 id="Un'esplorazione-del-word-embedding">Un'esplorazione del word embedding<a class="anchor-link" href="#Un'esplorazione-del-word-embedding">¶</a></h2><p>Luca Mari, marzo 2024</p>
+<p>[i file di questa attività: <a href="embed.ipynb">embed.ipynb</a>, <a href="embedutils.py">embedutils.py</a>, <a href="embedexpl.py">embedexpl.py</a>, <a href="embedtempl.html">embedtempl.html</a>]</p>
+<p><strong>Obiettivi</strong>: comprendere la logica del "word embedding", il processo con cui una rete neurale artificiale converte espressioni linguistiche semplici (parole appunto, e più correttamente token, da un vocabolario) nei vettori numerici su cui i transformer poi operano.<br/>
 <strong>Precompetenze</strong>: basi di Python.</p>
 <p>Occorre creare un ambiente di lavoro Python, supponiamo con VSCode:</p>
 <ul>
@@ -7527,12 +7527,22 @@ a.anchor-link {
 <li>eseguire VSCode e attivare le estensioni per Python e Jupyter</li>
 <li>ancora in VSCode:<ul>
 <li>creare una cartella di lavoro e renderla la cartella corrente:</li>
-<li>copiare nella cartella questo notebook e il file <code>utils.py</code> e aprire il notebook</li>
+<li>copiare nella cartella questo notebook e il file <code>embedutils.py</code> e aprire il notebook</li>
 <li>creare un ambiente virtuale locale Python (Select Kernel | Python Environments | Create Python Environment | Venv, e scegliere un interprete Python):</li>
 <li>installare i moduli Python richiesti, eseguendo dal terminale:<br/>
-<code>pip install transformers multimethod</code></li>
+<code>pip install torch transformers multimethod</code></li>
 </ul>
 </li>
+</ul>
+<p>Lo spazio di word embedding può essere esplorato anche interattivamente, mediante un'applicazione web. Per eseguire il visualizzatore interattivo web occorre:</p>
+<ul>
+<li>aver eseguito almeno una volta questo notebook, in modo da aver scaricato il transformer <code>BERT</code></li>
+<li>copiare nella stessa cartella con questo notebook e <code>embedutils.py</code> anche i file <code>embedexpl.py</code> e <code>embedtempl.html</code></li>
+<li>installare altri moduli Python, ancora eseguendo dal terminale:<br/>
+<code>pip install flask networkx</code></li>
+<li>eseguire il visualizzatore <code>embedexpl.py</code></li>
+<li>una volta avviata l'applicazione, aprire un browser e digitare l'indirizzo:<br/>
+<code>http://127.0.0.1:5000</code></li>
 </ul>
 </div>
 </div>
@@ -7544,7 +7554,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Per prima cosa, importiamo il modulo che contiene le funzioni per consentire un accesso "di alto livello" al modello pre-addestrato che opererà sia come tokenizzatore sia come sistema di embedding, usando in questo caso <code>BERT</code>, che è un transformer "open" (<a href="https://it.wikipedia.org/wiki/BERT">https://it.wikipedia.org/wiki/BERT</a>) ed eseguibile anche localmente (alla prima esecuzione sarà dunque necessario attendere che il modello sia scaricato dal sito di Hugging Face: è un file di circa 400 MB che viene copiato nella cartella HFdata della propria cartella personale).</p>
+<p>Per prima cosa, importiamo il modulo che contiene le funzioni per consentire un accesso "di alto livello" al modello pre-addestrato che opererà sia come tokenizzatore sia come sistema di embedding, usando in questo caso una versione pre-addestrata e fine tuned, su testi in italiano, di <code>BERT</code>, che è un transformer "open" (<a href="https://it.wikipedia.org/wiki/BERT">https://it.wikipedia.org/wiki/BERT</a>) ed eseguibile anche localmente (alla prima esecuzione sarà dunque necessario attendere che il modello sia scaricato dal sito di Hugging Face: è un file di circa 400 MB che viene copiato nella cartella HFdata della propria cartella personale).</p>
 <p>Dopo aver caricato il modello, verifichiamo che il processo sia andato a buon fine visualizzando le due informazioni principali:</p>
 <ul>
 <li>il numero di token riconosciuti nel vocabolario del modello (<code>model.vocab_size</code>);</li>
