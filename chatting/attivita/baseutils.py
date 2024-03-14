@@ -14,24 +14,40 @@ class llm():
         self.completions = OpenAI(base_url="http://localhost:1234/v1", api_key="not-needed").chat.completions
         self.max_tokens = max_tokens
         self.temperature = temperature
+        self.messages=[{"role": "system", "content": "Be clear in your responses."}]
+
 
     def request(self, prompt, stream=False):
         '''Richiede una risposta al modello.
 
         Parametri:
-            prompt: la stringa di input per il modello.'''
+            prompt: la stringa di input per il modello.
+            stream: se True, la risposta arriva un token per volta.'''
+        self.messages.append({"role": "user", "content": prompt})
         return self.completions.create(
             model="not-needed",
-            messages=[
-                {"role": "system", "content": "Be clear in your responses."},
-                {"role": "user", "content": prompt}
-            ],
+            messages=self.messages,
             stream=stream,
             max_tokens=self.max_tokens,
             temperature=self.temperature
         )
 
-    
+
+    def chat(self, width=100):
+        '''Avvia una chat con il modello.
+        
+        Parametri:
+            width: la lunghezza massima di una riga.'''
+        prompt = ""
+        while prompt.lower().strip() != "bye":
+            prompt = input("> ")
+            self.messages.append({"role": "user", "content": prompt})
+            completion = self.request(prompt, stream=True)
+            text = aprint(completion, width)
+            response = {"role": "assistant", "content": text}
+            self.messages.append(response)
+            print()
+
 
 def bprint(txt, width=100):
     '''Scrive il testo generato da un modello.
@@ -58,13 +74,19 @@ def aprint(txt, width=100):
 
     Parametri:
         completion: un oggetto con il testo generato dal modello.
-        width: la lunghezza massima di una riga.'''
+        width: la lunghezza massima di una riga.
+        
+    Restituisce:
+        response: il testo generato dal modello.'''
+    response = ""
     l = 0
     for chunk in txt:
         x = chunk.choices[0].delta.content
         if type(x) == str:
-            print(x or "", end="")
+            print(x or "", end="", flush=True)
             l += len(x)
             if l > width:
                 print()
                 l = 0
+            response += x
+    return response

@@ -7517,7 +7517,7 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Un'introduzione-operativa-agli-LLM">Un'introduzione operativa agli LLM<a class="anchor-link" href="#Un'introduzione-operativa-agli-LLM">¶</a></h2><h3 id="Con-accesso-a-un-LLM-locale-attraverso-un-server-di-API">Con accesso a un LLM locale attraverso un server di API<a class="anchor-link" href="#Con-accesso-a-un-LLM-locale-attraverso-un-server-di-API">¶</a></h3><p>Luca Mari, febbraio 2024</p>
-<p>[i file di questa attività: <a href="base.ipynb">base.ipynb</a>, <a href="baseutils.py">baseutils.py</a>]</p>
+<p>[i file di questa attività: <a href="base.ipynb">base.ipynb</a>, <a href="baseutils.py">baseutils.py</a>, <a href="base.py">base.py</a>]</p>
 <p><strong>Obiettivi</strong>: comprendere la logica dell'accesso a un LLM attraverso una API.<br/>
 <strong>Precompetenze</strong>: basi di Python.
 embedding_layer.embedding_dim
@@ -7538,13 +7538,14 @@ Al momento un sistema semplice per eseguire sul proprio computer un LLM e accede
 <li>eseguire VSCode e attivare le estensioni per Python e Jupyter</li>
 <li>ancora in VSCode:<ul>
 <li>creare una cartella di lavoro e renderla la cartella corrente:</li>
-<li>copiare nella cartella questo notebook e il file <code>utils.py</code> e aprire il notebook</li>
+<li>copiare nella cartella questo notebook e il file <code>baseutils.py</code> e aprire il notebook</li>
 <li>creare un ambiente virtuale locale Python (Select Kernel | Python Environments | Create Python Environment | Venv, e scegliere un interprete Python):</li>
 <li>installare il modulo Python richiesto, eseguendo dal terminale:<br/>
 <code>pip install openai</code></li>
 </ul>
 </li>
 </ul>
+<p>Eseguendo l'applicazione Python <code>base.py</code> si attiva poi una semplice chat.</p>
 </div>
 </div>
 </div>
@@ -7608,7 +7609,7 @@ Al momento un sistema semplice per eseguire sul proprio computer un LLM e accede
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>ChatCompletion(id='chatcmpl-xebugmlb63jbvn6udr8emc', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content="The main features of the Bayesian interpretation of probability include its subjective nature, where personal beliefs and experiences affect judgments; it updates probabilities based on new information through Bayes' theorem; and it focuses on personal degrees of belief rather than frequentist occurrences in an infinite population or sample space.", role='assistant', function_call=None, tool_calls=None))], created=1707748761, model='/home/lucamari/.local/share/nomic.ai/GPT4All/TheBloke/mistral-7b-openorca.Q4_0/mistral-7b-openorca.Q4_0.gguf', object='chat.completion', system_fingerprint=None, usage=CompletionUsage(completion_tokens=62, prompt_tokens=62, total_tokens=124))
+<pre>ChatCompletion(id='chatcmpl-jd65f2zin1wviybz0hy9', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content="The Bayesian interpretation of probability defines it as a degree of belief or certainty in an event's occurrence, which can be updated with new evidence. It contrasts with frequentist probability, which is based on the long-run frequency of events in repeated trials.", role='assistant', function_call=None, tool_calls=None))], created=1710409587, model='/home/lucamari/.local/share/nomic.ai/GPT4All/TheBloke/Mixtral-8x7B-Instruct-v0.1-GGUF/mixtral-8x7b-instruct-v0.1.Q8_0.gguf', object='chat.completion', system_fingerprint=None, usage=CompletionUsage(completion_tokens=55, prompt_tokens=272, total_tokens=327))
 </pre>
 </div>
 </div>
@@ -7648,28 +7649,28 @@ Al momento un sistema semplice per eseguire sul proprio computer un LLM e accede
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>{
-  "id": "chatcmpl-xebugmlb63jbvn6udr8emc",
+  "id": "chatcmpl-jd65f2zin1wviybz0hy9",
   "choices": [
     {
       "finish_reason": "stop",
       "index": 0,
       "logprobs": null,
       "message": {
-        "content": "The main features of the Bayesian interpretation of probability include its subjective nature, where personal beliefs and experiences affect judgments; it updates probabilities based on new information through Bayes' theorem; and it focuses on personal degrees of belief rather than frequentist occurrences in an infinite population or sample space.",
+        "content": "The Bayesian interpretation of probability defines it as a degree of belief or certainty in an event's occurrence, which can be updated with new evidence. It contrasts with frequentist probability, which is based on the long-run frequency of events in repeated trials.",
         "role": "assistant",
         "function_call": null,
         "tool_calls": null
       }
     }
   ],
-  "created": 1707748761,
-  "model": "/home/lucamari/.local/share/nomic.ai/GPT4All/TheBloke/mistral-7b-openorca.Q4_0/mistral-7b-openorca.Q4_0.gguf",
+  "created": 1710409587,
+  "model": "/home/lucamari/.local/share/nomic.ai/GPT4All/TheBloke/Mixtral-8x7B-Instruct-v0.1-GGUF/mixtral-8x7b-instruct-v0.1.Q8_0.gguf",
   "object": "chat.completion",
   "system_fingerprint": null,
   "usage": {
-    "completion_tokens": 62,
-    "prompt_tokens": 62,
-    "total_tokens": 124
+    "completion_tokens": 55,
+    "prompt_tokens": 272,
+    "total_tokens": 327
   }
 }
 </pre>
@@ -7710,10 +7711,9 @@ Al momento un sistema semplice per eseguire sul proprio computer un LLM e accede
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>The main features of the Bayesian interpretation of probability include its subjective nature, where
-personal beliefs and experiences affect judgments; it updates probabilities based on new information
-through Bayes' theorem; and it focuses on personal degrees of belief rather than frequentist
-occurrences in an infinite population or sample space.
+<pre>The Bayesian interpretation of probability defines it as a degree of belief or certainty in an
+event's occurrence, which can be updated with new evidence. It contrasts with frequentist
+probability, which is based on the long-run frequency of events in repeated trials.
 </pre>
 </div>
 </div>
@@ -7752,9 +7752,10 @@ occurrences in an infinite population or sample space.
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>The Bayesian interpretation of probability is a framework for updating beliefs about uncertain events
- using Bayes' theorem, allowing individuals to incorporate new information and evidence into their existing
- beliefs while accounting for the degree of confidence in those beliefs.</pre>
+<pre>The Bayesian interpretation of probability posits that probability is a measure of belief or confidence
+ in the occurrence of an event, which can be updated as new evidence becomes available through the application
+ of Bayes' theorem. It contrasts with frequentist interpretations that define probability based on long
+-run frequencies in repeated trials.</pre>
 </div>
 </div>
 </div>
