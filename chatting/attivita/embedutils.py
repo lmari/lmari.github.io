@@ -64,6 +64,14 @@ class Model():
         return self.vocab_embeddings[token_id]
 
 
+    def embed(self, text):
+        '''Dato un testo, ne restituisce l'embedding.'''
+        tokens = np.array(self.tokenizer.tokenize(text))
+        ids = np.array(self.tokenizer.convert_tokens_to_ids(tokens))
+        embeddings = self.vocab_embeddings[ids]
+        return np.mean(embeddings, axis=0)
+
+
     @multimethod
     def most_similar(self, token:str, top_n:int=5, filter:bool=False):
         '''Calcola la lista dei token più simili al token dato.
