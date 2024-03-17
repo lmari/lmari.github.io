@@ -1,6 +1,7 @@
 import os
 import numpy as np
 from multimethod import multimethod
+from colorama import Fore, Style
 from transformers import BertTokenizer, BertModel, BertLMHeadModel
 
 def cosine_similarity(a, b):
@@ -15,6 +16,17 @@ def cosine_similarities(a, bs):
     return [np.dot(a, b) / (norm_a * np.linalg.norm(b)) for b in bs]
 
 
+def colorize(tokens, clean=False):
+    c = [Fore.RED, Fore.BLUE]
+    i = 0
+    x = ""
+    for token in tokens:
+        x += c[i] + " " + (token if token[:2] != "##" or not clean else token[2:])
+        i = 1 - i
+    x += Style.RESET_ALL
+    return x
+
+
 class Model():
 
     def __init__(self, name, cased=False):
@@ -23,8 +35,8 @@ class Model():
         self.embedder = BertModel.from_pretrained(name, cache_dir=cache_dir)
         self.seq2seq = BertLMHeadModel.from_pretrained(name, cache_dir=cache_dir, is_decoder=True)
         self.cased = cased
-        self.embedding_layer = self.embedder.get_input_embeddings()             # the embedding layer of the model
-        self.vocab_embeddings = self.embedding_layer.weight.detach().numpy()    # the embeddings for the entire vocabulary
+        self.embedding_layer = self.embedder.get_input_embeddings()             # il layer di embedding del modello
+        self.vocab_embeddings = self.embedding_layer.weight.detach().numpy()    # gli embedding dell'intero vocabolario
         self.vocab_size = self.tokenizer.vocab_size
         self.embedding_dim = self.embedding_layer.embedding_dim
 
