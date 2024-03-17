@@ -7745,7 +7745,7 @@ Per esempio, dati due termini A e B a ognuno dei quali è stato associato un vet
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"re"</span><span class="p">,</span> <span class="s2">"donna"</span><span class="p">]</span>             <span class="c1"># sovrano donna</span>
 <span class="n">negative_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"uomo"</span><span class="p">]</span>
-<span class="n">pprint</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -7785,7 +7785,7 @@ Per esempio, dati due termini A e B a ognuno dei quali è stato associato un vet
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Roma"</span><span class="p">,</span> <span class="s2">"Francia"</span><span class="p">]</span>        <span class="c1"># capitale della Francia</span>
 <span class="n">negative_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Italia"</span><span class="p">]</span>
-<span class="n">pprint</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -7814,7 +7814,7 @@ Per esempio, dati due termini A e B a ognuno dei quali è stato associato un vet
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Italia"</span><span class="p">,</span> <span class="s2">"Catalogna"</span><span class="p">]</span>     <span class="c1"># stato a cui appartiene la Catalogna</span>
 <span class="n">negative_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Lombardia"</span><span class="p">]</span>
-<span class="n">pprint</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -7843,7 +7843,7 @@ Per esempio, dati due termini A e B a ognuno dei quali è stato associato un vet
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"padre"</span><span class="p">,</span> <span class="s2">"figlia"</span><span class="p">]</span>         <span class="c1"># genitore femmina</span>
 <span class="n">negative_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"figlio"</span><span class="p">]</span>
-<span class="n">pprint</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -7872,7 +7872,7 @@ Per esempio, dati due termini A e B a ognuno dei quali è stato associato un vet
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"estate"</span><span class="p">,</span> <span class="s2">"freddo"</span><span class="p">]</span>        <span class="c1"># stagione fredda</span>
 <span class="n">negative_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"caldo"</span><span class="p">]</span>
-<span class="n">pprint</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -7901,7 +7901,7 @@ Per esempio, dati due termini A e B a ognuno dei quali è stato associato un vet
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"bianca"</span><span class="p">,</span> <span class="s2">"nero"</span><span class="p">]</span>          <span class="c1"># femminile di "nero"</span>
 <span class="n">negative_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"bianco"</span><span class="p">]</span>
-<span class="n">pprint</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -7930,7 +7930,7 @@ Per esempio, dati due termini A e B a ognuno dei quali è stato associato un vet
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"treno"</span><span class="p">,</span> <span class="s2">"automobili"</span><span class="p">]</span>     <span class="c1"># singolare di "automobili"</span>
 <span class="n">negative_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"treni"</span><span class="p">]</span>
-<span class="n">pprint</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -7959,7 +7959,7 @@ Per esempio, dati due termini A e B a ognuno dei quali è stato associato un vet
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"andare"</span><span class="p">,</span> <span class="s2">"guardato"</span><span class="p">]</span>      <span class="c1"># infinito di "guardato"</span>
 <span class="n">negative_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"andato"</span><span class="p">]</span>
-<span class="n">pprint</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -7988,7 +7988,7 @@ Per esempio, dati due termini A e B a ognuno dei quali è stato associato un vet
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"bello"</span><span class="p">,</span> <span class="s2">"cattivo"</span><span class="p">]</span>        <span class="c1"># opposto di "cattivo"</span>
 <span class="n">negative_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"brutto"</span><span class="p">]</span>
-<span class="n">pprint</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -8002,6 +8002,35 @@ Per esempio, dati due termini A e B a ognuno dei quali è stato associato un vet
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>[('buono', 0.37)]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"chitarra"</span><span class="p">,</span> <span class="s2">"pianista"</span><span class="p">]</span>    <span class="c1"># strumento del pianista</span>
+<span class="n">negative_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"chitarrista"</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>[('pianoforte', 0.63)]
 </pre>
 </div>
 </div>
