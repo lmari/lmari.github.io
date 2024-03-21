@@ -2,6 +2,8 @@ import os
 import numpy as np
 from multimethod import multimethod
 from colorama import Fore, Style
+from docx import Document
+import torch
 from transformers import BertTokenizer, BertModel, BertLMHeadModel
 
 def cosine_similarity(a, b):
@@ -25,6 +27,18 @@ def colorize(tokens, clean=False):
         i = 1 - i
     x += Style.RESET_ALL
     return x
+
+
+def read_file(name):
+    return "\n".join([p.text for p in Document(name).paragraphs])
+
+def read_files(metadata, doc_dir):
+    texts = []
+    for data in metadata:
+        doc_file = Document(os.path.join(doc_dir, data[0]))
+        doc_text = "\n".join([p.text for p in doc_file.paragraphs])
+        texts.append((data[1], doc_text))
+    return texts
 
 
 class Model():
@@ -64,12 +78,22 @@ class Model():
         return self.vocab_embeddings[token_id]
 
 
-    def embed(self, text):
-        '''Dato un testo, ne restituisce l'embedding.'''
+    def rough_embed(self, text):
+        '''Dato un testo, ne restituisce l'embedding,
+        come media degli embedding dei suoi token.'''
         tokens = np.array(self.tokenizer.tokenize(text))
         ids = np.array(self.tokenizer.convert_tokens_to_ids(tokens))
         embeddings = self.vocab_embeddings[ids]
         return np.mean(embeddings, axis=0)
+
+
+    def better_embed(self, text):
+        '''Dato un testo, ne restituisce l'embedding.'''
+        encoded_input = self.tokenizer(text, return_tensors='pt', padding=True, truncation=True, max_length=512)
+        with torch.no_grad():
+            model_output = self.embedder(**encoded_input)
+        return model_output.pooler_output.squeeze()
+
 
 
     @multimethod
