@@ -4,7 +4,7 @@ from multimethod import multimethod
 from colorama import Fore, Style
 from docx import Document
 import torch
-from transformers import BertTokenizer, BertModel, BertLMHeadModel
+from transformers import BertTokenizer, BertModel
 
 def cosine_similarity(a, b):
     '''Calcola il coseno di similitudine ("cosine similarity",
@@ -30,14 +30,68 @@ def colorize(tokens, clean=False):
 
 
 def read_file(name):
+    '''Legge il contenuto di un file docx e restituisce il testo come stringa.'''
     return "\n".join([p.text for p in Document(name).paragraphs])
 
+
+def read_file2(name):
+    '''Legge il contenuto di un file docx e restituisce il testo come lista di paragrafi.'''
+    x = [p.text.strip() for p in Document(name).paragraphs]
+    x = x[7:]                       # rimuovi l'intestazione
+    x = [y for y in x if y != '']   # rimuovi i paragrafi vuoti
+    min_len = 100
+    y = [x[0]]                      # unisci i paragrafi troppo corti
+    for i in range(1, len(x)-1):
+        if len(y[-1]) < min_len:
+            y[-1] += " " + x[i]
+        else:
+            y.append(x[i])
+    if len(x[-1]) < min_len or len(y[-1]) < min_len:    # unisci l'ultimo paragrafo se è troppo corto
+        y[-1] += " " + x[-1]
+    else:
+        y.append(x[-1])
+    return y
+
+
+def read_file3(name):
+    '''Legge il contenuto di un file docx e restituisce il testo come lista di frasi.'''
+    paragraphs = [p.text.strip() for p in Document(name).paragraphs]
+    paragraphs = paragraphs[7:]                         # rimuovi l'intestazione
+    paragraphs = [p for p in paragraphs if p != '']     # rimuovi i paragrafi vuoti
+    result = []
+    for p in paragraphs:
+        sentences = p.split(".")                        # separa i paragrafi in frasi
+        sentences = [s for s in sentences if len(s.strip()) > 10]   # rimuovi le frasi vuote o troppo corte
+        result.extend(sentences)
+    return result
+
+
 def read_files(metadata, doc_dir):
+    '''Legge i file indicati nei metadata e restituisce una lista di tuple (titolo, testo).'''
     texts = []
     for data in metadata:
-        doc_file = Document(os.path.join(doc_dir, data[0]))
-        doc_text = "\n".join([p.text for p in doc_file.paragraphs])
+        doc_text = read_file(os.path.join(doc_dir, data[0]))
         texts.append((data[1], doc_text))
+    return texts
+
+
+def read_files2(metadata, doc_dir):
+    '''Legge i file indicati nei metadata e restituisce una lista di tuple (titolo, indice_paragrafo, testo).'''
+    texts = []
+    for data in metadata:
+        par_text = read_file2(os.path.join(doc_dir, data[0]))
+        for i, text in enumerate(par_text):
+            texts.append((data[0], i, text))
+    return texts
+
+
+def read_files3(metadata, doc_dir):
+    '''Legge i file indicati nei metadata e restituisce una lista di tuple (titolo, indice_frase, testo).'''
+    texts = []
+    for data in metadata:
+        par_text = read_file3(os.path.join(doc_dir, data[0]))
+        for i, text in enumerate(par_text):
+            texts.append((data[0], i, text))
     return texts
 
 
@@ -47,7 +101,6 @@ class Model():
         cache_dir = os.path.expanduser("~") + '/HFdata'
         self.tokenizer = BertTokenizer.from_pretrained(name, cache_dir=cache_dir)
         self.embedder = BertModel.from_pretrained(name, cache_dir=cache_dir)
-        self.seq2seq = BertLMHeadModel.from_pretrained(name, cache_dir=cache_dir, is_decoder=True)
         self.cased = cased
         self.embedding_layer = self.embedder.get_input_embeddings()             # il layer di embedding del modello
         self.vocab_embeddings = self.embedding_layer.weight.detach().numpy()    # gli embedding dell'intero vocabolario
@@ -63,7 +116,7 @@ class Model():
     def token_in_vocab(self, token):
         '''Restituisce True se il token è presente nel vocabolario del modello, False altrimenti.'''
         return self.c(token) in self.tokenizer.get_vocab()
-    
+
 
     def token_to_id(self, token):
         '''Dato un token, ne restituisce l'id nel vocabolario del modello.'''
@@ -88,12 +141,12 @@ class Model():
 
 
     def better_embed(self, text):
-        '''Dato un testo, ne restituisce l'embedding.'''
+        '''Dato un testo, ne restituisce l'embedding,
+        calcolato da un transformer.'''
         encoded_input = self.tokenizer(text, return_tensors='pt', padding=True, truncation=True, max_length=512)
         with torch.no_grad():
             model_output = self.embedder(**encoded_input)
         return model_output.pooler_output.squeeze()
-
 
 
     @multimethod
