@@ -7516,9 +7516,9 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Un'esplorazione-del-word-embedding">Un'esplorazione del word embedding<a class="anchor-link" href="#Un'esplorazione-del-word-embedding">¶</a></h2><p>Luca Mari, marzo 2024</p>
+<h2 id="Un'esplorazione-del-token-embedding-con-un-transformer">Un'esplorazione del <em>token embedding</em> con un transformer<a class="anchor-link" href="#Un'esplorazione-del-token-embedding-con-un-transformer">¶</a></h2><p>Luca Mari, aggiornamento, aprile 2024</p>
 <p>[i file di questa attività: <a href="embed.ipynb">embed.ipynb</a>, <a href="embedutils.py">embedutils.py</a>, <a href="embedexpl.py">embedexpl.py</a>, <a href="embedtempl.html">embedtempl.html</a>]</p>
-<p><strong>Obiettivi</strong>: comprendere la logica del "word embedding", il processo con cui una rete neurale artificiale converte espressioni linguistiche semplici (parole appunto, e più correttamente token, da un vocabolario) nei vettori numerici su cui i transformer poi operano.<br/>
+<p><strong>Obiettivi</strong>: comprendere la logica del <em>token embedding</em> (chiamato a volte "word embedding"), il processo con cui una rete neurale artificiale converte espressioni linguistiche semplici (parole appunto, e più correttamente token, da un vocabolario) nei vettori numerici su cui i transformer poi operano.<br/>
 <strong>Precompetenze</strong>: basi di Python.</p>
 <p>Occorre creare un ambiente di lavoro Python, supponiamo con VSCode:</p>
 <ul>
@@ -7648,7 +7648,7 @@ La matrice degli embeddings ha perciò dimensione (32102, 768)
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Il modello è stato addestrato a mappare ('embed') ogni token, con il suo identificatore, in un vettore di numeri (c'è da considerare che i transformer, come <code>BERT</code>, operano sulla base di un embedding dinamico, in cui il vettore di numeri associato a ogni token dipende anche dal contesto ('embedding posizionale'): qui noi lavoriamo solo con la componente statica del vettore).</p>
+<p>Il modello è stato addestrato a mappare ('embed') ogni token, con il suo identificatore, in un vettore di numeri (c'è da considerare che i transformer, come <code>BERT</code>, operano sulla base di un embedding dinamico, in cui il vettore di numeri associato a ogni token dipende anche dal contesto ('embedding posizionale'): qui noi lavoriamo solo con la componente statica del maaping).</p>
 </div>
 </div>
 </div>
@@ -7943,7 +7943,7 @@ Per esempio, dati due termini A e B a ognuno dei quali è stato associato un vet
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>[('automobile', 0.54)]
+<pre>[('automobile', 0.54), ('automobilistico', 0.41), ('autoveicoli', 0.4), ('autovetture', 0.4), ('motocicli', 0.38)]
 </pre>
 </div>
 </div>
@@ -8031,6 +8031,64 @@ Per esempio, dati due termini A e B a ognuno dei quali è stato associato un vet
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>[('pianoforte', 0.63)]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"nuoto"</span><span class="p">,</span> <span class="s2">"palestra"</span><span class="p">]</span>       <span class="c1"># sport praticato in palestra</span>
+<span class="n">negative_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"piscina"</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>[('ginnastica', 0.4)]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"attore"</span><span class="p">,</span> <span class="s2">"donna"</span><span class="p">]</span>         <span class="c1"># femminile di "attore"</span>
+<span class="n">negative_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"uomo"</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>[('attrice', 0.63)]
 </pre>
 </div>
 </div>
