@@ -7688,16 +7688,16 @@ Cerchiamo dunque invece di risolvere il problema con la logica del <em>machine l
     
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">network</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>   <span class="c1"># Sequential() gestisce una successione di moduli</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">28</span><span class="o">*</span><span class="mi">28</span><span class="p">,</span> <span class="mi">512</span><span class="p">),</span>      <span class="c1"># Linear(x, y) è uno strato feed-forward fully connected con x input e y output</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>                  <span class="c1"># ReLU() calcola la funzione di attivazione ReLu (rectified linear unit)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">network</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>   <span class="c1"># Sequential() costruisce una successione di componenti</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">28</span><span class="o">*</span><span class="mi">28</span><span class="p">,</span> <span class="mi">512</span><span class="p">),</span>      <span class="c1"># Linear(x, y) costruisce la connessione tra tutti gli x neuroni di uno strato e gli y neuroni dello strato successivo</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>                  <span class="c1"># ReLU() stabilisce che la funzione di attivazione per il segnale in uscita dai neuroni sia ReLu (rectified linear unit)</span>
             <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">),</span>
             <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
             <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>             <span class="c1"># Flatten() rende unidimensionale l'input, adattandolo così le immagini allo strato di input</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>             <span class="c1"># Flatten() rende unidimensionale l'input, adattando così le immagini allo strato di input</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">network</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     
 <span class="n">network</span> <span class="o">=</span> <span class="n">MLP_NN</span><span class="p">()</span>
@@ -7954,7 +7954,7 @@ Processo completato in 60.23 secondi
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Nel caso di una singola immagine, possiamo visualizzare la distribuzione di probabilità risultato dell'inferenza, da cui, come prima, si sceglie la cifra prevista come quella più probabile. È qui evidente l'effetto dell'addestramento: la distribuzione non è più uniforme, ma con una o poche categorie a probabilità elevata.</p>
+<p>Nel caso di una singola immagine, possiamo visualizzare la distribuzione di probabilità risultato dell'inferenza, da cui, come prima, si sceglie la cifra prevista come quella più probabile. È qui evidente l'effetto dell'addestramento: anche se la struttura della rete non è cambiata, e dunque non abbiamo modificato la rete riprogrammandola, la distribuzione non è più uniforme, ma con una o poche categorie a probabilità elevata. Insomma, questa significativa differenza di comportamento è interamente dovuta all'addestramento a cui abbiamo sottoposto la rete.</p>
 </div>
 </div>
 </div>
@@ -7993,7 +7993,33 @@ Processo completato in 60.23 secondi
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><a name="s3"></a></p>
 <h3 id="3.-Un-miglioramento-del-metodo-di-classificazione">3. Un miglioramento del metodo di classificazione<a class="anchor-link" href="#3.-Un-miglioramento-del-metodo-di-classificazione">¶</a></h3><p>Ora che siamo stati in grado di addestrare la rete, possiamo chiederci se raffinare il metodo di classificazione, per tener conto delle situazioni in cui la distribuzione di probabilità porterebbe a una decisione incerta, perché la probabilità della moda non è abbastanza grande o la differenza fra le due probabilità più grandi della distribuzione non è abbastanza grande. In tali casi si potrebbe decidere di non proporre alcuna previsione, e quindi di ammettere che il caso è dubbio.<br/>
-Per mostrare questa logica di decisione, lasciamo in evidenza il codice Python.</p>
+Assegniamo allora un valore ai due nuovi iperparametri.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">min_mode_prob</span> <span class="o">=</span> <span class="mf">0.3</span>                         <span class="c1"># probabilità minima per considerare una previsione corretta</span>
+<span class="n">min_diff_prob</span> <span class="o">=</span> <span class="mf">0.2</span>                         <span class="c1"># differenza minima tra le due probabilità più grandi per considerare una previsione corretta</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Per mostrare questa logica di decisione, lasciamo in evidenza il codice Python.</p>
 </div>
 </div>
 </div>
@@ -8020,8 +8046,6 @@ Per mostrare questa logica di decisione, lasciamo in evidenza il codice Python.<
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Accuratezza: </span><span class="si">{</span><span class="mi">100</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">corr_pred</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">batch_size</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Errore: </span><span class="si">{</span><span class="mi">100</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">batch_size</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">corr_pred</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">())</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">batch_size</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
 
-<span class="n">min_mode_prob</span> <span class="o">=</span> <span class="mf">0.3</span>                         <span class="c1"># probabilità minima per considerare una previsione corretta</span>
-<span class="n">min_diff_prob</span> <span class="o">=</span> <span class="mf">0.2</span>                         <span class="c1"># differenza minima tra le due probabilità più grandi per considerare una previsione corretta</span>
 <span class="n">two_max_prob</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="n">pred_prob</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
 <span class="n">suff_high_prob</span> <span class="o">=</span> <span class="n">two_max_prob</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">min_mode_prob</span>
 <span class="n">suff_diff_prob</span> <span class="o">=</span> <span class="p">(</span><span class="n">two_max_prob</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">two_max_prob</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span> <span class="o">&gt;</span> <span class="n">min_diff_prob</span>
@@ -8068,7 +8092,7 @@ Errore: 5.2%
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Come si vede, questo aggiustamento riduce l'accuratezza ma anche l'errore della previsione.</p>
+<p>Come si vede, questo aggiustamento riduce l'accuratezza, perché tratta come dubbi dei casi che erano stati riconosciuti correttamente, ma anche l'errore della previsione, perché tratta come dubbi anche dei casi che erano stati riconosciuti non correttamente.</p>
 <p>Ecco qualche esempio di immagine la cui classificazione è incerta, secondo i criteri che abbiamo stabilito.</p>
 </div>
 </div>
