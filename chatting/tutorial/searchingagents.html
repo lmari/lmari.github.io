@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>tokenize</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>searchingagents</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7516,26 +7516,32 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Un'esplorazione-della-tokenizzazione">Un'esplorazione della tokenizzazione<a class="anchor-link" href="#Un'esplorazione-della-tokenizzazione">¶</a></h2><p>Luca Mari, settembre 2024</p>
+<h2 id="Un-esempio-di-esecuzione-automatica-di-funzioni-(%22tool%22)-da-un-modello-linguistico-locale">Un esempio di esecuzione automatica di funzioni ("<em>tool</em>") da un modello linguistico locale<a class="anchor-link" href="#Un-esempio-di-esecuzione-automatica-di-funzioni-(%22tool%22)-da-un-modello-linguistico-locale">¶</a></h2><p>Luca Mari, settembre 2024</p>
 <p>Quest'opera è distribuita con <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" target="_blank">Licenza Creative Commons Attribuzione - Non commerciale - Condividi allo stesso modo 4.0 Internazionale</a>.<br/>
 <img alt="No description has been provided for this image" src="https://creativecommons.it/chapterIT/wp-content/uploads/2021/01/by-nc-sa.eu_.png" width="100"/></p>
-<p><strong>Obiettivo</strong>: comprendere la logica della "tokenizzazione", il processo con cui un testo viene trasformato in una successione di elementi linguistici elementari ("token").<br/>
+<p><strong>Obiettivo</strong>: comprendere qualche aspetto della logica delle architetture ad agenti e dell'esecuzione automatica di funzioni.<br/>
 <strong>Precompetenze</strong>: basi di Python.</p>
 <blockquote>
 <p>Per eseguire questo notebook, supponiamo con VSCode, occorre:</p>
 <ul>
 <li>installare un interprete Python</li>
+<li>scaricare da <a href="https://ollama.com">https://ollama.com</a> e installare Ollama</li>
+<li>scaricare da Ollama un modello capace di operare con strumenti, supporremo <code>llama3.1:8b</code>:<br/>
+<code>ollama pull llama3.1</code></li>
 <li>scaricare da <a href="https://code.visualstudio.com/download">https://code.visualstudio.com/download</a> e installare VSCode</li>
 <li>eseguire VSCode e attivare le estensioni per Python e Jupyter</li>
 <li>ancora in VSCode:<ul>
 <li>creare una cartella di lavoro e renderla la cartella corrente</li>
-<li>copiare nella cartella i file di questa attività: <a href="tokenize.ipynb">tokenize.ipynb</a>, <a href="tokenizeutils.py">tokenizeutils.py</a>]</li>
-<li>aprire il notebook <code>tokenize.ipynb</code></li>
+<li>copiare nella cartella il file di questa attività: <a href="computingagents.ipynb">computingagents.ipynb</a></li>
+<li>aprire il notebook <code>computingagents.ipynb</code></li>
 <li>creare un ambiente virtuale locale Python (Select Kernel | Python Environments | Create Python Environment | Venv, e scegliere un interprete Python):</li>
 <li>installare i moduli Python richiesti, eseguendo dal terminale:<br/>
-<code>pip install torch transformers multimethod colorama python-docx</code></li>
+<code>pip install pyautogen</code></li>
 </ul>
 </li>
+<li>eseguire dalla linea di comando:<br/>
+<code>OLLAMA_MODELS=xxx OLLAMA_HOST=127.0.0.1:1234 ollama serve</code><br/>
+dove <code>xxx</code> è la directory che contiene i modelli Ollama (in Linux potrebbe essere <code>/var/lib/ollama/.ollama/models</code>)</li>
 </ul>
 </blockquote>
 </div>
@@ -7548,12 +7554,45 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Una prima elaborazione di un testo dato -- una frase, un paragrafo, un documento, ... -- è spesso la sua trasformazione in una successione di elementi linguistici elementari ("token"), tratti da un vocabolario dato.<br/>
-Per mostrare un esempio di questo processo di tokenizzazione, per prima cosa importiamo il modulo che contiene le funzioni per consentire un accesso "di alto livello" al modello pre-addestrato che opererà come tokenizzatore, usando in questo caso una versione pre-addestrata e fine tuned, su testi in italiano, di <code>BERT</code>, che è un transformer "open" (<a href="https://it.wikipedia.org/wiki/BERT">https://it.wikipedia.org/wiki/BERT</a>) ed eseguibile anche localmente (alla prima esecuzione sarà dunque necessario attendere che il modello sia scaricato dal sito di Hugging Face: è un file di circa 400 MB che viene copiato nella cartella HFdata della propria cartella personale).</p>
+<p>Importiamo i moduli Python necessari e specifichiamo la configurazione per il modello linguistico che sarà usato (deve essere in grado di operare con strumenti) e l'indirizzo del server su cui sarà in esecuzione in locale (a sua volta, il server deve essere in grado di gestire strumenti: al momento Ollama, ma non LM Studio).</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">autogen</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Annotated</span>
+
+<span class="n">llm_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"config_list"</span><span class="p">:</span> <span class="p">[{</span> <span class="s2">"base_url"</span><span class="p">:</span><span class="s2">"http://localhost:1234/v1"</span><span class="p">,</span>
+                      <span class="s2">"model"</span><span class="p">:</span><span class="s2">"llama3.1:8b"</span><span class="p">,</span>
+                      <span class="s2">"api_key"</span><span class="p">:</span><span class="s2">"not_used"</span> <span class="p">}],</span>
+    <span class="s2">"timeout"</span><span class="p">:</span> <span class="mi">120</span><span class="p">,</span>
+    <span class="s2">"cache_seed"</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Definiamo una semplice architettura con un agente di interfaccia ed esecutore (<code>user_proxy</code>) e un agente che gestisce il modello linguistico (<code>domain_expert</code>).</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7561,25 +7600,20 @@ Per mostrare un esempio di questo processo di tokenizzazione, per prima cosa imp
 <div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tokenizeutils</span> <span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">colorize</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">user_proxy</span> <span class="o">=</span> <span class="n">autogen</span><span class="o">.</span><span class="n">UserProxyAgent</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"interfaccia con l'utente ed esecutore di codice"</span><span class="p">,</span>
+    <span class="n">is_termination_msg</span><span class="o">=</span><span class="p">(</span><span class="k">lambda</span> <span class="n">msg</span><span class="p">:</span> <span class="s2">"conclus"</span> <span class="ow">in</span> <span class="n">msg</span><span class="p">[</span><span class="s2">"content"</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()),</span> <span class="c1"># a volte potrebbe essere "concluso" o "conclusa"...</span>
+    <span class="n">human_input_mode</span><span class="o">=</span><span class="s2">"NEVER"</span><span class="p">,</span>
+    <span class="n">code_execution_config</span><span class="o">=</span><span class="p">{</span><span class="s2">"use_docker"</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+    <span class="n">max_consecutive_auto_reply</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+<span class="p">)</span>
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="s1">'dbmdz/bert-base-italian-xxl-cased'</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Il tokenizzatore ha un vocabolario di </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">vocab_size</span><span class="si">}</span><span class="s2"> token che riconosce."</span><span class="p">)</span>
+<span class="n">domain_expert</span> <span class="o">=</span> <span class="n">autogen</span><span class="o">.</span><span class="n">AssistantAgent</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"esperto di dominio"</span><span class="p">,</span>
+    <span class="n">system_message</span><span class="o">=</span><span class="s2">"Se ti sono richieste informazioni su libri, usa solo la funzione disponibile per la ricerca nel tuo archivio interno, senza mai ricorrere alla tua memoria. Quando hai completato la ricerca, scrivi CONCLUSO."</span><span class="p">,</span>
+    <span class="n">llm_config</span><span class="o">=</span><span class="n">llm_config</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Il tokenizzatore ha un vocabolario di 31102 token che riconosce.
-</pre>
 </div>
 </div>
 </div>
@@ -7591,8 +7625,45 @@ Per mostrare un esempio di questo processo di tokenizzazione, per prima cosa imp
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Data una frase, chiediamo al tokenizzatore di trasformarla nella lista dei suoi token, ognuno dei quali corrispondente a un identificatore numerico univoco nel vocabolario.<br/>
-Può accadere ovviamente che una parola non sia presente nel vocabolario, cioè non sia riconosciuta come un token: in tal caso il tokenizzatore la separa in componenti, ognuno dei quali sia invece un token (per rendere evidente questa separazione, il tokenizzatore aggiunge la stringa "##").</p>
+<p>Questa è la funzione Python che dovrebbe essere eseguita quando richiesto, resa disponibile all'agente <code>esperto di dominio</code> grazie ai decoratori (per semplicità manteniamo il contenuto dell'archivio su cui fare ricerche direttamente all'interno della funzione).</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nd">@user_proxy</span><span class="o">.</span><span class="n">register_for_execution</span><span class="p">()</span>
+<span class="nd">@domain_expert</span><span class="o">.</span><span class="n">register_for_llm</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"Cerca informazioni su un libro dal tuo archivio."</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">cerca</span><span class="p">(</span>
+        <span class="n">titolo</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">"titolo del libro"</span><span class="p">],</span>
+        <span class="n">informazione</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">"genere di informazione da cercare: editore o prezzo"</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">dati</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"Questo libro ha un titolo inventato"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"editore"</span><span class="p">:</span> <span class="s2">"Borgesiana"</span><span class="p">,</span> <span class="s2">"prezzo"</span><span class="p">:</span> <span class="s2">"13 €"</span><span class="p">},</span>
+        <span class="s2">"Stiamo davvero scherzando"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"editore"</span><span class="p">:</span> <span class="s2">"Cose serie"</span><span class="p">,</span> <span class="s2">"prezzo"</span><span class="p">:</span> <span class="s2">"15 €"</span><span class="p">},</span>
+        <span class="s2">"Cose leggere"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"editore"</span><span class="p">:</span> <span class="s2">"Siamo ambigui"</span><span class="p">,</span> <span class="s2">"prezzo"</span><span class="p">:</span> <span class="s2">"12 €"</span><span class="p">},</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">dati</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">titolo</span><span class="p">,</span> <span class="s2">"Titolo non trovato..."</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">informazione</span><span class="p">,</span> <span class="s2">"Informazione non trovata..."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Verifichiamo che, grazie ai decoratori, l'agente <code>esperto di dominio</code> sia stato dotato dello schema json con la dichiarazione della funzione (la documentazione dei "tools" per gli "Assistants" è qui:<br/>
+<a href="https://platform.openai.com/docs/guides/function-calling">https://platform.openai.com/docs/guides/function-calling</a><br/>
+<a href="https://platform.openai.com/docs/api-reference/assistants/modifyAssistant#assistants-modifyassistant-tools">https://platform.openai.com/docs/api-reference/assistants/modifyAssistant#assistants-modifyassistant-tools</a>).</p>
 </div>
 </div>
 </div>
@@ -7601,14 +7672,10 @@ Può accadere ovviamente che una parola non sia presente nel vocabolario, cioè 
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">frase</span> <span class="o">=</span> <span class="s2">"I sistemi di intelligenza artificiale generativa stanno evolvendo rapidamente."</span>
-<span class="n">tokens</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">frase</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
-<span class="n">token_ids</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">convert_tokens_to_ids</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">token_ids</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">domain_expert</span><span class="o">.</span><span class="n">llm_config</span><span class="p">[</span><span class="s2">"tools"</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -7618,12 +7685,18 @@ Può accadere ovviamente che una parola non sia presente nel vocabolario, cioè 
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>['I', 'sistemi', 'di', 'intelligenza', 'artificiale', 'generati', '##va', 'stanno', 'evol', '##vendo', 'rapidamente', '.']
-[184, 2839, 120, 21486, 13435, 29518, 187, 2799, 8599, 4802, 5798, 697]
-</pre>
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>[{'type': 'function',
+  'function': {'description': 'Cerca informazioni su un libro dal tuo archivio.',
+   'name': 'cerca',
+   'parameters': {'type': 'object',
+    'properties': {'titolo': {'type': 'string',
+      'description': 'titolo del libro'},
+     'informazione': {'type': 'string',
+      'description': 'genere di informazione da cercare: editore o prezzo'}},
+    'required': ['titolo', 'informazione']}}}]</pre>
 </div>
 </div>
 </div>
@@ -7635,7 +7708,7 @@ Può accadere ovviamente che una parola non sia presente nel vocabolario, cioè 
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Alternando i colori, il risultato della tokenizzazione è forse ancora più chiaro.</p>
+<p>Ecco dunque un esempio di uso di questa architettura.</p>
 </div>
 </div>
 </div>
@@ -7647,7 +7720,8 @@ Può accadere ovviamente che una parola non sia presente nel vocabolario, cioè 
 <div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">colorize</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span> <span class="n">clean</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">domain_expert</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">user_proxy</span><span class="o">.</span><span class="n">initiate_chat</span><span class="p">(</span><span class="n">domain_expert</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">"Qual è il prezzo del libro 'Stiamo davvero scherzando'?"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7660,7 +7734,41 @@ Può accadere ovviamente che una parola non sia presente nel vocabolario, cioè 
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre><span class="ansi-red-fg"> I</span><span class="ansi-blue-fg"> sistemi</span><span class="ansi-red-fg"> di</span><span class="ansi-blue-fg"> intelligenza</span><span class="ansi-red-fg"> artificiale</span><span class="ansi-blue-fg"> generati</span><span class="ansi-red-fg"> va</span><span class="ansi-blue-fg"> stanno</span><span class="ansi-red-fg"> evol</span><span class="ansi-blue-fg"> vendo</span><span class="ansi-red-fg"> rapidamente</span><span class="ansi-blue-fg"> .</span>
+<pre><span class="ansi-yellow-fg">interfaccia con l'utente ed esecutore di codice</span> (to esperto di dominio):
+
+Qual è il prezzo del libro 'Stiamo davvero scherzando'?
+
+--------------------------------------------------------------------------------
+Qual è il prezzo del libro 'Stiamo davvero scherzando'?
+
+--------------------------------------------------------------------------------
+[autogen.oai.client: 09-23 14:00:52] {349} WARNING - Model llama3.1:8b is not found. The cost will be 0. In your config_list, add field {"price" : [prompt_price_per_1k, completion_token_price_per_1k]} for customized pricing.
+<span class="ansi-yellow-fg">esperto di dominio</span> (to interfaccia con l'utente ed esecutore di codice):
+
+
+<span class="ansi-green-fg">***** Suggested tool call (call_buufxhap): cerca *****</span>
+Arguments: 
+{"informazione":"prezzo","titolo":"Stiamo davvero scherzando"}
+<span class="ansi-green-fg">******************************************************</span>
+
+--------------------------------------------------------------------------------
+<span class="ansi-magenta-fg">
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; EXECUTING FUNCTION cerca...</span>
+<span class="ansi-yellow-fg">interfaccia con l'utente ed esecutore di codice</span> (to esperto di dominio):
+
+<span class="ansi-yellow-fg">interfaccia con l'utente ed esecutore di codice</span> (to esperto di dominio):
+
+<span class="ansi-green-fg">***** Response from calling tool (call_buufxhap) *****</span>
+15 €
+<span class="ansi-green-fg">******************************************************</span>
+
+--------------------------------------------------------------------------------
+[autogen.oai.client: 09-23 14:00:54] {349} WARNING - Model llama3.1:8b is not found. The cost will be 0. In your config_list, add field {"price" : [prompt_price_per_1k, completion_token_price_per_1k]} for customized pricing.
+<span class="ansi-yellow-fg">esperto di dominio</span> (to interfaccia con l'utente ed esecutore di codice):
+
+CONCLUSO.
+
+--------------------------------------------------------------------------------
 </pre>
 </div>
 </div>
@@ -7673,7 +7781,7 @@ Può accadere ovviamente che una parola non sia presente nel vocabolario, cioè 
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Poiché la funzione che associa un identificatore numerico a ogni token è invertibile, è sempre possibile ricostruire la frase di partenza dalla successione degli identificatori numerici.</p>
+<p>E questa è la ricostruzione della conversazione tra i due agenti.</p>
 </div>
 </div>
 </div>
@@ -7685,7 +7793,8 @@ Può accadere ovviamente che una parola non sia presente nel vocabolario, cioè 
 <div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">token_ids</span><span class="p">))</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">chat_history</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7698,7 +7807,23 @@ Può accadere ovviamente che una parola non sia presente nel vocabolario, cioè 
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>I sistemi di intelligenza artificiale generativa stanno evolvendo rapidamente.
+<pre>[{'content': "Qual è il prezzo del libro 'Stiamo davvero scherzando'?",
+  'name': "interfaccia con l'utente ed esecutore di codice",
+  'role': 'assistant'},
+ {'content': '',
+  'role': 'assistant',
+  'tool_calls': [{'function': {'arguments': '{"informazione":"prezzo","titolo":"Stiamo '
+                                            'davvero scherzando"}',
+                               'name': 'cerca'},
+                  'id': 'call_buufxhap',
+                  'type': 'function'}]},
+ {'content': '15 €',
+  'name': "interfaccia con l'utente ed esecutore di codice",
+  'role': 'tool',
+  'tool_responses': [{'content': '15 €',
+                      'role': 'tool',
+                      'tool_call_id': 'call_buufxhap'}]},
+ {'content': 'CONCLUSO.', 'name': 'esperto di dominio', 'role': 'user'}]
 </pre>
 </div>
 </div>
@@ -7711,44 +7836,7 @@ Può accadere ovviamente che una parola non sia presente nel vocabolario, cioè 
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Per curiosità, possiamo facilmente esplorare il contenuto del vocabolario, elencando alcuni dei token che contiene: è chiaro che non c'è una logica chiara nell'ordine con cui i token compaiono.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6100</span><span class="p">,</span> <span class="mi">6200</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">([</span><span class="n">i</span><span class="p">]),</span> <span class="n">end</span><span class="o">=</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">9</span> <span class="k">else</span> <span class="s1">' '</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>dichiarato opportuno ordini arrivo lasci SP Può sogno bellezza ##OD
-##scritto Zo vicin impegno lavorato conformemente ##ttorno Ancora faceva esplo
-magari Max ##tria produttore ricordare ##mentato dottor Slo quota resti
-presentazione 92 é ##nno privata UN accol strade Air collegamento
-##isca Antonio Dan arma offerta spettacolo ##ustralia ##uori occidentale ##74
-Ricor My fla ##-200 custo Belgio ##.12. Barcellona ##autorità motori
-assicurare ##esercizio ##bio sport ##95 bol frattempo deten ##cenze ##TER
-##uogo disciplina numeri ##teriormente ##gelo ottimo registrato ##esame ricord selezione
-##inione consegui ##ds ##tentri conosco tradizionale trasferimento qualifica interni ##derci
-rea proposto Natura ##monian adulti World ##glione ##onale ##ffo ##Com
-</pre>
-</div>
+<p>È un semplice ma già interessante esempio (modello linguistico di piccole dimensioni, esecuzione locale, in italiano...) di un mix tra un "Sistema 1" (il modello linguistico stesso) e un "Sistema 2" (la funzione Python).</p>
 </div>
 </div>
 </div>
