@@ -57,8 +57,7 @@
   <h2>Luca Mari - Chatting with an AI...</h2>
 
   <div id="intro" class="content0 active">
-    <p>Raccolgo e metto a disposizione qui un po' di materiali a proposito di quello che sta succedendo intorno a ChatGPT e i suoi fratelli, dunque ai cosiddetti sistemi di <i>intelligenza artificiale generativa</i> ("GenAI") e in particolare ai chatbot, con i quali possiamo interagire atraverso conversazioni nelle nostre lingue storico-naturali, come l'italiano e l'inglese:
-    <br><a href="#dialoghi">Dialoghi</a>, <a href="#articoli">Articoli</a>, <a href="#media">Media</a>, <a href="#slide">Slide</a>, <a href="#storie">Storie</a>, <a href="#attivita">Attività</a>.</p>
+    <p style="margin-bottom:0%;"">Raccolgo e metto a disposizione qui un po' di materiali a proposito di quello che sta succedendo intorno a ChatGPT e i suoi fratelli, dunque ai cosiddetti sistemi di <i>intelligenza artificiale generativa</i> ("GenAI") e in particolare ai chatbot, con i quali possiamo interagire atraverso conversazioni nelle nostre lingue storico-naturali, come l'italiano e l'inglese.</p>
     
     <p style="border:1px solid black; padding:10px; background-color: antiquewhite;">
       <img src="../img/logo.png" style="float:left; margin-top:-5pt; margin-left:-5pt;padding-right:20pt;" width="100">
@@ -75,12 +74,12 @@
     
     <hr>
     <p><img src="../img/libro.jpg" style="float:right; margin-top:-30pt; margin-right:-30pt;" width="250">
-    <br>È stato pubblicato il <span style="color:#E43762;font-weight:800">libro</span> <a href="https://ecommerce.ilsole24ore.com/shopping24/lintelligenza-artificiale-di-dostoevskij.html" target="_blank">"L'Intelligenza Artificiale di Dostoevskij"</a>, che raccoglie e presenta in modo organico un po' delle esperienze e delle riflessioni che ho fatto in questi mesi a proposito di GenAI, e "futuro, conoscenza, e responsabilità umana", come dichiara il sottotitolo (il libro si apre con <a href="https://docs.google.com/document/d/10mwa5x-O7DlkmkXJALejxcXgrNg3DCQix_UgAksFGpc" target="_blank">Imparare (a imparare) con i chatbot: una lettera</a> che un docente universitario ha indirizzato agli studenti di un suo corso prima dell’inizio delle lezioni). È il risultato della collaborazione con tanti colleghe/i e amiche/i, e in particolare Daniele Bellasio, Francesco Bertolotti, Alessandro Giordani. Grazie a ognuna/o!</p>
+    <br>In febbraio 2024 è stato pubblicato il <span style="color:#E43762;font-weight:800">libro</span> <a href="https://ecommerce.ilsole24ore.com/shopping24/lintelligenza-artificiale-di-dostoevskij.html" target="_blank">"L'Intelligenza Artificiale di Dostoevskij"</a>, che raccoglie e presenta in modo organico un po' delle esperienze e delle riflessioni che ho fatto in questi mesi a proposito di GenAI, e "futuro, conoscenza, e responsabilità umana", come dichiara il sottotitolo (il libro si apre con <a href="https://docs.google.com/document/d/10mwa5x-O7DlkmkXJALejxcXgrNg3DCQix_UgAksFGpc" target="_blank">Imparare (a imparare) con i chatbot: una lettera</a> che un docente universitario ha indirizzato agli studenti di un suo corso prima dell’inizio delle lezioni). È il risultato della collaborazione con tanti colleghe/i e amiche/i, e in particolare Daniele Bellasio, Francesco Bertolotti, Alessandro Giordani. Grazie a ognuna/o!</p>
     <hr>
     <p><img src="../img/podcast.jpg" style="float:left; margin-top:-20pt; padding-right:20pt;" width="400">
     <br>È stato pubblicato, per gli abbonati del Sole 24 Ore, il <span style="color:#E43762;font-weight:800">podcast</span> in cinque puntate <a href="https://24plus.ilsole24ore.com/podcast/tu-e-ia-idee-e-protagonisti-dell-intelligenza-artificiale-AFRct45C" target="_blank">Tu e IA, idee e protagonisti dell'intelligenza artificiale</a> realizzato con Daniele Bellasio.</p>
     <hr>
-    <p style="margin-top:40pt">Un aggiornamento sul contenuto di queste pagine (maggio 2024): <b>nuovi materiali in tutte le sezioni; aggiunta la sezione "Storie"; eliminata la sezione "Letture", con il link alla pagina di letture spostato nell'introduzione).</b></p>
+    <p style="margin-top:40pt">Un aggiornamento sul contenuto di queste pagine (settembre 2024): <b>nuovi materiali in tutte le sezioni, in particolare i notebook Python nella sezione Attività</b>.</p>
   </div>
 
 
@@ -285,12 +284,16 @@
     <hr>
     <p>Infine, per chi non ha troppi problemi a toccare un po' di codice, quelli che seguono sono notebook Python, proposti con l'obiettivo di fornire un'introduzione a qualche aspetto dell'intelligenza artificiale, con l'attenzione a essere utili nell'apprendimento, non a essere computazionalmente efficienti (e per questo i dettagli dell'implementazione sono spesso lasciati "dietro le quinte", in un file *utils.py di appoggio).</p>
     <ul>
-      <li><a href="attivita/base.html" target="_blank">Un'introduzione operativa agli LLM, con accesso a un LLM locale attraverso un server di API</a> (aggiornamento: febbraio 24)</li>
-      <li><a href="attivita/linear.html" target="_blank">La più semplice rete neurale, per trovare la retta che meglio modella un insieme di punti (x,y)</a> (aggiornamento: maggio 24)</li>
-      <li><a href="attivita/mnist.html" target="_blank">L'esempio di costruzione, addestramento e uso di una semplice rete neurale per leggere cifre scritte a mano</a> (aggiornamento: maggio 24; con Dennis Remigio)</li>
-      <li><a href="attivita/tokenize.html" target="_blank">Un'esplorazione della tokenizzazione con un transformer</a> (aggiornamento: marzo 24)</li>
-      <li><a href="attivita/embed.html" target="_blank">Un'esplorazione del token embedding con un transformer</a> (aggiornamento: aprile 24)</li>
-      <li><a href="attivita/embed2.html" target="_blank">Un'esplorazione del sentence embedding con un transformer</a> (aggiornamento: maggio 24)</li>
+      <li><a href="tutorial/neuron.html" target="_blank">L'approssimazione di una funzione lineare mediante un singolo neurone a comportamento lineare</a></li>
+      <li><a href="tutorial/linear.html" target="_blank">Un semplice confronto tra comportamento programmato e comportamento appreso</a></li>
+      <li><a href="tutorial/onehidden.html" target="_blank">L'approssimazione di una funzione mediante un MLP con uno strato nascosto</a></li>
+      <li><a href="tutorial/transformers.html" target="_blank">Qualche esempio di uso dei transformer</a></li>
+      <li><a href="tutorial/tokenize.html" target="_blank"></a>Un'esplorazione della tokenizzazione</li>
+      <li><a href="tutorial/embed.html" target="_blank">Un'esplorazione del token embedding con un transformer</a></li>
+      <li><a href="tutorial/rag.html" target="_blank">Un semplice esempio di Retrieval-Augmented Generation (RAG)</a></li>
+      <li><a href="tutorial/chattingagents.html" target="_blank">Un esempio di interazione tra agenti</a></li>
+      <li><a href="tutorial/computingagents.html" target="_blank">Un esempio di esecuzione automatica di funzioni ("tool") da un modello linguistico locale</a></li>
+      <li><a href="tutorial/searchingagents.html" target="_blank">Un altro esempio di esecuzione automatica di funzioni ("tool") da un modello linguistico locale</a></li>
     </ul>
     </p>
   </div>
