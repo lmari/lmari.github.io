@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>searchingagents</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>websearchingagents</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7516,7 +7516,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Un-esempio-di-esecuzione-automatica-di-funzioni-(%22tool%22)-da-un-modello-linguistico-locale">Un esempio di esecuzione automatica di funzioni ("<em>tool</em>") da un modello linguistico locale<a class="anchor-link" href="#Un-esempio-di-esecuzione-automatica-di-funzioni-(%22tool%22)-da-un-modello-linguistico-locale">¶</a></h2><p>Luca Mari, settembre 2024</p>
+<h2 id="Un-esempio-di-esecuzione-automatica-di-funzioni-(%22tool%22)-da-un-modello-linguistico-locale">Un esempio di esecuzione automatica di funzioni ("<em>tool</em>") da un modello linguistico locale<a class="anchor-link" href="#Un-esempio-di-esecuzione-automatica-di-funzioni-(%22tool%22)-da-un-modello-linguistico-locale">¶</a></h2><p>Luca Mari, ottobre 2024</p>
 <p>Quest'opera è distribuita con <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" target="_blank">Licenza Creative Commons Attribuzione - Non commerciale - Condividi allo stesso modo 4.0 Internazionale</a>.<br/>
 <img alt="No description has been provided for this image" src="https://creativecommons.it/chapterIT/wp-content/uploads/2021/01/by-nc-sa.eu_.png" width="100"/></p>
 <p><strong>Obiettivo</strong>: comprendere qualche aspetto della logica delle architetture ad agenti e dell'esecuzione automatica di funzioni.<br/>
@@ -7532,11 +7532,11 @@ a.anchor-link {
 <li>eseguire VSCode e attivare le estensioni per Python e Jupyter</li>
 <li>ancora in VSCode:<ul>
 <li>creare una cartella di lavoro e renderla la cartella corrente</li>
-<li>copiare nella cartella il file di questa attività: <a href="searchingagents.ipynb">searchingagents.ipynb</a></li>
-<li>aprire il notebook <code>searchingagents.ipynb</code></li>
+<li>copiare nella cartella il file di questa attività: <a href="websearchingagents.ipynb">websearchingagents.ipynb</a></li>
+<li>aprire il notebook <code>websearchingagents.ipynb</code></li>
 <li>creare un ambiente virtuale locale Python (Select Kernel | Python Environments | Create Python Environment | Venv, e scegliere un interprete Python):</li>
 <li>installare i moduli Python richiesti, eseguendo dal terminale:<br/>
-<code>pip install pyautogen</code></li>
+<code>pip install pyautogen duckduckgo_search</code></li>
 </ul>
 </li>
 <li>eseguire dalla linea di comando:<br/>
@@ -7563,11 +7563,12 @@ dove <code>xxx</code> è la directory che contiene i modelli Ollama (in Linux po
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">autogen</span>
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Annotated</span>
+<span class="kn">from</span> <span class="nn">duckduckgo_search</span> <span class="kn">import</span> <span class="n">DDGS</span>
 
 <span class="n">llm_config</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">"config_list"</span><span class="p">:</span> <span class="p">[{</span> <span class="s2">"base_url"</span><span class="p">:</span><span class="s2">"http://localhost:1234/v1"</span><span class="p">,</span>
@@ -7597,7 +7598,7 @@ dove <code>xxx</code> è la directory che contiene i modelli Ollama (in Linux po
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">user_proxy</span> <span class="o">=</span> <span class="n">autogen</span><span class="o">.</span><span class="n">UserProxyAgent</span><span class="p">(</span>
@@ -7605,7 +7606,7 @@ dove <code>xxx</code> è la directory che contiene i modelli Ollama (in Linux po
     <span class="n">is_termination_msg</span><span class="o">=</span><span class="p">(</span><span class="k">lambda</span> <span class="n">msg</span><span class="p">:</span> <span class="s2">"conclus"</span> <span class="ow">in</span> <span class="n">msg</span><span class="p">[</span><span class="s2">"content"</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()),</span> <span class="c1"># a volte potrebbe essere "concluso" o "conclusa"...</span>
     <span class="n">human_input_mode</span><span class="o">=</span><span class="s2">"NEVER"</span><span class="p">,</span>
     <span class="n">code_execution_config</span><span class="o">=</span><span class="p">{</span><span class="s2">"use_docker"</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
-    <span class="n">max_consecutive_auto_reply</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">max_consecutive_auto_reply</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">domain_expert</span> <span class="o">=</span> <span class="n">autogen</span><span class="o">.</span><span class="n">AssistantAgent</span><span class="p">(</span>
@@ -7634,21 +7635,15 @@ dove <code>xxx</code> è la directory che contiene i modelli Ollama (in Linux po
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="nd">@user_proxy</span><span class="o">.</span><span class="n">register_for_execution</span><span class="p">()</span>
-<span class="nd">@domain_expert</span><span class="o">.</span><span class="n">register_for_llm</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"Cerca informazioni su un libro dal tuo archivio."</span><span class="p">)</span>
+<span class="nd">@domain_expert</span><span class="o">.</span><span class="n">register_for_llm</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"Cerca informazioni nel web."</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">cerca</span><span class="p">(</span>
-        <span class="n">titolo</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">"titolo del libro"</span><span class="p">],</span>
-        <span class="n">informazione</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">"genere di informazione da cercare: editore o prezzo"</span><span class="p">]</span>
+        <span class="n">query</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">"condizione di ricerca"</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="n">dati</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">"Questo libro ha un titolo inventato"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"editore"</span><span class="p">:</span> <span class="s2">"Borgesiana"</span><span class="p">,</span> <span class="s2">"prezzo"</span><span class="p">:</span> <span class="s2">"13 €"</span><span class="p">},</span>
-        <span class="s2">"Stiamo davvero scherzando"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"editore"</span><span class="p">:</span> <span class="s2">"Cose serie"</span><span class="p">,</span> <span class="s2">"prezzo"</span><span class="p">:</span> <span class="s2">"15 €"</span><span class="p">},</span>
-        <span class="s2">"Cose leggere"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"editore"</span><span class="p">:</span> <span class="s2">"Siamo ambigui"</span><span class="p">,</span> <span class="s2">"prezzo"</span><span class="p">:</span> <span class="s2">"12 €"</span><span class="p">},</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">dati</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">titolo</span><span class="p">,</span> <span class="s2">"Titolo non trovato..."</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">informazione</span><span class="p">,</span> <span class="s2">"Informazione non trovata..."</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">DDGS</span><span class="p">()</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">max_results</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7672,7 +7667,7 @@ dove <code>xxx</code> è la directory che contiene i modelli Ollama (in Linux po
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">domain_expert</span><span class="o">.</span><span class="n">llm_config</span><span class="p">[</span><span class="s2">"tools"</span><span class="p">]</span>
@@ -7686,17 +7681,15 @@ dove <code>xxx</code> è la directory che contiene i modelli Ollama (in Linux po
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[15]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>[{'type': 'function',
-  'function': {'description': 'Cerca informazioni su un libro dal tuo archivio.',
+  'function': {'description': 'Cerca informazioni nel web.',
    'name': 'cerca',
    'parameters': {'type': 'object',
-    'properties': {'titolo': {'type': 'string',
-      'description': 'titolo del libro'},
-     'informazione': {'type': 'string',
-      'description': 'genere di informazione da cercare: editore o prezzo'}},
-    'required': ['titolo', 'informazione']}}}]</pre>
+    'properties': {'query': {'type': 'string',
+      'description': 'condizione di ricerca'}},
+    'required': ['query']}}}]</pre>
 </div>
 </div>
 </div>
@@ -7717,11 +7710,11 @@ dove <code>xxx</code> è la directory che contiene i modelli Ollama (in Linux po
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">domain_expert</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
-<span class="n">res</span> <span class="o">=</span> <span class="n">user_proxy</span><span class="o">.</span><span class="n">initiate_chat</span><span class="p">(</span><span class="n">domain_expert</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">"Qual è il prezzo del libro 'Stiamo davvero scherzando'?"</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">user_proxy</span><span class="o">.</span><span class="n">initiate_chat</span><span class="p">(</span><span class="n">domain_expert</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">"Com'è definita l'unità di misura Joule?"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7736,19 +7729,19 @@ dove <code>xxx</code> è la directory che contiene i modelli Ollama (in Linux po
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre><span class="ansi-yellow-fg">interfaccia con l'utente ed esecutore di codice</span> (to esperto di dominio):
 
-Qual è il prezzo del libro 'Stiamo davvero scherzando'?
+Com'è definita l'unità di misura Joule?
 
 --------------------------------------------------------------------------------
-Qual è il prezzo del libro 'Stiamo davvero scherzando'?
+Com'è definita l'unità di misura Joule?
 
 --------------------------------------------------------------------------------
-[autogen.oai.client: 09-23 14:00:52] {349} WARNING - Model llama3.1:8b is not found. The cost will be 0. In your config_list, add field {"price" : [prompt_price_per_1k, completion_token_price_per_1k]} for customized pricing.
+[autogen.oai.client: 10-04 14:49:05] {349} WARNING - Model llama3.1:8b is not found. The cost will be 0. In your config_list, add field {"price" : [prompt_price_per_1k, completion_token_price_per_1k]} for customized pricing.
 <span class="ansi-yellow-fg">esperto di dominio</span> (to interfaccia con l'utente ed esecutore di codice):
 
 
-<span class="ansi-green-fg">***** Suggested tool call (call_buufxhap): cerca *****</span>
+<span class="ansi-green-fg">***** Suggested tool call (call_a8xbwhyu): cerca *****</span>
 Arguments: 
-{"informazione":"prezzo","titolo":"Stiamo davvero scherzando"}
+{"query":"definizione joule"}
 <span class="ansi-green-fg">******************************************************</span>
 
 --------------------------------------------------------------------------------
@@ -7758,15 +7751,17 @@ Arguments:
 
 <span class="ansi-yellow-fg">interfaccia con l'utente ed esecutore di codice</span> (to esperto di dominio):
 
-<span class="ansi-green-fg">***** Response from calling tool (call_buufxhap) *****</span>
-15 €
+<span class="ansi-green-fg">***** Response from calling tool (call_a8xbwhyu) *****</span>
+[{"title": "Joule - Wikipedia", "href": "https://it.wikipedia.org/wiki/Joule", "body": "Un joule può essere definito come il lavoro svolto esercitando la forza di un newton per una distanza di un metro, perciò la stessa quantità può essere riferita come newton metro. Comunque, per evitare confusione, il newton metro è tipicamente usato come la misura del momento meccanico e non dell'energia."}, {"title": "Joule - Wikipedia", "href": "https://en.wikipedia.org/wiki/Joule", "body": "The joule (pronounced / ˈdʒuːl /, JOOL or / ˈdʒaʊl / JOWL; symbol: J) is the unit of energy in the International System of Units (SI). [1] It is equal to the amount of work done when a force of one newton displaces a mass through a distance of one metre in the direction of that force. It is also the energy dissipated as heat when an ..."}, {"title": "joule - unità di misura - YouMath", "href": "https://www.youmath.it/lezioni/fisica/unita-di-misura/misure-lavoro-energia-calore/3079-joule-unita-di-misura.html", "body": "Il joule (simbolo J): definizione del joule unità di misura di lavoro, energia e calore; spiegazione ed esempi di conversioni con il joule."}, {"title": "What Is a Joule? Science Definition - ThoughtCo", "href": "https://www.thoughtco.com/definition-of-joule-604543", "body": "Learn the definition of a joule, a basic unit of energy used in chemistry, chemical engineering, and physics, plus learn what a joule is equal to."}, {"title": "Joule | Definition &amp; Formula | Britannica", "href": "https://www.britannica.com/science/joule", "body": "Joule, unit of work or energy that is equal to the work done by a force of one newton acting through one meter."}]
 <span class="ansi-green-fg">******************************************************</span>
 
 --------------------------------------------------------------------------------
-[autogen.oai.client: 09-23 14:00:54] {349} WARNING - Model llama3.1:8b is not found. The cost will be 0. In your config_list, add field {"price" : [prompt_price_per_1k, completion_token_price_per_1k]} for customized pricing.
+[autogen.oai.client: 10-04 14:49:41] {349} WARNING - Model llama3.1:8b is not found. The cost will be 0. In your config_list, add field {"price" : [prompt_price_per_1k, completion_token_price_per_1k]} for customized pricing.
 <span class="ansi-yellow-fg">esperto di dominio</span> (to interfaccia con l'utente ed esecutore di codice):
 
 CONCLUSO.
+
+L'unità di misura Joule è definita come il lavoro svolto esercitando la forza di un newton per una distanza di un metro.
 
 --------------------------------------------------------------------------------
 </pre>
@@ -7790,7 +7785,7 @@ CONCLUSO.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
@@ -7807,23 +7802,92 @@ CONCLUSO.
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>[{'content': "Qual è il prezzo del libro 'Stiamo davvero scherzando'?",
+<pre>[{'content': "Com'è definita l'unità di misura Joule?",
   'name': "interfaccia con l'utente ed esecutore di codice",
   'role': 'assistant'},
  {'content': '',
   'role': 'assistant',
-  'tool_calls': [{'function': {'arguments': '{"informazione":"prezzo","titolo":"Stiamo '
-                                            'davvero scherzando"}',
+  'tool_calls': [{'function': {'arguments': '{"query":"definizione joule"}',
                                'name': 'cerca'},
-                  'id': 'call_buufxhap',
+                  'id': 'call_a8xbwhyu',
                   'type': 'function'}]},
- {'content': '15 €',
+ {'content': '[{"title": "Joule - Wikipedia", "href": '
+             '"https://it.wikipedia.org/wiki/Joule", "body": "Un joule può '
+             'essere definito come il lavoro svolto esercitando la forza di un '
+             'newton per una distanza di un metro, perciò la stessa quantità '
+             'può essere riferita come newton metro. Comunque, per evitare '
+             'confusione, il newton metro è tipicamente usato come la misura '
+             'del momento meccanico e non dell\'energia."}, {"title": "Joule - '
+             'Wikipedia", "href": "https://en.wikipedia.org/wiki/Joule", '
+             '"body": "The joule (pronounced / ˈdʒuːl /, JOOL or / ˈdʒaʊl / '
+             'JOWL; symbol: J) is the unit of energy in the International '
+             'System of Units (SI). [1] It is equal to the amount of work done '
+             'when a force of one newton displaces a mass through a distance '
+             'of one metre in the direction of that force. It is also the '
+             'energy dissipated as heat when an ..."}, {"title": "joule - '
+             'unità di misura - YouMath", "href": '
+             '"https://www.youmath.it/lezioni/fisica/unita-di-misura/misure-lavoro-energia-calore/3079-joule-unita-di-misura.html", '
+             '"body": "Il joule (simbolo J): definizione del joule unità di '
+             'misura di lavoro, energia e calore; spiegazione ed esempi di '
+             'conversioni con il joule."}, {"title": "What Is a Joule? Science '
+             'Definition - ThoughtCo", "href": '
+             '"https://www.thoughtco.com/definition-of-joule-604543", "body": '
+             '"Learn the definition of a joule, a basic unit of energy used in '
+             'chemistry, chemical engineering, and physics, plus learn what a '
+             'joule is equal to."}, {"title": "Joule | Definition &amp; Formula | '
+             'Britannica", "href": "https://www.britannica.com/science/joule", '
+             '"body": "Joule, unit of work or energy that is equal to the work '
+             'done by a force of one newton acting through one meter."}]',
   'name': "interfaccia con l'utente ed esecutore di codice",
   'role': 'tool',
-  'tool_responses': [{'content': '15 €',
+  'tool_responses': [{'content': '[{"title": "Joule - Wikipedia", "href": '
+                                 '"https://it.wikipedia.org/wiki/Joule", '
+                                 '"body": "Un joule può essere definito come '
+                                 'il lavoro svolto esercitando la forza di un '
+                                 'newton per una distanza di un metro, perciò '
+                                 'la stessa quantità può essere riferita come '
+                                 'newton metro. Comunque, per evitare '
+                                 'confusione, il newton metro è tipicamente '
+                                 'usato come la misura del momento meccanico e '
+                                 'non dell\'energia."}, {"title": "Joule - '
+                                 'Wikipedia", "href": '
+                                 '"https://en.wikipedia.org/wiki/Joule", '
+                                 '"body": "The joule (pronounced / ˈdʒuːl /, '
+                                 'JOOL or / ˈdʒaʊl / JOWL; symbol: J) is the '
+                                 'unit of energy in the International System '
+                                 'of Units (SI). [1] It is equal to the amount '
+                                 'of work done when a force of one newton '
+                                 'displaces a mass through a distance of one '
+                                 'metre in the direction of that force. It is '
+                                 'also the energy dissipated as heat when an '
+                                 '..."}, {"title": "joule - unità di misura - '
+                                 'YouMath", "href": '
+                                 '"https://www.youmath.it/lezioni/fisica/unita-di-misura/misure-lavoro-energia-calore/3079-joule-unita-di-misura.html", '
+                                 '"body": "Il joule (simbolo J): definizione '
+                                 'del joule unità di misura di lavoro, energia '
+                                 'e calore; spiegazione ed esempi di '
+                                 'conversioni con il joule."}, {"title": "What '
+                                 'Is a Joule? Science Definition - ThoughtCo", '
+                                 '"href": '
+                                 '"https://www.thoughtco.com/definition-of-joule-604543", '
+                                 '"body": "Learn the definition of a joule, a '
+                                 'basic unit of energy used in chemistry, '
+                                 'chemical engineering, and physics, plus '
+                                 'learn what a joule is equal to."}, {"title": '
+                                 '"Joule | Definition &amp; Formula | Britannica", '
+                                 '"href": '
+                                 '"https://www.britannica.com/science/joule", '
+                                 '"body": "Joule, unit of work or energy that '
+                                 'is equal to the work done by a force of one '
+                                 'newton acting through one meter."}]',
                       'role': 'tool',
-                      'tool_call_id': 'call_buufxhap'}]},
- {'content': 'CONCLUSO.', 'name': 'esperto di dominio', 'role': 'user'}]
+                      'tool_call_id': 'call_a8xbwhyu'}]},
+ {'content': 'CONCLUSO.\n'
+             '\n'
+             "L'unità di misura Joule è definita come il lavoro svolto "
+             'esercitando la forza di un newton per una distanza di un metro.',
+  'name': 'esperto di dominio',
+  'role': 'user'}]
 </pre>
 </div>
 </div>
