@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>chattingagentsEN</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>computingagentsEN</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7517,7 +7517,9 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">autogen</span> <span class="kn">import</span> <span class="n">UserProxyAgent</span><span class="p">,</span> <span class="n">ConversableAgent</span><span class="p">,</span> <span class="n">GroupChat</span><span class="p">,</span> <span class="n">GroupChatManager</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">autogen</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Annotated</span>
 
 <span class="n">llm_config</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">"config_list"</span><span class="p">:</span> <span class="p">[{</span> <span class="s2">"base_url"</span><span class="p">:</span><span class="s2">"http://localhost:1234/v1"</span><span class="p">,</span>
@@ -7536,37 +7538,22 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">manager</span> <span class="o">=</span> <span class="n">UserProxyAgent</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">"Interface between the user and the agents"</span><span class="p">,</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">user_proxy</span> <span class="o">=</span> <span class="n">autogen</span><span class="o">.</span><span class="n">UserProxyAgent</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"Interface with the user and code executor"</span><span class="p">,</span>
     <span class="n">is_termination_msg</span><span class="o">=</span><span class="p">(</span><span class="k">lambda</span> <span class="n">msg</span><span class="p">:</span> <span class="s2">"conclude"</span> <span class="ow">in</span> <span class="n">msg</span><span class="p">[</span><span class="s2">"content"</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()),</span>
     <span class="n">human_input_mode</span><span class="o">=</span><span class="s2">"NEVER"</span><span class="p">,</span>
-    <span class="n">code_execution_config</span><span class="o">=</span><span class="kc">False</span>
+    <span class="n">code_execution_config</span><span class="o">=</span><span class="p">{</span><span class="s2">"use_docker"</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+    <span class="n">max_consecutive_auto_reply</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="n">creative</span> <span class="o">=</span> <span class="n">ConversableAgent</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">"Creative"</span><span class="p">,</span>
+<span class="n">domain_expert</span> <span class="o">=</span> <span class="n">autogen</span><span class="o">.</span><span class="n">AssistantAgent</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"Domain expert"</span><span class="p">,</span>
     <span class="n">llm_config</span><span class="o">=</span><span class="n">llm_config</span><span class="p">,</span>
-    <span class="n">human_input_mode</span><span class="o">=</span><span class="s2">"NEVER"</span><span class="p">,</span>
-    <span class="n">code_execution_config</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">system_message</span><span class="o">=</span><span class="s2">"""</span>
-<span class="s2">    You are the creative in the organization, and your job is to propose multiple innovative ideas,</span>
-<span class="s2">    which your analyst colleague will evaluate and from which they will choose the one they think is the best.</span>
-<span class="s2">    For clarity, always present your proposals as a list.</span>
-<span class="s2">    """</span>
-<span class="p">)</span>
-
-<span class="n">analyst</span> <span class="o">=</span> <span class="n">ConversableAgent</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">"Analyst"</span><span class="p">,</span>
-    <span class="n">llm_config</span><span class="o">=</span><span class="n">llm_config</span><span class="p">,</span>
-    <span class="n">human_input_mode</span><span class="o">=</span><span class="s2">"NEVER"</span><span class="p">,</span>
-    <span class="n">code_execution_config</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">system_message</span><span class="o">=</span><span class="s2">"""</span>
-<span class="s2">    You are the analyst of the organization, and your task is to evaluate the proposals</span>
-<span class="s2">    of your creative colleague, choose the one you think is the best,</span>
-<span class="s2">    possibly modify it to improve it, and motivate your choice.</span>
+<span class="s2">    If you have to compute a mathematical function, like a square root, always use the the related function, if available.</span>
 <span class="s2">    When you think that the achieved result is satisfactory, write 'CONCLUDED'.</span>
 <span class="s2">    """</span>
 <span class="p">)</span>
@@ -7580,27 +7567,18 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">state_transition</span><span class="p">(</span><span class="n">last_speaker</span><span class="p">,</span> <span class="n">groupchat</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">last_speaker</span> <span class="ow">is</span> <span class="n">manager</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">creative</span>
-    <span class="k">elif</span> <span class="n">last_speaker</span> <span class="ow">is</span> <span class="n">creative</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">analyst</span>
-    <span class="k">elif</span> <span class="n">last_speaker</span> <span class="ow">is</span> <span class="n">analyst</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">creative</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Invalid last_speaker"</span><span class="p">)</span>
-
-<span class="n">groupchat</span> <span class="o">=</span> <span class="n">GroupChat</span><span class="p">(</span>
-    <span class="n">agents</span><span class="o">=</span><span class="p">[</span><span class="n">manager</span><span class="p">,</span> <span class="n">creative</span><span class="p">,</span> <span class="n">analyst</span><span class="p">],</span>
-    <span class="n">messages</span><span class="o">=</span><span class="p">[],</span>
-    <span class="n">max_round</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">speaker_selection_method</span><span class="o">=</span><span class="n">state_transition</span>
-<span class="p">)</span>
-
-<span class="n">manager</span> <span class="o">=</span> <span class="n">GroupChatManager</span><span class="p">(</span><span class="n">groupchat</span><span class="o">=</span><span class="n">groupchat</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="nd">@user_proxy</span><span class="o">.</span><span class="n">register_for_execution</span><span class="p">()</span>
+<span class="nd">@domain_expert</span><span class="o">.</span><span class="n">register_for_llm</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"Function to compute a square root."</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">square_root_calculator</span><span class="p">(</span>
+        <span class="n">number</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="s2">"Number of which the square root is to be computed"</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">number</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"The square root of </span><span class="si">{</span><span class="n">number</span><span class="si">}</span><span class="s2"> is </span><span class="si">{</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">number</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The square root of the negative number </span><span class="si">{</span><span class="n">number</span><span class="si">}</span><span class="s2"> cannot be computed"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7611,19 +7589,43 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">manager</span><span class="o">.</span><span class="n">initiate_chat</span><span class="p">(</span>
-    <span class="n">creative</span><span class="p">,</span>
-    <span class="n">message</span><span class="o">=</span><span class="s2">"""</span>
-<span class="s2">    Good morning dear colleagues. We need to choose a name for the introductory course about artificial intelligence</span>
-<span class="s2">    that we are designing and that, I remind you, is aimed at managers of organizations who,</span>
-<span class="s2">    without wanting to become experts in technical matters, are interested in understanding</span>
-<span class="s2">    the potential and risks of this technology. I ask the creative to propose 5 ideas and submit them to the analyst,</span>
-<span class="s2">    who will make his evaluations and consequently make me his proposal, thus concluding our work.</span>
-<span class="s2">    """</span>
-<span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">domain_expert</span><span class="o">.</span><span class="n">llm_config</span><span class="p">[</span><span class="s2">"tools"</span><span class="p">]</span> <span class="c1"># check the JSON configuration</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>[{'type': 'function',
+  'function': {'description': 'Function to compute a square root.',
+   'name': 'square_root_calculator',
+   'parameters': {'type': 'object',
+    'properties': {'number': {'type': 'number',
+      'description': 'Number of which the square root is to be computed'}},
+    'required': ['number']}}}]</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">domain_expert</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">user_proxy</span><span class="o">.</span><span class="n">initiate_chat</span><span class="p">(</span><span class="n">domain_expert</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">"What is the square root of 1234.56789?"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7636,66 +7638,92 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre><span class="ansi-yellow-fg">chat_manager</span> (to Creative):
+<pre><span class="ansi-yellow-fg">Interface with the user and code executor</span> (to Domain expert):
 
-
-    Good morning dear colleagues. We need to choose a name for the introductory course about artificial intelligence
-    that we are designing and that, I remind you, is aimed at managers of organizations who,
-    without wanting to become experts in technical matters, are interested in understanding
-    the potential and risks of this technology. I ask the creative to propose 5 ideas and submit them to the analyst,
-    who will make his evaluations and consequently make me his proposal, thus concluding our work.
-    
+What is the square root of 1234.56789?
 
 --------------------------------------------------------------------------------
-[autogen.oai.client: 10-13 16:03:54] {409} WARNING - Model llama3.1:8b is not found. The cost will be 0. In your config_list, add field {"price" : [prompt_price_per_1k, completion_token_price_per_1k]} for customized pricing.
-<span class="ansi-yellow-fg">Creative</span> (to chat_manager):
-
-Good morning colleagues! Excited to contribute to this project.
-
-As per your request, I'm proposing five innovative name options for the introductory course about artificial intelligence. Here they are:
-
-**1.** **AI Insider**: This name suggests that participants will gain a level of understanding and insight into AI that's typically reserved for experts inside the field.
-
-**2.** **Mind The Gap**: This name highlights the potential gaps in management knowledge regarding AI, while emphasizing the need to educate themselves on this growing technology.
-
-**3.** **Artificial Intelligence Essentials (AIE)**: A straightforward name that implies a comprehensive overview of the basics and essential concepts related to artificial intelligence.
-
-**4.** **The AI Manager's Toolbox**: This name frames the course as providing participants with practical tools and knowledge they can apply in their management roles to navigate AI successfully.
-
-**5.** **Navigating The AI Landscape**: This name conveys that the course will guide participants through the increasingly complex landscape of artificial intelligence, helping them make informed decisions about integrating it into their organizations.
-
-I present these five options to our analyst colleague for evaluation and selection!
+What is the square root of 1234.56789?
 
 --------------------------------------------------------------------------------
-<span class="ansi-green-fg">
-Next speaker: Analyst
-</span>
-[autogen.oai.client: 10-13 16:04:19] {409} WARNING - Model llama3.1:8b is not found. The cost will be 0. In your config_list, add field {"price" : [prompt_price_per_1k, completion_token_price_per_1k]} for customized pricing.
-<span class="ansi-yellow-fg">Analyst</span> (to chat_manager):
+[autogen.oai.client: 10-13 17:09:37] {409} WARNING - Model llama3.1:8b is not found. The cost will be 0. In your config_list, add field {"price" : [prompt_price_per_1k, completion_token_price_per_1k]} for customized pricing.
+<span class="ansi-yellow-fg">Domain expert</span> (to Interface with the user and code executor):
 
-Thank you for presenting these proposals. As the analyst, I'll review each option and evaluate them based on several criteria such as relevance, clarity, uniqueness, and potential appeal to our target audience.
 
-After careful consideration, I'm impressed with the diversity of suggestions, but I think **The AI Manager's Toolbox** stands out as the most suitable option. Here's why:
+<span class="ansi-green-fg">***** Suggested tool call (call_8dzfbe8a): square_root_calculator *****</span>
+Arguments: 
+{"number":"1234.56789"}
+<span class="ansi-green-fg">***********************************************************************</span>
 
-1. **Relevance**: This name directly addresses our purpose of educating managers on how to effectively integrate AI into their organizations.
-2. **Clarity**: The phrase "Manager's Toolbox" clearly conveys that participants will learn practical, actionable knowledge applicable in a management context.
-3. **Uniqueness**: While other options like "AI Insider" or "Navigating the AI Landscape" might be attention-grabbing, they're also more generic and might not immediately convey our specific focus on managerial applications of AI.
-4. **Target audience appeal**: Managers who've taken this course will likely connect with the idea of acquiring a useful toolbox of knowledge and strategies to successfully navigate AI.
+--------------------------------------------------------------------------------
+<span class="ansi-magenta-fg">
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; EXECUTING FUNCTION square_root_calculator...</span>
+<span class="ansi-yellow-fg">Interface with the user and code executor</span> (to Domain expert):
 
-To further enhance this proposal, I suggest a slight modification to make it more dynamic: **The AI Manager's Essential Toolbox**. Adding "essential" emphasizes that the course provides fundamental, must-have knowledge for effective AI management.
+<span class="ansi-yellow-fg">Interface with the user and code executor</span> (to Domain expert):
 
-Overall, I believe **The AI Manager's Essential Toolbox** is an excellent choice for our introductory course on artificial intelligence.
+<span class="ansi-green-fg">***** Response from calling tool (call_8dzfbe8a) *****</span>
+The square root of 1234.56789 is 35.1364
+<span class="ansi-green-fg">******************************************************</span>
 
-CONCLUDED
+--------------------------------------------------------------------------------
+[autogen.oai.client: 10-13 17:09:39] {409} WARNING - Model llama3.1:8b is not found. The cost will be 0. In your config_list, add field {"price" : [prompt_price_per_1k, completion_token_price_per_1k]} for customized pricing.
+<span class="ansi-yellow-fg">Domain expert</span> (to Interface with the user and code executor):
+
+CONCLUDED.
+
+Note: I used the `math.sqrt()` function in Python to compute the square root.
 
 --------------------------------------------------------------------------------
 </pre>
 </div>
 </div>
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>ChatResult(chat_id=None, chat_history=[{'content': '\n    Good morning dear colleagues. We need to choose a name for the introductory course about artificial intelligence\n    that we are designing and that, I remind you, is aimed at managers of organizations who,\n    without wanting to become experts in technical matters, are interested in understanding\n    the potential and risks of this technology. I ask the creative to propose 5 ideas and submit them to the analyst,\n    who will make his evaluations and consequently make me his proposal, thus concluding our work.\n    ', 'role': 'assistant', 'name': 'chat_manager'}, {'content': "Good morning colleagues! Excited to contribute to this project.\n\nAs per your request, I'm proposing five innovative name options for the introductory course about artificial intelligence. Here they are:\n\n**1.** **AI Insider**: This name suggests that participants will gain a level of understanding and insight into AI that's typically reserved for experts inside the field.\n\n**2.** **Mind The Gap**: This name highlights the potential gaps in management knowledge regarding AI, while emphasizing the need to educate themselves on this growing technology.\n\n**3.** **Artificial Intelligence Essentials (AIE)**: A straightforward name that implies a comprehensive overview of the basics and essential concepts related to artificial intelligence.\n\n**4.** **The AI Manager's Toolbox**: This name frames the course as providing participants with practical tools and knowledge they can apply in their management roles to navigate AI successfully.\n\n**5.** **Navigating The AI Landscape**: This name conveys that the course will guide participants through the increasingly complex landscape of artificial intelligence, helping them make informed decisions about integrating it into their organizations.\n\nI present these five options to our analyst colleague for evaluation and selection!", 'role': 'user', 'name': 'Creative'}, {'content': 'Thank you for presenting these proposals. As the analyst, I\'ll review each option and evaluate them based on several criteria such as relevance, clarity, uniqueness, and potential appeal to our target audience.\n\nAfter careful consideration, I\'m impressed with the diversity of suggestions, but I think **The AI Manager\'s Toolbox** stands out as the most suitable option. Here\'s why:\n\n1. **Relevance**: This name directly addresses our purpose of educating managers on how to effectively integrate AI into their organizations.\n2. **Clarity**: The phrase "Manager\'s Toolbox" clearly conveys that participants will learn practical, actionable knowledge applicable in a management context.\n3. **Uniqueness**: While other options like "AI Insider" or "Navigating the AI Landscape" might be attention-grabbing, they\'re also more generic and might not immediately convey our specific focus on managerial applications of AI.\n4. **Target audience appeal**: Managers who\'ve taken this course will likely connect with the idea of acquiring a useful toolbox of knowledge and strategies to successfully navigate AI.\n\nTo further enhance this proposal, I suggest a slight modification to make it more dynamic: **The AI Manager\'s Essential Toolbox**. Adding "essential" emphasizes that the course provides fundamental, must-have knowledge for effective AI management.\n\nOverall, I believe **The AI Manager\'s Essential Toolbox** is an excellent choice for our introductory course on artificial intelligence.\n\nCONCLUDED', 'name': 'Analyst', 'role': 'assistant'}], summary='Thank you for presenting these proposals. As the analyst, I\'ll review each option and evaluate them based on several criteria such as relevance, clarity, uniqueness, and potential appeal to our target audience.\n\nAfter careful consideration, I\'m impressed with the diversity of suggestions, but I think **The AI Manager\'s Toolbox** stands out as the most suitable option. Here\'s why:\n\n1. **Relevance**: This name directly addresses our purpose of educating managers on how to effectively integrate AI into their organizations.\n2. **Clarity**: The phrase "Manager\'s Toolbox" clearly conveys that participants will learn practical, actionable knowledge applicable in a management context.\n3. **Uniqueness**: While other options like "AI Insider" or "Navigating the AI Landscape" might be attention-grabbing, they\'re also more generic and might not immediately convey our specific focus on managerial applications of AI.\n4. **Target audience appeal**: Managers who\'ve taken this course will likely connect with the idea of acquiring a useful toolbox of knowledge and strategies to successfully navigate AI.\n\nTo further enhance this proposal, I suggest a slight modification to make it more dynamic: **The AI Manager\'s Essential Toolbox**. Adding "essential" emphasizes that the course provides fundamental, must-have knowledge for effective AI management.\n\nOverall, I believe **The AI Manager\'s Essential Toolbox** is an excellent choice for our introductory course on artificial intelligence.\n\nCONCLUDED', cost={'usage_including_cached_inference': {'total_cost': 0, 'llama3.1:8b': {'cost': 0, 'prompt_tokens': 167, 'completion_tokens': 228, 'total_tokens': 395}}, 'usage_excluding_cached_inference': {'total_cost': 0, 'llama3.1:8b': {'cost': 0, 'prompt_tokens': 167, 'completion_tokens': 228, 'total_tokens': 395}}}, human_input=[])</pre>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">chat_history</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>[{'content': 'What is the square root of 1234.56789?',
+  'name': 'Interface with the user and code executor',
+  'role': 'assistant'},
+ {'content': '',
+  'role': 'assistant',
+  'tool_calls': [{'function': {'arguments': '{"number":"1234.56789"}',
+                               'name': 'square_root_calculator'},
+                  'id': 'call_8dzfbe8a',
+                  'type': 'function'}]},
+ {'content': 'The square root of 1234.56789 is 35.1364',
+  'name': 'Interface with the user and code executor',
+  'role': 'tool',
+  'tool_responses': [{'content': 'The square root of 1234.56789 is 35.1364',
+                      'role': 'tool',
+                      'tool_call_id': 'call_8dzfbe8a'}]},
+ {'content': 'CONCLUDED.\n'
+             '\n'
+             'Note: I used the `math.sqrt()` function in Python to compute the '
+             'square root.',
+  'name': 'Domain expert',
+  'role': 'user'}]
+</pre>
 </div>
 </div>
 </div>
