@@ -7516,7 +7516,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="L'approssimazione-di-una-funzione-lineare-mediante-un-singolo-neurone-a-comportamento-lineare">L'approssimazione di una funzione lineare mediante un singolo neurone a comportamento lineare<a class="anchor-link" href="#L'approssimazione-di-una-funzione-lineare-mediante-un-singolo-neurone-a-comportamento-lineare">¶</a></h1><p>Luca Mari, settembre 2024</p>
+<h1 id="L'approssimazione-di-una-funzione-lineare-mediante-un-singolo-neurone-a-comportamento-lineare">L'approssimazione di una funzione lineare mediante un singolo neurone a comportamento lineare<a class="anchor-link" href="#L'approssimazione-di-una-funzione-lineare-mediante-un-singolo-neurone-a-comportamento-lineare">¶</a></h1><p>Luca Mari, ottobre 2024</p>
 <p>Quest'opera è distribuita con <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" target="_blank">Licenza Creative Commons Attribuzione - Non commerciale - Condividi allo stesso modo 4.0 Internazionale</a>.<br/>
 <img alt="No description has been provided for this image" src="https://creativecommons.it/chapterIT/wp-content/uploads/2021/01/by-nc-sa.eu_.png" width="100"/></p>
 <p><strong>Obiettivo</strong>: comprendere, a partire da un esempio concreto, che una rete neurale deve includere degli elementi non lineari per poter approssimare appropriatamente anche delle semplici funzioni non lineari.<br/>
@@ -7562,7 +7562,7 @@ nel caso di due input.</img></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [166]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
@@ -7591,7 +7591,7 @@ nel caso di due input.</img></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [167]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">OneNeuron</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
@@ -7663,8 +7663,8 @@ nel caso di due input.</img></p>
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>I parametri della rete sono:
-neuron.weight tensor([[-0.5119,  0.2495]], device='cuda:0')
-neuron.bias tensor([-0.1720], device='cuda:0')
+neuron.weight tensor([[ 0.1170, -0.1727]])
+neuron.bias tensor([0.3492])
 </pre>
 </div>
 </div>
@@ -7686,7 +7686,7 @@ neuron.bias tensor([-0.1720], device='cuda:0')
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [168]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">examples</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="k">return</span> <span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span> <span class="c1"># genera n esempi nella forma ognuno di una coppia di numeri casuali tra -5 e 5</span>
@@ -7708,17 +7708,31 @@ neuron.bias tensor([-0.1720], device='cuda:0')
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [169]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">):</span> <span class="k">return</span> <span class="p">(</span><span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>   <span class="c1"># funzione da approssimare, in questo caso la media tra due numeri</span>
 <span class="n">Y</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">calc_fun</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>              <span class="c1"># calcola il valore della funzione per ogni esempio: output del training set</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"L'esempio di una tripla nel training set: x1=</span><span class="si">{</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, x2=</span><span class="si">{</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, y=</span><span class="si">{</span><span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>L'esempio di una tripla nel training set: x1=1.591, x2=-4.751, y=-1.580
+</pre>
 </div>
 </div>
 </div>
@@ -7739,7 +7753,7 @@ neuron.bias tensor([-0.1720], device='cuda:0')
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [170]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">examples</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">fun</span><span class="p">)</span>        <span class="c1"># inferenza prima dell'addestramento</span>
@@ -7758,17 +7772,17 @@ neuron.bias tensor([-0.1720], device='cuda:0')
 <pre>
 *** Inferenza ***
 x1	x2	y	y prev	errore
-2.65	-0.36	1.14	-1.62	2.76
--4.98	3.88	-0.55	3.34	-3.89
-2.72	-3.83	-0.56	-2.52	1.96
-0.47	1.30	0.89	-0.09	0.97
--2.23	-2.57	-2.40	0.33	-2.73
-2.97	4.53	3.75	-0.56	4.31
-3.15	3.71	3.43	-0.86	4.29
--1.08	3.34	1.13	1.21	-0.08
--3.41	0.94	-1.24	1.81	-3.05
--4.87	3.07	-0.90	3.09	-3.99
-Errore quadratico medio: 9.72123
+-3.10	3.60	0.25	-0.63	0.89
+3.12	0.50	1.81	0.63	1.19
+3.73	1.52	2.62	0.52	2.10
+2.33	-1.73	0.30	0.92	-0.62
+-1.48	-3.13	-2.30	0.72	-3.02
+2.02	3.60	2.81	-0.04	2.85
+3.96	-2.67	0.64	1.27	-0.63
+1.60	4.63	3.11	-0.26	3.38
+2.45	3.81	3.13	-0.02	3.15
+-3.87	1.27	-1.30	-0.32	-0.97
+Errore quadratico medio: 4.68676
 </pre>
 </div>
 </div>
@@ -7792,7 +7806,7 @@ Errore quadratico medio: 9.72123
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [171]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">100</span>                        <span class="c1"># numero di ripetizioni del processo di addestramento</span>
@@ -7814,15 +7828,15 @@ Errore quadratico medio: 9.72123
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 *** Addestramento ***
-epoca	errore (su cuda)
-10	0.195
-20	0.088
-30	0.040
-40	0.018
-50	0.008
-60	0.004
-70	0.002
-80	0.001
+epoca	errore (su cpu)
+10	0.006
+20	0.000
+30	0.000
+40	0.000
+50	0.000
+60	0.000
+70	0.000
+80	0.000
 90	0.000
 100	0.000
 </pre>
@@ -7846,7 +7860,7 @@ epoca	errore (su cuda)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [173]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">examples</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">fun</span><span class="p">)</span>        <span class="c1"># inferenza dopo l'addestramento</span>
@@ -7865,17 +7879,17 @@ epoca	errore (su cuda)
 <pre>
 *** Inferenza ***
 x1	x2	y	y prev	errore
-2.40	2.12	2.26	2.27	-0.01
-3.92	3.81	3.87	3.87	-0.01
-2.31	2.16	2.23	2.24	-0.01
--0.82	-4.13	-2.47	-2.46	-0.01
--0.33	3.95	1.81	1.82	-0.01
--4.64	-0.13	-2.38	-2.37	-0.01
--3.99	-2.20	-3.10	-3.08	-0.02
--0.87	0.81	-0.03	-0.02	-0.01
--0.17	-4.81	-2.49	-2.47	-0.01
-1.99	3.77	2.88	2.89	-0.01
-Errore quadratico medio: 0.00014
+1.08	-0.75	0.16	0.16	0.00
+-4.01	3.09	-0.46	-0.46	0.00
+-0.60	0.50	-0.05	-0.05	0.00
+3.19	-3.25	-0.03	-0.03	0.00
+-0.02	-2.84	-1.43	-1.43	0.00
+-3.96	2.43	-0.76	-0.76	0.00
+1.15	2.75	1.95	1.95	0.00
+0.76	-0.11	0.32	0.32	0.00
+1.96	-2.01	-0.03	-0.03	0.00
+-2.10	1.57	-0.27	-0.27	0.00
+Errore quadratico medio: 0.00000
 </pre>
 </div>
 </div>
@@ -7897,7 +7911,7 @@ Errore quadratico medio: 0.00014
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [174]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">print_parameters</span><span class="p">()</span>
@@ -7913,8 +7927,8 @@ Errore quadratico medio: 0.00014
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>neuron.weight tensor([[0.4995, 0.4995]], device='cuda:0')
-neuron.bias tensor([0.0120], device='cuda:0')
+<pre>neuron.weight tensor([[0.5000, 0.5001]])
+neuron.bias tensor([-0.0007])
 </pre>
 </div>
 </div>
@@ -7927,7 +7941,7 @@ neuron.bias tensor([0.0120], device='cuda:0')
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>D'altra parte, è evidente che un singolo neurone a comportamento lineare può approssimare efficacemente solo funzioni molto semplici. Anche aumentando il numero di esempi e di ripetizioni del processo di addestramento, per esempio non è in grado di approssimare in modo accettabile la funzione massimo tra due numeri.</p>
+<p>La struttura della rete è così semplice che possiamo ripetere l'intero processo senza ricorrere a <code>PyTorch</code>, per mostrare così in modo esplicito la logica della procedura.</p>
 </div>
 </div>
 </div>
@@ -7936,7 +7950,156 @@ neuron.bias tensor([0.0120], device='cuda:0')
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [206]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">100</span>                        <span class="c1"># numero di ripetizioni del processo di addestramento</span>
+<span class="n">repeat</span> <span class="o">=</span> <span class="mi">10</span>                             <span class="c1"># numero di ripetizioni dopo le quali visualizzare l'errore</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.01</span>                    <span class="c1"># learning rate</span>
+<span class="n">minibatch_size</span> <span class="o">=</span> <span class="mi">10</span>                     <span class="c1"># dimensione del minibatch: numero di esempi estratti dal training set per ogni epoca</span>
+
+<span class="n">k0</span><span class="p">,</span> <span class="n">k1</span><span class="p">,</span> <span class="n">k2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>             <span class="c1"># valori casuali di inizializzazione dei parametri </span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="se">\n</span><span class="s1">*** Addestramento ***</span><span class="se">\n</span><span class="s1">epoca</span><span class="se">\t</span><span class="s1">errore</span><span class="se">\t</span><span class="s1">k0</span><span class="se">\t</span><span class="s1">k1</span><span class="se">\t</span><span class="s1">k2'</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_epochs</span><span class="p">):</span>
+    <span class="n">indexes</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randperm</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">))[:</span><span class="n">minibatch_size</span><span class="p">]</span>            <span class="c1"># seleziona in modo casuale gli indici del minibatch</span>
+    <span class="n">X1</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">indexes</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>                                              <span class="c1"># estrai dal training set gli argomenti della funzione</span>
+    <span class="n">X2</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">indexes</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">Y_prev</span> <span class="o">=</span> <span class="n">k0</span> <span class="o">+</span> <span class="n">k1</span> <span class="o">*</span> <span class="n">X1</span> <span class="o">+</span> <span class="n">k2</span> <span class="o">*</span> <span class="n">X2</span>                                 <span class="c1"># calcola la previsione</span>
+    <span class="n">Y_true</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="n">indexes</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>                                          <span class="c1"># estrai dal training set il valore della funzione</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">Y</span><span class="p">[</span><span class="n">indexes</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">Y_prev</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>                  <span class="c1"># calcola la funzione di errore (errore quadratico medio)</span>
+    <span class="n">k0</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Y_prev</span> <span class="o">-</span> <span class="n">Y_true</span><span class="p">)</span>           <span class="c1"># calcola le derivate parziali della funzione di errore...</span>
+    <span class="n">k1</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">Y_prev</span> <span class="o">-</span> <span class="n">Y_true</span><span class="p">)</span> <span class="o">*</span> <span class="n">X1</span><span class="p">)</span>    <span class="c1"># ... e aggiorna i valori dei parametri...</span>
+    <span class="n">k2</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">Y_prev</span> <span class="o">-</span> <span class="n">Y_true</span><span class="p">)</span> <span class="o">*</span> <span class="n">X2</span><span class="p">)</span>    <span class="c1"># ... dunque "scendendo lungo il gradiente"</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">repeat</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">k0</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">k1</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">k2</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+*** Addestramento ***
+epoca	errore	k0	k1	k2
+10	1.231	-1.109	0.573	0.366
+20	0.863	-0.901	0.518	0.490
+30	0.609	-0.738	0.494	0.538
+40	0.310	-0.604	0.503	0.553
+50	0.285	-0.499	0.518	0.527
+60	0.182	-0.415	0.491	0.542
+70	0.112	-0.345	0.509	0.534
+80	0.082	-0.283	0.504	0.514
+90	0.048	-0.233	0.505	0.523
+100	0.044	-0.192	0.491	0.506
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Quella che segue è invece un'implementazione semplificata di un algoritmo genetico, per risolvere lo stesso problema di ottimizzazione.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [209]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">num_individuals</span> <span class="o">=</span> <span class="mi">100</span>                   <span class="c1"># numero di individui della popolazione in evoluzione</span>
+<span class="n">num_survivors</span> <span class="o">=</span> <span class="mi">50</span>                      <span class="c1"># numero di individui che in ogni epoca sopravvive</span>
+<span class="n">num_mutations</span> <span class="o">=</span> <span class="mi">5</span>                       <span class="c1"># numero di individui che in ogni epoca subisce una mutazione </span>
+<span class="n">width_mutations</span> <span class="o">=</span> <span class="mf">.1</span>                    <span class="c1"># ampiezza (deviazione standard) delle mutazioni</span>
+<span class="n">minibatch_size</span> <span class="o">=</span> <span class="mi">10</span>                     <span class="c1"># dimensione del minibatch: numero di esempi estratti dal training set per ogni epoca</span>
+<span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">100</span>                        <span class="c1"># numero di ripetizioni del processo di addestramento</span>
+<span class="n">repeat</span> <span class="o">=</span> <span class="mi">10</span>                             <span class="c1"># numero di ripetizioni dopo le quali visualizzare l'errore</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">num_individuals</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="se">\n</span><span class="s1">*** Addestramento ***</span><span class="se">\n</span><span class="s1">epoca</span><span class="se">\t</span><span class="s1">errore</span><span class="se">\t</span><span class="s1">k0</span><span class="se">\t</span><span class="s1">k1</span><span class="se">\t</span><span class="s1">k2'</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_epochs</span><span class="p">):</span>
+    <span class="n">indexes</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randperm</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">))[:</span><span class="n">minibatch_size</span><span class="p">]</span>            <span class="c1"># seleziona in modo casuale gli indici del minibatch</span>
+    <span class="n">X1</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">indexes</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>                                <span class="c1"># estrai dal training set gli argomenti della funzione</span>
+    <span class="n">X2</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">indexes</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">Y_true</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="n">indexes</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>                            <span class="c1"># estrai dal training set il valore della funzione</span>
+    <span class="n">Y_prev</span> <span class="o">=</span> <span class="n">k</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">k</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">X1</span> <span class="o">+</span> <span class="n">k</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">X2</span> <span class="c1"># calcola la previsione</span>
+
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">Y</span><span class="p">[</span><span class="n">indexes</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">Y_prev</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>           <span class="c1"># calcola la funzione di errore per ogni individuo</span>
+    <span class="n">sorted_indexes</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">loss</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>          <span class="c1"># ottieni gli indici degli individui ordinati in base all'errore</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="p">[</span><span class="n">sorted_indexes</span><span class="p">][:</span><span class="n">num_survivors</span><span class="p">]</span>                           <span class="c1"># ordina gli individui per fitness e seleziona i migliori</span>
+
+    <span class="n">m0</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">num_survivors</span><span class="p">,</span> <span class="p">(</span><span class="n">num_mutations</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># seleziona casualmente gli indici degli individui da mutare</span>
+    <span class="n">m1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="n">num_mutations</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">k</span><span class="p">[</span><span class="n">m0</span><span class="p">,</span> <span class="n">m1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">num_mutations</span><span class="p">)</span> <span class="o">*</span> <span class="n">width_mutations</span>       <span class="c1"># introduci una mutazione negli individui selezionati</span>
+
+    <span class="n">k</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">num_individuals</span> <span class="o">-</span> <span class="n">num_survivors</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># reintegra la popolazione con nuovi individui casuali</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">repeat</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">best</span> <span class="o">=</span> <span class="n">k</span><span class="p">[</span><span class="n">sorted_indexes</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">loss</span><span class="p">[</span><span class="n">sorted_indexes</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">best</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">best</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">best</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+*** Addestramento ***
+epoca	errore	k0	k1	k2
+10	0.091	0.192	0.556	0.433
+20	0.190	0.139	0.556	0.314
+30	0.123	-0.687	0.507	0.544
+40	0.077	-0.199	0.462	0.522
+50	0.058	-0.199	0.462	0.475
+60	0.007	-0.052	0.513	0.518
+70	0.004	-0.052	0.513	0.466
+80	0.026	-0.078	0.513	0.569
+90	0.019	0.142	0.506	0.477
+100	0.016	-0.026	0.513	0.446
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Tornando ora a usare <code>PyTorch</code>: d'altra parte, è evidente che un singolo neurone a comportamento lineare può approssimare efficacemente solo funzioni molto semplici. Anche aumentando il numero di esempi e di ripetizioni del processo di addestramento, per esempio non è in grado di approssimare in modo accettabile la funzione massimo tra due numeri.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">num_examples</span> <span class="o">=</span> <span class="mi">1000</span>                     <span class="c1"># numero di esempi per il training set</span>
@@ -7964,30 +8127,30 @@ neuron.bias tensor([0.0120], device='cuda:0')
 <pre>
 *** Addestramento ***
 epoca	errore (su cuda)
-100	1.515
-200	1.452
-300	1.451
-400	1.451
-500	1.451
-600	1.451
-700	1.451
-800	1.451
-900	1.451
-1000	1.451
+100	1.429
+200	1.402
+300	1.402
+400	1.402
+500	1.402
+600	1.402
+700	1.402
+800	1.402
+900	1.402
+1000	1.402
 
 *** Inferenza ***
 x1	x2	y	y prev	errore
--0.74	4.40	4.40	3.48	0.92
--2.14	-0.06	-0.06	0.53	-0.58
--4.78	0.56	0.56	-0.53	1.09
-0.21	-2.42	0.21	0.56	-0.35
-3.96	0.50	3.96	3.96	-0.00
--3.69	2.05	2.05	0.77	1.27
-3.48	3.47	3.48	5.19	-1.71
-3.68	3.55	3.68	5.34	-1.65
--4.85	2.13	2.13	0.22	1.92
--0.95	-3.76	-0.95	-0.71	-0.24
-Errore quadratico medio: 1.35233
+-2.97	-2.33	-2.33	-1.08	-1.25
+2.32	-2.67	2.32	1.44	0.88
+-4.40	-1.10	-1.10	-1.18	0.08
+-2.38	0.51	0.51	0.67	-0.15
+-4.92	2.27	2.27	0.26	2.01
+-2.52	3.99	3.99	2.36	1.63
+0.35	-0.05	0.35	1.77	-1.42
+-4.51	4.43	4.43	1.57	2.86
+0.71	3.10	3.10	3.55	-0.44
+0.94	-2.44	0.94	0.85	0.08
+Errore quadratico medio: 1.94872
 </pre>
 </div>
 </div>
