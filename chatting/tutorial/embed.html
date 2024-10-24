@@ -7516,7 +7516,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Un'esplorazione-del-token-embedding-con-un-transformer">Un'esplorazione del <em>token embedding</em> con un transformer<a class="anchor-link" href="#Un'esplorazione-del-token-embedding-con-un-transformer">¶</a></h2><p>Luca Mari, settembre 2024</p>
+<h2 id="Un'esplorazione-del-token-embedding-con-un-transformer">Un'esplorazione del <em>token embedding</em> con un transformer<a class="anchor-link" href="#Un'esplorazione-del-token-embedding-con-un-transformer">¶</a></h2><p>Luca Mari, ottobre 2024</p>
 <p>Quest'opera è distribuita con <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" target="_blank">Licenza Creative Commons Attribuzione - Non commerciale - Condividi allo stesso modo 4.0 Internazionale</a>.<br/>
 <img alt="No description has been provided for this image" src="https://creativecommons.it/chapterIT/wp-content/uploads/2021/01/by-nc-sa.eu_.png" width="100"/></p>
 <p><strong>Obiettivo</strong>: comprendere la logica della "tokenizzazione", il processo con cui un testo viene trasformato in una successione di elementi linguistici elementari ("token").<br/>
@@ -7562,7 +7562,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tokenizeutils</span> <span class="kn">import</span> <span class="n">Model</span>
@@ -7609,7 +7609,7 @@ La matrice degli embeddings ha perciò dimensione (32102, 768)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">token</span> <span class="o">=</span> <span class="s2">"bellezza"</span>
@@ -7651,11 +7651,11 @@ La matrice degli embeddings ha perciò dimensione (32102, 768)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">embedding</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">token_to_embedding</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Il token '</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">' è mappato in un vettore di </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">embedding</span><span class="p">)</span><span class="si">}</span><span class="s2"> elementi e i cui primi 5 elementi sono:</span><span class="se">\n</span><span class="si">{</span><span class="n">embedding</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Il token '</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">' è associato a un vettore di </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">embedding</span><span class="p">)</span><span class="si">}</span><span class="s2"> elementi e i cui primi 5 elementi sono:</span><span class="se">\n</span><span class="si">{</span><span class="n">embedding</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7668,7 +7668,7 @@ La matrice degli embeddings ha perciò dimensione (32102, 768)
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Il token 'bellezza' è mappato in un vettore di 768 elementi e i cui primi 5 elementi sono:
+<pre>Il token 'bellezza' è associato a un vettore di 768 elementi e i cui primi 5 elementi sono:
 [ 0.03051873  0.01173639 -0.04997671  0.0277972   0.02349026]
 </pre>
 </div>
@@ -7691,7 +7691,7 @@ La matrice degli embeddings ha perciò dimensione (32102, 768)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">pprint</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
@@ -7707,11 +7707,11 @@ La matrice degli embeddings ha perciò dimensione (32102, 768)
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>[('bellezze', np.float32(0.45)),
- ('dolcezza', np.float32(0.38)),
- ('splendore', np.float32(0.38)),
- ('estetica', np.float32(0.35)),
- ('fascino', np.float32(0.34))]
+<pre>[('bellezze', 0.45),
+ ('dolcezza', 0.38),
+ ('splendore', 0.38),
+ ('estetica', 0.35),
+ ('fascino', 0.34)]
 </pre>
 </div>
 </div>
@@ -7725,7 +7725,8 @@ La matrice degli embeddings ha perciò dimensione (32102, 768)
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>L'embedding consente di operare in modo piuttosto sofisticato sul vocabolario.<br/>
-Per esempio, dati due token $A$ e $B$ a ognuno dei quali è stato associato un vettore, $v(A)$ e $v(B)$, se la regola di associazione $v(.)$ è sufficientemente ricca da un punto di vista semantico allora il vettore differenza $v(A)-v(B)$ è associato alla relazione tra $A$ e $B$. In questo modo diventa possibile operare con relazioni di "proporzionalità semantica", del tipo: data la relazione tra $"re"$ e $"uomo"$, qual è il token $X$ che è nella stessa relazione con $"donna"$? Questa domanda è dunque codificata come $v("re")-v("uomo")=v(X)-v("donna")$, e perciò $v(X)=v("re")+v("donna")-v("uomo)$, in cui $"re"$ e $"donna"$ sono gli "esempi positivi" e $"uomo"$ è l'"esempio negativo".</p>
+Per esempio, dati due token $A$ e $B$ a ognuno dei quali è stato associato un vettore, $v(A)$ e $v(B)$, se la regola di associazione $v(.)$ è sufficientemente ricca da un punto di vista semantico allora il vettore $v(A)-v(B)$ è associato alla relazione tra $A$ e $B$, interpretata dunque come la loro differenza.<br/>
+In questo modo diventa possibile operare con <em>relazioni semantiche</em> tra token. Per esempio, data la relazione tra $"re"$ e $"uomo"$, qual è il token $X$ che è nella stessa relazione di $"re"$ ma questa volta con $"donna"$? Questa domanda è dunque codificata come $v("re")-v("uomo")=v(X)-v("donna")$, e perciò $v(X)=v("re")+v("donna")-v("uomo)$, in cui $"re"$ e $"donna"$ sono gli "esempi positivi" e $"uomo"$ è l'"esempio negativo".</p>
 </div>
 </div>
 </div>
@@ -7734,12 +7735,12 @@ Per esempio, dati due token $A$ e $B$ a ognuno dei quali è stato associato un v
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"re"</span><span class="p">,</span> <span class="s2">"donna"</span><span class="p">]</span>             <span class="c1"># sovrano donna</span>
 <span class="n">negative_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"uomo"</span><span class="p">]</span>
-<span class="n">pprint</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -7752,11 +7753,7 @@ Per esempio, dati due token $A$ e $B$ a ognuno dei quali è stato associato un v
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>[('regina', 0.31),
- ('ri', 0.23),
- ('Ri', 0.21),
- ('principessa', 0.2),
- ('donne', 0.2)]
+<pre>[('regina', 0.31)]
 </pre>
 </div>
 </div>
@@ -7769,7 +7766,7 @@ Per esempio, dati due token $A$ e $B$ a ognuno dei quali è stato associato un v
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>In accordo a questo principio, possiamo sperimentare le capacità di "proporzionalità semantica" del modello che stiamo usando con alcuni altri esempi analoghi.</p>
+<p>In accordo a questo principio, possiamo sperimentare le capacità di <em>relazionalità semantica</em> del modello che stiamo usando con alcuni altri esempi strutturalmente analoghi.</p>
 </div>
 </div>
 </div>
@@ -7778,10 +7775,10 @@ Per esempio, dati due token $A$ e $B$ a ognuno dei quali è stato associato un v
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Roma"</span><span class="p">,</span> <span class="s2">"Francia"</span><span class="p">]</span>        <span class="c1"># capitale di uno stato</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Roma"</span><span class="p">,</span> <span class="s2">"Spagna"</span><span class="p">]</span>          <span class="c1"># capitale di uno stato</span>
 <span class="n">negative_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Italia"</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">))</span>
 </pre></div>
@@ -7796,7 +7793,7 @@ Per esempio, dati due token $A$ e $B$ a ognuno dei quali è stato associato un v
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>[('Parigi', 0.48)]
+<pre>[('Madrid', 0.44)]
 </pre>
 </div>
 </div>
@@ -7839,7 +7836,7 @@ Per esempio, dati due token $A$ e $B$ a ognuno dei quali è stato associato un v
 <div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Garibaldi"</span><span class="p">,</span> <span class="s2">"Francia"</span><span class="p">]</span>     <span class="c1"># eroe nazionale</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Garibaldi"</span><span class="p">,</span> <span class="s2">"Francia"</span><span class="p">]</span>    <span class="c1"># eroe nazionale</span>
 <span class="n">negative_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Italia"</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">))</span>
 </pre></div>
@@ -7952,6 +7949,35 @@ Per esempio, dati due token $A$ e $B$ a ognuno dei quali è stato associato un v
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"due"</span><span class="p">,</span> <span class="s2">"tre"</span><span class="p">]</span>              <span class="c1"># numero successivo</span>
+<span class="n">negative_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"uno"</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>[('quattro', 0.59)]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
@@ -7971,6 +7997,35 @@ Per esempio, dati due token $A$ e $B$ a ognuno dei quali è stato associato un v
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>[('madre', 0.56)]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"attore"</span><span class="p">,</span> <span class="s2">"donna"</span><span class="p">]</span>         <span class="c1"># femminile di un ruolo professionale</span>
+<span class="n">negative_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"uomo"</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>[('attrice', 0.63)]
 </pre>
 </div>
 </div>
@@ -8079,7 +8134,7 @@ Per esempio, dati due token $A$ e $B$ a ognuno dei quali è stato associato un v
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"andare"</span><span class="p">,</span> <span class="s2">"guardato"</span><span class="p">]</span>      <span class="c1"># infinito di un verbo</span>
@@ -8127,35 +8182,6 @@ Per esempio, dati due token $A$ e $B$ a ognuno dei quali è stato associato un v
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>[('ascoltando', 0.66)]
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"attore"</span><span class="p">,</span> <span class="s2">"donna"</span><span class="p">]</span>         <span class="c1"># femminile di un sostantivo</span>
-<span class="n">negative_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"uomo"</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>[('attrice', 0.63)]
 </pre>
 </div>
 </div>
