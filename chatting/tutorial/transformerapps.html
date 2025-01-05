@@ -7543,7 +7543,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Qualche-esempio-di-uso-dei-transformer-per-il-NLP">Qualche esempio di uso dei transformer per il NLP<a class="anchor-link" href="#Qualche-esempio-di-uso-dei-transformer-per-il-NLP">¶</a></h1><p>Luca Mari, dicembre 2024</p>
+<h1 id="Qualche-esempio-di-uso-dei-transformer-per-il-NLP">Qualche esempio di uso dei transformer per il NLP<a class="anchor-link" href="#Qualche-esempio-di-uso-dei-transformer-per-il-NLP">¶</a></h1><p>Luca Mari, gennaio 2025</p>
 <p>Quest'opera è distribuita con <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" target="_blank">Licenza Creative Commons Attribuzione - Non commerciale - Condividi allo stesso modo 4.0 Internazionale</a>.<br/>
 <img alt="No description has been provided for this image" src="https://creativecommons.it/chapterIT/wp-content/uploads/2021/01/by-nc-sa.eu_.png" width="100"/></p>
 <p><strong>Obiettivo</strong>: essere informati di alcune possibili modalità di uso "di alto livello" dei trasformer per applicazioni con testi in lingua italiana e della libreria Python <code>transformers</code> di Hugging Face.<br/>
@@ -7604,9 +7604,13 @@ a.anchor-link {
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">textwrap</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Markdown</span><span class="p">,</span> <span class="n">display</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">logging</span> <span class="k">as</span> <span class="n">transformers_logging</span>
 
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">"ignore"</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">)</span>
+<span class="n">transformers_logging</span><span class="o">.</span><span class="n">set_verbosity_error</span><span class="p">()</span>
 
 <span class="n">device</span> <span class="o">=</span> <span class="s2">"cpu"</span>
 
@@ -7621,6 +7625,12 @@ a.anchor-link {
     <span class="n">y</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">size</span><span class="p">())</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">model_parameters</span><span class="p">])</span>
     <span class="n">z</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1e9</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">B"</span> <span class="k">if</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mf">1e9</span> <span class="k">else</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1e6</span><span class="p">)</span><span class="si">}</span><span class="s2">M"</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'-- </span><span class="si">{</span><span class="n">z</span><span class="si">}</span><span class="s1"> parametri</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">wprint</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">120</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">printmd</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">string</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -7652,6 +7662,8 @@ a.anchor-link {
 <span class="n">res</span> <span class="o">=</span> <span class="n">pos</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">res</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Frase da analizzare:</span><span class="se">\n</span><span class="s1">"</span><span class="si">{</span><span class="n">sentence</span><span class="si">}</span><span class="s1">"'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">Parti del discorso individuate:'</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">res</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">part</span><span class="p">)</span>
 </pre></div>
@@ -7667,24 +7679,14 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Modello con:
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>Some weights of BertModel were not initialized from the model checkpoint at sachaarbonel/bert-italian-cased-finetuned-pos and are newly initialized: ['bert.pooler.dense.bias', 'bert.pooler.dense.weight']
-You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>-- un vocabolario di 31102 token
+-- un vocabolario di 31102 token
 -- un contesto di 512 token
 -- 109M parametri
 
+Frase da analizzare:
+"Abbiamo partecipato a una lezione interessante."
+
+Parti del discorso individuate:
 {'entity': 'AUX', 'score': 0.9989906, 'index': 1, 'word': 'abbiamo', 'start': 0, 'end': 7}
 {'entity': 'VERB', 'score': 0.99978894, 'index': 2, 'word': 'partecipato', 'start': 8, 'end': 19}
 {'entity': 'ADP', 'score': 0.99955493, 'index': 3, 'word': 'a', 'start': 20, 'end': 21}
@@ -7713,7 +7715,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [48]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="s1">'nlptown/bert-base-multilingual-uncased-sentiment'</span>
@@ -7723,7 +7725,9 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 <span class="n">res</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">res</span><span class="p">:</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">'label'</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Frase da analizzare:</span><span class="se">\n</span><span class="s1">"</span><span class="si">{</span><span class="n">sentence</span><span class="si">}</span><span class="s1">"'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">Valutazione:'</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">'label'</span><span class="p">])</span> <span class="c1"># type: ignore</span>
     <span class="n">pprint</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
 
     <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="s1">'label'</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">res</span><span class="p">]</span>
@@ -7748,6 +7752,10 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 -- un contesto di 512 token
 -- 167M parametri
 
+Frase da analizzare:
+"Ho trovato molto attraente questa lezione"
+
+Valutazione:
 [{'label': '1 star', 'score': 0.004161268938332796},
  {'label': '2 stars', 'score': 0.00405264925211668},
  {'label': '3 stars', 'score': 0.04070121422410011},
@@ -7780,7 +7788,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [49]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="s1">'Jiva/xlm-roberta-large-it-mnli'</span>
@@ -7791,8 +7799,10 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 <span class="n">res</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="n">candidate_labels</span><span class="o">=</span><span class="n">candidate_labels</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">res</span><span class="p">:</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s1">'labels'</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="s1">'scores'</span><span class="p">])</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Frase da analizzare:</span><span class="se">\n</span><span class="s1">"</span><span class="si">{</span><span class="n">sentence</span><span class="si">}</span><span class="s1">"'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">Classificazione:'</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s1">'labels'</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="s1">'scores'</span><span class="p">])</span> <span class="c1"># type: ignore</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># type: ignore</span>
     <span class="n">pprint</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
 
     <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">res</span><span class="p">]</span>
@@ -7815,28 +7825,18 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 <pre>Modello con:
 -- un vocabolario di 250002 token
 -- un contesto di 512 token
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>Some weights of XLMRobertaModel were not initialized from the model checkpoint at Jiva/xlm-roberta-large-it-mnli and are newly initialized: ['roberta.pooler.dense.bias', 'roberta.pooler.dense.weight']
-You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>-- 559M parametri
+-- 559M parametri
 
-[('economia', 0.07337965071201324),
- ('geografia', 0.5523250699043274),
- ('politica', 0.11166965216398239),
- ('sport', 0.049734897911548615),
- ('storia', 0.1332821547985077),
- ('tecnologia', 0.07960861176252365)]
+Frase da analizzare:
+"In questa lezione abbiamo presentato l'orografia del territorio italiano"
+
+Classificazione:
+[('economia', 0.07337963581085205),
+ ('geografia', 0.5523258447647095),
+ ('politica', 0.11166944354772568),
+ ('sport', 0.04973503574728966),
+ ('storia', 0.13328172266483307),
+ ('tecnologia', 0.07960835099220276)]
 </pre>
 </div>
 </div>
@@ -7864,7 +7864,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [50]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="s1">'osiria/deberta-base-italian-uncased-ner'</span>
@@ -7874,7 +7874,8 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 <span class="n">res</span> <span class="o">=</span> <span class="n">ner</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">res</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">,</span> <span class="n">sentence</span><span class="p">,</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Frase da analizzare:</span><span class="se">\n</span><span class="s1">"</span><span class="si">{</span><span class="n">sentence</span><span class="si">}</span><span class="s1">"'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">Entità individuate:'</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">entity</span> <span class="ow">in</span> <span class="n">res</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">entity</span><span class="p">)</span>
 </pre></div>
@@ -7894,22 +7895,10 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 -- un contesto di lunghezza non definita
 -- 124M parametri
 
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
- Questa lezione ha riguardato Alan Turing e il suo lavoro a Cambridge e poi per decodificare Enigma 
+Frase da analizzare:
+"Questa lezione ha riguardato Alan Turing e il suo lavoro a Cambridge e poi per decodificare Enigma"
 
+Entità individuate:
 {'entity_group': 'PER', 'score': 0.8034604, 'word': 'Alan Turing', 'start': 28, 'end': 40}
 {'entity_group': 'LOC', 'score': 0.88072294, 'word': 'Cambridge', 'start': 58, 'end': 68}
 {'entity_group': 'MISC', 'score': 0.942005, 'word': 'Enigma', 'start': 91, 'end': 98}
@@ -7934,7 +7923,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [51]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="s1">'Musixmatch/umberto-wikipedia-uncased-v1'</span>
@@ -7942,10 +7931,12 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 <span class="n">unmasker</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">"fill-mask"</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
 <span class="n">sentence</span> <span class="o">=</span> <span class="s2">"In questa lezione stiamo discutendo di &lt;mask&gt; artificiale."</span>
 <span class="n">res</span> <span class="o">=</span> <span class="n">unmasker</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
 <span class="k">if</span> <span class="n">res</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">,</span> <span class="n">sentence</span><span class="p">,</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Frase da completare:</span><span class="se">\n</span><span class="s1">"</span><span class="si">{</span><span class="n">sentence</span><span class="si">}</span><span class="s1">"'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">Risultati:'</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">fill</span> <span class="ow">in</span> <span class="n">res</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">" </span><span class="si">{</span><span class="n">fill</span><span class="p">[</span><span class="s1">'sequence'</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">fill</span><span class="p">[</span><span class="s1">'score'</span><span class="p">]</span><span class="si">:</span><span class="s2">0.2f</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">" </span><span class="si">{</span><span class="n">fill</span><span class="p">[</span><span class="s1">'sequence'</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">fill</span><span class="p">[</span><span class="s1">'score'</span><span class="p">]</span><span class="si">:</span><span class="s2">0.2f</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span> <span class="c1"># type: ignore</span>
 </pre></div>
 </div>
 </div>
@@ -7963,24 +7954,10 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 -- un contesto di lunghezza non definita
 -- 110M parametri
 
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>Some weights of the model checkpoint at Musixmatch/umberto-wikipedia-uncased-v1 were not used when initializing CamembertForMaskedLM: ['roberta.pooler.dense.bias', 'roberta.pooler.dense.weight']
-- This IS expected if you are initializing CamembertForMaskedLM from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
-- This IS NOT expected if you are initializing CamembertForMaskedLM from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
- In questa lezione stiamo discutendo di &lt;mask&gt; artificiale. 
+Frase da completare:
+"In questa lezione stiamo discutendo di &lt;mask&gt; artificiale."
 
+Risultati:
  n questa lezione stiamo discutendo di intelligenza artificiale. (0.77)
  n questa lezione stiamo discutendo di lingua artificiale. (0.04)
  n questa lezione stiamo discutendo di selezione artificiale. (0.01)
@@ -8005,27 +7982,28 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [52]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="s1">'osiria/deberta-italian-question-answering'</span>
 <span class="n">info</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 <span class="n">question_answerer</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">"question-answering"</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
 <span class="n">context</span> <span class="o">=</span> <span class="s2">"""</span>
-<span class="s2">Una rete neurale è una struttura computazionale ispirata ai neuroni del cervello umano.</span>
+<span class="s2">"Una rete neurale è una struttura computazionale ispirata ai neuroni del cervello umano.</span>
 <span class="s2">È composta da strati di nodi interconnessi, chiamati neuroni,</span>
 <span class="s2">che elaborano e trasformano i dati di input in output.</span>
-<span class="s2">È nelle connessioni tra i neuroni che risiede la capacità di apprendimento della rete.</span>
+<span class="s2">È nelle connessioni tra i neuroni che risiede la capacità di apprendimento della rete."</span>
 <span class="s2">"""</span>
 <span class="n">question</span> <span class="o">=</span> <span class="s2">"""</span>
-<span class="s2">Cosa fa sì che una rete neurale sia in grado di adattare il suo comportamento,</span>
-<span class="s2">ottimizzandolo in funzione del contenuto del training set utilizzato nel suo addestramento?</span>
+<span class="s2">"Cosa fa sì che una rete neurale sia in grado di adattare il suo comportamento,</span>
+<span class="s2">ottimizzandolo in funzione del contenuto del training set utilizzato nel suo addestramento?"</span>
 <span class="s2">"""</span>
-<span class="n">res</span> <span class="o">=</span> <span class="n">question_answerer</span><span class="p">({</span><span class="s1">'context'</span><span class="p">:</span> <span class="n">context</span><span class="p">,</span> <span class="s1">'question'</span><span class="p">:</span> <span class="n">question</span><span class="p">})</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">question_answerer</span><span class="p">(</span><span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">,</span> <span class="n">question</span><span class="o">=</span><span class="n">question</span><span class="p">)</span> <span class="c1"># type: ignore</span>
 
 <span class="k">if</span> <span class="n">res</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">'Context:'</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">'Question:'</span><span class="p">,</span> <span class="n">question</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Contesto:</span><span class="si">{</span><span class="n">context</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Richiesta:</span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Risultato:'</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8044,17 +8022,18 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 -- un contesto di lunghezza non definita
 -- 124M parametri
 
-Context: 
-Una rete neurale è una struttura computazionale ispirata ai neuroni del cervello umano.
+Contesto:
+"Una rete neurale è una struttura computazionale ispirata ai neuroni del cervello umano.
 È composta da strati di nodi interconnessi, chiamati neuroni,
 che elaborano e trasformano i dati di input in output.
-È nelle connessioni tra i neuroni che risiede la capacità di apprendimento della rete.
+È nelle connessioni tra i neuroni che risiede la capacità di apprendimento della rete."
 
-Question: 
-Cosa fa sì che una rete neurale sia in grado di adattare il suo comportamento,
-ottimizzandolo in funzione del contenuto del training set utilizzato nel suo addestramento?
+Richiesta:
+"Cosa fa sì che una rete neurale sia in grado di adattare il suo comportamento,
+ottimizzandolo in funzione del contenuto del training set utilizzato nel suo addestramento?"
 
-{'score': 0.7373588681221008, 'start': 213, 'end': 239, 'answer': ' connessioni tra i neuroni'}
+Risultato:
+{'score': 0.5466107726097107, 'start': 214, 'end': 240, 'answer': ' connessioni tra i neuroni'}
 </pre>
 </div>
 </div>
@@ -8076,17 +8055,19 @@ ottimizzandolo in funzione del contenuto del training set utilizzato nel suo add
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="s2">"google/gemma-2-2b-it"</span>
 <span class="n">info</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 <span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">"text-generation"</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
 <span class="n">sentence</span> <span class="o">=</span> <span class="s2">"In questa lezione sull'intelligenza artificiale, stiamo trattando di"</span>
-<span class="n">res</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">res</span><span class="p">:</span>
-    <span class="n">pprint</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'generated_text'</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Richiesta di completamento:</span><span class="se">\n</span><span class="si">{</span><span class="n">sentence</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">Risultato:'</span><span class="p">)</span>
+    <span class="n">printmd</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'generated_text'</span><span class="p">])</span> <span class="c1"># type: ignore</span>
 </pre></div>
 </div>
 </div>
@@ -8128,18 +8109,36 @@ ottimizzandolo in funzione del contenuto del training set utilizzato nel suo add
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>("In questa lezione sull'intelligenza artificiale, stiamo trattando di un "
- "argomento molto importante e complesso: **l'etica dell'intelligenza "
- 'artificiale**. \n'
- '\n'
- '**Cosa significa "etica dell\'intelligenza artificiale"?**\n'
- '\n'
- "L'etica dell'intelligenza artificiale si occupa di **determinare i principi "
- "etici che dovrebbero guidare lo sviluppo e l'utilizzo di sistemi di "
- 'intelligenza artificiale**. \n'
- '\n'
- '**Perché è')
+<pre>Richiesta di completamento:
+In questa lezione sull'intelligenza artificiale, stiamo trattando di
+
+Risultato:
 </pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-OutputArea-output" data-mime-type="text/markdown" tabindex="0">
+<p>In questa lezione sull'intelligenza artificiale, stiamo trattando di un argomento molto importante e complesso: <strong>l'etica dell'intelligenza artificiale</strong>.</p>
+<p><strong>Cosa significa "etica dell'intelligenza artificiale"?</strong></p>
+<p>L'etica dell'intelligenza artificiale si occupa di <strong>determinare i principi etici che dovrebbero guidare lo sviluppo e l'utilizzo di sistemi di intelligenza artificiale</strong>.</p>
+<p><strong>Perché è importante?</strong></p>
+<p>L'intelligenza artificiale sta diventando sempre più presente nella nostra vita, e con essa si pongono nuove sfide etiche.</p>
+<p><strong>Quali sono le sfide etiche dell'intelligenza artificiale?</strong></p>
+<ul>
+<li><strong>Bias e discriminazione:</strong> I sistemi di intelligenza artificiale possono essere influenzati da dati che presentano bias, portando a discriminazioni in diversi ambiti, come l'accesso al credito, l'occupazione o la giustizia.</li>
+<li><strong>Privacy:</strong> L'intelligenza artificiale può essere utilizzata per raccogliere e analizzare grandi quantità di dati personali, creando preoccupazioni sulla privacy e sulla sicurezza dei dati.</li>
+<li><strong>Autonomia e responsabilità:</strong> Come si definisce l'autonomia e la responsabilità di un sistema di intelligenza artificiale che agisce in modo autonomo? Chi è responsabile per le azioni di un sistema di intelligenza artificiale?</li>
+<li><strong>Impatto sociale:</strong> L'intelligenza artificiale può avere un impatto significativo sulla società, creando nuove opportunità e sfide. È importante considerare l'impatto sociale di questi sistemi.</li>
+<li><strong>Sicurezza:</strong> L'intelligenza artificiale può essere utilizzata per scopi dannosi, come la creazione di armi autonome o la manipolazione di informazioni.</li>
+</ul>
+<p><strong>Come si può affrontare l'etica dell'intelligenza artificiale?</strong></p>
+<ul>
+<li><strong>Formazione e consapevolezza:</strong> È importante formare esperti e cittadini su temi etici legati all'intelligenza artificiale.</li>
+<li><strong>Regolamentazione:</strong> È necessario sviluppare regolamenti e normative che garantiscano l'utilizzo e lo sviluppo di sistemi di intelligenza artificiale in modo etico e responsabile.</li>
+<li><strong>Trasparenza:</strong> I sistemi di intelligenza artificiale dovrebbero essere trasparenti e comprensibili per gli utenti.</li>
+<li><strong>Responsabilità:</strong> È importante definire chi è responsabile per le azioni di</li>
+</ul>
 </div>
 </div>
 </div>
@@ -8151,7 +8150,7 @@ ottimizzandolo in funzione del contenuto del training set utilizzato nel suo add
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="8.-Translation">8. Translation<a class="anchor-link" href="#8.-Translation">¶</a></h3><p>(modello <a href="https://huggingface.co/Helsinki-NLP/opus-mt-it-en">https://huggingface.co/Helsinki-NLP/opus-mt-it-en</a>)</p>
+<h3 id="8.-Translation">8. Translation<a class="anchor-link" href="#8.-Translation">¶</a></h3><p>(modello <a href="https://huggingface.co/facebook/mbart-large-50-many-to-many-mmt">https://huggingface.co/facebook/mbart-large-50-many-to-many-mmt</a>)</p>
 </div>
 </div>
 </div>
@@ -8160,22 +8159,22 @@ ottimizzandolo in funzione del contenuto del training set utilizzato nel suo add
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [61]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="s2">"Helsinki-NLP/opus-mt-it-en"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="s2">"facebook/mbart-large-50-many-to-many-mmt"</span>
 <span class="n">info</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 <span class="n">translator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">"translation"</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
 <span class="n">sentence</span> <span class="o">=</span> <span class="s2">"""</span>
-<span class="s2">Abbiamo partecipato a una lezione interessante a proposito di intelligenza artificiale,</span>
-<span class="s2">in cui si è discusso in particolare di reti neurali artificiali</span>
-<span class="s2">e delle loro applicazioni per l'elaborazione di testi in linguaggi naturali, come l'italiano.</span>
+<span class="s2">"Abbiamo partecipato a una lezione interessante a proposito di intelligenza artificiale,</span>
+<span class="s2">il cui argomento principale sono stati esempi di applicazioni di reti neurali artificiali."</span>
 <span class="s2">"""</span>
-<span class="n">res</span> <span class="o">=</span> <span class="n">translator</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="n">src_lang</span><span class="o">=</span><span class="s2">"it"</span><span class="p">,</span> <span class="n">tgt_lang</span><span class="o">=</span><span class="s2">"en"</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">translator</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="n">src_lang</span><span class="o">=</span><span class="s2">"it_IT"</span><span class="p">,</span> <span class="n">tgt_lang</span><span class="o">=</span><span class="s2">"en_US"</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">res</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">'To be translated:'</span><span class="p">,</span> <span class="n">sentence</span><span class="p">)</span>
-    <span class="n">pprint</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Translation:</span><span class="se">\n</span><span class="si">{</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'translation_text'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Da tradurre:</span><span class="si">{</span><span class="n">sentence</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Traduzione:'</span><span class="p">)</span>
+    <span class="n">wprint</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'translation_text'</span><span class="p">][</span><span class="mi">1</span><span class="p">:])</span> <span class="c1"># type: ignore</span>
 </pre></div>
 </div>
 </div>
@@ -8189,20 +8188,18 @@ ottimizzandolo in funzione del contenuto del training set utilizzato nel suo add
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Modello con:
--- un vocabolario di 80379 token
--- un contesto di 512 token
--- 85M parametri
+-- un vocabolario di 250054 token
+-- un contesto di lunghezza non definita
+-- 610M parametri
 
-To be translated: 
-Abbiamo partecipato a una lezione interessante a proposito di intelligenza artificiale,
-in cui si è discusso in particolare di reti neurali artificiali
-e delle loro applicazioni per l'elaborazione di testi in linguaggi naturali, come l'italiano.
+Da tradurre:
+"Abbiamo partecipato a una lezione interessante a proposito di intelligenza artificiale,
+il cui argomento principale sono stati esempi di applicazioni di reti neurali artificiali."
 
-('Translation:\n'
- 'We participated in an interesting lesson about artificial intelligence, in '
- 'which we discussed in particular artificial neural networks and their '
- 'applications for the elaboration of texts in natural languages, such as '
- 'Italian.')
+
+Traduzione:
+We attended an interesting class on artificial intelligence, and the main topic was examples of the application of
+artificial neural networks.
 </pre>
 </div>
 </div>
@@ -8224,7 +8221,7 @@ e delle loro applicazioni per l'elaborazione di testi in linguaggi naturali, com
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="s2">"google/gemma-2-2b-it"</span>
@@ -8232,19 +8229,22 @@ e delle loro applicazioni per l'elaborazione di testi in linguaggi naturali, com
 <span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">"text-generation"</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
 <span class="n">system_content</span> <span class="o">=</span> <span class="s2">"Sei un esperto che risponde in italiano. e sempre in modo amichevole."</span>
 <span class="n">user_content</span> <span class="o">=</span> <span class="s2">"""</span>
-<span class="s2">    Fai una sintesi in due frasi del testo che segue?</span>
-<span class="s2">    Il metodo scientifico ci ha insegnato a fare previsioni sulla base (1) di modelli dei fenomeni e (2) di dati: un modello ci dice che se il fenomeno è in una certa condizione, osserveremo certi effetti, e i dati ci dicono che siamo in una certa condizione; se tutto ciò è sufficientemente accurato, possiamo supporre che osserveremo proprio gli effetti predetti dal modello in base ai dati.</span>
-<span class="s2">    Si tratta di una versione razionalizzata di ragionamenti che tutti noi, anche senza rendercene conto, attuiamo abitualmente: dall'idea, un modello appunto, che ci siamo fatti di come la nostra automobile si comporta quando freniamo e dai dati che otteniamo osservando intorno a noi mentre guidiamo, concludiamo se, quando e quanto intensamente dobbiamo schiacciare il freno.</span>
-<span class="s2">    Ma in questo momento non abbiamo modelli affidabili di quello che sta succedendo a proposito dei sistemi cosiddetti di intelligenza artificiale generativa, e quindi questa strategia non è applicabile.</span>
-<span class="s2">    Quando non abbiamo un modello a cui affidarci, a volte ricorriamo a una strategia di riserva: nel passato, in una certa condizione si sono prodotti certi effetti; se ora i dati ci dicono che siamo in una condizione simile, per analogia ipotizziamo che si produrranno effetti simili.</span>
-<span class="s2">    Ragionando per analogia possiamo essere creativi, se troviamo nuove connessioni tra le entità a cui ci stiamo interessando, ma paradossalmente anche inerti di fronte ai cambiamenti, se ci ostiniamo a interpretare le novità alla luce di quello che già sappiamo.</span>
-<span class="s2">    Ma anche questa strategia analogica non funziona oggi a proposito dei sistemi di intelligenza artificiale generativa: sia perché stiamo vivendo una condizione decisamente nuova, e quindi non sappiamo bene con cosa del passato confrontarla, sia perché le analogie sono valide quando i cambiamenti sono lineari, e invece i cambiamenti che stiamo vivendo in questi mesi sembrano proprio esponenziali.</span>
-<span class="s2">    Insomma, se è spesso difficile fare previsioni affidabili senza modelli e dati affidabili, nella situazione in cui siamo potremmo ammettere onestamente che le nostre previsioni non hanno davvero nulla di affidabile.</span>
+<span class="s2">"Fai una sintesi in due frasi del testo che segue?</span>
+<span class="s2">Il metodo scientifico ci ha insegnato a fare previsioni sulla base (1) di modelli dei fenomeni e (2) di dati: un modello ci dice che se il fenomeno è in una certa condizione, osserveremo certi effetti, e i dati ci dicono che siamo in una certa condizione; se tutto ciò è sufficientemente accurato, possiamo supporre che osserveremo proprio gli effetti predetti dal modello in base ai dati.</span>
+<span class="s2">Si tratta di una versione razionalizzata di ragionamenti che tutti noi, anche senza rendercene conto, attuiamo abitualmente: dall'idea, un modello appunto, che ci siamo fatti di come la nostra automobile si comporta quando freniamo e dai dati che otteniamo osservando intorno a noi mentre guidiamo, concludiamo se, quando e quanto intensamente dobbiamo schiacciare il freno.</span>
+<span class="s2">Ma in questo momento non abbiamo modelli affidabili di quello che sta succedendo a proposito dei sistemi cosiddetti di intelligenza artificiale generativa, e quindi questa strategia non è applicabile.</span>
+<span class="s2">Quando non abbiamo un modello a cui affidarci, a volte ricorriamo a una strategia di riserva: nel passato, in una certa condizione si sono prodotti certi effetti; se ora i dati ci dicono che siamo in una condizione simile, per analogia ipotizziamo che si produrranno effetti simili.</span>
+<span class="s2">Ragionando per analogia possiamo essere creativi, se troviamo nuove connessioni tra le entità a cui ci stiamo interessando, ma paradossalmente anche inerti di fronte ai cambiamenti, se ci ostiniamo a interpretare le novità alla luce di quello che già sappiamo.</span>
+<span class="s2">Ma anche questa strategia analogica non funziona oggi a proposito dei sistemi di intelligenza artificiale generativa: sia perché stiamo vivendo una condizione decisamente nuova, e quindi non sappiamo bene con cosa del passato confrontarla, sia perché le analogie sono valide quando i cambiamenti sono lineari, e invece i cambiamenti che stiamo vivendo in questi mesi sembrano proprio esponenziali.</span>
+<span class="s2">Insomma, se è spesso difficile fare previsioni affidabili senza modelli e dati affidabili, nella situazione in cui siamo potremmo ammettere onestamente che le nostre previsioni non hanno davvero nulla di affidabile."</span>
 <span class="s2">"""</span>
 <span class="n">res</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span><span class="n">user_content</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">res</span><span class="p">:</span>
-    <span class="n">pprint</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'generated_text'</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Richiesta:'</span><span class="p">)</span>
+    <span class="n">wprint</span><span class="p">(</span><span class="n">user_content</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Risultato:'</span><span class="p">)</span>
+    <span class="n">printmd</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'generated_text'</span><span class="p">][</span><span class="mi">1</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">user_content</span><span class="p">):])</span> <span class="c1"># type: ignore</span>
 </pre></div>
 </div>
 </div>
@@ -8286,52 +8286,36 @@ e delle loro applicazioni per l'elaborazione di testi in linguaggi naturali, com
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>('\n'
- '    Fai una sintesi in due frasi del testo che segue?\n'
- '    Il metodo scientifico ci ha insegnato a fare previsioni sulla base (1) '
- 'di modelli dei fenomeni e (2) di dati: un modello ci dice che se il fenomeno '
- 'è in una certa condizione, osserveremo certi effetti, e i dati ci dicono che '
- 'siamo in una certa condizione; se tutto ciò è sufficientemente accurato, '
- 'possiamo supporre che osserveremo proprio gli effetti predetti dal modello '
- 'in base ai dati.\n'
- '    Si tratta di una versione razionalizzata di ragionamenti che tutti noi, '
- "anche senza rendercene conto, attuiamo abitualmente: dall'idea, un modello "
- 'appunto, che ci siamo fatti di come la nostra automobile si comporta quando '
- 'freniamo e dai dati che otteniamo osservando intorno a noi mentre guidiamo, '
- 'concludiamo se, quando e quanto intensamente dobbiamo schiacciare il freno.\n'
- '    Ma in questo momento non abbiamo modelli affidabili di quello che sta '
- 'succedendo a proposito dei sistemi cosiddetti di intelligenza artificiale '
- 'generativa, e quindi questa strategia non è applicabile.\n'
- '    Quando non abbiamo un modello a cui affidarci, a volte ricorriamo a una '
- 'strategia di riserva: nel passato, in una certa condizione si sono prodotti '
- 'certi effetti; se ora i dati ci dicono che siamo in una condizione simile, '
- 'per analogia ipotizziamo che si produrranno effetti simili.\n'
- '    Ragionando per analogia possiamo essere creativi, se troviamo nuove '
- 'connessioni tra le entità a cui ci stiamo interessando, ma paradossalmente '
- 'anche inerti di fronte ai cambiamenti, se ci ostiniamo a interpretare le '
- 'novità alla luce di quello che già sappiamo.\n'
- '    Ma anche questa strategia analogica non funziona oggi a proposito dei '
- 'sistemi di intelligenza artificiale generativa: sia perché stiamo vivendo '
- 'una condizione decisamente nuova, e quindi non sappiamo bene con cosa del '
- 'passato confrontarla, sia perché le analogie sono valide quando i '
- 'cambiamenti sono lineari, e invece i cambiamenti che stiamo vivendo in '
- 'questi mesi sembrano proprio esponenziali.\n'
- '    Insomma, se è spesso difficile fare previsioni affidabili senza modelli '
- 'e dati affidabili, nella situazione in cui siamo potremmo ammettere '
- 'onestamente che le nostre previsioni non hanno davvero nulla di affidabile.\n'
- '    \n'
- '\n'
- '**Sintesi:**\n'
- '\n'
- 'Il testo analizza la difficoltà di fare previsioni sulla base di modelli e '
- 'dati, illustrando come questa strategia sia applicabile solo in situazioni '
- 'ben definite e con modelli affidabili. In particolare, il testo evidenzia '
- 'come la mancanza di modelli affidabili per i sistemi di intelligenza '
- 'artificiale generativa impedisca di applicare la strategia analogica, che si '
- 'basa su connessioni tra entità e analogie con eventi passati.\n'
- '\n'
- '\n')
+<pre>Richiesta:
+ "Fai una sintesi in due frasi del testo che segue? Il metodo scientifico ci ha insegnato a fare previsioni sulla base
+(1) di modelli dei fenomeni e (2) di dati: un modello ci dice che se il fenomeno è in una certa condizione, osserveremo
+certi effetti, e i dati ci dicono che siamo in una certa condizione; se tutto ciò è sufficientemente accurato, possiamo
+supporre che osserveremo proprio gli effetti predetti dal modello in base ai dati. Si tratta di una versione
+razionalizzata di ragionamenti che tutti noi, anche senza rendercene conto, attuiamo abitualmente: dall'idea, un modello
+appunto, che ci siamo fatti di come la nostra automobile si comporta quando freniamo e dai dati che otteniamo osservando
+intorno a noi mentre guidiamo, concludiamo se, quando e quanto intensamente dobbiamo schiacciare il freno. Ma in questo
+momento non abbiamo modelli affidabili di quello che sta succedendo a proposito dei sistemi cosiddetti di intelligenza
+artificiale generativa, e quindi questa strategia non è applicabile. Quando non abbiamo un modello a cui affidarci, a
+volte ricorriamo a una strategia di riserva: nel passato, in una certa condizione si sono prodotti certi effetti; se ora
+i dati ci dicono che siamo in una condizione simile, per analogia ipotizziamo che si produrranno effetti simili.
+Ragionando per analogia possiamo essere creativi, se troviamo nuove connessioni tra le entità a cui ci stiamo
+interessando, ma paradossalmente anche inerti di fronte ai cambiamenti, se ci ostiniamo a interpretare le novità alla
+luce di quello che già sappiamo. Ma anche questa strategia analogica non funziona oggi a proposito dei sistemi di
+intelligenza artificiale generativa: sia perché stiamo vivendo una condizione decisamente nuova, e quindi non sappiamo
+bene con cosa del passato confrontarla, sia perché le analogie sono valide quando i cambiamenti sono lineari, e invece i
+cambiamenti che stiamo vivendo in questi mesi sembrano proprio esponenziali. Insomma, se è spesso difficile fare
+previsioni affidabili senza modelli e dati affidabili, nella situazione in cui siamo potremmo ammettere onestamente che
+le nostre previsioni non hanno davvero nulla di affidabile."
+Risultato:
 </pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-OutputArea-output" data-mime-type="text/markdown" tabindex="0">
+<p><strong>Sintesi:</strong></p>
+<p>Il testo spiega come la scienza si basa su modelli e dati per fare previsioni, ma in questo caso, non abbiamo modelli affidabili per le intelligenze artificiali generative.
+Questo impedisce di fare previsioni affidabili e di utilizzare strategie analogiche, come la riserva, che si basano su analogie con eventi passati.</p>
 </div>
 </div>
 </div>
