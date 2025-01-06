@@ -4,7 +4,12 @@ from multimethod import multimethod
 from colorama import Fore, Style
 from docx import Document
 import torch
-from transformers import BertTokenizer, BertModel
+from transformers import AutoTokenizer, AutoModelForCausalLM
+import logging
+from transformers import logging as transformers_logging
+
+logging.basicConfig(level=logging.ERROR)
+transformers_logging.set_verbosity_error()
 
 def cosine_similarity(a, b):
     '''Calcola il coseno di similitudine ("cosine similarity",
@@ -97,9 +102,9 @@ def read_files3(metadata, doc_dir):
 
 class Model():
 
-    def __init__(self, name, cased=False):
-        self.tokenizer = BertTokenizer.from_pretrained(name)
-        self.embedder = BertModel.from_pretrained(name)
+    def __init__(self, model_id, cased=False):
+        self.tokenizer = AutoTokenizer.from_pretrained(model_id)
+        self.embedder = AutoModelForCausalLM.from_pretrained(model_id, is_decoder=False)
         self.cased = cased
         self.embedding_layer = self.embedder.get_input_embeddings()             # il layer di embedding del modello
         self.vocab_embeddings = self.embedding_layer.weight.detach().numpy()    # gli embedding dell'intero vocabolario
@@ -128,13 +133,24 @@ class Model():
             return f"Il token '{self.c(token)}' non è presente nel vocabolario del modello."
         token_id = self.tokenizer.convert_tokens_to_ids(self.c(token))
         return self.vocab_embeddings[token_id]
+    
+
+    def similarity(self, token1, token2):
+        '''Calcola la similarità tra due token.'''
+        if not self.token_in_vocab(self.c(token1)):
+            return f"Il token '{self.c(token1)}' non è presente nel vocabolario del modello."
+        if not self.token_in_vocab(self.c(token2)):
+            return f"Il token '{self.c(token2)}' non è presente nel vocabolario del modello."
+        token1_embedding = self.token_to_embedding(token1)
+        token2_embedding = self.token_to_embedding(token2)
+        return cosine_similarity(token1_embedding, token2_embedding)
 
 
     def rough_embed(self, text):
         '''Dato un testo, ne restituisce l'embedding,
         come media degli embedding dei suoi token.'''
         tokens = np.array(self.tokenizer.tokenize(text))
-        ids = np.array(self.tokenizer.convert_tokens_to_ids(tokens))
+        ids = np.array(self.tokenizer.convert_tokens_to_ids(tokens)) # type: ignore
         embeddings = self.vocab_embeddings[ids]
         return np.mean(embeddings, axis=0)
 
@@ -149,7 +165,7 @@ class Model():
 
 
     @multimethod
-    def most_similar(self, token:str, top_n:int=1, filter:bool=True):
+    def most_similar(self, token:str, top_n:int=1, filter:bool=True): # type: ignore
         '''Calcola la lista dei token più simili al token dato.
         Se filter=True, sono esclusi i token che sono simili al token dato,
         che iniziano con '##' o che sono numeri.'''
@@ -178,9 +194,9 @@ class Model():
                 return f"Il token '{self.c(token)}' non è presente nel vocabolario del modello."
         token_embeddings = np.zeros(self.embedding_layer.embedding_dim)
         for token in positive_tokens:
-            token_embeddings += self.token_to_embedding(token)
+            token_embeddings += self.token_to_embedding(token) # type: ignore
         for token in negative_tokens:
-            token_embeddings -= self.token_to_embedding(token)
+            token_embeddings -= self.token_to_embedding(token) # type: ignore
         similarities = cosine_similarities(token_embeddings, self.vocab_embeddings)
         reference_tokens = list(map(str.lower, positive_tokens + negative_tokens))
         most_similar_ids = reversed(np.argsort(similarities))

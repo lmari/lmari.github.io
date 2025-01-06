@@ -7516,7 +7516,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Un'esplorazione-del-token-embedding-con-un-transformer">Un'esplorazione del <em>token embedding</em> con un transformer<a class="anchor-link" href="#Un'esplorazione-del-token-embedding-con-un-transformer">¶</a></h2><p>Luca Mari, ottobre 2024</p>
+<h2 id="Un'esplorazione-del-token-embedding-con-un-transformer">Un'esplorazione del <em>token embedding</em> con un transformer<a class="anchor-link" href="#Un'esplorazione-del-token-embedding-con-un-transformer">¶</a></h2><p>Luca Mari, gennaio 2025</p>
 <p>Quest'opera è distribuita con <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" target="_blank">Licenza Creative Commons Attribuzione - Non commerciale - Condividi allo stesso modo 4.0 Internazionale</a>.<br/>
 <img alt="No description has been provided for this image" src="https://creativecommons.it/chapterIT/wp-content/uploads/2021/01/by-nc-sa.eu_.png" width="100"/></p>
 <p><strong>Obiettivo</strong>: comprendere la logica della "tokenizzazione", il processo con cui un testo viene trasformato in una successione di elementi linguistici elementari ("token").<br/>
@@ -7548,7 +7548,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Per prima cosa, importiamo il modulo che contiene le funzioni per consentire un accesso "di alto livello" al modello pre-addestrato che opererà sia come <em>tokenizzatore</em> sia come sistema di <em>embedding</em>, usando in questo caso una versione pre-addestrata e <em>fine tuned</em>, su testi in italiano, di <code>BERT</code>, che è un transformer accessibile liberamente (<a href="https://it.wikipedia.org/wiki/BERT">https://it.wikipedia.org/wiki/BERT</a>) ed eseguibile anche localmente (alla prima esecuzione sarà dunque necessario attendere che il modello sia scaricato dal sito di Hugging Face: è un file di circa 400 MB che viene copiato nella cartella HFdata della propria cartella personale) (non discutiamo qui di come questo modello sia stato addestrato a fare embedding).</p>
+<p>Per prima cosa, importiamo il modulo che contiene le funzioni per consentire un accesso "di alto livello" al modello pre-addestrato che opererà sia come <em>tokenizzatore</em> sia come sistema di <em>embedding</em>, usando in questo caso una versione pre-addestrata e <em>fine tuned</em>, su testi in italiano, di <code>BERT</code>, che è un transformer accessibile liberamente (<a href="https://it.wikipedia.org/wiki/BERT">https://it.wikipedia.org/wiki/BERT</a>) ed eseguibile anche localmente (alla prima esecuzione sarà dunque necessario attendere che il modello sia scaricato dal sito di Hugging Face: è un file di circa 400 MB che viene copiato in una cache locale) (non discutiamo qui di come questo modello sia stato addestrato a fare embedding).</p>
 <p>Dopo aver caricato il modello, verifichiamo che il processo sia andato a buon fine visualizzando le due informazioni principali:</p>
 <ul>
 <li>il numero di token riconosciuti nel vocabolario del modello (<code>model.vocab_size</code>);</li>
@@ -7562,7 +7562,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tokenizeutils</span> <span class="kn">import</span> <span class="n">Model</span>
@@ -7571,8 +7571,7 @@ a.anchor-link {
 <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="s1">'dbmdz/bert-base-italian-xxl-cased'</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Il tokenizzatore ha un vocabolario di </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">vocab_size</span><span class="si">}</span><span class="s2"> token che riconosce."</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Ogni token viene mappato ('embedded') in un vettore di </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">embedding_dim</span><span class="si">}</span><span class="s2"> numeri."</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"La matrice degli embeddings ha perciò dimensione </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">vocab_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Ogni token viene associato ('embedded') a un vettore di </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">embedding_dim</span><span class="si">}</span><span class="s2"> numeri."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7586,8 +7585,7 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Il tokenizzatore ha un vocabolario di 31102 token che riconosce.
-Ogni token viene mappato ('embedded') in un vettore di 768 numeri.
-La matrice degli embeddings ha perciò dimensione (32102, 768)
+Ogni token viene associato ('embedded') a un vettore di 768 numeri.
 </pre>
 </div>
 </div>
@@ -7609,13 +7607,13 @@ La matrice degli embeddings ha perciò dimensione (32102, 768)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">token</span> <span class="o">=</span> <span class="s2">"bellezza"</span>
 <span class="n">token_id</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">token_to_id</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Dato un token, come '</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">', il tokenizzatore è in grado di trovarne l'identificatore: </span><span class="si">{</span><span class="n">token_id</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"(ai token non presenti nel vocabolario è associato l'identificatore </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">convert_tokens_to_ids</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">unk_token</span><span class="p">)</span><span class="si">}</span><span class="s2">)."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"(ai token non presenti nel vocabolario è associato l'identificatore </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">convert_tokens_to_ids</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">unk_token</span><span class="p">)</span><span class="si">}</span><span class="s2">)."</span><span class="p">)</span> <span class="c1"># type: ignore</span>
 </pre></div>
 </div>
 </div>
@@ -7642,7 +7640,7 @@ La matrice degli embeddings ha perciò dimensione (32102, 768)
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Il modello è stato addestrato a mappare (<em>to embed</em>, appunto) ogni token, con il suo identificatore, in un vettore di numeri (c'è da considerare che i transformer, come <code>BERT</code>, operano sulla base di un embedding dinamico, in cui il vettore di numeri associato a ogni token dipende anche dal contesto ('embedding posizionale'): qui noi lavoriamo solo con la componente statica del maaping).</p>
+<p>Il modello è stato addestrato a mappare (<em>to embed</em>, appunto) ogni token, con il suo identificatore, in una successione di numeri (c'è da considerare che i transformer, come <code>BERT</code>, operano sulla base di un embedding dinamico, in cui la successione di numeri associata a ogni token dipende anche dal contesto ('embedding posizionale'): qui noi lavoriamo solo con la componente statica del mapping).</p>
 </div>
 </div>
 </div>
@@ -7651,7 +7649,7 @@ La matrice degli embeddings ha perciò dimensione (32102, 768)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">embedding</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">token_to_embedding</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
@@ -7691,10 +7689,12 @@ La matrice degli embeddings ha perciò dimensione (32102, 768)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">pprint</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">I </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> token più simili a '</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">' nel vocabolario:"</span><span class="p">)</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="n">n</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -7707,11 +7707,18 @@ La matrice degli embeddings ha perciò dimensione (32102, 768)
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>[('bellezze', 0.45),
+<pre>
+I 10 token più simili a 'bellezza' nel vocabolario:
+[('bellezze', 0.45),
  ('dolcezza', 0.38),
  ('splendore', 0.38),
  ('estetica', 0.35),
- ('fascino', 0.34)]
+ ('fascino', 0.34),
+ ('Belle', 0.34),
+ ('eleganza', 0.32),
+ ('bellissima', 0.32),
+ ('meraviglia', 0.31),
+ ('bella', 0.31)]
 </pre>
 </div>
 </div>
@@ -7726,7 +7733,7 @@ La matrice degli embeddings ha perciò dimensione (32102, 768)
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>L'embedding consente di operare in modo piuttosto sofisticato sul vocabolario.<br/>
 Per esempio, dati due token $A$ e $B$ a ognuno dei quali è stato associato un vettore, $v(A)$ e $v(B)$, se la regola di associazione $v(.)$ è sufficientemente ricca da un punto di vista semantico allora il vettore $v(A)-v(B)$ è associato alla relazione tra $A$ e $B$, interpretata dunque come la loro differenza.<br/>
-In questo modo diventa possibile operare con <em>relazioni semantiche</em> tra token. Per esempio, data la relazione tra $"re"$ e $"uomo"$, qual è il token $X$ che è nella stessa relazione di $"re"$ ma questa volta con $"donna"$? Questa domanda è dunque codificata come $v("re")-v("uomo")=v(X)-v("donna")$, e perciò $v(X)=v("re")+v("donna")-v("uomo)$, in cui $"re"$ e $"donna"$ sono gli "esempi positivi" e $"uomo"$ è l'"esempio negativo".</p>
+In questo modo diventa possibile operare con <em>relazioni semantiche</em> tra token. Per esempio, data la relazione tra $"re"$ e $"uomo"$, qual è il token $X$ che è nella stessa relazione di $"re"$ ma questa volta con $"donna"$? Questa domanda è dunque codificata come $v("re")-v("uomo")=v(X)-v("donna")$, e perciò $v(X)=v("re")+v("donna")-v("uomo)$, in cui $"re"$ e $"donna"$ sono i "casi positivi" e $"uomo"$ è il "caso negativo".</p>
 </div>
 </div>
 </div>
@@ -7735,7 +7742,7 @@ In questo modo diventa possibile operare con <em>relazioni semantiche</em> tra t
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"re"</span><span class="p">,</span> <span class="s2">"donna"</span><span class="p">]</span>             <span class="c1"># sovrano donna</span>
@@ -7775,10 +7782,10 @@ In questo modo diventa possibile operare con <em>relazioni semantiche</em> tra t
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Roma"</span><span class="p">,</span> <span class="s2">"Spagna"</span><span class="p">]</span>          <span class="c1"># capitale di uno stato</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Roma"</span><span class="p">,</span> <span class="s2">"Francia"</span><span class="p">]</span>         <span class="c1"># capitale di uno stato</span>
 <span class="n">negative_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Italia"</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">))</span>
 </pre></div>
@@ -7793,7 +7800,7 @@ In questo modo diventa possibile operare con <em>relazioni semantiche</em> tra t
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>[('Madrid', 0.44)]
+<pre>[('Parigi', 0.48)]
 </pre>
 </div>
 </div>
@@ -7804,12 +7811,12 @@ In questo modo diventa possibile operare con <em>relazioni semantiche</em> tra t
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Italia"</span><span class="p">,</span> <span class="s2">"Catalogna"</span><span class="p">]</span>     <span class="c1"># stato di appartenenza di una regione</span>
 <span class="n">negative_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Lombardia"</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -7822,7 +7829,7 @@ In questo modo diventa possibile operare con <em>relazioni semantiche</em> tra t
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>[('Spagna', 0.39)]
+<pre>[('Spagna', 0.39), ('Barcellona', 0.37), ('Turchia', 0.34), ('Europa', 0.34), ('Barcelona', 0.33)]
 </pre>
 </div>
 </div>
@@ -7833,7 +7840,7 @@ In questo modo diventa possibile operare con <em>relazioni semantiche</em> tra t
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Garibaldi"</span><span class="p">,</span> <span class="s2">"Francia"</span><span class="p">]</span>    <span class="c1"># eroe nazionale</span>
@@ -7862,7 +7869,7 @@ In questo modo diventa possibile operare con <em>relazioni semantiche</em> tra t
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"estate"</span><span class="p">,</span> <span class="s2">"freddo"</span><span class="p">]</span>        <span class="c1"># stagione per temperatura </span>
@@ -7920,12 +7927,12 @@ In questo modo diventa possibile operare con <em>relazioni semantiche</em> tra t
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"nuoto"</span><span class="p">,</span> <span class="s2">"palestra"</span><span class="p">]</span>       <span class="c1"># sport praticato in un luogo</span>
 <span class="n">negative_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"piscina"</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -7938,7 +7945,7 @@ In questo modo diventa possibile operare con <em>relazioni semantiche</em> tra t
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>[('ginnastica', 0.4)]
+<pre>[('ginnastica', 0.4), ('allenamento', 0.4), ('atletica', 0.38), ('fitness', 0.37), ('pallavolo', 0.36), ('ciclismo', 0.35), ('atleti', 0.35), ('Tennis', 0.34), ('yoga', 0.33), ('rugby', 0.33)]
 </pre>
 </div>
 </div>
@@ -7949,12 +7956,12 @@ In questo modo diventa possibile operare con <em>relazioni semantiche</em> tra t
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"due"</span><span class="p">,</span> <span class="s2">"tre"</span><span class="p">]</span>              <span class="c1"># numero successivo</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">positive_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"due"</span><span class="p">,</span> <span class="s2">"dieci"</span><span class="p">]</span>              <span class="c1"># numero successivo</span>
 <span class="n">negative_examples</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"uno"</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive_examples</span><span class="p">,</span> <span class="n">negative_examples</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -7967,7 +7974,7 @@ In questo modo diventa possibile operare con <em>relazioni semantiche</em> tra t
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>[('quattro', 0.59)]
+<pre>[('quattro', 0.56), ('cinque', 0.56), ('tre', 0.49), ('sette', 0.43), ('dodici', 0.41)]
 </pre>
 </div>
 </div>

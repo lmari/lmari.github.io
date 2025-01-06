@@ -7516,7 +7516,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Un'esplorazione-della-tokenizzazione">Un'esplorazione della tokenizzazione<a class="anchor-link" href="#Un'esplorazione-della-tokenizzazione">¶</a></h2><p>Luca Mari, dicembre 2024</p>
+<h2 id="Un'esplorazione-della-tokenizzazione">Un'esplorazione della tokenizzazione<a class="anchor-link" href="#Un'esplorazione-della-tokenizzazione">¶</a></h2><p>Luca Mari, gennaio 2025</p>
 <p>Quest'opera è distribuita con <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" target="_blank">Licenza Creative Commons Attribuzione - Non commerciale - Condividi allo stesso modo 4.0 Internazionale</a>.<br/>
 <img alt="No description has been provided for this image" src="https://creativecommons.it/chapterIT/wp-content/uploads/2021/01/by-nc-sa.eu_.png" width="100"/></p>
 <p><strong>Obiettivo</strong>: comprendere la logica della "tokenizzazione", il processo con cui un testo viene trasformato in una successione di elementi linguistici elementari ("token").<br/>
@@ -7549,7 +7549,7 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>Una prima elaborazione di un testo dato -- una frase, un paragrafo, un documento, ... -- è spesso la sua trasformazione in una successione di elementi linguistici elementari ("token"), tratti da un vocabolario dato.<br/>
-Per mostrare un esempio di questo processo di tokenizzazione, per prima cosa importiamo il modulo che contiene le funzioni per consentire un accesso "di alto livello" al modello pre-addestrato che opererà come tokenizzatore, usando in questo caso una versione pre-addestrata e fine tuned, su testi in italiano, di <code>BERT</code>, che è un transformer "open" (<a href="https://it.wikipedia.org/wiki/BERT">https://it.wikipedia.org/wiki/BERT</a>) ed eseguibile anche localmente (alla prima esecuzione sarà dunque necessario attendere che il modello sia scaricato dal sito di Hugging Face: è un file di circa 400 MB che viene copiato nella cartella HFdata della propria cartella personale).</p>
+Per mostrare un esempio di questo processo di tokenizzazione, per prima cosa importiamo il modulo che contiene le funzioni per consentire un accesso "di alto livello" al modello pre-addestrato che opererà come tokenizzatore, usando in questo caso una versione pre-addestrata e fine tuned, su testi in italiano, di <code>BERT</code>, che è un transformer "open" (<a href="https://it.wikipedia.org/wiki/BERT">https://it.wikipedia.org/wiki/BERT</a>) ed eseguibile anche localmente (alla prima esecuzione sarà dunque necessario attendere che il modello sia scaricato dal sito di Hugging Face: è un file di circa 400 MB che viene copiato in una cache locale).</p>
 </div>
 </div>
 </div>
@@ -7558,7 +7558,7 @@ Per mostrare un esempio di questo processo di tokenizzazione, per prima cosa imp
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tokenizeutils</span> <span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">colorize</span>
