@@ -3,472 +3,204 @@
 <head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1" name="viewport">
-<title>Un&#39;avventura al Berchet</title>
+<title>Untitled Story</title>
 <style title="Twine CSS">@keyframes appear{0%{opacity:0}to{opacity:1}}@keyframes fade-in-out{0%,to{opacity:0}50%{opacity:1}}@keyframes rumble{25%{top:-0.1em}75%{top:.1em}0%,to{top:0px}}@keyframes shudder{25%{left:.1em}75%{left:-0.1em}0%,to{left:0px}}@keyframes buoy{25%{top:.25em}75%{top:-0.25em}0%,to{top:0px}}@keyframes sway{25%{left:.25em}75%{left:-0.25em}0%,to{left:0px}}@keyframes pulse{0%{transform:scale(0, 0)}20%{transform:scale(1.2, 1.2)}40%{transform:scale(0.9, 0.9)}60%{transform:scale(1.05, 1.05)}80%{transform:scale(0.925, 0.925)}to{transform:scale(1, 1)}}@keyframes zoom-in{0%{transform:scale(0, 0)}to{transform:scale(1, 1)}}@keyframes shudder-in{0%,to{transform:translateX(0em)}5%,25%,45%{transform:translateX(-1em)}15%,35%,55%{transform:translateX(1em)}65%{transform:translateX(-0.6em)}75%{transform:translateX(0.6em)}85%{transform:translateX(-0.2em)}95%{transform:translateX(0.2em)}}@keyframes rumble-in{0%,to{transform:translateY(0em)}5%,25%,45%{transform:translateY(-1em)}15%,35%,55%{transform:translateY(1em)}65%{transform:translateY(-0.6em)}75%{transform:translateY(0.6em)}85%{transform:translateY(-0.2em)}95%{transform:translateY(0.2em)}}@keyframes fidget{0%,8.1%,82.1%,31.1%,38.1%,44.1%,40.1%,47.1%,74.1%,16.1%,27.1%,72.1%,24.1%,95.1%,6.1%,36.1%,20.1%,4.1%,91.1%,14.1%,87.1%,to{left:0px;top:0px}8%,82%,31%,38%,44%{left:-1px}40%,47%,74%,16%,27%{left:1px}72%,24%,95%,6%,36%{top:-1px}20%,4%,91%,14%,87%{top:1px}}@keyframes slide-right{0%{transform:translateX(-100vw)}}@keyframes slide-left{0%{transform:translateX(100vw)}}@keyframes slide-up{0%{transform:translateY(100vh)}}@keyframes slide-down{0%{transform:translateY(-100vh)}}@keyframes fade-right{0%{opacity:0;transform:translateX(-1em)}to{opacity:1}}@keyframes fade-left{0%{opacity:0;transform:translateX(1em)}to{opacity:1}}@keyframes fade-up{0%{opacity:0;transform:translateY(1em)}to{opacity:1}}@keyframes fade-down{0%{opacity:0;transform:translateY(-1em)}to{opacity:1}}@keyframes flicker{0%,29%,31%,63%,65%,77%,79%,86%,88%,91%,93%{opacity:0}30%{opacity:.2}64%{opacity:.4}78%{opacity:.6}87%{opacity:.8}92%,to{opacity:1}}@keyframes blur{0%{filter:blur(2rem);opacity:0}25%{opacity:1}to{filter:blur(0rem);opacity:1}}.dom-debug-mode tw-story,.dom-debug-mode tw-passage,.dom-debug-mode tw-sidebar,.dom-debug-mode tw-include,.dom-debug-mode tw-hook,.dom-debug-mode tw-expression,.dom-debug-mode tw-link,.dom-debug-mode tw-dialog,.dom-debug-mode tw-columns,.dom-debug-mode tw-column,.dom-debug-mode tw-align{outline:1px solid #f5a3da;min-height:32px;display:block !important}.dom-debug-mode tw-story::before,.dom-debug-mode tw-passage::before,.dom-debug-mode tw-sidebar::before,.dom-debug-mode tw-include::before,.dom-debug-mode tw-hook::before,.dom-debug-mode tw-expression::before,.dom-debug-mode tw-link::before,.dom-debug-mode tw-dialog::before,.dom-debug-mode tw-columns::before,.dom-debug-mode tw-column::before,.dom-debug-mode tw-align::before{position:absolute;top:0;left:0;height:16px;background-color:#f5a3da;color:#000;font-size:16px;font-weight:normal;font-style:normal;font-family:monospace;display:inline-block;line-height:100%;white-space:pre;z-index:999997}.dom-debug-mode tw-story:hover,.dom-debug-mode tw-passage:hover,.dom-debug-mode tw-sidebar:hover,.dom-debug-mode tw-include:hover,.dom-debug-mode tw-hook:hover,.dom-debug-mode tw-expression:hover,.dom-debug-mode tw-link:hover,.dom-debug-mode tw-dialog:hover,.dom-debug-mode tw-columns:hover,.dom-debug-mode tw-column:hover,.dom-debug-mode tw-align:hover{outline:1px solid #fc9}.dom-debug-mode tw-story:hover::before,.dom-debug-mode tw-passage:hover::before,.dom-debug-mode tw-sidebar:hover::before,.dom-debug-mode tw-include:hover::before,.dom-debug-mode tw-hook:hover::before,.dom-debug-mode tw-expression:hover::before,.dom-debug-mode tw-link:hover::before,.dom-debug-mode tw-dialog:hover::before,.dom-debug-mode tw-columns:hover::before,.dom-debug-mode tw-column:hover::before,.dom-debug-mode tw-align:hover::before{background-color:#fc9;transition:background-color 1s}.dom-debug-mode tw-passage,.dom-debug-mode tw-include,.dom-debug-mode tw-hook,.dom-debug-mode tw-expression,.dom-debug-mode tw-link,.dom-debug-mode tw-dialog,.dom-debug-mode tw-columns,.dom-debug-mode tw-column,.dom-debug-mode tw-align{padding:1em;margin:0}.dom-debug-mode tw-story::before{content:'<tw-story tags="' attr(tags) '">'}.dom-debug-mode tw-passage::before{top:-16px;content:'<tw-passage tags="' attr(tags) '">'}.dom-debug-mode tw-sidebar::before{top:-16px;content:"<tw-sidebar>"}.dom-debug-mode tw-hook::before{content:'<tw-hook name="' attr(name) '">'}.dom-debug-mode tw-expression::before{content:'<tw-expression name="' attr(name) '">'}.dom-debug-mode tw-link::before{content:'<tw-link name="' attr(name) '">'}.dom-debug-mode tw-dialog::before{content:"<tw-dialog>"}.dom-debug-mode tw-columns::before{content:"<tw-columns>"}.dom-debug-mode tw-column::before{content:"<tw-column>"}.dom-debug-mode tw-align::before{content:"<tw-align>"}.dom-debug-mode tw-include::before{content:'<tw-include type="' attr(type) '" name="' attr(name) '">'}tw-open-button[goto]{display:none}.debug-mode tw-open-button[replay],.debug-mode tw-open-button[goto]{display:inline}.debug-mode tw-expression{display:inline-block !important}.debug-mode tw-expression[type=variable]::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"$" attr(name)}.debug-mode tw-expression[type=tempVariable]::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"_" attr(name)}.debug-mode tw-expression[return=boolean]{background-color:rgba(179,179,179,.2)}.debug-mode tw-expression[return=array]{background-color:rgba(255,102,102,.2)}.debug-mode tw-expression[return=dataset]{background-color:rgba(255,128,0,.2)}.debug-mode tw-expression[return=number]{background-color:rgba(255,179,102,.2)}.debug-mode tw-expression[return=datamap]{background-color:rgba(255,255,102,.2)}.debug-mode tw-expression[return=changer]{background-color:rgba(179,255,102,.2)}.debug-mode tw-expression[return=lambda]{background-color:rgba(102,255,102,.2)}.debug-mode tw-expression[return=hookname]{background-color:rgba(102,255,204,.2)}.debug-mode tw-expression[return=string]{background-color:rgba(102,255,255,.2)}.debug-mode tw-expression[return=datatype]{background-color:rgba(102,153,255,.2)}.debug-mode tw-expression[return=gradient],.debug-mode tw-expression[return=colour]{background-color:rgba(204,102,255,.2)}.debug-mode tw-expression[return=instant],.debug-mode tw-expression[return=macro]{background-color:rgba(240,117,199,.2)}.debug-mode tw-expression[return=command]{background-color:rgba(153,153,255,.2)}.debug-mode tw-expression.false{background-color:rgba(255,0,0,.2) !important}.debug-mode tw-expression[type=macro]::before{content:"(" attr(name) ":)";padding:0 .5rem;font-size:1rem;vertical-align:middle;line-height:normal;background-color:inherit;border:1px solid rgba(255,255,255,.5)}.debug-mode tw-expression[title]:not([title=""]){cursor:help}.debug-mode tw-hook{background-color:rgba(0,85,255,.1) !important}.debug-mode tw-hook::before{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"["}.debug-mode tw-hook::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"]"}.debug-mode tw-hook[name]::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"]<" attr(name) "|"}.debug-mode tw-pseudo-hook{background-color:rgba(255,170,0,.1) !important}.debug-mode tw-collapsed::before{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"{"}.debug-mode tw-collapsed::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"}"}.debug-mode tw-verbatim::before,.debug-mode tw-verbatim::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"`"}.debug-mode tw-align[style*="text-align: center"]{background:linear-gradient(to right, hsla(14, 100%, 87%, 0) 0%, hsla(14, 100%, 87%, 0.25) 50%, hsla(14, 100%, 87%, 0) 100%)}.debug-mode tw-align[style*="text-align: left"]{background:linear-gradient(to right, hsla(14, 100%, 87%, 0.25) 0%, hsla(14, 100%, 87%, 0) 100%)}.debug-mode tw-align[style*="text-align: right"]{background:linear-gradient(to right, hsla(14, 100%, 87%, 0) 0%, hsla(14, 100%, 87%, 0.25) 100%)}.debug-mode tw-column{background-color:rgba(189,228,255,.2)}.debug-mode tw-enchantment{animation:enchantment .5s infinite;border:1px solid}.debug-mode tw-link::after,.debug-mode tw-broken-link::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:attr(passage-name)}.debug-mode tw-include{background-color:rgba(204,128,51,.1)}.debug-mode tw-include::before{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:attr(type) ' "' attr(name) '"'}.debug-dialogs tw-backdrop:not(.eval-replay):not(.harlowe-crash){pointer-events:none;opacity:.1}tw-eval-replay tw-eval-code,tw-eval-replay tw-eval-explanation{max-height:20vh;overflow:auto;margin:10px auto}tw-eval-replay tw-eval-code{display:block;font-family:monospace;padding-bottom:1ex;border-bottom:2px solid gray}tw-eval-replay tw-eval-explanation{display:block;text-align:center}tw-eval-replay tw-eval-explanation>code{white-space:pre-wrap}tw-eval-replay tw-eval-explanation>code.from-block{width:40%;display:inline-block;text-align:left;max-height:4em;overflow-wrap:anywhere;overflow-y:scroll}tw-eval-replay tw-eval-explanation>code.from-block~.to-desc{width:calc(40% - 2em);margin-left:2em;display:inline-block}tw-eval-replay tw-eval-explanation>code.from-block+span::after{content:"..."}tw-eval-replay tw-eval-explanation>code.from-inline{text-align:right}tw-eval-replay tw-eval-explanation>:nth-child(2){white-space:pre}tw-eval-replay tw-eval-explanation>.to-desc{text-align:left}tw-eval-replay tw-eval-explanation>table{width:100%;margin-top:1em}tw-eval-replay tw-eval-explanation>table td{white-space:pre-wrap !important;word-wrap:anywhere}tw-eval-replay tw-eval-reason{text-align:center;font-size:80%;font-style:italic;display:block}tw-eval-replay tw-eval-it{text-align:center;font-size:80%;display:block}tw-eval-replay tw-dialog-links{display:-ms-flexbox;display:flex;-ms-flex-pack:distribute;justify-content:space-around}@keyframes enchantment{0%,to{border-color:#ffb366}50%{border-color:#6fc}}tw-debugger{position:fixed;box-sizing:border-box;bottom:0;right:0;z-index:999999;min-width:14em;min-height:1em;padding:0em .5em .5em 1em;font-size:1.25em;font-family:sans-serif;color:#262626;background-color:#fff;border-left:solid #262626 2px;border-top:solid #262626 2px;border-top-left-radius:.5em;opacity:1}tw-debugger.fade-panel:not(:hover){opacity:.33}tw-debugger.theme-dark{color:#d9d9d9;background-color:#000}tw-debugger.theme-dark{border-color:#d9d9d9 rgba(0,0,0,0) rgba(0,0,0,0) #d9d9d9}tw-debugger select{margin-right:1em;width:12em}tw-debugger button,tw-debugger tw-link{border-radius:3px;border:solid #999 1px;margin:auto 4px;color:#262626;background-color:#fff;cursor:pointer}tw-debugger button.enabled,tw-debugger tw-link.enabled{color:#000;background-color:#d9d9d9;box-shadow:inset #999 3px 5px .5em}tw-debugger.theme-dark button,tw-debugger.theme-dark tw-link{color:#d9d9d9;background-color:#000;border-color:#666}tw-debugger.theme-dark button.enabled,tw-debugger.theme-dark tw-link.enabled{color:#e6e6e6;background-color:#424242;box-shadow:inset #666 3px 5px .5em}tw-debugger button{font-size:1em;overflow-x:hidden;text-overflow:ellipsis;white-space:pre}tw-debugger tw-link{font-size:1.25em;border-radius:16px;border-style:solid;border-width:2px;text-align:center;padding:0px 8px;display:block}tw-debugger tw-link:hover{border-color:#262626;color:#262626}tw-debugger.theme-dark tw-link:hover{border-color:#d9d9d9;color:#d9d9d9}tw-debugger tw-dialog{background-color:#fff;color:#000;font-size:1.25em}tw-debugger.theme-dark tw-dialog{background-color:#000;color:#e6e6e6}tw-debugger .panel{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;position:absolute;bottom:100%;left:-2px;right:0;padding:1em;overflow-y:scroll;overflow-x:hidden;border:inherit;box-sizing:content-box;background-color:#fff;border-bottom:solid #999 2px;border-top-left-radius:.5em;border-bottom-left-radius:.5em;font-size:.8em}tw-debugger .panel:empty,tw-debugger .panel[hidden]{display:none}tw-debugger.theme-dark .panel{background-color:#000;border-bottom-color:#666}tw-debugger .panel-source .panel-row-buttons{width:2rem}tw-debugger .panel-source .source-tags{width:20%;font-style:italic}tw-debugger .panel-row-source td{font-family:monospace;font-size:1rem;white-space:pre-wrap;overflow-wrap:anywhere;max-height:8rem;padding:1rem}tw-debugger .panel-rows{width:100%;overflow-x:scroll}tw-debugger .panel-rows>*{display:table-row}tw-debugger .panel-rows>div:nth-of-type(2n){background-color:#e6e6e6}tw-debugger .panel-tools .panel-rows>*,tw-debugger .panel-options .panel-rows>*{margin-top:.4rem;display:block}tw-debugger.theme-dark .panel-rows>div:nth-of-type(2n){background-color:#212121}tw-debugger .panel-row-buttons{text-align:right}tw-debugger .panel-variables .panel-rows:empty::before{content:"~ No variables ~";font-style:italic;color:#575757;text-align:center}tw-debugger .panel-enchantments .panel-rows:empty::before{content:"~ No enchantments ~";font-style:italic;color:#575757;text-align:center}tw-debugger .panel-errors .panel-rows:empty::before{content:"~ No errors... for now. ~";font-style:italic;color:#575757;text-align:center}tw-debugger .panel-errors .panel-rows:empty+.panel-errors-bottom{display:none}tw-debugger.theme-dark .panel-variables .panel-rows:empty::before,tw-debugger.theme-dark .panel-enchantments .panel-rows:empty::before,tw-debugger.theme-dark .panel-errors .panel-rows:empty::before{color:#a8a8a8}tw-debugger .panel-rows:empty+.panel-variables-bottom{display:none}tw-debugger th[data-col]{text-decoration:underline;cursor:pointer}tw-debugger th[data-col][data-order=asc]::after{content:"↓"}tw-debugger th[data-col][data-order=desc]::after{content:"↑"}tw-debugger .panel-storylets:not(.panel-exclusive) .storylet-exclusive,tw-debugger .panel-storylets:not(.panel-urgent) .storylet-urgent{display:none}tw-debugger .storylet-exclusive,tw-debugger .storylet-urgent,tw-debugger .storylet-open{text-align:center}tw-debugger .panel-variables-bottom{padding-top:5px}tw-debugger .enchantment-row{min-height:1.5em}tw-debugger .variable-path{opacity:.4}tw-debugger .temporary-variable-scope,tw-debugger .enchantment-local{font-family:sans-serif;font-weight:normal;opacity:.8;font-size:.75em}tw-debugger .temporary-variable-scope:not(:empty)::before,tw-debugger .enchantment-local:not(:empty)::before{content:" in "}tw-debugger .variable-name,tw-debugger .enchantment-name{font-family:monospace;font-weight:bold}tw-debugger .variable-type{color:#575757;font-weight:normal;text-overflow:ellipsis;overflow:hidden;max-width:10em}tw-debugger.theme-dark .variable-type{color:#a8a8a8}tw-debugger .error-row{display:table-row;background-color:rgba(230,101,204,.3)}tw-debugger .error-row:nth-of-type(2n){background-color:rgba(237,145,219,.3)}tw-debugger .error-row>*{display:table-cell;padding:.25em .5em}tw-debugger .error-row .error-message[title]:not([title=""]){cursor:help}tw-debugger .error-row .error-passage{color:#575757}tw-debugger.theme-dark .error-row .error-passage{color:#a8a8a8}tw-debugger .storylet-row{background-color:rgba(193,240,225,.3)}tw-debugger .storylet-row:nth-child(2n){background-color:rgba(152,231,204,.3)}tw-debugger .storylet-row.storylet-closed{font-style:italic;background-color:#fff}tw-debugger .storylet-row.storylet-closed:nth-child(2n){background-color:#e6e6e6}tw-debugger .storylet-row.storylet-closed>:not(.storylet-lambda){opacity:.6}.storylet-error tw-debugger .storylet-row{background-color:rgba(230,101,204,.3)}.storylet-error tw-debugger .storylet-row:nth-child(2n){background-color:rgba(237,145,219,.3)}tw-debugger .storylet-row .storylet-name,tw-debugger .storylet-row .storylet-value{display:inline-block;width:50%}tw-debugger .storylet-row .storylet-lambda{font-family:monospace;font-size:1rem;white-space:pre-wrap;overflow-wrap:anywhere}tw-debugger.theme-dark .storylet-row.storylet-closed{background-color:#000}tw-debugger.theme-dark .storylet-row.storylet-closed:nth-child(2n){background-color:#212121}tw-debugger .tabs{padding-bottom:.5em}tw-debugger .tab{border-radius:0px 0px .5em .5em;border-top:none;top:-2px}tw-debugger .resizer-h{position:absolute;height:14em;border-left:2px solid #999;border-right:2px solid #999;top:10px;left:4px;width:8px;cursor:ew-resize}tw-debugger.theme-dark .resizer-h{border-color:rgba(0,0,0,0) #666}tw-debugger .resizer-v{position:absolute;height:8px;border-top:2px solid #999;border-bottom:2px solid #999;margin-bottom:4px;top:4px;left:10px;width:95%;cursor:ns-resize;box-sizing:border-box}tw-debugger.theme-dark .resizer-v{border-color:#666 rgba(0,0,0,0)}tw-debugger mark{color:inherit;background-color:rgba(101,230,230,.3) !important}tw-dialog{z-index:999997;border:#fff solid 2px;padding:2em;color:#fff;background-color:#000;display:block}@media(min-width: 576px){tw-dialog{max-width:50vw}}tw-dialog input[type=text]{font-size:inherit;width:100%;border:solid #fff !important}tw-dialog-links{text-align:right;display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end}tw-backdrop{z-index:999996;position:fixed;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,.8);display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center}tw-backdrop~tw-backdrop{display:none}tw-link,.enchantment-link{cursor:pointer;color:#4169e1;font-weight:bold;text-decoration:none;transition:color .2s ease-in-out}tw-passage [style^=color] tw-link:not(:hover),tw-passage [style*=" color"] tw-link:not(:hover),tw-passage [style^=color][hover=true] tw-link:hover,tw-passage [style*=" color"][hover=true] tw-link:hover,tw-passage [style^=color] .enchantment-link:not(:hover),tw-passage [style*=" color"] .enchantment-link:not(:hover),tw-passage [style^=color][hover=true] .enchantment-link:hover,tw-passage [style*=" color"][hover=true] .enchantment-link:hover{color:inherit}tw-link:hover,.enchantment-link:hover{color:#00bfff}tw-link:active,.enchantment-link:active{color:#dd4b39}.visited{color:#6941e1}tw-passage [style^=color] .visited:not(:hover),tw-passage [style*=" color"] .visited:not(:hover),tw-passage [style^=color][hover=true] .visited:hover,tw-passage [style*=" color"][hover=true] .visited:hover{color:inherit}.visited:hover{color:#e3e}tw-broken-link{color:#933;border-bottom:2px solid #933;cursor:not-allowed}tw-passage [style^=color] tw-broken-link:not(:hover),tw-passage [style*=" color"] tw-broken-link:not(:hover),tw-passage [style^=color][hover=true] tw-broken-link:hover,tw-passage [style*=" color"][hover=true] tw-broken-link:hover{color:inherit}tw-link.enchantment-mouseover,.link.enchantment-mouseover,tw-expression.enchantment-mouseover>tw-link{color:inherit;font-weight:inherit;transition:none;cursor:inherit;border-bottom:2px dashed #999}tw-link.enchantment-mouseover:hover,tw-link.enchantment-mouseover:active,.link.enchantment-mouseover:hover,.link.enchantment-mouseover:active,tw-expression.enchantment-mouseover>tw-link:hover,tw-expression.enchantment-mouseover>tw-link:active{color:inherit}tw-link.enchantment-mouseover.enchantment-button,.link.enchantment-mouseover.enchantment-button,tw-expression.enchantment-mouseover>tw-link.enchantment-button{border-style:dashed}tw-link.enchantment-mouseout,.link.enchantment-mouseout,tw-expression.enchantment-mouseout>tw-link{color:inherit;font-weight:inherit;transition:none;cursor:inherit;border:rgba(64,149,191,.6) 1px solid;border-radius:.2em}tw-link.enchantment-mouseout:hover,tw-link.enchantment-mouseout:active,.link.enchantment-mouseout:hover,.link.enchantment-mouseout:active,tw-expression.enchantment-mouseout>tw-link:hover,tw-expression.enchantment-mouseout>tw-link:active{color:inherit}tw-link.enchantment-mouseout:hover,.link.enchantment-mouseout:hover,tw-expression.enchantment-mouseout>tw-link:hover{background-color:rgba(175,197,207,.75);border:rgba(0,0,0,0) 1px solid}tw-link.enchantment-dblclick,.link.enchantment-dblclick,tw-expression.enchantment-dblclick>tw-link{color:inherit;font-weight:inherit;transition:none;cursor:inherit;cursor:pointer;border:2px solid #999;border-radius:0}tw-link.enchantment-dblclick:hover,tw-link.enchantment-dblclick:active,.link.enchantment-dblclick:hover,.link.enchantment-dblclick:active,tw-expression.enchantment-dblclick>tw-link:hover,tw-expression.enchantment-dblclick>tw-link:active{color:inherit}tw-link.enchantment-dblclick:active,.link.enchantment-dblclick:active,tw-expression.enchantment-dblclick>tw-link:active{background-color:#999}tw-link.enchantment-button,.link.enchantment-button,.enchantment-button:not(.link) tw-link,.enchantment-button:not(.link) .link{border-radius:16px;border-style:solid;border-width:2px;text-align:center;padding:0px 8px;display:block}.enchantment-button{display:block}.enchantment-clickblock{cursor:pointer;width:100%;height:100%;display:block}.enchantment-clickblock>:not(tw-enchantment)::after{content:"";width:100%;height:100%;top:0;left:0;display:block;box-sizing:border-box;position:absolute;pointer-events:none;color:rgba(65,105,225,.5);transition:color .2s ease-in-out}.enchantment-clickblock>:not(tw-enchantment):hover::after{color:rgba(0,191,255,.5)}.enchantment-clickblock>:not(tw-enchantment):active::after{color:rgba(222,78,59,.5)}.enchantment-clickblock>:not(tw-enchantment)::after{box-shadow:inset 0 0 0 .5vmax}.enchantment-clickblock>tw-passage::after,.enchantment-clickblock>tw-sidebar::after{box-shadow:0 0 0 .5vmax}.enchantment-mouseoverblock>:not(tw-enchantment)::after{content:"";width:100%;height:100%;top:0;left:0;display:block;box-sizing:border-box;position:absolute;pointer-events:none;border:2px dashed #999}.enchantment-mouseoutblock>:not(tw-enchantment)::after{content:"";width:100%;height:100%;top:0;left:0;display:block;box-sizing:border-box;position:absolute;pointer-events:none;border:rgba(64,149,191,.6) 2px solid}.enchantment-mouseoutblock:hover>:not(tw-enchantment)::after{content:"";width:100%;height:100%;top:0;left:0;display:block;box-sizing:border-box;position:absolute;pointer-events:none;background-color:rgba(175,197,207,.75);border:rgba(0,0,0,0) 2px solid;border-radius:.2em}.enchantment-dblclickblock>:not(tw-enchantment)::after{content:"";width:100%;height:100%;top:0;left:0;display:block;box-sizing:border-box;position:absolute;pointer-events:none;cursor:pointer;border:2px solid #999}tw-dialog-links{padding-top:1.5em}tw-dialog-links tw-link{border-radius:16px;border-style:solid;border-width:2px;text-align:center;padding:0px 8px;display:block;display:inline-block}html{margin:0;height:100%;overflow-x:hidden}*,:before,:after{position:relative;box-sizing:inherit}body{margin:0;height:100%}tw-storydata{display:none}tw-story{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;font:100% Georgia,serif;box-sizing:border-box;width:100%;min-height:100%;font-size:1.5em;line-height:1.5em;padding:5% 5%;overflow:hidden;background-color:#000;color:#fff}tw-story [style*=content-box] *{box-sizing:border-box}@media(min-width: 576px){tw-story{padding:5% 20%}}tw-story tw-consecutive-br{display:block;height:1.6ex;visibility:hidden}tw-story select{background-color:rgba(0,0,0,0);font:inherit;border-style:solid;padding:2px}tw-story select:not([disabled]){color:inherit}tw-story textarea{resize:none;background-color:rgba(0,0,0,0);font:inherit;color:inherit;border-style:none;padding:2px}tw-story input[type=text]{background-color:rgba(0,0,0,0);font:inherit;color:inherit;border-style:none}tw-story input[type=checkbox]{transform:scale(1.5);margin:0 .5em .5em .5em;vertical-align:middle}tw-story tw-noscript{animation:appear .8s}tw-passage{display:block}tw-sidebar{text-align:center;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}@media(min-width: 576px){tw-sidebar{left:-5em;width:3em;position:absolute;-ms-flex-direction:column;flex-direction:column}tw-enchantment[style*=width]>tw-sidebar{width:inherit}}tw-icon{display:inline-block;margin:.5em 0;font-size:66px;font-family:"Verdana",sans-serif}tw-icon[alt]{opacity:.2;cursor:pointer}tw-icon[alt]:hover{opacity:.4}tw-icon[data-label]::after{font-weight:bold;content:attr(data-label);font-size:20px;bottom:-20px;left:-50%;white-space:nowrap}tw-meter{display:block}tw-hook:empty,tw-expression:empty{display:none}tw-error{display:inline-block;border-radius:.2em;padding:.2em;font-size:1rem;cursor:help;white-space:pre-wrap}tw-error.error{background-color:rgba(223,58,190,.6);color:#fff}tw-error.warning{background-color:rgba(223,140,58,.6);color:#fff;display:none}.debug-mode tw-error.warning{display:inline}tw-error-explanation{display:block;font-size:.8rem;line-height:1rem}tw-open-button,tw-folddown{cursor:pointer;line-height:0em;border-radius:4px;border:1px solid rgba(255,255,255,.5);font-size:.8rem;margin:0 .2rem;padding:3px;white-space:pre}tw-folddown::after{content:"▶"}tw-folddown.open::after{content:"▼"}tw-open-button[replay]{display:none}tw-error tw-open-button,tw-eval-replay tw-open-button{display:inline !important}tw-open-button::after{content:attr(label)}tw-notifier{border-radius:.2em;padding:.2em;font-size:1rem;background-color:rgba(223,182,58,.4);display:none}.debug-mode tw-notifier{display:inline}tw-notifier::before{content:attr(message)}tw-colour{border:1px solid #000;display:inline-block;width:1em;height:1em}tw-enchantment:empty{display:none}h1{font-size:3em}h2{font-size:2.25em}h3{font-size:1.75em}h1,h2,h3,h4,h5,h6{line-height:1em;margin:.3em 0 .6em 0}pre{font-size:1rem;line-height:initial}small{font-size:70%}big{font-size:120%}mark{color:rgba(0,0,0,.6);background-color:#ff9}ins{color:rgba(0,0,0,.6);background-color:rgba(255,242,204,.5);border-radius:.5em;box-shadow:0em 0em .2em #ffe699;text-decoration:none}center{text-align:center;margin:0 auto;width:60%}blink{text-decoration:none;animation:fade-in-out 1s steps(1, end) infinite alternate}tw-align{display:block}tw-columns{display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-pack:justify;justify-content:space-between}.transition-in{animation:appear 0ms step-start}.transition-out{animation:appear 0ms step-end}[data-t8n^=dissolve].transition-in,[data-t8n=fade].transition-in{animation:appear .8s}[data-t8n^=dissolve].transition-out,[data-t8n=fade].transition-out{animation:appear .8s reverse}[data-t8n^=shudder].transition-in{display:inline-block !important;animation:shudder-in .8s}[data-t8n^=shudder].transition-out{display:inline-block !important;animation:shudder-in .8s reverse}[data-t8n^=rumble].transition-in{display:inline-block !important;animation:rumble-in .8s}[data-t8n^=rumble].transition-out{display:inline-block !important;animation:rumble-in .8s reverse}[data-t8n^=pulse].transition-in{animation:pulse .8s;display:inline-block !important}[data-t8n^=pulse].transition-out{animation:pulse .8s reverse;display:inline-block !important}[data-t8n^=zoom].transition-in{animation:zoom-in .8s;display:inline-block !important}[data-t8n^=zoom].transition-out{animation:zoom-in .8s reverse;display:inline-block !important}[data-t8n^=blur].transition-in{animation:blur .8s;display:inline-block !important}[data-t8n^=blur].transition-out{animation:blur .8s reverse;display:inline-block !important}[data-t8n^=slideleft].transition-in{animation:slide-left .8s;display:inline-block !important}[data-t8n^=slideleft].transition-out{animation:slide-right .8s reverse;display:inline-block !important}[data-t8n^=slideright].transition-in{animation:slide-right .8s;display:inline-block !important}[data-t8n^=slideright].transition-out{animation:slide-left .8s reverse;display:inline-block !important}[data-t8n^=slideup].transition-in{animation:slide-up .8s;display:inline-block !important}[data-t8n^=slideup].transition-out{animation:slide-down .8s reverse;display:inline-block !important}[data-t8n^=slidedown].transition-in{animation:slide-down .8s;display:inline-block !important}[data-t8n^=slidedown].transition-out{animation:slide-up .8s reverse;display:inline-block !important}[data-t8n^=fadeleft].transition-in{animation:fade-left .8s;display:inline-block !important}[data-t8n^=fadeleft].transition-out{animation:fade-right .8s reverse;display:inline-block !important}[data-t8n^=faderight].transition-in{animation:fade-right .8s;display:inline-block !important}[data-t8n^=faderight].transition-out{animation:fade-left .8s reverse;display:inline-block !important}[data-t8n^=fadeup].transition-in{animation:fade-up .8s;display:inline-block !important}[data-t8n^=fadeup].transition-out{animation:fade-down .8s reverse;display:inline-block !important}[data-t8n^=fadedown].transition-in{animation:fade-down .8s;display:inline-block !important}[data-t8n^=fadedown].transition-out{animation:fade-up .8s reverse;display:inline-block !important}[data-t8n^=flicker].transition-in{animation:flicker .8s}[data-t8n^=flicker].transition-out{animation:flicker .8s reverse}
 </style>
 </head>
 <body>
-<tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Un&#39;avventura al Berchet.</tw-noscript></noscript></tw-story>
-<tw-storydata name="Un&#39;avventura al Berchet" startnode="1" creator="Twine" creator-version="2.10.0" format="Harlowe" format-version="3.3.9" ifid="6FA553E3-24D0-4C19-A9B8-E80AA5BDD155" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="inizio" tags="" position="700,600" size="100,100">Eccoti al Berchet! E&#39; qui che avrà luogo un&#39;avventura meravigliosa. 
-Ma prima, come ti chiami?
- (input-box:2bind $nome,&quot;XXXX=&quot;,1)
+<tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Untitled Story.</tw-noscript></noscript></tw-story>
+<tw-storydata name="Untitled Story" startnode="1" creator="Twine" creator-version="2.10.0" format="Harlowe" format-version="3.3.9" ifid="032430BE-43EE-478B-B30D-1042ADA94D3D" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="Untitled Passage" tags="" position="550,300" size="100,100">Ciao!
+Come ti chiami? (input-box:bind $nome)
+
+Con che genere vuoi che ci si riferisca a te durante il gioco? (dropdown: 2bind $genere, &quot;maschile&quot;, &quot;femminile&quot;)
+
+Dopo aver selezionato tutte le opzioni, puoi proseguire a seguire l&#39;[[inizio della storia]]
+</tw-passagedata><tw-passagedata pid="2" name="inizio della storia" tags="" position="750,300" size="100,100">Ciao $nome! Oggi seguirai la storia di Ofelia, una ragazza come tante, che dovrai aiutare nel corso della vicenda. Sei pront$g?
+
+Ofelia, stanca dopo una lunga giornata di scuola, si diresse verso la fermata del bus a Famagosta, sperando di tornare a casa. Ma quando arrivò, il bus non c’era. Confusa, guardò intorno e vide un treno misterioso, mai visto prima. Senza pensarci troppo, salì a bordo. Il treno, avvolto da una luce sinistra, partì rapidamente, senza fermate, e Ofelia si accorse che qualcosa non andava. Quando il convoglio rallentò, si ritrovò davanti a una gigantesca voragine sotto Zibido San Giacomo. Il treno si fermò bruscamente e, in un attimo, Ofelia comprese di essere finita in un altro mondo: l’[[Inferno]].
+</tw-passagedata><tw-passagedata pid="3" name="Inferno" tags="" position="950,300" size="100,100">&lt;img src=&quot;https://i.postimg.cc/wTHsMQwh/IMG-2553.png&quot;&gt;
+
+Ofelia camminò spaesata nel Limbo. Il terreno era melmoso, l’unico rumore era quello di strani suoni, come il fruscio di qualcosa che strisciava. Si avvicinò e scoprì che erano nutrie, che sguazzavano nel fango, accerchiandola. Sembrava un sogno inquietante, ma Ofelia non riusciva a svegliarsi.
+
+Improvvisamente, una figura apparve tra la nebbia. Era una donna elegante, con capelli scuri e un sorriso che brillava nonostante l’oscurità. Ofelia la guardò incredula: era Dua Lipa, proprio lei, la sua cantante preferita, nonché sveglia mattutina. La cantante sorrise e, con un gesto deciso, si avvicinò a Ofelia.
+
+“Non temere,” disse con voce calma ma autoritaria. “Io sono il tuo Virgilio. Ti guiderò fino alla fine della voragin. Devi attraversare la voragine per recuperare la tua tessera ATM, rubata dal tuo malefico fratello Giona. Solo così potrai tornare a casa. Senza quella tessera, non c’è ritorno, e tu sarai condannata ad averne una con una foto terribile.”
+
+Ofelia sentì un brivido lungo la schiena. Giona, suo fratello, non era mai stato un santo, ma rubarle qualcosa di così importante sembrava un gesto davvero crudele. 
+
+Dua Lipa le porse una mano, pronta a guidarla verso l’avventura che l’attendeva.
+
+Prosegui nel [[Labirinto delle nutrie]].
+</tw-passagedata><tw-passagedata pid="4" name="Labirinto delle nutrie" tags="" position="1150,300" size="100,100">Ofelia e Dua Lipa giunsero davanti a una porta che si aprì con un suono sinistro. Un lungo tunnel apparve davanti a loro, buio e stretto, e il rumore di fruscii e sussurri riempiva l’aria. Ofelia sentì un brivido e guardò Dua Lipa, che la fissò con uno sguardo fermo.
+
+“Questa è la Prova del Labirinto delle Nutrie,” spiegò la cantante. “Devi attraversarlo, ma attenzione: le nutrie sono astute e proveranno a farti smarrire.”
+
+Ofelia si incamminò con passo felpato. All’improvviso, una nutria, veloce come un fulmine,  tentò di circondarla. Poi un’altra, e un’altra ancora. Le nutrie erano dappertutto, scivolavano tra le pareti e cercavano di allontanarla dalla strada giusta.
+
+Ma Dua Lipa non si mosse. (text-colour:blue)[&quot;Non ti preoccupare, Ofelia. Affronta la prova con calma. Devi risolvere l’enigma per passare. Ogni nutria che ti compare davanti agli occhi ha un numero sul suo dorso: bisogna che tu urli il numero di ogni nutria per cacciarla. Considera che le nutrie vogliono divorarti, ma non sono molto astute, e ti compaiono davanti agli occhi secondo un ordine numerico preciso. La prima ha sul dorso il numero 1. E la seconda ancora 1. Poi guarda! La terza ha il numero 2 e la quarta 3.”]
+Balzarono poi davanti a Ofelia una quinta nutria, recante il numero 5, e una sesta, recante il numero 8.
+
+Qual è la sequenza numerica esatta? Scrivi i tre numeri successivi, ricordandoti di separalri con un trattino &quot;-&quot;
+
+{
+(input-box:2bind $Risposta1,&quot;XXX==&quot;,1)
+	(live:10s)[
+    (if:$Risposta1 is &quot;13-21-34&quot;)[(align:&quot;==&gt;&quot;)[[[Avanti |Limbo]]]]
+    (else-if:$Risposta1 is &quot;&quot;)[]
+    (else:)[(go-to:&quot;Risposta sbagliata 1&quot;)]]
+}
+
+
+
  
- Con che genere preferisci essere chiamato?
- (dropdown:2bind $genere,&quot;maschile&quot;,&quot;femminile&quot;)
- 
- Perfetto!
- Entra pure, ti troverai nell&#39; [[atrio]]
- 
- 
-(if:$genere is &quot;maschile&quot;)[(set: $g to &quot;o&quot;)]
-(if:$genere is &quot;femminile&quot;)[(set: $g to &quot;a&quot;)]
+</tw-passagedata><tw-passagedata pid="5" name="Limbo" tags="" position="1350,300" size="100,100">&lt;img src=&quot;https://i.postimg.cc/FRd0bFS3/0-E6-E5-A0-C-8-AB7-4-D44-9-C93-787-BD366220-C.png&quot;&gt;
 
-(live: 1s)[(if:$genere is &quot;maschile&quot;)[(set: $g to &quot;o&quot;)]
-(if:$genere is &quot;femminile&quot;)[(set: $g to &quot;a&quot;)]]
- 
- (set:$chiave to false)
- 
- (set:$punteggio to 1)</tw-passagedata><tw-passagedata pid="2" name="atrio" tags="" position="850,600" size="100,100"> $nome, entri nell&#39;atrio. L’atmosfera è stranamente tranquilla, troppo. Non senti voci, né il solito caos che ti aspetteresti da una scuola superiore. I tuoi passi rimbombano leggeri sul pavimento.
+Ofelia e Dua Lipa, dopo aver superato il Labirinto delle Nutrie, giunsero in una valle serena nel Limbo, dove la nebbia si diradò rivelando un paesaggio idilliaco. Tuttavia, Dua Lipa avvertì che il Limbo è un luogo di inganno, dove le anime costruiscono illusioni per sfuggire alla verità.
 
-&quot;Dov&#39;è tutta la gente? Forse sono già in classe. Devo sbrigarmi.&quot;, pensi.
+Mentre esploravano, incontrarono una figura imponente, una donna avvolta in un manto bianco che sembrava emanare una calma infinita. La donna, con uno sguardo penetrante, accolse Ofelia e le disse che era giunta al momento cruciale del suo viaggio: doveva affrontare un dilemma filosofico per proseguire.
 
-Entrando nel corridoio principale, noti subito qualcosa di insolito: un vecchio dizionario di greco appoggiato su un leggìo accanto all’ingresso. È grande, consumato, con i bordi delle pagine ingialliti e l’aspetto vissuto.
+La donna le presentò una porta chiusa dietro la quale si trovava il suo più grande desiderio. Per aprirla, Ofelia doveva rispondere a una domanda filosofica che ha attraversato i secoli.
 
-&lt;img src=&quot;https://lh6.googleusercontent.com/6xqfOwkyHpgTQFE_q9bxzah9NbFJLgCeIvn8MyLD--Pw-zxIxwSFB29XIe6DESGBqL6WsIkDYZry5VbFJanJjIvjwRTzcF8JBBGQYhKMWikaa_sEHnEJpAG8WDbm5EHUcQ=w1280&quot;&gt;
+La donna fece una pausa, lasciando che Ofelia si preparasse. Poi, con voce solenne, le pose la domanda: “(text-colour:blue)[È meglio cercare la verità, anche se essa ci distrugge, o è meglio vivere nell’illusione, ignorando ciò che potrebbe farci soffrire? Puoi scegliere solo una risposta.]”
 
-&quot;Un dizionario di greco? Qui, in mezzo al corridoio? Chi l&#39;ha lasciato?&quot;, pensi. 
+Ofelia sentì un peso sulle spalle. L’aria sembrava farsi più densa, e il cielo dorato sopra di lei cominciò a sembrarle più ambiguo. La domanda le risuonava nella testa come un’eco, e, per un momento, si sentì smarrita. 
+Dua Lipa, al suo fianco, non disse nulla, ma il suo sguardo incoraggiante la spingeva a riflettere con attenzione. 
 
-Ti avvicini. Il dizionario è aperto, con una pagina segnata. I caratteri greci (ζήτει ὃ οὐχ ὁρᾷς) sono confusi, indecifrabili, ma c’è qualcosa di strano: una nota scritta a mano in italiano, appena leggibile: &quot;cerca ciò che non vedi&quot;.
+//Ora tocca a te, aiuta Ofelia a scegliere, orientandola sulla retta via e passare alla fase successiva//
 
-Sfogli le pagine.  Ce ne sono alcune strappate, e su molte altre ci sono piccoli appunti a matita. Ti accorgi che appena sotto il leggìo, in un cassetto nascosto, c’è...
+(text-colour:blue)[E&#39; meglio la verità o l&#39;illusione?]
 
-&quot;Una chiave? Questo oggetto non dovrebbe essere qui...?&quot;, pensi.
+[[A) Verità-&gt;cammino]]
+[[B) Illusione-&gt;Risposta sbagliata]]
 
-Il corridoio sembra diventare più buio e dalla porta socchiusa in fondo intravvedi una fioca luce. 
 
-$nome, cosa fai?
 
-- lasci il dizionario e segui la [[luce]]
+</tw-passagedata><tw-passagedata pid="6" name="cammino" tags="" position="1550,300" size="100,100">Perfetto! Risposta esatta, prosegui nel [[Laboratorio]]</tw-passagedata><tw-passagedata pid="7" name="Laboratorio" tags="" position="1750,300" size="100,100">Ofelia e Dua Lipa si ritrovarono in un laboratorio antico e polveroso, pieno di ampolle e pozioni di diversi colori.
 
-- prendi la chiave e cerchi [[dove porta]]
+Ofelia notò subito di fronte ai suoi occhi, su un tavolo illuminato da una candela,  un cartiglio, che lesse con attenzione:
 
-</tw-passagedata><tw-passagedata pid="3" name="luce" tags="" position="975,525" size="100,100">$nome, ti senti un po&#39; a disagio, ma decidi comunque di continuare. Prosegui dritto e cammini attraverso il corridoio silenzioso. Le tue scarpe risuonano nel vuoto e l&#39;atmosfera sembra farsi sempre più pesante.
+(text-colour:purple)+(bg:(gradient: 0, 0,#ffffff,0.5,#e68019,1,#ffffff))[Per proseguire, dovrai mescolare diverse pozioni colorate, e otterrai una soluzione per proseguire nella fase successiva. //Qual è la combinazione di colori esatta per ottenere una pozione arancione?]
 
-Improvvisamente, alla fine del corridoio, una porta si apre davanti a te, lasciando intravedere un’altra stanza. Ti avvicini, curioso, e quando entri, ti accorgi che sei finito in palestra.
 
-&lt;img src=&quot;https://lh5.googleusercontent.com/V0f43lNkbntW0W5ZYhl-hUAhOvTxWi1u1VIez3uo5jKmUmfoZQRg5_HTFzZXNkLw562gm15zuNSm8Bv-gthhK6x5csqHeXB2H72_W52fwrpJMT1IAvx4pX5cZgX6gK7oKg=w1280&quot;&gt;
+[[A) Verde e blu -&gt;Risposta sbagliata 2]]
+[[B) Rosso e bianco -&gt;Risposta sbagliata 2]]
+[[C) Rosso e giallo -&gt;Stanza di Angelo Mai]]</tw-passagedata><tw-passagedata pid="8" name="Risposta sbagliata" tags="" position="1350,425" size="100,100">Accidenti! Hai sbagliato e condotto Ofelia sulla via della tentazione, ritenta tornando nel [[Limbo]]
+</tw-passagedata><tw-passagedata pid="9" name="Risposta sbagliata 1" tags="" position="1150,425" size="100,100">Accidenti! Hai sbagliato e condannato Ofelia ad essere divorata dalle nutrie, ritenta tornando nel [[Labirinto delle nutrie]]
+</tw-passagedata><tw-passagedata pid="10" name="Risposta sbagliata 2" tags="" position="1750,425" size="100,100">Accidenti! Hai sbagliato soluzione, ritenta con quel poco di pozioni che rimane, torna nel [[Laboratorio]]</tw-passagedata><tw-passagedata pid="11" name="Stanza di Angelo Mai" tags="" position="1950,300" size="100,100">Ofelia attraversò una porta che la condusse in una stanza vasta, piena di libri antichi e pergamene polverose. Al centro, un uomo anziano, con capelli bianchi e barba lunga, lavorava su un tavolo ricoperto di scritti. L’uomo, che si rivelò essere Angelo Mai, filologo e decifratore di codici, salutò Ofelia con familiarità e le chiese aiuto per risolvere un enigma che lo aveva intrappolato per secoli.
 
-La stanza è vuota, silenziosa, ma sulle pareti c’è qualcosa che ti colpisce. Un grande murales occupa quasi tutta la parete di fondo. La pittura raffigura un paesaggio surreale, e al centro, in mezzo a un cielo tempestoso, spicca una domanda scritta in caratteri grandi, scuri, come incisi nel muro.
+&lt;img src=&quot;https://i.postimg.cc/rFf40t0z/IMG-5463.jpg&quot;&gt;
+&lt;img src=&quot;https://i.postimg.cc/Hxzj7fZX/IMG-5524.jpg&quot;&gt;
 
-&quot;MENS SANA IN CORPORE SANO&quot;
+Angelo Mai stava cercando di decifrare un palinsesto, un codice scritto in latino con un testo sotto quello di Agostino. Per fare ciò, aveva bisogno della pozione arancione che Ofelia possedeva. Dopo aver versato la pozione sul foglio, invece di un testo si rivelò un codice crittato. Ofelia, con le sue conoscenze enigmistiche, dovette ora decifrare questo nuovo enigma.
 
-Ti avvicini alla parete. Sotto la frase latina, in rosso, appare un altro messaggio: &quot;cosa significa?&quot;
+Il testo era il seguente: 
+//Fgryynehz nhgrz tybov greenr zntavghqvarz snpvyr ivapronag.//
 
-[[Mente sana in corpo sano]]
+La chiave per decifrare l&#39;enigma è la seguente: 
+&lt;img src=&quot;https://i.postimg.cc/jSxgHNSf/Immagine-HEIF.jpg&quot;&gt;
 
-[[La mensa salutare per un corpo sano]]
+{
+(input-box:2bind $Risposta2,&quot;XXX==&quot;,1)
+	(live:40s)[
+    (if:$Risposta2 is &quot;Stellarum autem globi terrae magnitudinem facile vincebant.&quot;)[(align:&quot;==&gt;&quot;)[[[Avanti |Spazio]]]]
+    (else-if:$Risposta2 is &quot;&quot;)[]
+    (else:)[(go-to: &quot;Risposta sbagliata 3&quot;)]]
+  
+  
+}</tw-passagedata><tw-passagedata pid="12" name="Spazio" tags="" position="2150,300" size="100,100">Complimenti! Sei un latinista!
+Ofelia proseguì lasciandosi il signor Angelo Mai alle spalle.
+Ofelia e Dua Lipa a questo punto proseguono in un buio tunnel. “Siamo sicuri sia la strada giusta?” Chiese Ofelia. “Non diffidare cara Ofelia” disse semplicemente Dua Lipa.
+Presto il tunnel si aprì in un magnifico cielo stellato, Ofelia non aveva mai visto niente di più bello, ma subito colse la figura di un uomo, vestito con una tuta da astronauta.
+“Chi è?” Chiese Ofelia, “credo proprio che sia Neil Armstrong, va’ pure a parlargli”
+Ofelia si avvicinò “Ciao” l’uomo le sorrise “Ciao cara Ofelia, ti stavo aspettando, e ho preparato per te alcuni enigmi su questo fantastico mondo tanto bello quanto sconosciuto”
+Ofelia annuì.
 
-</tw-passagedata><tw-passagedata pid="4" name="Mente sana in corpo sano" tags="" position="1150,500" size="100,100">Complimenti, risposta corretta!
+&lt;img src=&quot;https://i.postimg.cc/QdF6YDcN/Immagine-HEIF.jpg&quot;&gt;
 
-&quot;Mens sana in corpore sano&quot; vuol dire proprio &quot;mente sana in corpo sano&quot;
+//“Quale frase ho pronunciato una volta messo piede sul suolo lunare?”//
+(P.S: ricordati di inserire la lettera maiuscola all&#39;inizio della frase e un punto alla fine, dovrai anche usare una virgola nel luogo corretto)
 
-Adesso puoi procedere!
+{
+(input-box:2bind $Risposta3,&quot;XXX==&quot;,1)
+	(live:20s)[
+    (if:$Risposta3 is &quot;Un piccolo passo per l&#39;uomo, un grande passo per l&#39;umanità.&quot;)[(align:&quot;==&gt;&quot;)[[[Avanti |Dilemma stellare]]]]
+    (else-if:$Risposta3 is &quot;&quot;)[]
+    (else:)[(go-to: &quot;Risposta sbagliata 4&quot;)]]
+  
+  
+}</tw-passagedata><tw-passagedata pid="13" name="Risposta sbagliata 3" tags="" position="1950,425" size="100,100">Accidenti! Purtroppo hai sbagliato! Forse la papirologia non fa per te, ma puoi sempre riprovare, torna nella [[Stanza di Angelo Mai]].</tw-passagedata><tw-passagedata pid="14" name="Dilemma stellare" tags="" position="2350,300" size="100,100">“Complimenti Ofelia, sono felice che queste parole non siano state dimenticate! Ora per procedere dovrai proseguire verso quella grande porta laggiù”. Disse l&#39;astronauta.
 
-Clicca [[continua qui]]
+&lt;img src=&quot;https://i.postimg.cc/7PQ0s297/Immagine-HEIF.jpg&quot;&gt;
 
-</tw-passagedata><tw-passagedata pid="5" name="La mensa salutare per un corpo sano" tags="" position="1150,350" size="100,100">Oh no, $nome! Hai sbagliato! Adesso devi affrontare il debito, rappresentato da un coccodrillo!
+Ofelia seguì le indicazioni e una volta arrivata vide sulla porta questa foto, accompagnata dalla seguente iscrizione:
+//&quot;Eccolo qui, il triangolo invernale dei cieli, unito in parte al grandissimo Orione, e affiancato dal cane minore e dal cane maggiore. Quanto distano (in anni luce) queste tre gemelle, Procione, Sirius e Betelgeuse, dal pianeta terra?”//
+(Inserisci i numeri in ordine crescente)
 
-&lt;img src=&quot;https://lh5.googleusercontent.com/mxykIZYCtuISQNvEwQmxHHn3nnX5ZBD58B8zOt6oL4k0fo3Y8pgWnFjT1Hmer5Bj6TudHi3aPpZNGDKrecyhrJDU_EpSJ3-f0bOPMH8KC-9wBR_HR1s1MmF8cXfFBy4RnQ=w1280&quot;&gt;
+{
+(input-box:2bind $Risposta4,&quot;XXX==&quot;,1)
+	(live:50s)[
+    (if:$Risposta4 is &quot;0086114642&quot;)[(align:&quot;==&gt;&quot;)[[[Avanti |Studio di Giovanni Berchet]]]]
+    (else-if:$Risposta4 is &quot;&quot;)[]
+    (else:)[(go-to: &quot;Risposta sbagliata 5&quot;)]]
+  
+  
+}</tw-passagedata><tw-passagedata pid="15" name="Risposta sbagliata 4" tags="" position="2150,425" size="100,100">Accidenti! Bisogna affinare le conoscenze storiche, puoi ritentare, torna ora nello [[Spazio]]</tw-passagedata><tw-passagedata pid="16" name="Studio di Giovanni Berchet" tags="" position="2550,300" size="100,100">&lt;img src=&quot;https://i.postimg.cc/VN6bWst4/IMG-5541.jpg&quot;&gt;
 
-Scegli la tua arma:
+Dua Lipa e Ofelia seguirono il percorso infernale, imbattendosi nello scrittore ottocentesco Giovanni Berchet, di cui celebre opera è la &quot;Lettera semiseria di Grisostomo&quot;. Per proseguire il percorso però occorre dire all&#39;autore il significato greco dietro il nome di “Grisostomo”.
 
-- [[Fionda]]
-- [[Spada di Achille]]
 
+[[A) Albero argentato -&gt;Risposta sbagliata 6]]
+[[B) Bocca d&#39;oro -&gt;Dilemma di Giovanni Berchet]]
+[[C) Cavallo bronzeo -&gt;Risposta sbagliata 6]]</tw-passagedata><tw-passagedata pid="17" name="Risposta sbagliata 5" tags="" position="2350,425" size="100,100">Accidenti! Riprova a fare bene i calcoli, torna al [[Dilemma stellare]].</tw-passagedata><tw-passagedata pid="18" name="Risposta sbagliata 6" tags="" position="2550,425" size="100,100">Accidenti! Risposta sbagliata! Ritenta, pensando al metallo più prezioso, torna nello [[Studio di Giovanni Berchet]].</tw-passagedata><tw-passagedata pid="19" name="Dilemma di Giovanni Berchet" tags="" position="2750,300" size="100,100">Complimenti non sei solo latinista, ma anche grecista!
+Ora Giovanni Berchet desiderava sapere se è ricordato ancora oggi nei nostri tempi e chiese a Ofelia se il suo ricordo è ancora vivo da qualche parte. 
 
+&lt;img src=&quot;https://i.postimg.cc/LsMbJ7ZH/IMG-5542.jpg&quot;&gt;
 
+Lei gli disse che a MIlano c&#39;è una prestigiosissima scuola con il suo stesso nome.
+Quali sono le coordinate di questa scuola? 
 
-</tw-passagedata><tw-passagedata pid="6" name="Spada di Achille" tags="" position="1275,375" size="100,100">Ottima scelta! Con le tue abilità, ti lanci contro il coccodrillo e riesci a sconfiggerlo con la spada.
 
-Ora che hai superato questo ostacolo, puoi continuare il tuo cammino.
+[[A) 45°27′21.33″N 9°11′56.95″E -&gt;Leonardo da Vinci]]
+[[B) 45°22′N 9°07′E -&gt;Risposta sbagliata 7]]
+[[C) 45°22′09″N 9°08′11″E -&gt;Risposta sbagliata 7]]
+</tw-passagedata><tw-passagedata pid="20" name="Leonardo da Vinci" tags="" position="2950,300" size="100,100">&lt;img src=&quot;https://i.postimg.cc/SKY2XTCx/Immagine-HEIF.jpg&quot;&gt;
 
-[[continua qui]]
+Dua Lipa, dopo l’ennesimo successo di Ofelia la incoraggiò ad andare avanti: ormai la carta ATM era vicina!
+Proseguendo il cammino, Ofelia intravide una figura familiare che aveva visto diverse volte nei libri di scuola: era Leonardo Da Vinci, che le stava venendo incontro.
+All&#39;improvviso Leonardo fece apparire di fronte a Ofelia un ologramma e le pose un quesito: “Ofelia, dato che frequenti il Berchet, sapresti riconoscere questa mia opera? E&#39; piuttosto famosa! &quot;
 
-</tw-passagedata><tw-passagedata pid="7" name="Fionda" tags="" position="1300,225" size="100,100">Risposta sbagliata! La tua fionda è troppo debole per poter sconfiggere il coccodrillo. 
 
-Cerchi di lanciare una pallina che hai trovato per terra, ma l&#39;elastico si rompe!
+//Scrivi il titolo dell&#39;opera, che dall&#39;ologramma di Leonardo appare leggermente sbiadita.//
 
-Il debito era troppo difficile, sei stato bocciato!
+{
+(input-box:2bind $Risposta4,&quot;XXX==&quot;,1)
+	(live:10s)[
+    (if:$Risposta4 is &quot;Ultima cena.&quot;)[(align:&quot;==&gt;&quot;)[[[Avanti |Dilemma di Leonardo]]]]
+    (else-if:$Risposta4 is &quot;&quot;)[]
+    (else:)[(go-to: &quot;Risposta sbagliata 8&quot;)]]
+  
+  
+}</tw-passagedata><tw-passagedata pid="21" name="Risposta sbagliata 7" tags="" position="2750,425" size="100,100">Accidenti! E&#39; comprensibile che le coordinate di Zibido San Giacomo e dintorni possano sembrare allettanti, ma riprova! Torna al [[Dilemma di Giovanni Berchet]].</tw-passagedata><tw-passagedata pid="22" name="Dilemma di Leonardo" tags="" position="3150,300" size="100,100">Di fronte a tali capacità di osservazione, Leonardo esclamò: &quot;Notevole, Ofelia, te ne intendi anche di arte ma questa era una domanda abbastanza semplice, sapresti invece qual è l’elemento fondamentale che ci dovrebbe essere nella mia città ideale? &quot;
 
-Non ti preoccupare, non succede niente, ma devi tornare indietro!
+[[A) Strade -&gt;Risposta sbagliata 9]]
+[[B) Canali -&gt;Conclusione]]
+[[C) Ponti -&gt;Risposta sbagliata 9]]</tw-passagedata><tw-passagedata pid="23" name="Risposta sbagliata 8" tags="" position="2950,425" size="100,100">Accidenti! Prova a guardare più attentamente! Osserva bene l&#39;ologramma di [[Leonardo da Vinci]].</tw-passagedata><tw-passagedata pid="24" name="Conclusione" tags="" position="3350,300" size="100,100">Ofelia con Dua Lipa continuò il suo percorso per diverso tempo, senza trovare più ostacoli.
+Dopodiché giunse in una caverna e, incuriosita e con l’approvazione della sua guida, entrò: al suo interno era presente un trono di pietra circondato da fuoco.
+Seduto sul trono c’era una figura demoniaca che in un primo momento Ofelia non riconobbe; la figura si alzò e iniziò a parlare: “Ofelia”, disse, “sei riuscita a giungere fino alla mia caverna”.
 
-clicca qui: [[luce]]</tw-passagedata><tw-passagedata pid="8" name="continua qui" tags="" position="1400,475" size="100,100">$nome, camminando per i corridoi del Berchet ti imbatti in un&#39;aula un po&#39; bizzarra.
+&lt;img src=&quot;https://i.postimg.cc/zGqd5WmB/IMG-5474.jpg&quot;&gt;
 
-Entri e ti guardi intorno.
+Ofelia lo riconobbe: era suo fratello Giona! 
+In un corpo demoniaco, come era possibile? perchè? 
+Giona continuò: &quot;Hai fatto questo percorso per recuperare la tua tessera ATM che IO ti ho rubato, non pensando che ce la potessi fare a venire fin qui, ma è giusto che io te la restituisca.” 
+Giona le restituì la tessera.
 
-L’aula è avvolta da un’atmosfera di antichità. I muri sono decorati con affreschi che raffigurano scene storiche, mentre busti di personaggi illustri sono disposti con cura su piedistalli. C’è una certa solennità nell’aria, come se tu fossi in un museo piuttosto che in una scuola.
+//Come dovrebbe reagire Ofelia?//
+[[- Arrabbiarsi]]
+[[- Riappacificarsi con Giona]]
+</tw-passagedata><tw-passagedata pid="25" name="Risposta sbagliata 9" tags="" position="3150,425" size="100,100">Accidenti! Osserva bene l&#39;immagine e ritenta, torna al [[Dilemma di Leonardo]].
 
-Ti avvicini a un banco centrale, dove un busto in particolare attira la tua attenzione. È diverso dagli altri: più grande, con un’espressione intensa e un aspetto che sembra quasi vivo. 
-
-Sotto il busto c’è una scritta incisa: “EUREKA”.
-
-&lt;img src=&quot;https://lh5.googleusercontent.com/MJdOArjjRGMAxKNzOT4_BqBQZ_8xlR1_Dp8JABTlKw0HzII2F02nMJ0S4fEdsFH3QKyh5xnEn0Ps8QTsZReduiEiRp_ybU4xJDhYcs2Ht4ydxJt8UcKmxSOJBIeP6KeuZw=w1280&quot;&gt;
-
-Guardando appena sotto la parola, vedi incise delle lettere molto piccole. Aguzzando la vista leggi la domanda: &quot;Chi ha detto questa famosa parola?&quot;
-
-[[Archimede]]
-
-[[Aristotele]]
-
-</tw-passagedata><tw-passagedata pid="9" name="dove porta" tags="" position="975,775" size="100,100">$nome, guardi in mano e vedi la chiave arrugginita.
-
-Mentre tieni la chiave in mano, senti un fruscio. Il dizionario, ancora aperto, si anima: le pagine iniziano a sfogliarsi da sole, muovendosi come spinte da un vento invisibile. Ti fermi, il cuore che accelera.
-
-Le pagine si fermano, bloccandosi su una in particolare. Al centro, una scritta compare lentamente, come se qualcuno la stesse tracciando con l’inchiostro in quel momento: “Secondo piano. Aula 12.”
-
-Salendo al secondo piano, noti che l’atmosfera diventa sempre più surreale. Le luci lampeggiano debolmente e un leggero vento sembra muoversi nei corridoi, anche se le finestre sono tutte chiuse.
-
-Ti fermi davanti alla porta dell’aula 12. È un’aula computer. La porta è chiusa, ma il vetro della finestra ti permette di intravedere l’interno: i monitor sono accesi, anche se la stanza sembra vuota. La chiave che hai trovato sembra combaciare perfettamente con la serratura.
-
-Con un misto di esitazione e curiosità, inserisci la chiave nella serratura. La giri, e la porta si apre con un lieve cigolio. La stanza è fredda, e il ronzio dei computer riempie l’aria.
-
-&lt;img src=&quot;https://lh4.googleusercontent.com/g77uRaKjjxGIOsN0VbjB90IwP71VODo_GYXBA5zfNRNhnvuAJYY6TE19Re_lKQViq2rE3jmtPvOSUTNUPx3FmVIrrrfgr0yxNwwej-PMRuN4PSj5O9nUN-2-w_hzSjglPw=w1280&quot;&gt;
-
-
-Ti fermi sulla soglia. Tutti i monitor sono accesi, ma invece di mostrare schermate normali, ognuno visualizza lo stesso messaggio: una singola frase in caratteri bianchi su sfondo nero ed una foto.
-
-&quot;Questo oggetto è un antenato di quale altro oggetto?&quot;
-
-&lt;img src= &quot;https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Compasso_di_proporzione_-_Museo_scienza_tecnologia_Milano_03212_1.jpg/1024px-Compasso_di_proporzione_-_Museo_scienza_tecnologia_Milano_03212_1.jpg&quot;&gt;
-
-[[una squadra]]
-
-[[un compasso]]
-
-
-
-
-
-
-
-
-
-</tw-passagedata><tw-passagedata pid="10" name="una squadra" tags="" position="1100,875" size="100,100">Oh no, $nome! Hai sbagliato! Adesso devi affrontare il debito, rappresentato da un feroce tasso!
-
-&lt;img src=&quot;https://lh6.googleusercontent.com/zLKP9a4hG-k26XC5RS8xD5hCXOIdenv3XC7CmUWif-pjkxLrYrHUVp152Uzl7YdDfWBBgUvUvIcKhZeHHKL9ueM=w1280&quot;&gt;
-
-Scegli la tua arma:
-
-- [[Borraccia]]
-
-- [[Tridente di Poseidone]]
-</tw-passagedata><tw-passagedata pid="11" name="un compasso" tags="" position="1100,700" size="100,100">Complimenti, risposta corretta!
-
-Questo oggetto, conservato al Museo della Scienza e della Tecnologia di Milano è proprio un compasso!
-
-Congratulazioni, $nome, adesso puoi continuare!
-
-[[prosegui qui]] 
-</tw-passagedata><tw-passagedata pid="12" name="Borraccia" tags="" position="1200,1025" size="100,100">Risposta sbagliata! La tua borraccia non è un&#39;arma adatta per sconfiggere il tasso. 
-
-Lanci la borraccia ma si ammacca e diventa inutilizzabile!
-
-Il debito era troppo difficile, sei stato bocciato!
-
-Non ti preoccupare, non succede niente, ma devi tornare indietro!
-
-[[dove porta]]</tw-passagedata><tw-passagedata pid="13" name="l&#39;atomo" tags="" position="1450,850" size="100,100">Ti sei lasciato ingannare! L&#39;atomo è la base di tutte le cose, non solo degli esseri viventi!
-
-Adesso devi affrontare il debito, rappresentato da un cinghiale.
-
-&lt;img src=&quot;https://lh6.googleusercontent.com/NqRb1f-L_UCsEPvJyd7CwpI2v5EqBpDxenWgyCMht2aZJHhAEuHg94-cmOq_uzUpjZB5sTcHZvWVaB4ns6ydWR0=w1280&quot;&gt;
-
-Scegli la tua arma:
-
-[[Pozione anti-cinghiale]]
-
-[[Un elettrone]]</tw-passagedata><tw-passagedata pid="14" name="la cellula" tags="" position="1550,700" size="100,100">Complimenti, $nome, risposta corretta!
-
-La cellula è il &quot;mattoncino&quot; che forma gli esseri viventi.
-
-Congratulazioni, [[prosegui pure]].
-
-</tw-passagedata><tw-passagedata pid="15" name="Archimede" tags="" position="1550,450" size="100,100">Ding ding ding! Risposta corretta!
-
-Proprio Archimede ha detto &quot;eureka!&quot;, che significa &quot;ho trovato!&quot;.
-
-Da qui, puoi proseguire. Prossima stanza... [[il laboratorio di chimica]]</tw-passagedata><tw-passagedata pid="16" name="Aristotele" tags="" position="1475,300" size="100,100">Attenzione! Risposta errata!
-
-&quot;Eureka&quot; è stata pronunciata da Archimede, non da Aristotele!
-
-Non ti preoccupare, però, adesso devi sconfiggere un leopardo, che rappresenta il debito!
-
-&lt;img src=&quot;https://lh4.googleusercontent.com/Kdh4zQN0kP5elqXS0S1fmrgH_LM2qSkXzHvW0wukvqmv5qyYPE-06vdg6mB8gULO3f25gMNBP4Sni4Ev9f7Vx08=w1280&quot;&gt;
-
-Scegli la tua arma:
-
-[[Lancia di Atena]]
-
-[[Una penna colorata]]</tw-passagedata><tw-passagedata pid="17" name="prosegui pure" tags="" position="1700,800" size="100,100">$nome, camminando per i corridoi del Berchet ti imbatti in un&#39;aula un po&#39; bizzarra.
-
-Entri e ti guardi intorno.
-
-L’aula è avvolta da un’atmosfera di antichità. I muri sono decorati con affreschi che raffigurano scene storiche, mentre busti di personaggi illustri sono disposti con cura su piedistalli. C’è una certa solennità nell’aria, come se tu fossi in un museo piuttosto che in una scuola.
-
-Ti avvicini a un banco centrale, dove un busto in particolare attira la tua attenzione. È diverso dagli altri: più grande, con un’espressione intensa e un aspetto che sembra quasi vivo. 
-
-Sotto il busto c’è una scritta incisa: “EUREKA”.
-
-&lt;img src=&quot;https://lh5.googleusercontent.com/MJdOArjjRGMAxKNzOT4_BqBQZ_8xlR1_Dp8JABTlKw0HzII2F02nMJ0S4fEdsFH3QKyh5xnEn0Ps8QTsZReduiEiRp_ybU4xJDhYcs2Ht4ydxJt8UcKmxSOJBIeP6KeuZw=w1280&quot;&gt;
-
-Guardando appena sotto la parola, vedi incise delle lettere molto piccole. Aguzzando la vista leggi la domanda: &quot;Chi ha detto questa famosa parola?&quot;
-
-[[Archimede.]]
-
-[[Talete]]</tw-passagedata><tw-passagedata pid="18" name="Talete" tags="" position="1725,975" size="100,100">Attenzione! Risposta errata!
-
-&quot;Eureka&quot; è stata pronunciata da Archimede, non da Talete!
-
-Non ti preoccupare, però, adesso devi sconfiggere un leopardo, che rappresenta il debito!
-
-&lt;img src=&quot;https://lh4.googleusercontent.com/Kdh4zQN0kP5elqXS0S1fmrgH_LM2qSkXzHvW0wukvqmv5qyYPE-06vdg6mB8gULO3f25gMNBP4Sni4Ev9f7Vx08=w1280&quot;&gt;
-
-Scegli la tua arma:
-
-[[lancia di Atena]]
-
-[[una penna colorata]]</tw-passagedata><tw-passagedata pid="19" name="Archimede." tags="" position="1850,725" size="100,100">Ding ding ding! Risposta corretta!
-
-Proprio Archimede ha detto &quot;eureka!&quot;, che significa &quot;ho trovato!&quot;.
-
-Da qui, puoi proseguire. Prossima aula... [[la palestra]]!</tw-passagedata><tw-passagedata pid="20" name="la palestra" tags="" position="2000,800" size="100,100">$nome, dopo aver vagato per le scale del Berchet, ti trovi davanti a un lungo corridoio. Prosegui dritto e cammini attraverso il corridoio silenzioso. Le tue scarpe risuonano nel vuoto e l&#39;atmosfera sembra farsi sempre più pesante.
-
-Improvvisamente, alla fine del corridoio, una porta si apre davanti a te, lasciando intravedere un’altra stanza. Ti avvicini, curioso, e quando entri, ti accorgi che sei finito in palestra.
-
-&lt;img src=&quot;https://lh5.googleusercontent.com/V0f43lNkbntW0W5ZYhl-hUAhOvTxWi1u1VIez3uo5jKmUmfoZQRg5_HTFzZXNkLw562gm15zuNSm8Bv-gthhK6x5csqHeXB2H72_W52fwrpJMT1IAvx4pX5cZgX6gK7oKg=w1280&quot;&gt;
-
-La stanza è vuota, silenziosa, ma sulle pareti c’è qualcosa che ti colpisce. Un grande murales occupa quasi tutta la parete di fondo. La pittura raffigura un paesaggio surreale, e al centro, in mezzo a un cielo tempestoso, spicca una frase in latino scritta in caratteri grandi, scuri, come incisi nel muro.
-
-&quot;MENS SANA IN CORPORE SANO&quot;
-
-Ti avvicini alla parete. Sotto la frase latina, in rosso, appare un altro messaggio: &quot;cosa significa?&quot;
-
-[[&quot;Mente sana in corpo sano&quot;]]
-
-[[&quot;La mensa salutare per un corpo sano&quot;]]</tw-passagedata><tw-passagedata pid="21" name="&quot;Mente sana in corpo sano&quot;" tags="" position="2150,725" size="100,100">Risposta... esatta!
-
-La frase &quot;mens sana in corpore sano&quot; significa proprio questo! A scriverla è stato un poeta romano che pregava gli dèi proprio per avere una mente sana in un corpo sano.
-
-Bravissim$g. Adesso puoi continuare.
-
-Salendo le scale adiacenti alla palestra, ti trovi davanti a una grande stanza... [[l&#39;aula magna]]</tw-passagedata><tw-passagedata pid="22" name="&quot;La mensa salutare per un corpo sano&quot;" tags="" position="2125,925" size="100,100">Oh no, $nome! Hai sbagliato! Adesso devi affrontare il debito, rappresentato da un coccodrillo!
-
-&lt;img src=&quot;https://lh5.googleusercontent.com/mxykIZYCtuISQNvEwQmxHHn3nnX5ZBD58B8zOt6oL4k0fo3Y8pgWnFjT1Hmer5Bj6TudHi3aPpZNGDKrecyhrJDU_EpSJ3-f0bOPMH8KC-9wBR_HR1s1MmF8cXfFBy4RnQ=w1280&quot;&gt;
-
-Scegli la tua arma:
-
-[[saetta di Zeus]]
-
-[[fionda]]</tw-passagedata><tw-passagedata pid="23" name="l&#39;aula magna" tags="" position="2500,600" size="100,100">La stanza è immensa, con file di sedie in legno che sembrano estendersi all’infinito. Sul palco al centro, un’enorme figura attira la tua attenzione. Non puoi credere ai tuoi occhi, è una... una civetta! La civetta ti guarda dall’alto con uno sguardo curioso e quasi giudicante.
-
-&lt;img src=&quot;https://lh4.googleusercontent.com/pSUnSxH4oTK3bH9Bq2XV5vD7fuYUw_mqOr5pSpJ_RJLoVDXtdjORJ5zxH2Rbyh9Lle45qOVm3X2phoIgt6Q_MCDP89Bj4dFOaBSFseqib4K4NdS6Z2ZTnCVlhLztKI_I1Q=w1280&quot;&gt;
-
-La creatura emette un suono profondo, che risuona in tutta l’aula. Poi inizia a parlare con una voce grave e lenta, piena di una strana autorità.
-
-&quot;Hoo hoo... benvenut$g. Io sono la guardiana di questa sala, sono il simbolo della saggezza. Se riesci a rispondere alle mie domande, avrai finito il tuo percorso qui dentro, avrai superato l&#39;esame di maturità. Se risponderai correttamente, un premio sarà tuo.&quot;
-
-&quot;La prima domanda è un antico enigma. Rispondi bene, e potrai continuare. Ecco il mio indovinello: qual è l’essere che al mattino cammina su quattro zampe, a mezzogiorno su due, e la sera su tre?&quot;
-
-(attenzione= scrivi la tua risposta tutta in minuscolo e con l&#39;articolo)
-
-(input-box:2bind $risposta,&quot;l&#39;uomo=&quot;,1)
-(live:0.5s)[
-(if:$risposta is &quot;l&#39;uomo&quot;)[Complimenti! Hai risposto correttamente! Congratulazioni, clicca qui [[premio]] ]]
-
-Attenzione: se non sai la risposta o non ti è apparso nessun testo dopo che hai digitato la risposta, clicca qui [[conseguenza]]
-
-
-</tw-passagedata><tw-passagedata pid="24" name="il laboratorio di chimica" tags="" position="1700,400" size="100,100">$nome, ti guardi intorno, confus$g. L’aula è silenziosa e buia, con solo qualche luce tremolante a illuminare i banchi. Ovunque ci sono microscopi. C’è un’atmosfera di abbandono, come se nessuno frequentasse più questa stanza da anni.
-
-&lt;img src=&quot;https://lh6.googleusercontent.com/mGhCiZcJKVKr_fcx_rKlLNc5vahtaQsNfM2Y9ZL62yBaJix__9rP7GV-WTF3Qqjk54NIOInQf7fPiMQzByRmTitjqc42f9kcTE5bGBcBDmU8wZVIVfQKfMdnPTw6EdaHGQ=w1280&quot;&gt;
-
-Guardando bene, ti accorgi che tutti i microscopi cono coperti di polvere... tranne uno, uno molto vecchio.
-
-Ti avvicini al banco. Il microscopio è ricoperto dei segni che testimoniano il passaggio del tempo, ma ciò che ti colpisce di più è il vetrino sotto l’obiettivo: sembra nuovo, lucidato e perfettamente intatto, come se fosse stato messo lì da poco.
-
-$nome, avvicini gli occhi al microscopio e guardi dentro.
-
-Osservando con attenzione, noti che nel vetrino c’è una piccola incisione, come se qualcuno avesse scritto qualcosa. Metti a fuoco l&#39;obiettivo e riesci a leggere le parole incise, come se fossero state fatte a mano con un oggetto appuntito.
-
-&quot;Qual è l&#39;unità base (solo) degli esseri viventi?&quot;
-
-[[L&#39;atomo]]
-
-[[La cellula]]</tw-passagedata><tw-passagedata pid="25" name="L&#39;atomo" tags="" position="1825,250" size="100,100">Ti sei lasciato ingannare! L&#39;atomo è la base di tutte le cose, non solo degli esseri viventi!
-
-Adesso devi affrontare il debito, rappresentato da un cinghiale.
-
-&lt;img src=&quot;https://lh6.googleusercontent.com/NqRb1f-L_UCsEPvJyd7CwpI2v5EqBpDxenWgyCMht2aZJHhAEuHg94-cmOq_uzUpjZB5sTcHZvWVaB4ns6ydWR0=w1280&quot;&gt;
-
-Scegli la tua arma:
-
-[[pozione anti-cinghiale]]
-
-[[un elettrone]]</tw-passagedata><tw-passagedata pid="26" name="La cellula" tags="" position="1825,450" size="100,100">Complimenti, $nome, risposta corretta!
-
-La cellula è il &quot;mattoncino&quot; che forma gli esseri viventi.
-
-Congratulazioni, [[prosegui di qui]]</tw-passagedata><tw-passagedata pid="27" name="prosegui di qui" tags="" position="2000,400" size="100,100">$nome, l&#39;ultima stanza che ti resta da esplorare è l&#39;aula di informatica.
-
-Arrivat$g davanti, ti accorgi però che è chiusa: la porta di vetro ti lascia intravvedere dentro. Per aprire la serratura ti serve una chiave.
-
-Una chiave... ti fa venire in mente qualcosa?
-
-Ma certo! La chiave dell&#39;atrio!
-
-Cosa fai?
-
-[[vai a prendere la chiave]]
-
-ricomincia dall&#39;[[inizio]]</tw-passagedata><tw-passagedata pid="28" name="vai a prendere la chiave" tags="" position="2125,325" size="100,100">$nome, eccoti di nuovo in atrio.
-
-La chiave è esattamente dove l&#39;hai trovata, nel cassetto sotto il leggìo. La raccogli.
-
-Mentre tieni la chiave in mano e la analizzi, senti un fruscio. Il dizionario, ancora aperto, si anima: le pagine iniziano a sfogliarsi da sole, muovendosi come spinte da un vento invisibile. Ti fermi, il cuore che accelera.
-
-Le pagine si fermano, bloccandosi su una in particolare. Al centro, una scritta compare lentamente, come se qualcuno la stesse tracciando con l’inchiostro in quel momento: “Secondo piano. Aula 12.”
-
-Salendo al secondo piano, noti che l’atmosfera diventa sempre più surreale. Le luci lampeggiano debolmente e un leggero vento sembra muoversi nei corridoi, anche se le finestre sono tutte chiuse.
-
-Ti fermi davanti alla porta dell’aula 12. È un’aula computer. La porta è chiusa, ma il vetro della finestra ti permette di intravedere l’interno: i monitor sono accesi, anche se la stanza sembra vuota. La chiave che hai trovato sembra combaciare perfettamente con la serratura.
-
-Con un misto di esitazione e curiosità, inserisci la chiave nella serratura. La giri, e la porta si apre con un lieve cigolio. La stanza è fredda, e il ronzio dei computer riempie l’aria.
-
-&lt;img src=&quot;https://lh4.googleusercontent.com/g77uRaKjjxGIOsN0VbjB90IwP71VODo_GYXBA5zfNRNhnvuAJYY6TE19Re_lKQViq2rE3jmtPvOSUTNUPx3FmVIrrrfgr0yxNwwej-PMRuN4PSj5O9nUN-2-w_hzSjglPw=w1280&quot;&gt;
-
-Ti fermi sulla soglia. Tutti i monitor sono accesi, ma invece di mostrare schermate normali, ognuno visualizza lo stesso messaggio: una singola frase in caratteri bianchi su sfondo nero ed una foto.
-
-&quot;Questo oggetto è un antenato di quale altro oggetto?&quot;
-
-&lt;img src= &quot;https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Compasso_di_proporzione_-_Museo_scienza_tecnologia_Milano_03212_1.jpg/1024px-Compasso_di_proporzione_-_Museo_scienza_tecnologia_Milano_03212_1.jpg&quot;&gt;
-
-[[Una squadra]]
-
-[[Un compasso]]
-</tw-passagedata><tw-passagedata pid="29" name="Una squadra" tags="" position="2300,250" size="100,100">Oh no, $nome! Hai sbagliato! Adesso devi affrontare il debito, rappresentato da un feroce tasso!
-
-&lt;img src=&quot;https://lh6.googleusercontent.com/zLKP9a4hG-k26XC5RS8xD5hCXOIdenv3XC7CmUWif-pjkxLrYrHUVp152Uzl7YdDfWBBgUvUvIcKhZeHHKL9ueM=w1280&quot;&gt;
-
-Scegli la tua arma:
-
-[[spada laser]]
-
-[[matita]]
-</tw-passagedata><tw-passagedata pid="30" name="Un compasso" tags="" position="2300,425" size="100,100">Complimenti, risposta corretta!
-
-Questo oggetto, conservato al Museo della Scienza e della Tecnologia di Milano è proprio un compasso!
-
-Congratulazioni, $nome, adesso puoi continuare.
-
-L&#39;ultima stanza che ti resta da esplorare è [[l&#39;aula magna]]</tw-passagedata><tw-passagedata pid="31" name="matita" tags="" position="2425,125" size="100,100">La matita è troppo debole! Si rompe non appena provi a lanciarla.
-
-Peccato, sei costretto a tornare indietro. Ma tranquill$g, adesso sarai invincibile!
-
-[[vai a prendere la chiave]] </tw-passagedata><tw-passagedata pid="32" name="spada laser" tags="" position="2425,350" size="100,100">La spada laser è un&#39;arma fortissima!
-
-Ti lanci all&#39;attacco e combatti duramente finché sconfiggi il tuo nemico.
-
-Bravissim$g, $nome, adesso puoi accedere alla prossima stanza, [[l&#39;aula magna]]</tw-passagedata><tw-passagedata pid="33" name="saetta di Zeus" tags="" position="2300,850" size="100,100">Ottima scelta! La saetta di Zeus è l&#39;oggetto più forte che esista, ed è perfetta per sconfiggere il tuo nemico.
-
-La battaglia è dura ma tu ce la fai lo stesso!
-
-Prosegui verso [[l&#39;aula magna]]</tw-passagedata><tw-passagedata pid="34" name="Lancia di Atena" tags="" position="1625,250" size="100,100">Scelta ottimale! La lancia di Atena è un&#39;arma potentissima e riesci a sconfiggere il tuo nemico.
-
-Prosegui per [[il laboratorio di chimica]]</tw-passagedata><tw-passagedata pid="35" name="Una penna colorata" tags="" position="1550,125" size="100,100">Oh no! Non riesci a sconfiggere il leopardo con una penna colorata!
-
-Putroppo, non hai passato il debito. Ma non ti preoccupare: con le conoscenze acquisite, sarai fortissim$g, ma putroppo devi tornare indietro!
-
-[[continua qui]]</tw-passagedata><tw-passagedata pid="36" name="pozione anti-cinghiale" tags="" position="1975,250" size="100,100">Scelta perfetta!
-
-Con la pozione, sei sicuro di sconfiggere il cinghiale, e infatti è proprio così! 
-
-Complimenti, [[prosegui di qui]] </tw-passagedata><tw-passagedata pid="37" name="un elettrone" tags="" position="1925,100" size="100,100">Un elettrone è troppo piccolo per affrontare un ___. Vieni sconfitto!
-
-Non ti preoccupare, adesso che hai acquisito queste conoscenze sarai imbattibile. Devi, però, tornare indietro, proprio a [[il laboratorio di chimica]] </tw-passagedata><tw-passagedata pid="38" name="Pozione anti-cinghiale" tags="" position="1575,875" size="100,100">Scelta perfetta!
-
-Con la pozione, sei sicuro di sconfiggere il cinghiale, e infatti è proprio così! 
-
-Complimenti, [[prosegui pure]] </tw-passagedata><tw-passagedata pid="39" name="Un elettrone" tags="" position="1375,1025" size="100,100">Un elettrone è troppo piccolo per affrontare un cinghiale. Vieni sconfitt$g!
-
-Non ti preoccupare, adesso che hai acquisito queste conoscenze sarai imbattibile. Devi, però, tornare indietro.
-
-[[prosegui qui]]</tw-passagedata><tw-passagedata pid="40" name="lancia di Atena" tags="" position="1950,950" size="100,100">Scelta ottimale! La lancia di Atena è un&#39;arma potentissima e riesci a sconfiggere il tuo nemico.
-
-Prosegui per [[la palestra]]</tw-passagedata><tw-passagedata pid="41" name="una penna colorata" tags="" position="1850,1075" size="100,100">Oh no! Non riesci a sconfiggere il leopardo con una penna colorata!
-
-Putroppo, non hai passato il debito. Ma non ti preoccupare: con le conoscenze acquisite, sarai fortissim$g, ma putroppo devi tornare indietro!
-
-[[prosegui pure]]</tw-passagedata><tw-passagedata pid="42" name="fionda" tags="" position="2300,1050" size="100,100">Risposta sbagliata! La tua fionda è troppo debole per poter sconfiggere il coccodrillo. 
-
-Cerchi di lanciare una pallina che hai trovato per terra, ma l&#39;elastico si rompe!
-
-Il debito era troppo difficile, sei stato bocciato!
-
-Non ti preoccupare, non succede niente, ma devi tornare indietro!
-
-clicca qui: [[la palestra]]</tw-passagedata><tw-passagedata pid="43" name="premio" tags="" position="2650,500" size="100,100">La civetta ti dice: &quot;Hoo hoo... brav$g, ti sei diplomat$g al Berchet! Il percorso è stato duro ma ce l&#39;hai fatta! 
-
-Come promesso, ecco il tuo premio:
-
-&lt;img src=&quot;https://lh4.googleusercontent.com/2eDGSojCuPEoEhvbPjXRH0DMSKOcXg7tCmeW2zw0rJh9XjbUuXswnAvvFBbWkbc2roqPMigNnvnSrj57OMi7cC4x2Yj_aDdu96nsdBxo6LREf3qcccPxphz5Ne-847DiWw=w1280&quot;&gt;
-
-&quot;Questo è l&#39;uovo dorato della conoscenza: conservalo con cura!&quot;
-
-&quot;Buona fortuna per tutto!&quot;
-
-Torna all&#39;[[inizio]]</tw-passagedata><tw-passagedata pid="44" name="conseguenza" tags="" position="2675,700" size="100,100">La civetta si rivolge a te e ti dice: &quot;Hoo hoo... oh no! La risposta è sbagliata! Ma... cos&#39;è quello che sta arrivando dalla finestra...??&quot;
-
-Giri il tuo sguardo verso la finestra e vedi una figura che si avvicina con decisione e rabbia nei suoi occhi. 
-
-E&#39; un.... tacchino! Simbolo dell&#39;ignoranza.
-
-Irrompe nell&#39;aula magna e schiaccia la civetta.
-
-&lt;img src=&quot;https://lh3.googleusercontent.com/n8CkJQkQpiOvpbKAJ6mahW4dEl92DP24yu2FsJQ1RKo-IeAUbenoqci6IaI3TUq5ukS9MWDDIxDqQDIcsQDmbpm-29y3ybAuTnVp9C78C12filLATP0ra68HIvztq8tGmg=w1280&quot;&gt;
-
-&quot;Glu glu...&quot;, dice, &quot;la risposta è sbagliata. Ti darò un&#39;ultima possibilità per rispondere a una domanda.&quot;
-
-&quot;In che anno è caduto l&#39;Impero Romano d&#39;Occidente?&quot;
-
-(dropdown: 2bind _scelta,
-&quot;scegli&quot;,&quot;31 a.C.&quot;,&quot;anno 0&quot;, &quot;476&quot;,
-&quot;753 a.C.&quot;)
-(live: 0.5s) [(if: _scelta
-is &quot;476&quot;)[Corretto! Clicca qui [[premio]]](else-if:
-_scelta is &quot;476&quot;)[Giusto!](else:)[ [[Hai sbagliato.]] ]]
-</tw-passagedata><tw-passagedata pid="45" name="Hai sbagliato." tags="" position="2575,850" size="100,100">$nome, non hai superato l&#39;esame di maturità. Sei stato bocciato. Torna a [[l&#39;aula magna]]
-
-</tw-passagedata><tw-passagedata pid="46" name="Tridente di Poseidone" tags="" position="1250,825" size="100,100">Ottima scelta! Con le tue abilità, ti lanci contro il tasso e riesci a sconfiggerlo con il tuo tridente.
-
-Ora che hai superato questo ostacolo, puoi continuare il tuo cammino.
-
-[[prosegui qui]]</tw-passagedata><tw-passagedata pid="47" name="prosegui qui" tags="" position="1350,700" size="100,100">$nome, ti guardi intorno, confus$g. L’aula è silenziosa e buia, con solo qualche luce tremolante a illuminare i banchi. Ovunque ci sono microscopi. C’è un’atmosfera di abbandono, come se nessuno frequentasse più questa stanza da anni.
-
-&lt;img src=&quot;https://lh6.googleusercontent.com/mGhCiZcJKVKr_fcx_rKlLNc5vahtaQsNfM2Y9ZL62yBaJix__9rP7GV-WTF3Qqjk54NIOInQf7fPiMQzByRmTitjqc42f9kcTE5bGBcBDmU8wZVIVfQKfMdnPTw6EdaHGQ=w1280&quot;&gt;
-
-Guardando bene, ti accorgi che tutti i microscopi cono coperti di polvere... tranne uno, uno molto vecchio.
-
-Ti avvicini al banco. Il microscopio è ricoperto dei segni che testimoniano il passaggio del tempo, ma ciò che ti colpisce di più è il vetrino sotto l’obiettivo: sembra nuovo, lucidato e perfettamente intatto, come se fosse stato messo lì da poco.
-
-$nome, avvicini gli occhi al microscopio e guardi dentro.
-
-Osservando con attenzione, noti che nel vetrino c’è una piccola incisione, come se qualcuno avesse scritto qualcosa. Metti a fuoco l&#39;obiettivo e riesci a leggere le parole incise, come se fossero state fatte a mano con un oggetto appuntito.
-
-&quot;Qual è l&#39;unità base (solo) degli esseri viventi?&quot;
-
-[[l&#39;atomo]]
-
-[[la cellula]]</tw-passagedata></tw-storydata>
+&lt;img src=&quot;https://i.postimg.cc/VsWxQzpz/IMG-5540.jpg&quot;&gt;</tw-passagedata><tw-passagedata pid="26" name="- Arrabbiarsi" tags="" position="3500,225" size="100,100">Hai scelto il finale aggressivo! Ofelia fa uso delle sue doti di karate e colpisce Giona, insegnandogli un&#39;amara lezione!</tw-passagedata><tw-passagedata pid="27" name="- Riappacificarsi con Giona" tags="" position="3500,375" size="100,100">Hai scelto il lieto fine, proprio quello che Ofelia preferirebbe, in quanto persona estremamente buona e pacifica! I due fratelli si abbracciano e Ofelia perdona Giona.</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
 var require,define;!function(){var e={},r={};require=function(i){var n=e[i];return n&&(r[i]=n[1].apply(void 0,n[0].map(require)),e[i]=void 0),r[i]},(define=function(r,i,n){if("function"==typeof r)return r();e[r]=[i,n]}).amd=!0}();/*!
  * https://github.com/paulmillr/es6-shim
