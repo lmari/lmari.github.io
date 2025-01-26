@@ -1,0 +1,390 @@
+<tw-storydata name="s4 Viaggio nello spazio" startnode="" creator="Twine" creator-version="2.10.0" format="Harlowe" format-version="3.3.9" ifid="04680d6a-d86d-4828-8ca1-f3fdec368d0e" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">tw-story[tags~="0"] {
+	background-image: url("https://images.hdqwalls.com/download/outer-digital-space-tq-1920x1080.jpg") ; background-repeat: no-repeat; background-size:100%; }
+
+tw-story[tags~="1"] {
+	background-image: url("https://res.cloudinary.com/jerrick/image/upload/f_auto,fl_progressive,q_auto,c_fit,w_680/lmu4z6b2kgw7mvr8wkut.jpg") ; background-repeat: no-repeat; background-size:100%; }
+
+tw-story[tags~="2"] {
+	background-image: url("https://wallpaperaccess.com/full/169442.jpg") ; background-repeat: no-repeat; background-size:100%; }
+
+tw-story[tags~="3"] {
+	background-image: url("https://services.meteored.com/img/article/urano-uno-dei-pianeti-piu-misteriosi-del-nostro-sistema-solare-scopriamolo-assieme-1698937319135_1280.jpg") ; background-repeat: no-repeat; background-size:100%; }
+
+tw-story[tags~="5"] {
+	background-image: url("https://th.bing.com/th/id/R.123d80dd5df60c96db3da951a5cfb26d?rik=BYOqIaxIbE0Hgg&pid=ImgRaw&r=0.jpg") ; background-repeat: no-repeat; background-size:100%; }
+
+tw-story[tags~="6"] {
+	background-image: url("https://images8.alphacoders.com/692/692055.jpg") ; background-repeat: no-repeat; background-size:100%; }
+
+
+
+
+</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="1" color="red"></tw-tag><tw-tag name="2" color="blue"></tw-tag><tw-tag name="3" color="yellow"></tw-tag><tw-tag name="4" color="purple"></tw-tag><tw-tag name="5" color="orange"></tw-tag><tw-tag name="6" color="blue"></tw-tag><tw-passagedata pid="1" name="Introduzione" tags="0" position="900,500" size="100,100">(if: $nome is &quot;&quot;) [(set: $nome to &quot;Mario&quot;)]
+
+(text-colour:white) [Benvenut$g $nome, sei (if: $g is &quot;o&quot;)[un](else:)[una] giovane astronauta, in viaggio verso Plutone, ma ti rendi conto che durante il lungo viaggio tra tutti i pianeti del sistema solare hai perso delle parti cruciali della tua navetta. Per poter tornare a casa, sulla Terra, devi viaggiare tra alcuni pianeti e recuperare i pezzi perduti. Ogni pianeta offre sfide uniche, ma anche informazioni vitali che ti permetteranno di ricostruire ii tuo veicolo spaziale. Una volta arrivat$g su Plutone, i viaggi che puoi intraprendere possono essere molto brevi, proprio a causa del malfunzionamento della navicella. Parti con (print: $punteggio) litri di carburante, ma attento potresti perderli velocemente.]
+
+
+(text-colour:#e9ecef)+(align:&quot;==&gt;&quot;) [[INIZIA IL GIOCO -&gt;Inizia Subito]]
+
+
+(set: $punteggio to 100)	
+(display: &quot;piepagina&quot;) 	</tw-passagedata><tw-passagedata pid="2" name="piepagina" tags="" position="700,300" size="100,100">&lt;!-- deve essere incluso esplicitamente, con: (display: &quot;piepagina&quot;) --&gt;
+---
+(text-colour:white)+(align:&quot;=&gt;&lt;=&quot;)+(box:&quot;=X=&quot;) [se preferisci, (text-colour:#65ace9)[[puoi sempre ricominciare il gioco dall’inizio-&gt;FRONTESPIZIO]]] </tw-passagedata><tw-passagedata pid="3" name="Aiuto Plutone" tags="" position="900,700" size="100,100">(set: $punteggio to $punteggio - 10)
+
+Hai chiesto un aiuto! Il tuo punteggio è ora di [(text-colour:red)[$punteggio punti]] punti.
+
+Suggerimento: Non devi contare la terra!
+
+[[Torna alla domanda-&gt;Inizia Subito]]  
+
+(display: &quot;piepagina&quot;) </tw-passagedata><tw-passagedata pid="4" name="Le lune di Urano" tags="3" position="1325,600" size="100,100">(align:&quot;==&gt;&quot;)+(box:&quot;=X&quot;) [&lt;span style=&quot;background-color: #65ace9; 3px; border-radius: 3px; color: white; text-align: center;&quot;&quot;&gt;
+[$punteggio punti]]
+
+L&#39;atmosfera di Urano ti avvolge con un freddo tagliente che sembra penetrarti nelle ossa. Le tue mani tremano mentre ti stringi nella tuta spaziale, ma c&#39;è qualcosa di straordinario in questa desolazione. Le 27 lune che orbitano intorno al gigante gassoso sono la tua unica compagnia, spettatrici silenziose di un viaggio che non sapevi nemmeno di dover intraprendere.
+
+La  navetta è riuscita a completare il viaggio attraverso la vasta distesa di gas e raggiungere il suolo ghiacciato del pianeta, ma a un prezzo. Un guasto tecnico ha compromesso una delle parti cruciali della navetta, e ora sei costretto a cercare e riassemblare il pezzo perduto, sperando che tu possa rimetterla in moto prima che le risorse inizino a scarseggiare.
+
+Ma c&#39;è un altro problema: la rotta di una delle lune di Urano. Solo dopo l&#39;atterraggio, ti rendi conto che una di queste lune, la più vicina, è in linea alla tua traiettoria di decollo. La luna impiega 17 minuti per compiere un giro completo attorno al pianeta, e se dovessi partire proprio ora, ti troveresti dritto sulla sua rotta. La tua navetta non potrebbe evitarla, e tu non puoi rischiare di danneggiare ulteriormente il già fragile veicolo. 
+
+Impieghi tre ore per cercare il pezzo mancante e riassemblarlo, il rumore metallico del collegamento che si incastra con soddisfazione in ogni mossa. Ora che tutto è ricomposto, guardi di nuovo il cielo.  &#39;&#39; Quanto aspettare ancora prima  di ripartire?&#39;&#39;
+
+
+(set: $tempo to&quot;&quot;)
+(input-box: 2bind $tempo)
+(live: 0.1s) [(set: $y to (split: newline, $tempo)) (set: $tempo to (trimmed: $y&#39;s 1st))]
+\
+(live: 0.5s)[(if: $tempo is &quot;0&quot;) [Ora che tutto è ricomposto, guardi di nuovo il cielo. La luna sta lentamente avanzando verso il punto in cui dovresti partire, ma c&#39;è un margine di tempo, una finestra. Non hai molta scelta. Allora metti in moto la navicella e parti. Tuttavia colpito da un detrito che viaggiava nell&#39;orbita di Saturno. Tutti gli schermi iniziano a lampeggiare di rosso, perdi il controllo della navetta e precipiti in caduta libera verso l&#39;Ignoto. [[VAI AVANTI-&gt;Ignoto]].]
+\
+(else-if: $tempo is not &quot;0&quot; and is not &quot;&quot;) [riprova il calcolo, non vorrai schiantarti contro una luna!!]]
+
+
+
+[[Hai bisogno di aiuto?-&gt;Aiuto Urano]]  
+
+(display: &quot;piepagina&quot;) </tw-passagedata><tw-passagedata pid="5" name="Nettuno" tags="2" position="1300,400" size="100,100">(align:&quot;==&gt;&quot;)+(box:&quot;=X&quot;) [&lt;span style=&quot;background-color: #65ace9; 3px; border-radius: 3px; color: white; text-align: center;&quot;&quot;&gt;
+[$punteggio punti]]
+
+&lt;span style=&quot;background-color: #16213c; color: white;&quot;&gt; [Sei atterrato su Nettuno. L&#39;atmosfera intorno a te è di un blu profondo, che sembra racchiudere l’infinito in un abbraccio gelido. La gravità è più leggera di quella che conosci, ma l&#39;aria è pesante di mistero e silenzio, un silenzio che sembra provenire da un altro tempo, da un altro spazio.
+
+Mentre cammini su un terreno che è una distesa di cristalli ghiacciati, qualcosa attira la tua attenzione. Si tratta di un oggetto, che proietta sequenze di numeri che ruotano come spirali di un codice sconosciuto.
+
+Un messaggio emerge lentamente dal flusso numerico, come una domanda enigmatica destinata a sfidarti. Appaiono così: 13, 5, 20, 1, 14, 15. Le cifre corrispondono al nome di un gas, ma quale?]
+ (set: $gas to&quot;&quot;)
+(input-box: 2bind $gas, &quot;=XX=&quot;, 1)
+(live: 0.1s) [(set: $y to (split: newline, $gas)) (set: $gas to (trimmed: $y&#39;s 1st))]
+\
+(live: 0.5s)[(if: $gas is &quot;metano&quot; or &quot;Metano&quot; or &quot;METANO&quot;) [Il gas che compone gran parte dell&#39;atmosfera di questo lontano mondo gelato. Il metano, una sostanza invisibile agli occhi umani ma che, nella sua forma gassosa, regala al pianeta quella colorazione particolare. 
+Schiaccia il pulsante del relativo colore per agganciare il pezzo perduto alla tua navicella?
+&lt;span style=&quot;background-color: red; padding: 5px; border-radius: 5px; color: black; cursor: pointer; display: inline-block; text-align: center; box:&quot;=X=&quot;&quot;&gt;
+    [[Rosso-&gt;Errore]]
+&lt;/span&gt;
+&lt;span style=&quot;background-color: yellow; padding: 5px; border-radius: 5px; color: black; cursor: pointer; display: inline-block; text-align: center; box:&quot;=X=&quot;&quot;&gt;
+    [[Giallo-&gt;Errore]]
+&lt;/span&gt;
+&lt;span style=&quot;background-color: #65ace9; padding: 5px; border-radius: 5px; color: black; cursor: pointer; display: inline-block; text-align: center; box:&quot;=XX=&quot;&quot;&gt;    
+	[[Ciano -&gt;PercorsoBlu]]]
+&lt;/span&gt;
+(else-if: $gas is not &quot;metano&quot; 
+and is not &quot;m&quot; 
+and is not &quot;me&quot;
+and is not &quot;met&quot;
+and is not &quot;meta&quot;
+and is not &quot;metan&quot;
+and is not &quot;M&quot; 
+and is not &quot;ME&quot;
+and is not &quot;MET&quot;
+and is not &quot;META&quot;
+and is not &quot;METAN&quot;
+and is not &quot;METANO&quot;
+and is not &quot;M&quot; 
+and is not &quot;Me&quot;
+and is not &quot;Met&quot;
+and is not &quot;Meta&quot;
+and is not &quot;Metan&quot;
+and is not &quot;Metano&quot; 
+and is not &quot;&quot;) [mi dispiace, hai sbagliato]]
+  [[Hai bisogno di aiuto?-&gt;Aiuto Nettuno]]  
+(display: &quot;piepagina&quot;) </tw-passagedata><tw-passagedata pid="6" name="Inizia Subito" tags="" position="1100,500" size="100,100">(align:&quot;==&gt;&quot;)+(box:&quot;=X&quot;) [&lt;span style=&quot;background-color: #65ace9; 3px; border-radius: 3px; color: white; text-align: center;&quot;&quot;&gt;
+[$punteggio punti]]
+Ti trovi su Plutone. Il paesaggio davanti a te è surreale, una distesa di ghiaccio e rocce congelate, i toni del blu e del bianco mescolati in un&#39;armonia che sfida la gravità. Il motore della navetta è spento, e senza di esso, il viaggio non può proseguire. Ma non è così semplice. Per riattivarlo, c’è un codice segreto che dipende da una cifra: il &quot;numero di pianeti che hai visitato finora&quot;. 
+
+&lt;/span&gt;
+&lt;img src=&quot;https://th.bing.com/th/id/R.a2b7576dd10122f45e880b57b584be07?rik=8gpJi2PNuWFDyg&amp;pid=ImgRaw&amp;r=0.jpg&quot; class=&quot;responsive-image&quot;&gt;
+&lt;style&gt;
+  .responsive-image {
+    width: 100%;
+    height: auto;
+  }
+  &lt;/style&gt;
+
+
+(set: $motore to&quot;&quot;)
+(input-box: 2bind $motore, &quot;=XX=&quot;, 1)
+(live: 0.1s) [(set: $y to (split: newline, $motore)) (set: $motore to (trimmed: $y&#39;s 1st))]
+\
+(live: 0.5s)[(if: $motore is &quot;8&quot;) [Il codice è corretto, il motore si riattiva, e una luce fioca brilla attraverso i pannelli di controllo. Il display davanti a te si illumina, la schermata del GPS si popola di informazioni: la navetta ora è in movimento. La navicella finalmete si e riattivata, sul display di comando il gps ti mostra due possibili percorsi, il primo senza turbolenze, ma piu lungo, il secondo piu corto ma con turbolenze. Dove scegli di andare? 
+* [[VERSO URANO-&gt;Le lune di Urano]]  
+* [[VERSO NETTUNO-&gt;Nettuno]] ]
+\
+(else-if: $motore is not &quot;8&quot; and is not &quot;&quot;) [pensaci bene!]]
+
+
+(text-colour:#65ace9)[[Hai bisogno di aiuto?-&gt;Aiuto Plutone]]  
+
+(display: &quot;piepagina&quot;) </tw-passagedata><tw-passagedata pid="7" name="Aiuto Urano" tags="3" position="1100,700" size="100,100">(set: $punteggio to $punteggio - 20)
+
+Hai chiesto un aiuto! Il tuo punteggio è ora di [(text-colour:red)[ $punteggio punti]] punti.
+
+Suggerimento: Tre ore sono composte da 180 minuti, dividendoli per i 17 minuti della rotazione completa della luna, risulta che questa abbia compiuto 10 giri e mezzo
+
+[[Torna alla domanda-&gt;Le lune di Urano]]  
+
+(display: &quot;piepagina&quot;) </tw-passagedata><tw-passagedata pid="8" name="Ignoto" tags="4" position="1500,500" size="100,100">(text-style:&quot;fidget&quot;)+(live:1s)
+
+[=(stop:) (align:&quot;==&gt;&quot;)+(box:&quot;=X&quot;) [&lt;span style=&quot;background-color: #65ace9; 3px; border-radius: 3px; color: white; text-align: center;&quot;&quot;&gt;
+[$punteggio punti]]
+
+Sballotato dalle correnti dell&#39;universo sei precipitato su un pianeta ignoto. 
+
+Il cielo sopra di te pulsa con sfumature di viola e oro, un vortice infinito di colori che sembrano danzare al ritmo di un&#39;energia che non comprendi. Il terreno sotto i tuoi piedi è morbido, ma emette un tenue bagliore azzurro a ogni tuo passo. La gravità qui è incerta: salti per spingerti avanti, ma ogni movimento è lento, quasi sognante. L’aria è densa e vibrante, non si respira, si percepisce.
+
+Davanti a te, tra il manto iridescente del terreno, appare una pietra. Una luce fioca pulsa al suo interno, come un cuore che batte lento e costante, e ogni tanto emette un lieve ronzio, una vibrazione che sembra attraversarti. Ti avvicini, attratto dalla sua presenza. Quando ti chini per osservarla meglio, noti che la sua superficie è incisa da motivi intricati, ti sembra quasi che si muovano, trasformandosi sotto il tuo sguardo in una frase. &#39;&#39;Sette mi compongono e sette mi circondano, chi sono?&#39;&#39; Si tratta di un indicazione per ricostruire dove ti trovi: ciò è fondamentale, come altrimenti si può anche solo pensare di rimettersi in viaggio?
+
+(set: $pianeta to&quot;&quot;)
+(input-box: 2bind $pianeta, &quot;=XX=&quot;, 1)
+(live: 0.1s) [(set: $y to (split: newline, $pianeta)) (set: $pianeta to (trimmed: $y&#39;s 1st))]
+\
+(live: 0.5s)[(if: $pianeta is &quot;Saturno&quot; or &quot;saturno&quot; or &quot;SATURNO&quot;) [Ora grazie alla conoscenza del luogo di partenza puoi immetere le coordinate. Tuttavia, la presenza degIi anelli ti permette di intraprendere solo due percorsi distinti, il primo verso Giove, il secondo verso Marte. Scegli dove andare
+* [[VAI A GIOVE -&gt;Giove]]
+* [[VAI A MARTE -&gt;Marte]]
+]
+\
+(else-if: $pianeta is not  &quot;S&quot;
+and is not &quot;Sa&quot;
+and is not &quot;Sat&quot;
+and is not &quot;Satu&quot;
+and is not &quot;Satur&quot;
+and is not &quot;Saturn&quot;
+and is not &quot;Saturno&quot;
+and is not &quot;s&quot;
+and is not &quot;sa&quot;
+and is not &quot;sat&quot;
+and is not &quot;satu&quot;
+and is not &quot;satur&quot;
+and is not &quot;saturn&quot;
+and is not &quot;saturno&quot;
+and is not &quot;S&quot;
+and is not &quot;SA&quot;
+and is not &quot;SAT&quot;
+and is not &quot;SATU&quot;
+and is not &quot;SATUR&quot;
+and is not &quot;SATURN&quot;
+and is not &quot;SATURNO&quot;
+and is not &quot;&quot;) [mi dispiace, hai sbagliato]]
+
+
+[[Hai bisogno di aiuto?-&gt;Aiuto Saturno]]  
+
+(display: &quot;piepagina&quot;) 
+</tw-passagedata><tw-passagedata pid="9" name="Aiuto Nettuno" tags="2" position="1100,300" size="100,100">(set: $punteggio to $punteggio - 20)
+
+&lt;span style=&quot;background-color: #16213c; color: white;&quot;&gt; [Hai chiesto un aiuto! Il tuo punteggio è ora di [(text-colour:red)[$punteggio punti]] punti.
+
+Suggerimento: Tieni a mente che le lettere dell&#39;alfabeto sono 26!]
+
+(text-colour:#e9ecef)+(align:&quot;==&gt;&quot;)[[Torna alla domanda-&gt;Nettuno]]  
+
+
+(display: &quot;piepagina&quot;) </tw-passagedata><tw-passagedata pid="10" name="PercorsoBlu" tags="2" position="1500,300" size="100,100">&lt;span style=&quot;background-color: #16213c; color: white;&quot;&gt; [Tra le distese di nubi e tempeste, il bagliore di un frammento. Ti avvicini, attirato dalla speranza e dalla curiosità. È un pezzo della tua navicella, deformato, ma riconoscibile e sopratutto utilizzabile. A mani tremanti, riesci finalmente ad agganciare un pezzo della tua navetta, un frammento che si stacca come un ricordo dimenticato e che ora si aggancia al tuo futuro. Un attimo di speranza, di resilienza.
+
+Accendi il motore, un ruggito silenzioso che squarcia il vuoto dell&#39;universo. Il cuore batte più forte, come se sentisse il peso di una nuova partenza, l&#39;emozione di un viaggio senza destinazione, un viaggio in cui non c’è più mappa. 
+
+Il paesaggio di Nettuno sparisce dietro di te, ma non è l’oscurità che ti spaventa. È la luce lontana, quella che ti chiama, quella che ti guida. Le stelle sopra di te si allontanano, ma più il tuo viaggio ti spinge verso l&#39;Ignoto.]
+
+  (text-colour:white)+(align:&quot;==&gt;&quot;)[[VAI AVANTI-&gt;Ignoto]]
+
+(display: &quot;piepagina&quot;) </tw-passagedata><tw-passagedata pid="11" name="Aiuto Saturno" tags="4" position="1500,700" size="100,100">(set: $punteggio to $punteggio - 20)
+
+Hai chiesto un aiuto! Il tuo punteggio è ora di [(text-colour:red)[$punteggio punti]] punti.
+
+Suggerimento: Con &quot;compongono&quot; si fa riferimento alle lettere del nome.
+
+[[Torna alla domanda-&gt;Ignoto]]  
+
+(display: &quot;piepagina&quot;) 
+</tw-passagedata><tw-passagedata pid="12" name="Giove" tags="1" position="1700,400" size="100,100">(align:&quot;==&gt;&quot;)+(box:&quot;=X&quot;) [&lt;span style=&quot;background-color: #65ace9; 3px; border-radius: 3px; color: white; text-align: center;&quot;&quot;&gt; [$punteggio punti] 
+]
+
+La navicella sfreccia attraverso un paesaggio di gas turbolenti. Tutto sembra procedere senza intoppi, fino a quando un segnale d’allarme spezza il silenzio elettronico del cruscotto. Un lampo rosso, poi un altro: la temperatura esterna è salita a livelli critici. Le pareti della navicella iniziano a riscaldarsi impercettibilmente, mentre il motore emette un ronzio più acuto, come il lamento di una creatura esausta.
+
+Sai bene che il motore ha difficoltà a funzionare in modo efficiente quando l&#39;ambiente supera i 47 gradi Celsius. Ma, naturalmente, i sistemi della NASA non usano il familiare Celsius per misurare le temperature. Sul display lampeggiano numeri in un&#39;unità di misura che sembra uscita direttamente da un corso avanzato di fisica termodinamica: Rankine, una scala quasi dimenticata nel tuo addestramento, relegata al margine delle nozioni teoriche.
+
+Cerchi freneticamente nel modulo di controllo, aprendo sportelli, scandagliando database interni, e riesci a recuperare la formula per la conversione: *Rankine = Celsius x 1,8 + 491.67*
+
+Giove ha un temperatura inferiore a 47° tuttavia prima di ripartire devi aspettare il raffreddamento della navicella, la temperatura dell&#39;esterno della navicella è di 701.19 Rankine. &quot;A che temperatura potrai rimetterti in viaggio?&quot; 
+*Per completare questo solo enigma puoi utilizzare la calcolatrice del telefono*
+
+(set: $temperatura to&quot;&quot;)
+(input-box: 2bind $temperatura, &quot;=XX=&quot;, 1)
+(live: 0.1s) [(set: $y to (split: newline, $temperatura)) (set: $temperatura to (trimmed: $y&#39;s 1st))]
+\
+(else-if: $temperatura is not &quot;576.27&quot; and is not &quot;576,27&quot;  and is not &quot; &quot;) [la risposta è errata, non demordere!!]
+
+(live: 0.5s)[(if: $temperatura is &quot;576.27&quot; or &quot;576,27&quot;) [La temperatura era corretta, hai aspettato fino a che la navicella non si fosse raffreddata e ti sei rimesso in viaggio. Stai viaggiando velocemente verso la tua meta: la Terra.  [[VIAGGIA VERSO LA TERRA -&gt;Terra]]	]
+]
+
+
+[[Hai bisogno di aiuto?-&gt;Aiuto Giove]]  
+
+(display: &quot;piepagina&quot;)</tw-passagedata><tw-passagedata pid="13" name="Aiuto Marte" tags="5" position="1900,700" size="100,100">(set: $punteggio to $punteggio - 40)
+
+Hai chiesto un aiuto! Il tuo punteggio è ora di [(text-colour:red)[$punteggio punti]] punti.
+
+Suggerimento: Le lettere, per la loro forma, sono riconducibili a 4 numeri e 2 punti cardinali 
+
+[[Torna alla domanda-&gt;Marte]]  
+
+(display: &quot;piepagina&quot;) </tw-passagedata><tw-passagedata pid="14" name="Terra" tags="6" position="2000,500" size="100,100">(align:&quot;==&gt;&quot;)+(box:&quot;=X&quot;) [&lt;span style=&quot;background-color: #65ace9; 3px; border-radius: 3px; color: white; text-align: center;&quot;&quot;&gt; [$punteggio punti]]
+&lt;span style=&quot;background-color: #16213c; color: white;&quot;&gt;La Terra è là, a portata di mano. Il blu cobalto dei mari e il verde smeraldo delle terre emerse si stagliano nel buio dello spazio, scintillanti e imponenti. L&#39;atmosfera terrestre, con la sua danza di colori e sfumature, si avvicina sempre più mentre la tua navetta entra nella sua gravità. È un momento che avevi sognato per anni, ma anche un momento di sospensione, di attesa. Una curiosità profonda ti pervade: hai controllato tutto? I comandi, i parametri, gli elementi? Ogni piccola cosa deve essere al suo posto. 
+Nel silenzio del tuo spazio ristretto, il sistema di bordo ti ricorda di verificare le informazioni sull&#39;ambiente che stai per affrontare. Scivolando attraverso il pannello di controllo, rivedi rapidamente gli elementi che hai già inserito, quelli che compongono l&#39;atmosfera che tra poco ti avvolgerà: 
+- Argon
+- Zolfo
+- Ossigeno
+- Titania
+- Osmio
+
+Manca qualcosa, devi ricordarti in fretta, dopo averlo fatto inserisci il (text-style:&quot;bold&quot;,&quot;underline&quot;) [simbolo chimico] dell&#39;elemento mancante. 
+
+
+(set: $azoto to&quot;&quot;)
+(input-box: 2bind $azoto, &quot;=XX=&quot;, 1)
+(live: 0.1s) [(set: $y to (split: newline, $azoto)) (set: $azoto to (trimmed: $y&#39;s 1st))]
+\
+(live: 0.5s)[(if: $azoto is &quot;N&quot;) [Un piccolo segno, ma che porta con sé il peso di tutta la vita che conosci. Con una mano ferma, inserisci N nel campo mancante. Il sistema conferma che l&#39;atmosfera terrestre ora è perfetta. Non resta che fare un ultimo respiro e prepararti a entrare, mentre la navetta comincia ad attraversare i confini della Terra. Ma il viaggio non è ancora concluso:  [[INIZIA L&#39;ATTERRAGGIO-&gt;l&#39;atterraggio]].]
+\
+(else-if: $azoto is not &quot;N&quot; and is not &quot;&quot;) [la navicella sta già per entrare nell&#39;atmosfera, ma la risposta è errata, sbrigati non puoi finire il tuo viaggio in questo modo!!]]
+
+
+[[Hai bisogno di aiuto?-&gt;Aiuto Terra]]  
+
+(display: &quot;piepagina&quot;)</tw-passagedata><tw-passagedata pid="15" name="Aiuto Terra" tags="6" position="2100,300" size="100,100">
+(set: $punteggio to $punteggio - 10)
+
+Hai chiesto un aiuto! Il tuo punteggio è ora di [(text-colour:red)[$punteggio punti]] punti.
+
+Suggerimento: Concentrati sulle prime lettere di ciascun gas nell&#39;elenco puntato.
+
+[[Torna alla domanda-&gt;Terra]]  
+
+(display: &quot;piepagina&quot;) </tw-passagedata><tw-passagedata pid="16" name="l&#39;atterraggio" tags="6" position="2175,525" size="100,100">La navetta scivola lentamente verso l&#39;atmosfera terrestre, il tremore delicato delle vibrazioni metalliche che scivolano nel buio diventano più forti man mano che si addentra nell&#39;aria. Il primo impatto con l&#39;atmosfera è morbido, quasi impercettibile. La navetta inizia a vibrare, il calore avvolge l’esterno della navetta, una resistenza crescente mentre attraversi strati di gas più densi. Il pannello di controllo lampeggia.
+Le luci della navetta si spengono una ad una, il sistema di navigazione proietta inesorabilmente le ultime rotte, mentre il cielo sopra di te cambia colore. Il blu scuro dell&#39;infinito si mescola con il cobalto chiaro della troposfera, e il grande arazzo del pianeta si avvicina a velocità incredibile. 
+Piano, sempre più piano, il cielo diventa una tela di sfumature arancioni e rosse. Il paesaggio che intravedi fuori dal finestrino è un caleidoscopio di ombre e luci, la superficie terrestre ormai a pochi chilometri di distanza, ma il caos di nuvole turbinanti ti avvolge mentre ti immergi in un mare di scie brillanti.
+La gravità aumenta, l&#39;attrito cresce, e la navetta inizia a sobbalzare. Gli ultimi strumenti elettronici si disattivano, il suono metallico dell&#39;atmosfera si fa più forte.
+E finalmente, un lieve tocco. La navetta tocca la terra, il suolo solido della Terra. Sei ritornato a casa!
+Sei giunto al termine di questo gioco. Il tuo punteggio è di (print: $punteggio) punti. 
+(If: $punteggio is 100) [Complimenti! Sei riuscito a completare questa escape room senza errori]
+(If: $punteggio is 80) [Ottimo hai utilizzato un solo aiuto, peccato avresti potuto completarla senza usare aiuti!]
+(If: $punteggio is &gt;61) [Sei stato bravo hai utilizzato pochi aiuti nella tua impresa!]
+(If: $punteggio is &gt;41)[Nonostante qualche aiuto sei riuscito ad arrivare alla fine del tuo viaggio.]
+(If: $punteggio is &gt;21 ) [Certamente non sei stato brillante, ma alla fine conta essere a casa. O forse no.]
+(If: $punteggio is 0)[Potevi fare decisamente meglio, ma alla fine sei riuscito a tornare a casa. Certo, hai usato tutti gli aiuti possibili...]
+(If: $punteggiois &lt;0)[Non so nemmeno come tu sia riuscito ad ottenere un punteggio così basso, era matematicamente impossibile.]
+Alla prossima avventura..</tw-passagedata><tw-passagedata pid="17" name="Errore" tags="2" position="1300,100" size="100,100">&lt;span style=&quot;background-color: #16213c; color: white;&quot;&gt; [mi dispiace, hai sbagliato]
+
+[[Torna alla domanda-&gt;Nettuno]] 
+
+(display: &quot;piepagina&quot;) </tw-passagedata><tw-passagedata pid="18" name="FRONTESPIZIO" tags="" position="600,500" size="100,100">(enchant:?page,(text-colour:white)+(bg:(gradient: 188, 0,black,0.2217,#003251,1,black)))
+(save-game: &quot;auto&quot;)
+##(align:&quot;=&gt;&lt;=&quot;) [VIAGGIO NELLO SPAZIO]
+
+Questo che hai appena aperto è una &#39;&#39;escape-room digitale&#39;&#39;, il cui racconto è sviluppato secondo i canoni classici del genere “giallo”. In questo gioco il protagonista sei tu: un&#39;astronauta che compie un viaggio nello spazio. Durante la tua avventura affronterai enigmi difficili, ma non barare, non cercare informazioni a meno che non sia espressamente permesso!!
+
+Si tratta di un progetto PCTO del &lt;a href=&quot;https://liceoberchet.edu.it&quot; target=&quot;_blank&quot;&gt;Liceo Classico Giovanni Bechet&lt;/a&gt; realizzato in collaborazione con il &lt;a href=&quot;https://www.museoscienza.org/it&quot; target=&quot;_blank&quot;&gt;Museo della Scienza e della Tecnologia&lt;/a&gt; e il professor &lt;a href=&quot;https://lmari.github.io/&quot; target=&quot;_blank&quot;&gt;Luca Mari&lt;/a&gt;. 
+
+&lt;img src=&quot;https://th.bing.com/th/id/R.b6e4bce09b9443505f04bb0cd709baa8?rik=YXyCAHnWPDkB%2bw&amp;riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2fe%2ff%2f9%2f721581-vertical-solar-system-wallpaper-2000x1451-for-android.jpg&amp;ehk=%2fIEBATzO5trlCawL0PfFKwFMTGN4z2wopQ9YG57dpEI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0.jpg&quot; class=&quot;responsive-image&quot;&gt;
+
+&lt;style&gt;
+  .responsive-image {
+    width: 100%;
+    height: auto;}
+  &lt;/style&gt;
+  (text-colour:white)+(align:&quot;==&gt;&quot;)[[INIZIA A GIOCARE-&gt;PERSONALIZZA LA TUA ESPERIENZA]]
+  
+</tw-passagedata><tw-passagedata pid="19" name="Aiuto Giove" tags="1" position="1825,250" size="100,100">(set: $punteggio to $punteggio - 40)
+
+Hai chiesto un aiuto! Il tuo punteggio è ora di [(text-colour:red)[$punteggio punti]] punti.
+
+Suggerimento: Se *Rankine = Celsius x 1,8 + 491.67* allora *Rankine = 47 x 1,8 + 491.67*, ovvero *576,27*
+
+
+[[Torna alla domanda-&gt;Giove]]  
+
+(display: &quot;piepagina&quot;) </tw-passagedata><tw-passagedata pid="20" name="PERSONALIZZA LA TUA ESPERIENZA" tags="0" position="750,500" size="100,100">
+(set: $nome to &quot;&quot;) \
+
+Prima di iniziare, personalizza la tua esperienza di gioco:
+
+* Qual è il tuo nome? (input-box: 2bind $nome, &quot;=XX=&quot;, 1)
+(live: 0.1s)[(set: $y1 to (split: newline, $nome)) (set: $nome to $y1&#39;s 1st)] \
+
+* Con che genere vuoi che ci si riferisca a te durante il gioco? (dropdown: 2bind $genere, &quot;maschile&quot;, &quot;femminile&quot;)
+
+&lt;/style&gt;
+(text-colour:white)+(align:&quot;==&gt;&quot;)[[VAI AVANTI-&gt;Introduzione]]
+
+(live: 0.2s)[(if: $genere is &quot;maschile&quot;) [(set: $g to &quot;o&quot;)]
+(else:) [(set: $g to &quot;a&quot;)]]
+
+</tw-passagedata><tw-passagedata pid="21" name="Marte" tags="5" position="1700,600" size="100,100">(align:&quot;==&gt;&quot;)+(box:&quot;=X&quot;) [&lt;span style=&quot;background-color: #65ace9; 3px; border-radius: 3px; color: white; text-align: center;&quot;&quot;&gt; [$punteggio punti]]
+&lt;style&gt;
+.inline-images {
+    display: flex;
+    justify-content: center; 
+    gap: 10px; }
+.inline-images img {
+    width: 50%; */
+    height: 50%; }
+&lt;/style&gt;
+&lt;div class=&quot;inline-images&quot;&gt;
+    &lt;img src=&quot;https://static.wixstatic.com/media/d1fb8b_65972fb44d8d4d838b6f08d4c3155383~mv2.jpeg/v1/fill/w_600,h_450,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/d1fb8b_65972fb44d8d4d838b6f08d4c3155383~mv2.jpeg&quot; alt=&quot;Immagine 1&quot;&gt;
+    &lt;img src=&quot;https://static.wixstatic.com/media/d1fb8b_7c2fdd0843e94ec8ac9b71a08cb1f434~mv2.jpg/v1/fill/w_600,h_450,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/d1fb8b_7c2fdd0843e94ec8ac9b71a08cb1f434~mv2.jpg&quot; alt=&quot;Immagine 2&quot;&gt;
+&lt;/div&gt;
+Marte, che si estende davanti ai tuoi occhi in un deserto di polvere rossa e cielo tinto di arancio. Il suolo, di un rosso profondo, scricchiola sotto i tuoi passi come sabbia fine, ma è diverso, più secco, più eterno. Ogni respiro che prendi sembra far eco nella vastità del vuoto che ti circonda. 
+
+Hai bisogno di tornare. Il GPS è la tua unica speranza, ma non ricordi le coordinate della Terra. L&#39;unico indizio che il pianeta ti propone sono alcune impronte.
+
+Sono piccole, quasi invisibili a prima vista, ma si susseguono lungo il terreno, come un cammino tracciato da qualcuno che, come te, si è perso. Ti avvicini con cautela, i piedi che affondano nel terreno polveroso, e quando guardi meglio, capisci che quelle impronte non sono casuali. Non sono solo segni lasciati da qualche sconosciuto viaggiatore, sono lettere, tracciate con una precisione strana. &quot;I, G, N, A, B, E&quot;, ma cosa significano?  
+*Scrivi la risposta in questo modo: numero direzione, numero direzione (ad esempio: 37 Sud, 15 Est). La direzione deve essere scritta per intero e senza °. *
+(set: $coordinate to&quot;&quot;)
+(input-box: 2bind $coordinate, &quot;=XX=&quot;, 1)
+(live: 0.1s) [(set: $y to (split: newline, $coordinate)) (set: $coordinate to (trimmed: $y&#39;s 1st))]
+\
+(live: 0.5s)[(if: $coordinate is &quot;16 Nord, 48 Est&quot; or &quot;16° Nord, 48° Est&quot; or &quot;16° N, 48° E&quot; or &quot;16 N, 48 E&quot;) [Apri il GPS e imposti i numeri che ti vengono in mente.  La luce del dispositivo lampeggia e poi scompare, come se stesse leggendo l’ambiente che ti circonda. Poi, una conferma: &quot;Coordinate corrette.&quot; E mentre il rombo del motore si fa sempre più forte, il paesaggio si dissolve lentamente dietro di te. Marte, nella sua solitudine, diventa sempre più piccolo. [[PROCEDI VERSO LA TERRA -&gt;Terra]]]
+\
+(else-if: $coordinate is not &quot;16 Nord, 48 Est&quot; 
+and is not &quot;1&quot;
+and is not &quot;16&quot;
+and is not &quot;16 &quot;
+and is not &quot;16 N&quot;
+and is not  &quot;16 No&quot;
+and is not &quot;16 Nor&quot;
+and is not &quot;16 Nord&quot;
+and is not &quot;16 Nord,&quot;
+and is not &quot;16 Nord, &quot; 
+and is not &quot;16 Nord, 4&quot;
+and is not &quot;16 Nord, 48&quot; 
+and is not &quot;16 Nord, 48 &quot;
+and is not &quot;16 Nord, 48 E&quot;
+and is not &quot;16 Nord, 48 Es&quot;
+and is not &quot;16 Nord, 48 Est&quot; 
+and is not &quot;&quot;) [hai sbagliato, puoi ancora riprovare ma sbrigati rimane poco tempo prima che le impronte vengano ricoperte di terra!!]]
+
+
+
+[[Hai bisogno di aiuto?-&gt;Aiuto Marte]]  
+
+(display: &quot;piepagina&quot;)
+
+
+</tw-passagedata></tw-storydata>
