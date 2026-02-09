@@ -1,6 +1,7 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: aliceblue;
+    padding-top: 58px;
   }
   
 h1, h2 {
@@ -9,8 +10,14 @@ h1, h2 {
 }
 
 .navbar {
-    overflow: hidden;
-    background-color: rgb(10, 10, 97);
+  overflow: visible;
+  background-color: rgb(10, 10, 97);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
   }
   
 .navbar a {
@@ -21,6 +28,16 @@ h1, h2 {
     padding: 14px 16px;
     text-decoration: none;
   }
+
+.navbar .brand {
+  float: left;
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
+  text-decoration: none;
+  padding: 14px 16px;
+  margin-right: 8px;
+}
   
   .dropdown {
     float: left;
@@ -48,7 +65,7 @@ h1, h2 {
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+  z-index: 10001;
   }
   
 .dropdown-content a {
@@ -67,7 +84,6 @@ h1, h2 {
 .dropdown:hover .dropdown-content {
     display: block;
   }
-  
 
 article.post {
     background-color: #f9f9f9; /* Light background for contrast */
