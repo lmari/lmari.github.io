@@ -1,3 +1,11 @@
+:root {
+    --color-primary: rgb(10, 10, 97);
+    --color-text: #333;
+    --color-muted: #555;
+    --color-sidebar: #f1f1f1;
+    --color-link-focus: green;
+}
+
 html {
     width: 100%;
     scroll-behavior: smooth;
@@ -7,7 +15,7 @@ body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
     font-size: 13pt;
-    color: #333;
+    color: var(--color-text);
 }
 
 body.chatting {
@@ -21,7 +29,7 @@ body.chatting {
     margin: 0;
     padding: 0;
     width: 200px;
-    background-color: #f1f1f1;
+    background-color: var(--color-sidebar);
     position: fixed;
     height: 100%;
     overflow: auto;
@@ -35,7 +43,7 @@ body.chatting {
 }
 
 .sidebar a.active {
-    background-color:rgb(10, 10, 97);
+    background-color: var(--color-primary);
     color: white;
 }
   
@@ -47,20 +55,20 @@ body.chatting {
 div.content {
     margin-left: 200px;
     padding: 1px 16px;
-    height: 1000px;
+    min-height: 100vh;
 }
 
 h1, h2 {
-    color: rgb(10, 10, 97);
+    color: var(--color-primary);
     font-family: 'Roboto', sans-serif;
     font-size: 24pt;
 }
 h3 {
-    color: rgb(10, 10, 97);
+    color: var(--color-primary);
     font-weight: 600;
 }
 h4 {
-    background-color: rgb(10, 10, 97);
+    background-color: var(--color-primary);
     color: white;
     font-weight: 400;
     font-size: 14pt;
@@ -81,17 +89,24 @@ a {
 }
 
 a:link {
-    color: #555;
+    color: var(--color-muted);
 }
 
 a:visited {
-    color: #555;
+    color: var(--color-muted);
 }
 
-a:hover {
-    border: 2px solid green;
+a:hover, a:focus {
+    border: 2px solid var(--color-link-focus);
     border-radius: 5%;
     border-style: groove;
+}
+
+.profile-photo {
+    float: right;
+    margin: 10px;
+    max-width: 220px;
+    height: auto;
 }
 
 .io {
@@ -150,7 +165,7 @@ a:hover {
 .nav {
     display: flex;
     justify-content: space-around;
-    background-color: rgb(10, 10, 97);
+    background-color: var(--color-primary);
     color: white;
     padding: 5px;
 }
@@ -200,4 +215,37 @@ a:hover {
 .x1:hover .x2 {
     visibility: visible;
     opacity: 1;
+}
+
+.book-cover {
+    width: 150px;
+    height: auto;
+}
+
+.book-cover-left {
+    float: left;
+    margin-top: -20pt;
+    padding-right: 20pt;
+}
+
+.book-cover-right {
+    float: right;
+    margin-top: -30pt;
+    margin-right: 10pt;
+}
+
+.book-cover-large-right {
+    float: right;
+    width: 250px;
+    margin-top: -30pt;
+    margin-right: -30pt;
+}
+
+.podcast-cover {
+    float: left;
+    width: 400px;
+    max-width: 100%;
+    height: auto;
+    margin-top: -20pt;
+    padding-right: 20pt;
 }
