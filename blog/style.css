@@ -196,7 +196,7 @@ a[name] {
 
 @media screen and (max-width: 820px) {
   html {
-    scroll-padding-top: 70px;
+    scroll-padding-top: 124px;
   }
 
   .blog-content {
@@ -211,6 +211,7 @@ a[name] {
   }
 
   .navbar {
+    top: 58px;
     gap: 18px;
     margin-bottom: 34px;
     overflow-x: auto;
@@ -229,11 +230,11 @@ a[name] {
 
   .dropdown-content {
     position: fixed;
-    top: 58px;
+    top: 116px;
     right: 12px;
     left: 12px;
     width: auto;
-    max-height: calc(100vh - 78px);
+    max-height: calc(100vh - 136px);
     white-space: normal;
   }
 
@@ -250,7 +251,7 @@ a[name] {
   }
 
   a[name] {
-    top: -58px;
+    top: -116px;
   }
 }
 
