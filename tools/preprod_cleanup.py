@@ -18,7 +18,21 @@ HREF_RE = re.compile(r'href=["\']([^"\']+)["\']', re.IGNORECASE)
 ACTIVE_RE = re.compile(r'class=["\'][^"\']*\bactive\b[^"\']*["\']', re.IGNORECASE)
 FRONT_MATTER_RE = re.compile(r'\A---\s*\n(.*?)\n---\s*\n', re.DOTALL)
 
-SECTION_BY_SUFFIX = {
+SECTION_BY_PATH = {
+    'index.html': 'home',
+    'shortcv.html': 'cv',
+    'publ.html': 'publications',
+    'alect/index.html': 'invited-lectures',
+    'nalect.html': 'non-academic-lectures',
+    'videos.html': 'videos',
+    'mg.html': 'metrology',
+    'stgraph/index.html': 'stgraph',
+    'echat/index.html': 'echat',
+    'chatting/index.html': 'chatting',
+    'blog/index.html': 'blog',
+}
+
+SECTION_BY_TARGET = {
     'shortcv.html': 'cv',
     'publ.html': 'publications',
     'alect/index.html': 'invited-lectures',
@@ -38,6 +52,14 @@ ROBOTO_LINES = [
 ]
 
 
+def is_generated_or_internal(rel: Path) -> bool:
+    return any(part in {'.git', '_site', 'vendor'} for part in rel.parts)
+
+
+def is_jekyll_include(rel: Path) -> bool:
+    return bool(rel.parts and rel.parts[0] in {'_includes', '_layouts'})
+
+
 def normalize_href(href: str) -> str:
     value = href.split('#', 1)[0].split('?', 1)[0].replace('\\', '/')
     while value.startswith('../'):
@@ -48,21 +70,20 @@ def normalize_href(href: str) -> str:
 
 
 def infer_section(sidebar: str, path: Path) -> str:
-    active_href = None
+    rel = path.relative_to(ROOT).as_posix()
+    if rel in SECTION_BY_PATH:
+        return SECTION_BY_PATH[rel]
+
     for tag in ANCHOR_RE.findall(sidebar):
-        if ACTIVE_RE.search(tag):
-            m = HREF_RE.search(tag)
-            if m:
-                active_href = normalize_href(m.group(1))
-                break
-    if active_href:
-        for suffix, section in SECTION_BY_SUFFIX.items():
-            if active_href.endswith(suffix):
+        if not ACTIVE_RE.search(tag):
+            continue
+        match = HREF_RE.search(tag)
+        if not match:
+            continue
+        target = normalize_href(match.group(1))
+        for suffix, section in SECTION_BY_TARGET.items():
+            if target.endswith(suffix):
                 return section
-        if active_href == 'index.html' and path == ROOT / 'index.html':
-            return 'home'
-    if path == ROOT / 'index.html':
-        return 'home'
     return ''
 
 
@@ -72,24 +93,19 @@ def page_root(path: Path) -> str:
 
 
 def set_front_matter(text: str, section: str, root: str) -> str:
-    m = FRONT_MATTER_RE.match(text)
-    if m:
-        lines = [
-            line for line in m.group(1).splitlines()
-            if not re.match(r'^\s*(section|root)\s*:', line)
-        ]
-        additions = []
-        if section:
-            additions.append(f'section: {section}')
-        additions.append(f'root: "{root}"')
-        body = text[m.end():]
-        fm = '\n'.join(additions + lines).strip()
-        return f'---\n{fm}\n---\n{body}'
-    additions = []
+    match = FRONT_MATTER_RE.match(text)
+    old_lines = match.group(1).splitlines() if match else []
+    body = text[match.end():] if match else text
+    old_lines = [
+        line for line in old_lines
+        if not re.match(r'^\s*(section|root)\s*:', line)
+    ]
+    new_lines = []
     if section:
-        additions.append(f'section: {section}')
-    additions.append(f'root: "{root}"')
-    return '---\n' + '\n'.join(additions) + '\n---\n' + text
+        new_lines.append(f'section: {section}')
+    new_lines.append(f'root: "{root}"')
+    new_lines.extend(old_lines)
+    return '---\n' + '\n'.join(new_lines).strip() + '\n---\n' + body
 
 
 def remove_roboto(text: str) -> str:
@@ -108,32 +124,31 @@ def harden_blank_targets(text: str) -> str:
     return re.sub(r'<a\b[^>]*\btarget=["\']_blank["\'][^>]*>', repl, text, flags=re.I)
 
 
-def migrate_sidebars() -> tuple[int, list[str]]:
+def migrate_pages() -> tuple[int, list[str]]:
     changed = 0
-    sections = []
+    notes: list[str] = []
+
     for path in ROOT.rglob('*.html'):
         rel = path.relative_to(ROOT)
-        if any(part in {'.git', '_site', 'vendor'} for part in rel.parts):
-            continue
-        text = path.read_text(encoding='utf-8')
-        m = SIDEBAR_RE.search(text)
-        if not m:
-            cleaned = harden_blank_targets(remove_roboto(text))
-            if cleaned != text:
-                path.write_text(cleaned, encoding='utf-8')
+        if is_generated_or_internal(rel) or is_jekyll_include(rel):
             continue
 
-        section = infer_section(m.group(0), path)
-        new = text[:m.start()] + '{% include sidebar.html %}' + text[m.end():]
-        new = remove_roboto(new)
-        new = harden_blank_targets(new)
-        if rel.as_posix() != 'chatting/_content.html':
-            new = set_front_matter(new, section, page_root(path))
+        text = path.read_text(encoding='utf-8')
+        new = harden_blank_targets(remove_roboto(text))
+        sidebar = SIDEBAR_RE.search(new)
+
+        if sidebar:
+            section = infer_section(sidebar.group(0), path)
+            new = new[:sidebar.start()] + '{% include sidebar.html %}' + new[sidebar.end():]
+            if rel.as_posix() != 'chatting/_content.html':
+                new = set_front_matter(new, section, page_root(path))
+            notes.append(f'{rel.as_posix()}: {section or "(no active main section)"}')
+
         if new != text:
             path.write_text(new, encoding='utf-8')
             changed += 1
-            sections.append(f'{rel.as_posix()}: {section or "(no active main section)"}')
-    return changed, sections
+
+    return changed, notes
 
 
 def update_sidebar_include() -> None:
@@ -150,12 +165,16 @@ def update_sidebar_include() -> None:
 def clean_global_css() -> None:
     path = ROOT / 'mystyles.css'
     css = path.read_text(encoding='utf-8')
+
+    # Remove only the obsolete CSS-driven active-tab selector block. Keep the
+    # generic .content0 rules because legacy pages may still use them.
     css = re.sub(
-        r'\n\.content:not\(:has\(\.content0:target\)\).*?\n/\* Standalone conversations and stories: reading mode \*/',
-        '\n/* Standalone conversations and stories: reading mode */',
+        r'\n\.content:not\(:has\(\.content0:target\)\) \.nav a\[href="#intro"\],.*?\n\}\n',
+        '\n',
         css,
         flags=re.DOTALL,
     )
+
     accessibility = '''\n\n/* Pre-production accessibility and resilience */\nimg, video {\n    max-width: 100%;\n    height: auto;\n}\n\niframe {\n    max-width: 100%;\n}\n\npre {\n    max-width: 100%;\n    overflow-x: auto;\n}\n\na:focus-visible,\n.sidebar a:focus-visible,\n.nav a:focus-visible {\n    outline: 2px solid var(--color-accent) !important;\n    outline-offset: 3px;\n}\n\n@media (prefers-reduced-motion: reduce) {\n    html {\n        scroll-behavior: auto;\n    }\n}\n'''
     if '/* Pre-production accessibility and resilience */' not in css:
         css += accessibility
@@ -177,53 +196,59 @@ def delete_legacy_backup() -> None:
         path.unlink()
 
 
-def local_target_exists(source: Path, raw_ref: str) -> bool:
+def local_target_status(source: Path, raw_ref: str) -> tuple[bool, str | None]:
     ref = html.unescape(raw_ref).strip()
     if not ref or ref.startswith(('#', 'mailto:', 'tel:', 'javascript:', 'data:', '//')):
-        return True
+        return True, None
     if '{{' in ref or '{%' in ref:
-        return True
-    parts = urlsplit(ref)
+        return True, None
+
+    try:
+        parts = urlsplit(ref)
+    except (ValueError, UnicodeError) as exc:
+        return False, f'invalid URL syntax ({exc})'
+
     if parts.scheme in {'http', 'https'}:
-        return True
+        return True, None
+
     path_part = unquote(parts.path)
     if not path_part:
-        return True
-    if path_part.startswith('/'):
-        target = ROOT / path_part.lstrip('/')
-    else:
-        target = source.parent / path_part
+        return True, None
+
+    target = ROOT / path_part.lstrip('/') if path_part.startswith('/') else source.parent / path_part
     target = Path(os.path.normpath(target))
     if target.exists():
-        return True
-    if target.is_dir() and (target / 'index.html').exists():
-        return True
-    if not target.suffix and (target / 'index.html').exists():
-        return True
-    return False
+        return True, None
+    if (target / 'index.html').exists():
+        return True, None
+    return False, 'missing local target'
 
 
 def audit() -> None:
-    sidebar_left = []
-    roboto_left = []
-    broken = []
-    images_without_alt = []
+    sidebar_left: list[str] = []
+    roboto_left: list[str] = []
+    bad_refs: list[str] = []
+    images_without_alt: list[str] = []
 
     attr_re = re.compile(r'\b(?:href|src)=["\']([^"\']+)["\']', re.I)
     img_re = re.compile(r'<img\b[^>]*>', re.I | re.DOTALL)
 
     for path in ROOT.rglob('*.html'):
         rel = path.relative_to(ROOT)
-        if any(part in {'.git', '_site', 'vendor'} for part in rel.parts):
+        if is_generated_or_internal(rel):
             continue
         text = path.read_text(encoding='utf-8')
-        if rel.as_posix() != '_includes/sidebar.html' and SIDEBAR_RE.search(text):
+
+        if not is_jekyll_include(rel) and SIDEBAR_RE.search(text):
             sidebar_left.append(rel.as_posix())
         if 'family=Roboto' in text:
             roboto_left.append(rel.as_posix())
+
         for raw in attr_re.findall(text):
-            if not local_target_exists(path, raw):
-                broken.append(f'{rel.as_posix()} -> {raw}')
+            ok, reason = local_target_status(path, raw)
+            if not ok:
+                bad_refs.append(f'{rel.as_posix()} -> {raw} [{reason}]')
+
         for tag in img_re.findall(text):
             if not re.search(r'\balt\s*=', tag, re.I):
                 images_without_alt.append(f'{rel.as_posix()}: {tag[:100]}')
@@ -234,9 +259,9 @@ def audit() -> None:
     print(f'ROBOTO_REFERENCES_REMAINING={len(roboto_left)}')
     for item in roboto_left:
         print('  roboto:', item)
-    print(f'BROKEN_LOCAL_REFERENCES={len(broken)}')
-    for item in broken[:100]:
-        print('  broken:', item)
+    print(f'SUSPICIOUS_LOCAL_REFERENCES={len(bad_refs)}')
+    for item in bad_refs[:100]:
+        print('  reference:', item)
     print(f'IMAGES_WITHOUT_ALT={len(images_without_alt)}')
     for item in images_without_alt[:100]:
         print('  alt:', item)
@@ -246,9 +271,6 @@ def audit() -> None:
 
 
 def remove_one_shot_files() -> None:
-    workflow = ROOT / '.github/workflows/preprod-cleanup.yml'
-    if workflow.exists():
-        workflow.unlink()
     script = Path(__file__).resolve()
     if script.exists():
         script.unlink()
@@ -257,27 +279,19 @@ def remove_one_shot_files() -> None:
         tools.rmdir()
     except OSError:
         pass
-    workflows = ROOT / '.github/workflows'
-    try:
-        workflows.rmdir()
-    except OSError:
-        pass
-    github = ROOT / '.github'
-    try:
-        github.rmdir()
-    except OSError:
-        pass
 
 
 def main() -> None:
-    changed, sections = migrate_sidebars()
+    changed, notes = migrate_pages()
     update_sidebar_include()
     clean_global_css()
     clean_blog_css()
     delete_legacy_backup()
-    print(f'MIGRATED_SIDEBARS={changed}')
-    for item in sections:
+
+    print(f'MODIFIED_HTML_FILES={changed}')
+    for item in notes:
         print('  migrated:', item)
+
     audit()
     remove_one_shot_files()
 
