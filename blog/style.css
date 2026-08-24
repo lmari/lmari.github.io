@@ -308,3 +308,17 @@ a[name] {
     top: -12px;
   }
 }
+
+
+/* Keyboard and reduced-motion support */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}

@@ -233,19 +233,6 @@ a:focus-visible {
     text-decoration: none;
 }
 
-.content:not(:has(.content0:target)) .nav a[href="#intro"],
-.content:has(#intro:target) .nav a[href="#intro"],
-.content:has(#articoli:target) .nav a[href="#articoli"],
-.content:has(#media:target) .nav a[href="#media"],
-.content:has(#slide:target) .nav a[href="#slide"],
-.content:has(#dialoghi:target) .nav a[href="#dialoghi"],
-.content:has(#storie:target) .nav a[href="#storie"],
-.content:has(#attivita:target) .nav a[href="#attivita"] {
-    padding-bottom: 10px;
-    border-bottom: 3px solid var(--color-accent);
-    color: var(--color-accent);
-    font-weight: 600;
-}
 
 .content0 {
     display: none;
@@ -522,5 +509,34 @@ body.chatting #mode {
         width: auto;
         max-width: min(240px, 75vw);
         margin: 24px auto 30px;
+    }
+}
+
+
+/* Pre-production accessibility and resilience */
+img, video {
+    max-width: 100%;
+    height: auto;
+}
+
+iframe {
+    max-width: 100%;
+}
+
+pre {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+a:focus-visible,
+.sidebar a:focus-visible,
+.nav a:focus-visible {
+    outline: 2px solid var(--color-accent) !important;
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
     }
 }

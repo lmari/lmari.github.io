@@ -1,3 +1,7 @@
+---
+section: cv
+root: ""
+---
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -13,27 +17,12 @@
 <meta name="description" content="Luca Mari - CV breve" />
 <meta name="keywords" content="Luca Mari, CV, curriculum vitae, personal web site">
 <meta name="author" content="Luca Mari">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="mystyles.css" />
 <title>Luca Mari - CV breve</title>
 </head>
 <body lang="it">
 
-<div class="sidebar">
-  <a href="index.html">Luca Mari: Home</a>
-  <a href="shortcv.html" class="active">Short CV (in Italian)</a>
-  <a href="publ.html">Publications</a>
-  <a href="alect/index.html">Some invited lectures</a>
-  <a href="nalect.html">Some non-academic lectures</a>
-  <a href="videos.html">Some videos</a>
-  <a href="mg.html">"General Metrology" (in Italian)</a>
-  <a href="stgraph/index.html">STGraph</a>
-  <a href="echat/index.html">Chatting with an AI...</a>
-  <a href="chatting/index.html">Chatting with an AI... (in Italian)</a>
-  <a href="blog/index.html" target="_blank">A blog about AI (in Italian)</a>
-</div>
+{% include sidebar.html %}
 
 <div class="content">
     <h1>Luca Mari - CV breve</h1>
@@ -42,37 +31,37 @@
 
     <p>Professore Ordinario di Scienza della Misurazione presso il Dipartimento di Filosofia dell'Università Cattolica di Milano, e dal 2006 al 2026 presso la Scuola di Ingegneria Industriale dell'Università Cattaneo - LIUC di Castellanza (VA). In UC docente titolare del corso di <i>Data Analysis</i>. In LIUC docente titolare dei corsi di <i>Analisi dei Dati Sperimentali e Statistica</i>, <i>Progettazione per Sistemi Dinamici</i>, <i>Digital Thinking</i>, e <i>Introduction to Scientific Knowledge</i>.</p>
 
-    <p>Svolge attività di ricerca a proposito di Scienza della Misurazione e sulle sue relazioni con le Scienze e Tecnologie dell'Informazione, per cui è autore di <a href="publ.html" target="_blank">varie pubblicazioni scientifiche</a>, e svolge attività di disseminazione, in scuole, aziende e organizzazioni varie, a proposito di cultura del digitale e in particolare di intelligenza artificiale, come mostrato in questo <a href="https://docs.google.com/document/d/1ZvHLn_ZkyU0EW_9dnI458KRj6gUVxMyCRXIhfN391Yg" target="_blank">elenco di eventi</a> in cui è stato invitato e questo <a href="https://lmari.github.io/chatting/index.html#articoli" target="_blank">elenco di articoli</a> che sono stati pubblicati.</p>
+    <p>Svolge attività di ricerca a proposito di Scienza della Misurazione e sulle sue relazioni con le Scienze e Tecnologie dell'Informazione, per cui è autore di <a href="publ.html" target="_blank" rel="noopener noreferrer">varie pubblicazioni scientifiche</a>, e svolge attività di disseminazione, in scuole, aziende e organizzazioni varie, a proposito di cultura del digitale e in particolare di intelligenza artificiale, come mostrato in questo <a href="https://docs.google.com/document/d/1ZvHLn_ZkyU0EW_9dnI458KRj6gUVxMyCRXIhfN391Yg" target="_blank" rel="noopener noreferrer">elenco di eventi</a> in cui è stato invitato e questo <a href="https://lmari.github.io/chatting/index.html#articoli" target="_blank" rel="noopener noreferrer">elenco di articoli</a> che sono stati pubblicati.</p>
 
-    <p>E' esperto dell'<a href="https://www.iec.ch" target="_blank">International Electrotechnical Commission (IEC)</a> nel <a href="https://www.bipm.org/en/committees/jc/jcgm/wg/jcgm-wg2-vim" target="_blank">WG2 (VIM)</a> del <a href="https://www.bipm.org/en/committees/jc/jcgm" target="_blank">Joint Committee for Guides in Metrology (JCGM)</a>. E' presidente della <a href="https://www.measurementsociety.org" target="_blank">Society for the Study of Measurement (SSM)</a> e chair del <a href="https://www.bipm.org/en/committees/cc/ccu/wg/ccu-tg-fcm" target="_blank">Task Group on Fundamental Concepts in Metrology (CCU-TG-FCM)</a> del Consultative Committee for Units (CCU) del BIPM.</p>
+    <p>E' esperto dell'<a href="https://www.iec.ch" target="_blank" rel="noopener noreferrer">International Electrotechnical Commission (IEC)</a> nel <a href="https://www.bipm.org/en/committees/jc/jcgm/wg/jcgm-wg2-vim" target="_blank" rel="noopener noreferrer">WG2 (VIM)</a> del <a href="https://www.bipm.org/en/committees/jc/jcgm" target="_blank" rel="noopener noreferrer">Joint Committee for Guides in Metrology (JCGM)</a>. E' presidente della <a href="https://www.measurementsociety.org" target="_blank" rel="noopener noreferrer">Society for the Study of Measurement (SSM)</a> e chair del <a href="https://www.bipm.org/en/committees/cc/ccu/wg/ccu-tg-fcm" target="_blank" rel="noopener noreferrer">Task Group on Fundamental Concepts in Metrology (CCU-TG-FCM)</a> del Consultative Committee for Units (CCU) del BIPM.</p>
     
-    <p>E' stato presidente dell'IEC <a href="http://www.iec.ch/tc1" target="_blank">Technical Committee 1 - Terminology</a> - e segretario dell'IEC <a href="http://www.iec.ch/tc25" target="_blank">Technical Committee 25 - Quantities and units</a>. E' stato presidente del <a href="https://www.imeko.org/index.php/tc7-homepage" target="_blank">Technical Committee 7 - Measurement Science - dell'International Measurement Confederation (IMEKO)</a>.</p>
+    <p>E' stato presidente dell'IEC <a href="http://www.iec.ch/tc1" target="_blank" rel="noopener noreferrer">Technical Committee 1 - Terminology</a> - e segretario dell'IEC <a href="http://www.iec.ch/tc25" target="_blank" rel="noopener noreferrer">Technical Committee 25 - Quantities and units</a>. E' stato presidente del <a href="https://www.imeko.org/index.php/tc7-homepage" target="_blank" rel="noopener noreferrer">Technical Committee 7 - Measurement Science - dell'International Measurement Confederation (IMEKO)</a>.</p>
 
-    <p>E' presidente della Commissione Tecnica Metrologia, congiunta dell'<a href="https://www.uni.com" target="_blank">Ente Italiano di Normazione (UNI)</a> e della <a href="https://www.ceinorme.it" target="_blank">Commissione Elettrotecnica Italiana (CEI)</a>. E' membro della Commissione Centrale Tecnica (CCT) dell'UNI e membro della Commissione Superiore Tecnica dei CEI.</p>
+    <p>E' presidente della Commissione Tecnica Metrologia, congiunta dell'<a href="https://www.uni.com" target="_blank" rel="noopener noreferrer">Ente Italiano di Normazione (UNI)</a> e della <a href="https://www.ceinorme.it" target="_blank" rel="noopener noreferrer">Commissione Elettrotecnica Italiana (CEI)</a>. E' membro della Commissione Centrale Tecnica (CCT) dell'UNI e membro della Commissione Superiore Tecnica dei CEI.</p>
 
-    <p>E' stato presidente del Comitato Tecnico CEI 1/25 - Terminologia, grandezze e unità. E' stato coordinatore della linea di ricerca "Metrologia" del <a href="http://www.gmee.org" target="_blank">Gruppo di Misure Elettriche ed Elettroniche (GMEE)</a>.</p>
+    <p>E' stato presidente del Comitato Tecnico CEI 1/25 - Terminologia, grandezze e unità. E' stato coordinatore della linea di ricerca "Metrologia" del <a href="http://www.gmee.org" target="_blank" rel="noopener noreferrer">Gruppo di Misure Elettriche ed Elettroniche (GMEE)</a>.</p>
 
     <p>Presso l'Università Cattaneo - LIUC è stato coordinatore del Dottorato di Ricerca in Gestione Integrata d'Azienda e direttore di Lab#ID, laboratorio sui sistemi RFId, e di SmartUp, laboratorio di fabbricazione digitale.</p>
 
-    <p>E' stato il coordinatore del progetto di ricerca europeo (Horizon 2020) <a href="http://www.didiy.eu" target="_blank">DiDIY, Digital Do It Yourself</a> (gen 2015- giu 2017, 7 partner, 2 M€).</p>
+    <p>E' stato il coordinatore del progetto di ricerca europeo (Horizon 2020) <a href="http://www.didiy.eu" target="_blank" rel="noopener noreferrer">DiDIY, Digital Do It Yourself</a> (gen 2015- giu 2017, 7 partner, 2 M€).</p>
 
-    <p>E' stato il direttore culturale di <a href="http://idealab.va.it" target="_blank">idea.lab</a>, Laboratorio Territoriale per l'Occupabilità della provincia di Varese.</p>
+    <p>E' stato il direttore culturale di <a href="http://idealab.va.it" target="_blank" rel="noopener noreferrer">idea.lab</a>, Laboratorio Territoriale per l'Occupabilità della provincia di Varese.</p>
 
-    <p>E' il progettista e il principale sviluppatore di <a href="http://per.liuc.it/luca.mari/stgraph" target="_blank">STGraph</a>, un engine software per la simulazione di sistemi dinamici.</p>
+    <p>E' il progettista e il principale sviluppatore di <a href="http://per.liuc.it/luca.mari/stgraph" target="_blank" rel="noopener noreferrer">STGraph</a>, un engine software per la simulazione di sistemi dinamici.</p>
 
-    <p>E' stato componente del comitato editoriale delle riviste Measurement e Metrology and Measurement Systems. Ha operato come revisore scientifico delle riviste <a href="https://acta.imeko.org/index.php/acta-imeko" target="_blank">Acta IMEKO</a>, <a href="https://www.journals.uchicago.edu/toc/bjps/current" target="_blank">The British Journal for the Philosophy of Science</a>, <a href="https://www.degruyterbrill.com/journal/key/cclm/html" target="_blank">Clinical Chemistry and Laboratory Medicine</a>, <a href="https://www.springer.com/journal/13194" target="_blank">European Journal for Philosophy of Science</a>, <a href="https://www.frontiersin.org/journals/psychology/sections/quantitative-psychology-and-measurement" target="_blank">Frontiers in Psychology - Quantitative Psychology and Measurement</a>, <a href="http://ieee-ims.org/publications/transactions-tim" target="_blank">IEEE Transaction on Instrumentation &amp; Measurement</a>; <a href="http://www.journals.elsevier.com/measurement" target="_blank">Measurement</a>; <a href="https://www.sciencedirect.com/journal/measurement-sensors" target="_blank">Measurement Sensors</a>; <a href="http://www.tandfonline.com/action/journalInformation?journalCode=hmes20#.VdA9I5PSq00" target="_blank">Measurement: Interdisciplinary Research and Perspectives</a>; <a href="http://iopscience.iop.org/0957-0233/" target="_blank">Measurement Science and Technology</a>; <a href="http://www.measurement.sk/" target="_blank">Measurement Science Review</a>; <a href="http://iopscience.iop.org/0026-1394" target="_blank">Metrologia</a>; <a href="http://www.metrology.pg.gda.pl" target="_blank">Metrology and Measurement Systems</a>; <a href="http://www.ncsli.org/mj" target="_blank">NCSLI Measure: The Journal of Measurement Science</a>; <a href="https://www.journals.uchicago.edu/journals/phos/about" target="_blank">Philosophy of Science</a>; <a href="http://rspa.royalsocietypublishing.org" target="_blank">Proceedings of the Royal Society A (Mathematical, Physical and Engineering Sciences)</a>; <a href="http://www.emeraldinsight.com/loi/prog" target="_blank">Program</a>; <a href="http://www.iupac.org/publications/pac" target="_blank">Pure and Applied Chemistry</a>; <a href="http://link.springer.com/journal/11135" target="_blank">Quality &amp; Quantity</a>; <a href="https://onlinelibrary.wiley.com/journal/10991638" target="_blank">Quality and Reliability Engineering International</a>; <a href="http://www.apa.org/pubs/journals/gpr/index.aspx" target="_blank">Review of General Psychology</a>.</p>
+    <p>E' stato componente del comitato editoriale delle riviste Measurement e Metrology and Measurement Systems. Ha operato come revisore scientifico delle riviste <a href="https://acta.imeko.org/index.php/acta-imeko" target="_blank" rel="noopener noreferrer">Acta IMEKO</a>, <a href="https://www.journals.uchicago.edu/toc/bjps/current" target="_blank" rel="noopener noreferrer">The British Journal for the Philosophy of Science</a>, <a href="https://www.degruyterbrill.com/journal/key/cclm/html" target="_blank" rel="noopener noreferrer">Clinical Chemistry and Laboratory Medicine</a>, <a href="https://www.springer.com/journal/13194" target="_blank" rel="noopener noreferrer">European Journal for Philosophy of Science</a>, <a href="https://www.frontiersin.org/journals/psychology/sections/quantitative-psychology-and-measurement" target="_blank" rel="noopener noreferrer">Frontiers in Psychology - Quantitative Psychology and Measurement</a>, <a href="http://ieee-ims.org/publications/transactions-tim" target="_blank" rel="noopener noreferrer">IEEE Transaction on Instrumentation &amp; Measurement</a>; <a href="http://www.journals.elsevier.com/measurement" target="_blank" rel="noopener noreferrer">Measurement</a>; <a href="https://www.sciencedirect.com/journal/measurement-sensors" target="_blank" rel="noopener noreferrer">Measurement Sensors</a>; <a href="http://www.tandfonline.com/action/journalInformation?journalCode=hmes20#.VdA9I5PSq00" target="_blank" rel="noopener noreferrer">Measurement: Interdisciplinary Research and Perspectives</a>; <a href="http://iopscience.iop.org/0957-0233/" target="_blank" rel="noopener noreferrer">Measurement Science and Technology</a>; <a href="http://www.measurement.sk/" target="_blank" rel="noopener noreferrer">Measurement Science Review</a>; <a href="http://iopscience.iop.org/0026-1394" target="_blank" rel="noopener noreferrer">Metrologia</a>; <a href="http://www.metrology.pg.gda.pl" target="_blank" rel="noopener noreferrer">Metrology and Measurement Systems</a>; <a href="http://www.ncsli.org/mj" target="_blank" rel="noopener noreferrer">NCSLI Measure: The Journal of Measurement Science</a>; <a href="https://www.journals.uchicago.edu/journals/phos/about" target="_blank" rel="noopener noreferrer">Philosophy of Science</a>; <a href="http://rspa.royalsocietypublishing.org" target="_blank" rel="noopener noreferrer">Proceedings of the Royal Society A (Mathematical, Physical and Engineering Sciences)</a>; <a href="http://www.emeraldinsight.com/loi/prog" target="_blank" rel="noopener noreferrer">Program</a>; <a href="http://www.iupac.org/publications/pac" target="_blank" rel="noopener noreferrer">Pure and Applied Chemistry</a>; <a href="http://link.springer.com/journal/11135" target="_blank" rel="noopener noreferrer">Quality &amp; Quantity</a>; <a href="https://onlinelibrary.wiley.com/journal/10991638" target="_blank" rel="noopener noreferrer">Quality and Reliability Engineering International</a>; <a href="http://www.apa.org/pubs/journals/gpr/index.aspx" target="_blank" rel="noopener noreferrer">Review of General Psychology</a>.</p>
 
 
-    <p>Alcune mie fotografie "ufficiali": <a href="img/Luca01.jpg" target="_blank">uno</a>, <a href="img/Luca02.jpg" target="_blank">due</a>, <a href="img/Luca03.jpg" target="_blank">tre</a>, <a href="img/Luca04.jpg" target="_blank">quattro</a>, <a href="img/Luca05.jpg" target="_blank">cinque</a>, <a href="img/Luca06.jpg" target="_blank">sei</a></p>
+    <p>Alcune mie fotografie "ufficiali": <a href="img/Luca01.jpg" target="_blank" rel="noopener noreferrer">uno</a>, <a href="img/Luca02.jpg" target="_blank" rel="noopener noreferrer">due</a>, <a href="img/Luca03.jpg" target="_blank" rel="noopener noreferrer">tre</a>, <a href="img/Luca04.jpg" target="_blank" rel="noopener noreferrer">quattro</a>, <a href="img/Luca05.jpg" target="_blank" rel="noopener noreferrer">cinque</a>, <a href="img/Luca06.jpg" target="_blank" rel="noopener noreferrer">sei</a></p>
     
-    <p><a href="CV_Luca_Mari.pdf" target="_blank">Un mio CV più esteso</a>.</p>
+    <p><a href="CV_Luca_Mari.pdf" target="_blank" rel="noopener noreferrer">Un mio CV più esteso</a>.</p>
 
     <hr>
     <p>
-      <a href="http://orcid.org/0000-0002-7128-3453" target="_blank">ORCID id: 0000-0002-7128-3453</a> --
-      <a href="http://www.scopus.com/authid/detail.url?authorId=6603599345" target="_blank">Scopus Author ID: 6603599345</a> --
-      <a href="https://scholar.google.it/citations?user=WUkuRQMAAAAJ&amp;hl=en" target="_blank">Google Scholar page</a> --
-      <a href="http://www.researchgate.net/profile/Luca_Mari/publications" target="_blank">ResearchGate page</a>
+      <a href="http://orcid.org/0000-0002-7128-3453" target="_blank" rel="noopener noreferrer">ORCID id: 0000-0002-7128-3453</a> --
+      <a href="http://www.scopus.com/authid/detail.url?authorId=6603599345" target="_blank" rel="noopener noreferrer">Scopus Author ID: 6603599345</a> --
+      <a href="https://scholar.google.it/citations?user=WUkuRQMAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar page</a> --
+      <a href="http://www.researchgate.net/profile/Luca_Mari/publications" target="_blank" rel="noopener noreferrer">ResearchGate page</a>
     </p>
 
   </div>
