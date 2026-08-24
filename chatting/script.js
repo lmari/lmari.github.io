@@ -1,10 +1,17 @@
 let interactiveReadingEnabled = false;
 let currentParagraph = 0;
 
-function showNextParagraph(paragraphs) {
+function getInteractiveParagraphs() {
+    return document.querySelectorAll("p, pre");
+}
+
+function showNextParagraph() {
+    const paragraphs = getInteractiveParagraphs();
     currentParagraph++;
+
     if (currentParagraph < paragraphs.length) {
         paragraphs[currentParagraph].style.display = "block";
+        paragraphs[currentParagraph].scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
 }
 
@@ -13,38 +20,42 @@ function handleInteractiveKeydown(event) {
         return;
     }
 
+    const interactiveElement = event.target.closest("a, button, input, textarea, select");
+    if (interactiveElement) {
+        return;
+    }
+
     event.preventDefault();
-    showNextParagraph(document.querySelectorAll("p, pre"));
+    showNextParagraph();
 }
 
-function handleInteractiveClick() {
+function handleInteractiveClick(event) {
     if (!interactiveReadingEnabled) {
         return;
     }
 
-    showNextParagraph(document.querySelectorAll("p, pre"));
+    if (event.target.closest("#mode, a, button, input, textarea, select")) {
+        return;
+    }
+
+    showNextParagraph();
 }
 
 document.addEventListener("keydown", handleInteractiveKeydown);
 document.addEventListener("click", handleInteractiveClick);
 
 function mode() {
-    const paragraphs = document.querySelectorAll("p, pre");
+    const paragraphs = getInteractiveParagraphs();
     const modeButton = document.getElementById("mode");
     const fullPageText = "passa alla lettura interattiva";
     const interactiveText = "(spazio o click per avanzare) passa alla pagina completa";
 
-    modeButton.textContent = modeButton.textContent == fullPageText ? interactiveText : fullPageText;
-    interactiveReadingEnabled = modeButton.textContent == interactiveText;
+    interactiveReadingEnabled = !interactiveReadingEnabled;
+    modeButton.textContent = interactiveReadingEnabled ? interactiveText : fullPageText;
 
-    if (interactiveReadingEnabled) {
-        for (let i = 1; i < paragraphs.length; i++) {
-            paragraphs[i].style.display = "none";
-        }
-        currentParagraph = 0;
-    } else {
-        for (let i = 1; i < paragraphs.length; i++) {
-            paragraphs[i].style.display = "block";
-        }
-    }
+    paragraphs.forEach((paragraph, index) => {
+        paragraph.style.display = !interactiveReadingEnabled || index === 0 ? "block" : "none";
+    });
+
+    currentParagraph = 0;
 }

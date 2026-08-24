@@ -1,4 +1,8 @@
-
 stgraph/config.properties
 publ/.directory
 chatting/dialoghi/.directory
+
+# Local Jekyll/Bundler state
+.bundle/
+vendor/bundle/
+_site/

@@ -1,0 +1,13 @@
+<nav class="sidebar" aria-label="Main navigation">
+  <a href="{{ page.root | default: '' }}index.html"{% if page.section == 'home' %} class="active" aria-current="page"{% endif %}>Luca Mari: Home</a>
+  <a href="{{ page.root | default: '' }}shortcv.html"{% if page.section == 'cv' %} class="active" aria-current="page"{% endif %}>Short CV (in Italian)</a>
+  <a href="{{ page.root | default: '' }}publ.html"{% if page.section == 'publications' %} class="active" aria-current="page"{% endif %}>Publications</a>
+  <a href="{{ page.root | default: '' }}alect/index.html"{% if page.section == 'invited-lectures' %} class="active" aria-current="page"{% endif %}>Some invited lectures</a>
+  <a href="{{ page.root | default: '' }}nalect.html"{% if page.section == 'non-academic-lectures' %} class="active" aria-current="page"{% endif %}>Some non-academic lectures</a>
+  <a href="{{ page.root | default: '' }}videos.html"{% if page.section == 'videos' %} class="active" aria-current="page"{% endif %}>Some videos</a>
+  <a href="{{ page.root | default: '' }}mg.html"{% if page.section == 'metrology' %} class="active" aria-current="page"{% endif %}>"General Metrology" (in Italian)</a>
+  <a href="{{ page.root | default: '' }}stgraph/index.html"{% if page.section == 'stgraph' %} class="active" aria-current="page"{% endif %}>STGraph</a>
+  <a href="{{ page.root | default: '' }}echat/index.html"{% if page.section == 'echat' %} class="active" aria-current="page"{% endif %}>Chatting with an AI...</a>
+  <a href="{{ page.root | default: '' }}chatting/index.html"{% if page.section == 'chatting' %} class="active" aria-current="page"{% endif %}>Chatting with an AI... (in Italian)</a>
+  <a href="{{ page.root | default: '' }}blog/index.html">A blog about AI (in Italian)</a>
+</nav>

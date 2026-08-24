@@ -1,0 +1,28 @@
+/* Explicit active-state styling for the Chatting section navigation. */
+.nav a:not(.current),
+.nav a:not(.current):link,
+.nav a:not(.current):visited {
+  padding-bottom: 12px !important;
+  border-bottom: 1px solid transparent !important;
+  color: var(--color-muted) !important;
+  font-weight: 500 !important;
+}
+
+.nav a.current,
+.nav a.current:link,
+.nav a.current:visited {
+  padding-bottom: 10px !important;
+  border-bottom: 3px solid var(--color-accent) !important;
+  color: var(--color-accent) !important;
+  font-weight: 600 !important;
+}
+
+.content0,
+.content0:target,
+.content:has(.content0:target) .content0.active:not(:target) {
+  display: none;
+}
+
+.content0.active {
+  display: block;
+}

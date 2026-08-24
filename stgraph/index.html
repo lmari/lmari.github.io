@@ -1,3 +1,7 @@
+---
+section: stgraph
+root: "../"
+---
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,27 +18,12 @@
 <meta name="description" content="Luca Mari - STGraph: learning by simulating" />
 <meta name="keywords" content="Luca Mari, STGraph, personal web site">
 <meta name="author" content="Luca Mari">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../mystyles.css">
 <title>Luca Mari - STGraph: learning by simulating</title>
 </head>
 <body>
 
-<div class="sidebar">
-  <a href="../index.html">Luca Mari: Home</a>
-  <a href="../shortcv.html">Short CV (in Italian)</a>
-  <a href="../publ.html">Publications</a>
-  <a href="../alect/index.html">Some invited lectures</a>
-  <a href="../nalect.html">Some non-academic lectures</a>
-  <a href="../videos.html">Some videos</a>
-  <a href="../mg.html">"General Metrology" (in Italian)</a>
-  <a href="index.html" class="active">STGraph</a>
-  <a href="../echat/index.html">Chatting with an AI...</a>
-  <a href="../chatting/index.html">Chatting with an AI... (in Italian)</a>
-  <a href="../blog/index.html" target="_blank">A blog about AI (in Italian)</a>
-</div>
+{% include sidebar.html %}
 
 <div class="content">
   <h1>STGraph: learning by simulating</h1>
@@ -48,7 +37,7 @@
 
   <p>STGraph can be freely downloaded by any single user or organization which will use it for non profit purposes. Those who are interested to use STGraph for other purposes are requested to write to lmari-at-liuc.it for an agreement.</p>
 
-  <p>STGraph runs within a Java Virtual Machine, thus under MS Windows, Mac OS, and Linux, and in a safe sandbox. The only precondition is a pre-installed <a href="https://java.com/en/download/" target="_blank">Java Runtime Environment</a>.</p>
+  <p>STGraph runs within a Java Virtual Machine, thus under MS Windows, Mac OS, and Linux, and in a safe sandbox. The only precondition is a pre-installed <a href="https://java.com/en/download/" target="_blank" rel="noopener noreferrer">Java Runtime Environment</a>.</p>
 
   <p>
     <form action="stgraph18.zip" method="get">
@@ -66,16 +55,16 @@
   <h3>Documentation</h3>
    
   <p>
-    <a href="stgdoc.zip" target="_blank">STGraph documentation files (in Italian and English) [zip file]</a><br>
-    <a href="Intro_oper_a_STGraph.pdf" target="_blank">Una breve introduzione operativa a STGraph (in Italian)</a><br>
-    <a href="Intro_conc_a_STGraph.pdf" target="_blank">Una breve introduzione concettuale a STGraph (in Italian)</a><br>
-    <a href="Intro_a_STEL.pdf" target="_blank">Una breve introduzione a STEL (STGraph Expression Language) (in Italian)</a>
+    <a href="stgdoc.zip" target="_blank" rel="noopener noreferrer">STGraph documentation files (in Italian and English) [zip file]</a><br>
+    <a href="Intro_oper_a_STGraph.pdf" target="_blank" rel="noopener noreferrer">Una breve introduzione operativa a STGraph (in Italian)</a><br>
+    <a href="Intro_conc_a_STGraph.pdf" target="_blank" rel="noopener noreferrer">Una breve introduzione concettuale a STGraph (in Italian)</a><br>
+    <a href="Intro_a_STEL.pdf" target="_blank" rel="noopener noreferrer">Una breve introduzione a STEL (STGraph Expression Language) (in Italian)</a>
   </p>
 
   <h3>Source code</h3>
 
   <p>
-    <a href="https://github.com/lmari/stgraph" target="_blank">The GitHub repository with the Java source files of STGraph and the libraries it requires to run</a>
+    <a href="https://github.com/lmari/stgraph" target="_blank" rel="noopener noreferrer">The GitHub repository with the Java source files of STGraph and the libraries it requires to run</a>
   </p>
   
   <hr>

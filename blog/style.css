@@ -1,164 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap');
+
 :root {
-    --color-primary: rgb(10, 10, 97);
-    --color-accent: red;
-    --color-link: #007BFF;
-    --color-link-hover: #0056b3;
-    --color-page-bg: aliceblue;
-    --color-card-bg: #f9f9f9;
-    --color-border: #ddd;
+  --color-paper: #fbfaf7;
+  --color-text: #292a2d;
+  --color-muted: #6a6863;
+  --color-accent: #284b63;
+  --color-rule: #ddd9d1;
+  --color-menu: #f3f1ec;
+  --reading-width: 860px;
+  --font-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-paper);
+  scroll-padding-top: 92px;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: var(--color-page-bg);
-    padding-top: 58px;
-  }
-  
-h1, h2 {
-    color: var(--color-primary);
-    font-weight: 800;
+  width: min(var(--reading-width), calc(100% - 48px));
+  margin: 0 auto;
+  padding: 118px 0 96px;
+  background: var(--color-paper);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.66;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
+h1,
+h2,
+h3 {
+  font-family: var(--font-ui);
+  line-height: 1.16;
+}
+
+body > h1 {
+  margin: 0 0 14px;
+  color: var(--color-accent);
+  font-size: clamp(36px, 5vw, 46px);
+  font-weight: 600;
+  letter-spacing: -.025em;
+}
+
+body > h3 {
+  max-width: 720px;
+  margin: 0 0 54px;
+  color: var(--color-muted);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+/* Year navigation: same quiet visual language as the Chatting section rail. */
 .navbar {
-  overflow: visible;
-  background-color: var(--color-primary);
   position: fixed;
+  z-index: 100;
   top: 0;
   left: 0;
-  width: 100%;
-  z-index: 10000;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  }
-  
-.navbar a {
-    font-size: 16px;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
+  right: 0;
+  display: flex;
+  align-items: stretch;
+  gap: 22px;
+  height: 62px;
+  padding: 0 max(24px, calc((100vw - var(--reading-width)) / 2));
+  overflow: visible;
+  background: color-mix(in srgb, var(--color-paper) 95%, transparent);
+  border-bottom: 1px solid var(--color-rule);
+  font-family: var(--font-ui);
+  backdrop-filter: blur(8px);
+}
 
 .navbar .brand {
-  color: white;
-  font-size: 18px;
-  font-weight: 800;
-  text-decoration: none;
-  padding: 14px 16px;
-  margin-right: 8px;
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  margin-right: 10px;
+  padding: 0;
+  color: var(--color-accent);
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
 }
-  
-  .dropdown {
-    overflow: hidden;
-  }
-  
-.dropdown .dropbtn {
-    font-size: 16px;  
-    border: none;
-    outline: none;
-    color: white;
-    padding: 14px 16px;
-    background-color: inherit;
-    font-family: inherit;
-    margin: 0;
-  }
-  
-.navbar a:hover, .dropdown:hover .dropbtn {
-    background-color: var(--color-accent);
-  }
-  
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: var(--color-card-bg);
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 10001;
-  }
-  
-.dropdown-content a {
-    float: none;
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-  
-.dropdown-content a:hover {
-    background-color: var(--color-border);
-  }
-  
-.dropdown:hover .dropdown-content {
-    display: block;
-  }
 
+.dropdown {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  flex: 0 0 auto;
+  overflow: visible;
+}
+
+.dropdown .dropbtn {
+  position: relative;
+  min-width: 48px;
+  margin: 0;
+  padding: 3px 1px 0;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  color: var(--color-muted);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.dropdown:hover .dropbtn,
+.dropdown:focus-within .dropbtn {
+  border-bottom-color: var(--color-accent);
+  color: var(--color-accent);
+  outline: none;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 54px;
+  left: -14px;
+  width: min(440px, calc(100vw - 32px));
+  max-height: min(70vh, 620px);
+  padding: 8px;
+  overflow-y: auto;
+  background: var(--color-paper);
+  border: 1px solid var(--color-rule);
+  border-radius: 4px;
+  box-shadow: 0 14px 34px rgba(41, 42, 45, .10);
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a,
+.dropdown-content a:link,
+.dropdown-content a:visited {
+  display: block;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 3px;
+  color: var(--color-text);
+  font-family: var(--font-ui);
+  font-size: 13.5px;
+  line-height: 1.35;
+  text-align: left;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover,
+.dropdown-content a:focus-visible {
+  background: var(--color-menu);
+  color: var(--color-accent);
+  outline: none;
+}
+
+/* Posts are editorial entries rather than cards. */
 article.post {
-    background-color: var(--color-card-bg); /* Light background for contrast */
-    border: 1px solid var(--color-border); /* Subtle border */
-    border-radius: 8px; /* Rounded corners */
-    padding: 16px; /* Add spacing inside the article */
-    margin: 16px 0; /* Add spacing between articles */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    font-family: 'Roboto', sans-serif; /* Use the imported font */
+  margin: 0;
+  padding: 38px 0 42px;
+  border: 0;
+  border-top: 1px solid var(--color-rule);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  font-family: var(--font-body);
+}
+
+article.post:first-of-type {
+  border-top-color: var(--color-accent);
 }
 
 article.post h2 {
-    font-size: 1.5em; /* Larger font size for titles */
-    color: #333; /* Darker color for contrast */
-    margin-bottom: 8px; /* Space below the title */
+  max-width: 780px;
+  margin: 0 0 9px;
+  color: var(--color-text);
+  font-family: var(--font-ui);
+  font-size: clamp(23px, 3vw, 29px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -.015em;
 }
 
 article.post .date {
-    font-size: 0.9em; /* Smaller font size for dates */
-    color: #777; /* Muted color for less emphasis */
-    margin-bottom: 12px; /* Space below the date */
+  margin: 0 0 17px;
+  color: var(--color-muted);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 1.4;
 }
 
-article.post p {
-    font-size: 1em; /* Standard font size for text */
-    line-height: 1.6; /* Improve readability with line spacing */
-    color: #555; /* Neutral text color */
+article.post p:not(.date) {
+  max-width: 800px;
+  margin: 0 0 16px;
+  color: var(--color-text);
+  font-size: 17px;
+  line-height: 1.66;
 }
 
-article.post a {
-    display: inline-block; /* Make the link a block for better spacing */
-    margin-top: 12px; /* Space above the link */
-    font-size: 0.9em; /* Slightly smaller font size */
-    color: var(--color-link); /* Blue color for links */
-    text-decoration: none; /* Remove underline */
-    font-weight: bold; /* Make the link stand out */
+article.post a,
+article.post a:link,
+article.post a:visited {
+  display: inline-block;
+  margin-top: 2px;
+  color: var(--color-accent);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .18em;
+  text-decoration-color: rgba(40, 75, 99, .38);
 }
 
-article.post a:hover {
-    text-decoration: underline; /* Add underline on hover */
-    color: var(--color-link-hover); /* Darker blue on hover */
+article.post a:hover,
+article.post a:focus-visible {
+  color: #17394f;
+  text-decoration-color: currentColor;
+  outline: none;
 }
 
-.navbar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
+/* Old named anchors should land below the fixed year rail. */
+a[name] {
+  position: relative;
+  top: -82px;
+  visibility: hidden;
 }
 
 @media screen and (max-width: 700px) {
+  html {
+    scroll-padding-top: 0;
+  }
+
   body {
-    padding-top: 0;
+    width: calc(100% - 36px);
+    padding: 34px 0 72px;
+    font-size: 16.5px;
+  }
+
+  body > h1 {
+    font-size: 36px;
+  }
+
+  body > h3 {
+    margin-bottom: 36px;
+    font-size: 17px;
   }
 
   .navbar {
-    position: static;
+    position: relative;
+    left: 50%;
+    right: auto;
+    width: 100vw;
+    height: auto;
+    margin: -34px 0 34px -50vw;
+    padding: 10px 18px 0;
+    gap: 18px;
+    overflow-x: auto;
+    overflow-y: visible;
+    white-space: nowrap;
+    scrollbar-width: none;
   }
 
-  .navbar .brand,
-  .dropdown,
+  .navbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .navbar .brand {
+    padding-bottom: 10px;
+    font-size: 14px;
+  }
+
   .dropdown .dropbtn {
-    width: 100%;
-    text-align: left;
+    height: 43px;
   }
 
   .dropdown-content {
-    position: static;
-    width: 100%;
-    box-shadow: none;
+    position: fixed;
+    top: 58px;
+    right: 12px;
+    left: 12px;
+    width: auto;
+    max-height: calc(100vh - 78px);
+    white-space: normal;
   }
+
+  article.post {
+    padding: 30px 0 34px;
+  }
+
+  article.post h2 {
+    font-size: 24px;
+  }
+
+  article.post p:not(.date) {
+    font-size: 16.5px;
+  }
+
+  a[name] {
+    top: -12px;
+  }
+}
+
+
+/* Keyboard and reduced-motion support */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
 }
