@@ -5,4 +5,3 @@ exclude:
   - Gemfile.lock
   - vendor
   - preview.sh
-  - chatting/_content.html
