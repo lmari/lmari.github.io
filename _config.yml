@@ -3,5 +3,6 @@ theme: jekyll-theme-cayman
 exclude:
   - Gemfile
   - Gemfile.lock
-  - preview.sh
   - vendor
+  - preview.sh
+  - chatting/_content.html
