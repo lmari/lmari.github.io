@@ -9,5 +9,5 @@
   <a href="{{ page.root | default: '' }}stgraph/index.html"{% if page.section == 'stgraph' %} class="active" aria-current="page"{% endif %}>STGraph</a>
   <a href="{{ page.root | default: '' }}echat/index.html"{% if page.section == 'echat' %} class="active" aria-current="page"{% endif %}>Chatting with an AI...</a>
   <a href="{{ page.root | default: '' }}chatting/index.html"{% if page.section == 'chatting' %} class="active" aria-current="page"{% endif %}>Chatting with an AI... (in Italian)</a>
-  <a href="{{ page.root | default: '' }}blog/index.html">A blog about AI (in Italian)</a>
+  <a href="{{ page.root | default: '' }}blog/index.html"{% if page.section == 'blog' %} class="active" aria-current="page"{% endif %}>A blog about AI (in Italian)</a>
 </nav>
