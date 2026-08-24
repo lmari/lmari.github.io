@@ -409,7 +409,9 @@ body.chatting #mode {
 /* Narrow screens: the global navigation becomes a compact horizontal rail. */
 @media screen and (max-width: 820px) {
     .sidebar {
-        position: relative;
+        position: sticky;
+        top: 0;
+        z-index: 100;
         display: flex;
         gap: 3px;
         width: 100%;
@@ -448,6 +450,7 @@ body.chatting #mode {
     }
 
     .nav {
+        top: 58px;
         margin-top: -12px;
     }
 }
