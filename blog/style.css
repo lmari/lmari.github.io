@@ -5,6 +5,8 @@ html {
 }
 
 .blog-content {
+  display: flex;
+  flex-direction: column;
   width: min(var(--reading-width), calc(100vw - var(--sidebar-width) - 88px));
   min-height: 100vh;
   margin-left: calc(var(--sidebar-width) + clamp(42px, 6vw, 92px));
@@ -26,6 +28,7 @@ html {
 
 /* Year navigation: a second-level rail inside the blog content column. */
 .navbar {
+  order: -1;
   position: sticky;
   z-index: 20;
   top: 0;
@@ -43,15 +46,9 @@ html {
   backdrop-filter: blur(8px);
 }
 
+/* The page title is shown below the year navigation, so the old navbar brand is redundant. */
 .navbar .brand {
-  display: flex;
-  align-items: center;
-  flex: 0 0 auto;
-  margin-right: 10px;
-  color: var(--color-accent);
-  font-size: 15px;
-  font-weight: 600;
-  white-space: nowrap;
+  display: none;
 }
 
 .dropdown {
@@ -224,10 +221,6 @@ a[name] {
 
   .navbar::-webkit-scrollbar {
     display: none;
-  }
-
-  .navbar .brand {
-    font-size: 14px;
   }
 
   .dropdown .dropbtn {
