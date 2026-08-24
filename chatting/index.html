@@ -24,8 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const sections = Array.from(document.querySelectorAll('.content0'));
   const navLinks = Array.from(document.querySelectorAll('.nav a[href^="#"]'));
 
-  function syncSection() {
-    let sectionId = window.location.hash.replace(/^#/, '');
+  function activateSection(sectionId) {
     if (!sectionIds.includes(sectionId)) sectionId = 'intro';
 
     sections.forEach(section => {
@@ -43,8 +42,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  window.addEventListener('hashchange', syncSection);
-  syncSection();
+  function syncFromLocation() {
+    activateSection(window.location.hash.replace(/^#/, '') || 'intro');
+  }
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      activateSection(link.getAttribute('href').slice(1));
+    });
+  });
+
+  window.addEventListener('hashchange', syncFromLocation);
+  window.addEventListener('popstate', syncFromLocation);
+  syncFromLocation();
 });
 </script>
 </head>
