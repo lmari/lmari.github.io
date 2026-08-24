@@ -27,8 +27,8 @@ root: "../"
 {% assign body_content = after_body | split: '</body>' | first %}
 <body class="blog-page">
 {% include sidebar.html %}
-<div class="content blog-content">
+<main class="blog-content">
 {{ body_content }}
-</div>
+</main>
 </body>
 </html>

@@ -4,6 +4,13 @@ html {
   scroll-padding-top: 76px;
 }
 
+.blog-content {
+  width: min(var(--reading-width), calc(100vw - var(--sidebar-width) - 88px));
+  min-height: 100vh;
+  margin-left: calc(var(--sidebar-width) + clamp(42px, 6vw, 92px));
+  padding: 52px 0 96px;
+}
+
 .blog-content > h1 {
   margin-bottom: 14px;
 }
@@ -195,6 +202,12 @@ a[name] {
     scroll-padding-top: 70px;
   }
 
+  .blog-content {
+    width: min(var(--reading-width), calc(100% - 40px));
+    margin: 0 auto;
+    padding: 42px 0 78px;
+  }
+
   .blog-content > h3 {
     margin-bottom: 36px;
     font-size: 17px;
@@ -245,6 +258,13 @@ a[name] {
 
   a[name] {
     top: -58px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .blog-content {
+    width: calc(100% - 36px);
+    padding-top: 34px;
   }
 }
 
