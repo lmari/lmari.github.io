@@ -198,7 +198,7 @@ a:focus-visible {
     gap: 25px;
     width: 100%;
     margin: -20px 0 45px;
-    padding: 18px 0 11px;
+    padding: 18px 0 0;
     overflow-x: auto;
     background: color-mix(in srgb, var(--color-paper) 94%, transparent);
     border-bottom: 1px solid var(--color-rule);
@@ -217,8 +217,10 @@ a:focus-visible {
 .nav a:visited {
     flex: 0 0 auto;
     position: relative;
-    padding: 4px 0 8px;
+    margin-bottom: -1px;
+    padding: 4px 0 12px;
     border: 0;
+    border-bottom: 1px solid transparent;
     color: var(--color-muted);
     font-size: 14px;
     font-weight: 500;
@@ -239,25 +241,10 @@ a:focus-visible {
 .content:has(#dialoghi:target) .nav a[href="#dialoghi"],
 .content:has(#storie:target) .nav a[href="#storie"],
 .content:has(#attivita:target) .nav a[href="#attivita"] {
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--color-accent);
     color: var(--color-accent);
     font-weight: 600;
-}
-
-.content:not(:has(.content0:target)) .nav a[href="#intro"]::after,
-.content:has(#intro:target) .nav a[href="#intro"]::after,
-.content:has(#articoli:target) .nav a[href="#articoli"]::after,
-.content:has(#media:target) .nav a[href="#media"]::after,
-.content:has(#slide:target) .nav a[href="#slide"]::after,
-.content:has(#dialoghi:target) .nav a[href="#dialoghi"]::after,
-.content:has(#storie:target) .nav a[href="#storie"]::after,
-.content:has(#attivita:target) .nav a[href="#attivita"]::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    bottom: -12px;
-    left: 0;
-    height: 2px;
-    background: var(--color-accent);
 }
 
 .content0 {
