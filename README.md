@@ -13,9 +13,13 @@ In this directory, to update the site:
 -->
 
 <!--
-In this directory, to serve locally the site:
+In this directory, to serve locally the site (Fedora):
+    sudo dnf install gcc-c++
+
     sudo dnf install rbenv ruby-build-rbenv gcc make \
     openssl-devel readline-devel zlib-devel libyaml-devel libffi-devel
+
+    sudo dnf install ruby-devel
     
     rbenv install 3.4.10
     rbenv local 3.4.10
