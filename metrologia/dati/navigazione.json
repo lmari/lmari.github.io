@@ -1,0 +1,402 @@
+{
+  "schema_version": 1,
+  "updated": "2026-09-08",
+  "editorial": {
+    "status": "proposed",
+    "author_reviewed": false,
+    "note": "Sintesi, domande e collegamenti sono proposte editoriali elaborate con IA e da sottoporre alla revisione dell’autore. I testi degli articoli restano distinti da questo apparato."
+  },
+  "concepts": [
+    {
+      "id": "classificazione",
+      "label": "Classificazione",
+      "description": "Attribuire un valore che identifica una classe, senza presupporre un ordine o una distanza tra le classi.",
+      "aliases": [
+        "proprietà classificatorie",
+        "proprietà nominali",
+        "etichette"
+      ],
+      "evidence": [
+        {
+          "article": "tm-18",
+          "block": "p1-05"
+        },
+        {
+          "article": "tm-43",
+          "block": "p1-09"
+        }
+      ]
+    },
+    {
+      "id": "incertezza",
+      "label": "Incertezza di classificazione",
+      "description": "Qualificare l’informazione sul singolo caso, considerando anche valori alternativi a quello selezionato.",
+      "aliases": [
+        "incertezza",
+        "affidabilità del risultato"
+      ],
+      "evidence": [
+        {
+          "article": "tm-18",
+          "block": "p2-05"
+        },
+        {
+          "article": "tm-18",
+          "block": "p3-01"
+        },
+        {
+          "article": "tm-43",
+          "block": "p3-05"
+        }
+      ]
+    },
+    {
+      "id": "scale",
+      "label": "Scale e riferimenti",
+      "description": "Costruire una relazione tra proprietà di riferimento e identificatori, conservando le relazioni empiriche pertinenti.",
+      "aliases": [
+        "scala di misura",
+        "scala Mohs",
+        "campioni"
+      ],
+      "evidence": [
+        {
+          "article": "tm-30",
+          "block": "p3-05"
+        },
+        {
+          "article": "tm-30",
+          "block": "p3-06"
+        }
+      ]
+    },
+    {
+      "id": "informazione",
+      "label": "Proprietà e informazione",
+      "description": "Distinguere le proprietà empiriche dai valori con cui se ne comunica informazione.",
+      "aliases": [
+        "mondo empirico",
+        "valori di proprietà",
+        "identificatori"
+      ],
+      "evidence": [
+        {
+          "article": "tm-30",
+          "block": "p1-08"
+        },
+        {
+          "article": "tm-30",
+          "block": "p4-04"
+        },
+        {
+          "article": "tm-43",
+          "block": "p1-09"
+        }
+      ]
+    },
+    {
+      "id": "taratura-training",
+      "label": "Taratura e addestramento",
+      "description": "Esplorare l’analogia tra processi che costruiscono una funzione di valutazione usando dati di riferimento.",
+      "aliases": [
+        "training",
+        "apprendimento supervisionato",
+        "funzione di valutazione"
+      ],
+      "evidence": [
+        {
+          "article": "tm-43",
+          "block": "p1-11"
+        },
+        {
+          "article": "tm-43",
+          "block": "p1-13"
+        },
+        {
+          "article": "tm-43",
+          "block": "p2-01"
+        },
+        {
+          "article": "tm-43",
+          "block": "p2-09"
+        }
+      ]
+    },
+    {
+      "id": "decisione",
+      "label": "Decisione e indecisione",
+      "description": "Esaminare come una regola di decisione può ammettere un esito di indecisione quando il risultato non è sufficientemente certo.",
+      "aliases": [
+        "astensione",
+        "non lo so",
+        "errore"
+      ],
+      "evidence": [
+        {
+          "article": "tm-43",
+          "block": "p4-07"
+        },
+        {
+          "article": "tm-43",
+          "block": "p4-09"
+        },
+        {
+          "article": "tm-43",
+          "block": "p4-11"
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "incertezza-senza-numeri",
+      "title": "Ha senso parlare di incertezza quando si classifica?",
+      "intro": "Il riconoscimento di una lettera permette di distinguere l’insieme delle classi dalla distribuzione di probabilità definita su quell’insieme.",
+      "concepts": [
+        "classificazione",
+        "incertezza"
+      ],
+      "steps": [
+        {
+          "evidence": {
+            "article": "tm-18",
+            "block": "p1-05"
+          },
+          "why": "Chiarire che cosa rende una proprietà classificatoria."
+        },
+        {
+          "evidence": {
+            "article": "tm-18",
+            "block": "p2-05"
+          },
+          "why": "Passare dal singolo valore a una distribuzione di probabilità."
+        },
+        {
+          "evidence": {
+            "article": "tm-18",
+            "block": "p3-04"
+          },
+          "why": "Leggere l’obiezione: come usare probabilità ordinate per classi prive di ordine?"
+        },
+        {
+          "evidence": {
+            "article": "tm-18",
+            "block": "p3-05"
+          },
+          "why": "Leggere la risposta, che distingue probabilità e relazioni tra le classi."
+        },
+        {
+          "evidence": {
+            "article": "tm-43",
+            "block": "p3-05"
+          },
+          "why": "Ritrovare la distribuzione sui valori possibili nell’esempio di una rete neurale."
+        }
+      ]
+    },
+    {
+      "id": "valore-e-proprieta",
+      "title": "Che rapporto c’è tra una proprietà e il valore che la rappresenta?",
+      "intro": "Le scale di durezza e il riconoscimento di cifre offrono due punti di ingresso per distinguere proprietà, identificatori e valori.",
+      "concepts": [
+        "scale",
+        "informazione",
+        "classificazione"
+      ],
+      "steps": [
+        {
+          "evidence": {
+            "article": "tm-30",
+            "block": "p3-05"
+          },
+          "why": "Partire dall’esempio concreto della scala Mohs."
+        },
+        {
+          "evidence": {
+            "article": "tm-30",
+            "block": "p3-06"
+          },
+          "why": "Esaminare la condizione di conservazione delle relazioni."
+        },
+        {
+          "evidence": {
+            "article": "tm-30",
+            "block": "p4-03"
+          },
+          "why": "Seguire il passaggio da identificatore a valore di grandezza."
+        },
+        {
+          "evidence": {
+            "article": "tm-43",
+            "block": "p1-09"
+          },
+          "why": "Confrontare classe e identificatore nell’esempio di “3” e “tre”."
+        }
+      ]
+    },
+    {
+      "id": "ammettere-indecisione",
+      "title": "Quando conviene ammettere di non essere abbastanza certi?",
+      "intro": "L’esempio del classificatore permette di confrontare errori, risposte corrette e casi di indecisione al variare delle soglie di decisione.",
+      "concepts": [
+        "incertezza",
+        "decisione"
+      ],
+      "steps": [
+        {
+          "evidence": {
+            "article": "tm-18",
+            "block": "p3-01"
+          },
+          "why": "Comprendere che cosa si perde riassumendo una distribuzione in un solo valore."
+        },
+        {
+          "evidence": {
+            "article": "tm-43",
+            "block": "p4-07"
+          },
+          "why": "Leggere la regola che decide quando classificare e quando ammettere indecisione."
+        },
+        {
+          "evidence": {
+            "article": "tm-43",
+            "block": "p4-09"
+          },
+          "why": "Confrontare i quattro scenari: tutte le percentuali della tabella si riferiscono al totale dei casi."
+        },
+        {
+          "evidence": {
+            "article": "tm-43",
+            "block": "p4-10"
+          },
+          "why": "Leggere il confronto e la sua interpretazione nell’articolo."
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "id": "r-distribuzione",
+      "source": "classificazione",
+      "target": "incertezza",
+      "predicate": "può produrre",
+      "explanation": "L’articolo del 2019 propone una distribuzione di probabilità sui valori possibili come forma generale del risultato di una classificazione.",
+      "basis": "explicit",
+      "review_status": "proposed",
+      "evidence": [
+        {
+          "article": "tm-18",
+          "block": "p2-05"
+        }
+      ]
+    },
+    {
+      "id": "r-scale",
+      "source": "scale",
+      "target": "informazione",
+      "predicate": "collega",
+      "explanation": "Le scale sono presentate come funzioni che collegano grandezze empiriche di riferimento a identificatori, conservando relazioni.",
+      "basis": "explicit",
+      "review_status": "proposed",
+      "evidence": [
+        {
+          "article": "tm-30",
+          "block": "p3-06"
+        }
+      ]
+    },
+    {
+      "id": "r-decisione",
+      "source": "incertezza",
+      "target": "decisione",
+      "predicate": "informa",
+      "explanation": "Nel caso studiato nel 2025, soglie applicate alla distribuzione prodotta dal classificatore determinano se selezionare una cifra o ammettere indecisione.",
+      "basis": "explicit",
+      "review_status": "proposed",
+      "evidence": [
+        {
+          "article": "tm-43",
+          "block": "p4-07"
+        },
+        {
+          "article": "tm-43",
+          "block": "p4-09"
+        }
+      ]
+    },
+    {
+      "id": "r-riferimenti",
+      "source": "scale",
+      "target": "taratura-training",
+      "predicate": "offre un confronto con",
+      "explanation": "Una lettura trasversale può confrontare il ruolo dei riferimenti nella costruzione delle scale con il ruolo delle coppie di riferimento nella costruzione di una funzione di valutazione. Il collegamento non identifica i due processi.",
+      "basis": "interpretive",
+      "review_status": "proposed",
+      "evidence": [
+        {
+          "article": "tm-30",
+          "block": "p3-06"
+        },
+        {
+          "article": "tm-43",
+          "block": "p1-11"
+        }
+      ]
+    },
+    {
+      "id": "r-sei-anni",
+      "source": "classificazione",
+      "target": "decisione",
+      "predicate": "si collega nel percorso a",
+      "explanation": "Il confronto tra i due articoli permette di passare dalla proposta di qualificare un risultato di classificazione a un esempio di uso della distribuzione per decidere. È un percorso editoriale, non una ricostruzione accertata dell’evoluzione del pensiero degli autori.",
+      "basis": "interpretive",
+      "review_status": "proposed",
+      "evidence": [
+        {
+          "article": "tm-18",
+          "block": "p3-02"
+        },
+        {
+          "article": "tm-43",
+          "block": "p4-11"
+        }
+      ]
+    }
+  ],
+  "paths": [
+    {
+      "id": "dalle-proprieta-ai-valori",
+      "title": "Dalle proprietà ai valori",
+      "description": "Un percorso sul rapporto tra mondo empirico, riferimenti e informazione.",
+      "steps": [
+        {
+          "article": "tm-30",
+          "why": "Costruire il lessico di proprietà, scale, identificatori e valori."
+        },
+        {
+          "article": "tm-18",
+          "why": "Mettere alla prova il confronto nel caso delle proprietà classificatorie."
+        },
+        {
+          "article": "tm-43",
+          "why": "Esaminare la funzione di valutazione, la taratura e l’addestramento."
+        }
+      ]
+    },
+    {
+      "id": "dall-incertezza-alla-decisione",
+      "title": "Dall’incertezza alla decisione",
+      "description": "Un percorso dalla qualità del singolo risultato alla scelta di rispondere o ammettere indecisione.",
+      "steps": [
+        {
+          "article": "tm-18",
+          "why": "Leggere la proposta dell’incertezza di classificazione e le obiezioni discusse."
+        },
+        {
+          "article": "tm-43",
+          "why": "Seguire l’esperimento sulle soglie e confrontare i risultati dei quattro scenari."
+        }
+      ]
+    }
+  ]
+}

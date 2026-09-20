@@ -1,0 +1,258 @@
+{
+  "type": "object",
+  "required": [
+    "schema_version",
+    "updated",
+    "editorial",
+    "concepts",
+    "questions",
+    "relations",
+    "paths"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "updated": {
+      "type": "string"
+    },
+    "editorial": {
+      "type": "object",
+      "required": [
+        "status",
+        "author_reviewed",
+        "note"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "author_reviewed": {
+          "type": "boolean"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "concepts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "description",
+          "aliases",
+          "evidence"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "aliases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "article",
+                "block"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "article": {
+                  "type": "string"
+                },
+                "block": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "intro",
+          "concepts",
+          "steps"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "intro": {
+            "type": "string"
+          },
+          "concepts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "evidence",
+                "why"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "evidence": {
+                  "type": "object",
+                  "required": [
+                    "article",
+                    "block"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "article": {
+                      "type": "string"
+                    },
+                    "block": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "why": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "source",
+          "target",
+          "predicate",
+          "explanation",
+          "basis",
+          "review_status",
+          "evidence"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string"
+          },
+          "predicate": {
+            "type": "string"
+          },
+          "explanation": {
+            "type": "string"
+          },
+          "basis": {
+            "type": "string"
+          },
+          "review_status": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "article",
+                "block"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "article": {
+                  "type": "string"
+                },
+                "block": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "paths": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "description",
+          "steps"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "article",
+                "why"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "article": {
+                  "type": "string"
+                },
+                "why": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Metrologia — navigazione v1"
+}
