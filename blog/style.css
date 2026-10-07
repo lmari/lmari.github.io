@@ -59,7 +59,8 @@ html {
   overflow: visible;
 }
 
-.dropdown .dropbtn {
+.dropdown .dropbtn,
+.dropdown .year-link {
   position: relative;
   min-width: 48px;
   margin: 0;
@@ -74,8 +75,15 @@ html {
   cursor: pointer;
 }
 
+.dropdown .year-link {
+  display: none;
+  text-decoration: none;
+}
+
 .dropdown:hover .dropbtn,
-.dropdown:focus-within .dropbtn {
+.dropdown:focus-within .dropbtn,
+.dropdown .year-link:hover,
+.dropdown .year-link:focus-visible {
   border-bottom-color: var(--color-accent);
   color: var(--color-accent);
   outline: none;
@@ -215,29 +223,20 @@ a[name] {
     flex-wrap: wrap;
     gap: 18px;
     margin-bottom: 34px;
-    /* Keep the panels outside the rail visible, including with backdrop-filter. */
     overflow: visible;
     white-space: nowrap;
   }
 
-  .dropdown {
-    /* Anchor each panel to the full year rail, not to the individual button. */
-    position: static;
+  /* On small screens years are native links, with no hover/touch menus. */
+  .dropdown .dropbtn,
+  .navbar .dropdown .dropdown-content {
+    display: none;
   }
 
-  .dropdown .dropbtn {
+  .dropdown .year-link {
+    display: flex;
+    align-items: center;
     height: 52px;
-  }
-
-  .dropdown-content {
-    position: absolute;
-    top: calc(100% - 1px);
-    right: 0;
-    left: 0;
-    width: auto;
-    max-height: calc(100vh - 136px);
-    max-height: calc(100dvh - 136px);
-    white-space: normal;
   }
 
   article.post {
