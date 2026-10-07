@@ -212,16 +212,17 @@ a[name] {
 
   .navbar {
     top: 58px;
+    flex-wrap: wrap;
     gap: 18px;
     margin-bottom: 34px;
-    overflow-x: auto;
-    overflow-y: visible;
+    /* Keep the panels outside the rail visible, including with backdrop-filter. */
+    overflow: visible;
     white-space: nowrap;
-    scrollbar-width: none;
   }
 
-  .navbar::-webkit-scrollbar {
-    display: none;
+  .dropdown {
+    /* Anchor each panel to the full year rail, not to the individual button. */
+    position: static;
   }
 
   .dropdown .dropbtn {
@@ -229,12 +230,13 @@ a[name] {
   }
 
   .dropdown-content {
-    position: fixed;
-    top: 116px;
-    right: 12px;
-    left: 12px;
+    position: absolute;
+    top: calc(100% - 1px);
+    right: 0;
+    left: 0;
     width: auto;
     max-height: calc(100vh - 136px);
+    max-height: calc(100dvh - 136px);
     white-space: normal;
   }
 
